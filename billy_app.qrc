@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="images">
     <file>Resources/billy_logo.png</file>
+    <file>Resources/close.png</file>
+    <file>Resources/maximize_restore.png</file>
+    <file>Resources/maximize.png</file>
+    <file>Resources/minimize.png</file>
+    <file>Resources/restore_down.png</file>
   </qresource>
 </RCC>
