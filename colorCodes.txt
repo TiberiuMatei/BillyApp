@@ -1,3 +1,5 @@
+Text colors:
+
 #2D142C
 
 #510A32
@@ -7,3 +9,22 @@
 #C72C41
 
 #EE4540
+
+Text non-colors:
+
+#6c6e71
+
+#b6b7b7
+
+#f3f5f6
+
+
+Background colors:
+
+#202528
+
+#272b2f
+
+#2a2e32
+
+#2d3136

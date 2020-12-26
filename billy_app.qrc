@@ -1,6 +1,18 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/subscriptions_clicked.png</file>
+    <file>Resources/subscriptions_not_clicked.png</file>
+    <file>Resources/internet_clicked.png</file>
+    <file>Resources/internet_not_clicked.png</file>
+    <file>Resources/gas_clicked.png</file>
+    <file>Resources/gas_not_clicked.png</file>
+    <file>Resources/electricity_clicked.png</file>
+    <file>Resources/electricity_not_clicked.png</file>
     <file>Resources/billy_logo.png</file>
+    <file>Resources/dashboard_clicked.png</file>
+    <file>Resources/calendar_clicked.png</file>
+    <file>Resources/calendar_not_clicked.png</file>
+    <file>Resources/dashboard_not_clicked.png</file>
     <file>Resources/close.png</file>
     <file>Resources/maximize_restore.png</file>
     <file>Resources/maximize.png</file>
