@@ -20,7 +20,16 @@ class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_BillyAppMain()
-        self.ui.setupUi(self)        
+        self.ui.setupUi(self)
+
+        # Animate left side menu upon app loading
+        # Get current left menu width
+        self.ui.frameMenuContent.setGeometry(240, 240, 0, 560)
+        self.animation = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
+        self.animation.setDuration(1300)
+        self.animation.setEndValue(QRect(0, 240, 200, 560))
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation.start() 
 
         # Move window
         def moveWindow(event):
