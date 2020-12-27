@@ -245,7 +245,7 @@ QPushButton:hover{
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -304,7 +304,7 @@ QPushButton:checked{
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -351,7 +351,7 @@ QPushButton:checked{
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -403,7 +403,7 @@ background-image: url(:/images/Resources/electricity_clicked.png);
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -450,7 +450,7 @@ QPushButton:checked{
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -497,7 +497,7 @@ QPushButton:checked{
             </property>
             <property name="font">
              <font>
-              <family>SF Pro Display</family>
+              <family>SF UI Display</family>
               <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
@@ -752,7 +752,7 @@ QPushButton:hover{
         <widget class="QFrame" name="frameContentArea">
          <property name="styleSheet">
           <string notr="true">QFrame{
-	background-color: rgb(32, 37, 40);
+	background-color:#202528;
 }</string>
          </property>
          <property name="frameShape">
@@ -764,6 +764,195 @@ QPushButton:hover{
          <property name="lineWidth">
           <number>0</number>
          </property>
+         <widget class="QStackedWidget" name="stackedWidget">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>991</width>
+            <height>751</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QWidget{
+	background-color: rgb(32, 37, 40);
+}</string>
+          </property>
+          <widget class="QWidget" name="pageDashboard">
+           <widget class="QLabel" name="lblDashTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Dashboard</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="pageCalendar">
+           <widget class="QLabel" name="lblCalendarTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Calendar</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="pageElectricity">
+           <widget class="QLabel" name="lblElectricityTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Electricity</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="pageNaturalGas">
+           <widget class="QLabel" name="lblNaturalGasTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Natural Gas</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="pageInternetTV">
+           <widget class="QLabel" name="lblInternetTVTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Internet &amp; TV</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="pageSubscriptions">
+           <widget class="QLabel" name="lblSubscriptionsTitle">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>10</y>
+              <width>281</width>
+              <height>41</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>18</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6c6e71;</string>
+            </property>
+            <property name="text">
+             <string>Subscriptions</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::MarkdownText</enum>
+            </property>
+           </widget>
+          </widget>
+         </widget>
         </widget>
        </item>
       </layout>
