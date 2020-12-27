@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiBmqimj.ui'
+## Form generated from reading UI file 'billy_uiyxsfVc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -31,7 +31,7 @@ class Ui_BillyAppMain(object):
         self.frameLeftMenu.setObjectName(u"frameLeftMenu")
         self.frameLeftMenu.setMaximumSize(QSize(200, 16777215))
         self.frameLeftMenu.setStyleSheet(u"QFrame{\n"
-"   background-color: rgb(39, 43, 47);\n"
+"	background-color: rgb(39, 43, 47);\n"
 "}")
         self.frameLeftMenu.setFrameShape(QFrame.NoFrame)
         self.frameLeftMenu.setFrameShadow(QFrame.Raised)
@@ -86,16 +86,16 @@ class Ui_BillyAppMain(object):
         self.frameMenuContent.setObjectName(u"frameMenuContent")
         self.frameMenuContent.setMaximumSize(QSize(200, 16777215))
         self.frameMenuContent.setStyleSheet(u"QPushButton{\n"
-"   border: none;\n"
-"   background-color: #272b2f;\n"
-"   color: #fafbfb;\n"
+"	border: none;\n"
+"	background-color: #272b2f;\n"
+"	color: #fafbfb;\n"
 "}\n"
 "QPushButton:checked{\n"
-"   background-color: #202528;\n"
-"   color: #EE4540;\n"
+"	background-color: #202528;\n"
+"	color: #EE4540;\n"
 "}\n"
 "QPushButton:hover{\n"
-"   color: #EE4540;\n"
+"	color: #EE4540;\n"
 "}")
         self.frameMenuContent.setFrameShape(QFrame.NoFrame)
         self.frameMenuContent.setFrameShadow(QFrame.Raised)
@@ -114,7 +114,7 @@ class Ui_BillyAppMain(object):
         self.btnDashboard.setMinimumSize(QSize(0, 0))
         self.btnDashboard.setMaximumSize(QSize(16777215, 50))
         font = QFont()
-        font.setFamily(u"SF Pro Display")
+        font.setFamily(u"SF UI Display")
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
@@ -125,8 +125,8 @@ class Ui_BillyAppMain(object):
 "background-repeat: none;\n"
 "padding-left: 50px;\n"
 "}\n"
-"QPushButton:checked{   \n"
-"   background-image: url(:/images/Resources/dashboard_clicked.png);\n"
+"QPushButton:checked{	\n"
+"	background-image: url(:/images/Resources/dashboard_clicked.png);\n"
 "}\n"
 "")
         self.btnDashboard.setIconSize(QSize(16, 16))
@@ -145,12 +145,12 @@ class Ui_BillyAppMain(object):
         self.btnCalendar.setFont(font)
         self.btnCalendar.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnCalendar.setStyleSheet(u"QPushButton{\n"
-"   background-image: url(:/images/Resources/calendar_not_clicked.png);\n"
-"   background-repeat: none;\n"
-"   padding-left: 50px;\n"
+"	background-image: url(:/images/Resources/calendar_not_clicked.png);\n"
+"	background-repeat: none;\n"
+"	padding-left: 50px;\n"
 "}\n"
-"QPushButton:checked{   \n"
-"   background-image: url(:/images/Resources/calendar_clicked.png);\n"
+"QPushButton:checked{	\n"
+"	background-image: url(:/images/Resources/calendar_clicked.png);\n"
 "}\n"
 "")
         self.btnCalendar.setCheckable(True)
@@ -166,9 +166,9 @@ class Ui_BillyAppMain(object):
         self.btnElectricity.setFont(font)
         self.btnElectricity.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnElectricity.setStyleSheet(u"QPushButton{\n"
-"   background-image: url(:/images/Resources/electricity_not_clicked.png);\n"
-"   background-repeat: none;\n"
-"   padding-left: 50px;\n"
+"	background-image: url(:/images/Resources/electricity_not_clicked.png);\n"
+"	background-repeat: none;\n"
+"	padding-left: 50px;\n"
 "}\n"
 "QPushButton:checked{\n"
 "background-image: url(:/images/Resources/electricity_clicked.png);\n"
@@ -187,12 +187,12 @@ class Ui_BillyAppMain(object):
         self.btnNaturalGas.setFont(font)
         self.btnNaturalGas.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnNaturalGas.setStyleSheet(u"QPushButton{\n"
-"   background-image: url(:/images/Resources/gas_not_clicked.png);\n"
-"   background-repeat: none;\n"
-"   padding-left: 50px;\n"
+"	background-image: url(:/images/Resources/gas_not_clicked.png);\n"
+"	background-repeat: none;\n"
+"	padding-left: 50px;\n"
 "}\n"
-"QPushButton:checked{   \n"
-"   background-image: url(:/images/Resources/gas_clicked.png);\n"
+"QPushButton:checked{	\n"
+"	background-image: url(:/images/Resources/gas_clicked.png);\n"
 "}\n"
 "")
         self.btnNaturalGas.setCheckable(True)
@@ -208,12 +208,12 @@ class Ui_BillyAppMain(object):
         self.btnInternetTV.setFont(font)
         self.btnInternetTV.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnInternetTV.setStyleSheet(u"QPushButton{\n"
-"   background-image: url(:/images/Resources/internet_not_clicked.png);\n"
-"   background-repeat: none;\n"
-"   padding-left: 50px;\n"
+"	background-image: url(:/images/Resources/internet_not_clicked.png);\n"
+"	background-repeat: none;\n"
+"	padding-left: 50px;\n"
 "}\n"
-"QPushButton:checked{   \n"
-"   background-image: url(:/images/Resources/internet_clicked.png);\n"
+"QPushButton:checked{	\n"
+"	background-image: url(:/images/Resources/internet_clicked.png);\n"
 "}\n"
 "")
         self.btnInternetTV.setCheckable(True)
@@ -229,12 +229,12 @@ class Ui_BillyAppMain(object):
         self.btnSubscriptions.setFont(font)
         self.btnSubscriptions.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnSubscriptions.setStyleSheet(u"QPushButton{\n"
-"   background-image: url(:/images/Resources/subscriptions_not_clicked.png);\n"
-"   background-repeat: none;\n"
-"   padding-left: 50px;\n"
+"	background-image: url(:/images/Resources/subscriptions_not_clicked.png);\n"
+"	background-repeat: none;\n"
+"	padding-left: 50px;\n"
 "}\n"
-"QPushButton:checked{   \n"
-"   background-image: url(:/images/Resources/subscriptions_clicked.png);\n"
+"QPushButton:checked{	\n"
+"	background-image: url(:/images/Resources/subscriptions_clicked.png);\n"
 "}\n"
 "")
         self.btnSubscriptions.setCheckable(True)
@@ -270,7 +270,7 @@ class Ui_BillyAppMain(object):
         self.frameTitle = QFrame(self.frameHeader)
         self.frameTitle.setObjectName(u"frameTitle")
         self.frameTitle.setStyleSheet(u"QFrame{\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	background-color: rgb(32, 37, 40);\n"
 "}")
         self.frameTitle.setFrameShape(QFrame.NoFrame)
         self.frameTitle.setFrameShadow(QFrame.Raised)
@@ -282,7 +282,7 @@ class Ui_BillyAppMain(object):
         self.frameControlButtons.setObjectName(u"frameControlButtons")
         self.frameControlButtons.setMaximumSize(QSize(120, 16777215))
         self.frameControlButtons.setStyleSheet(u"QFrame{\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	background-color: rgb(32, 37, 40);\n"
 "}")
         self.frameControlButtons.setFrameShape(QFrame.NoFrame)
         self.frameControlButtons.setFrameShadow(QFrame.Raised)
@@ -297,11 +297,11 @@ class Ui_BillyAppMain(object):
         font1.setKerning(False)
         self.btnMinimize.setFont(font1)
         self.btnMinimize.setStyleSheet(u"QPushButton{\n"
-"   border: none;\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	border: none;\n"
+"	background-color: rgb(32, 37, 40);\n"
 "}\n"
 "QPushButton:hover{\n"
-"   background-color:#2a2e32;\n"
+"	background-color:#2a2e32;\n"
 "}")
         icon = QIcon()
         icon.addFile(u":/images/Resources/minimize.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -314,11 +314,11 @@ class Ui_BillyAppMain(object):
         self.btnMaximizeRestore = QPushButton(self.frameControlButtons)
         self.btnMaximizeRestore.setObjectName(u"btnMaximizeRestore")
         self.btnMaximizeRestore.setStyleSheet(u"QPushButton{\n"
-"   border: none;\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	border: none;\n"
+"	background-color: rgb(32, 37, 40);\n"
 "}\n"
 "QPushButton:hover{\n"
-"   background-color:#2a2e32;\n"
+"	background-color:#2a2e32;\n"
 "}")
         icon1 = QIcon()
         icon1.addFile(u":/images/Resources/maximize_restore.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -331,11 +331,11 @@ class Ui_BillyAppMain(object):
         self.btnClose = QPushButton(self.frameControlButtons)
         self.btnClose.setObjectName(u"btnClose")
         self.btnClose.setStyleSheet(u"QPushButton{\n"
-"   border: none;\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	border: none;\n"
+"	background-color: rgb(32, 37, 40);\n"
 "}\n"
 "QPushButton:hover{\n"
-"   background-color:#C72C41;\n"
+"	background-color:#C72C41;\n"
 "}")
         icon2 = QIcon()
         icon2.addFile(u":/images/Resources/close.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -354,11 +354,76 @@ class Ui_BillyAppMain(object):
         self.frameContentArea = QFrame(self.frameMainContentArea)
         self.frameContentArea.setObjectName(u"frameContentArea")
         self.frameContentArea.setStyleSheet(u"QFrame{\n"
-"   background-color: rgb(32, 37, 40);\n"
+"	background-color:#202528;\n"
 "}")
         self.frameContentArea.setFrameShape(QFrame.StyledPanel)
         self.frameContentArea.setFrameShadow(QFrame.Raised)
         self.frameContentArea.setLineWidth(0)
+        self.stackedWidget = QStackedWidget(self.frameContentArea)
+        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.stackedWidget.setGeometry(QRect(0, 0, 991, 751))
+        self.stackedWidget.setStyleSheet(u"QWidget{\n"
+"	background-color: rgb(32, 37, 40);\n"
+"}")
+        self.pageDashboard = QWidget()
+        self.pageDashboard.setObjectName(u"pageDashboard")
+        self.lblDashTitle = QLabel(self.pageDashboard)
+        self.lblDashTitle.setObjectName(u"lblDashTitle")
+        self.lblDashTitle.setGeometry(QRect(20, 10, 281, 41))
+        font2 = QFont()
+        font2.setFamily(u"SF UI Display")
+        font2.setPointSize(18)
+        font2.setBold(True)
+        font2.setWeight(75)
+        self.lblDashTitle.setFont(font2)
+        self.lblDashTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblDashTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageDashboard)
+        self.pageCalendar = QWidget()
+        self.pageCalendar.setObjectName(u"pageCalendar")
+        self.lblCalendarTitle = QLabel(self.pageCalendar)
+        self.lblCalendarTitle.setObjectName(u"lblCalendarTitle")
+        self.lblCalendarTitle.setGeometry(QRect(20, 10, 281, 41))
+        self.lblCalendarTitle.setFont(font2)
+        self.lblCalendarTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblCalendarTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageCalendar)
+        self.pageElectricity = QWidget()
+        self.pageElectricity.setObjectName(u"pageElectricity")
+        self.lblElectricityTitle = QLabel(self.pageElectricity)
+        self.lblElectricityTitle.setObjectName(u"lblElectricityTitle")
+        self.lblElectricityTitle.setGeometry(QRect(20, 10, 281, 41))
+        self.lblElectricityTitle.setFont(font2)
+        self.lblElectricityTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblElectricityTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageElectricity)
+        self.pageNaturalGas = QWidget()
+        self.pageNaturalGas.setObjectName(u"pageNaturalGas")
+        self.lblNaturalGasTitle = QLabel(self.pageNaturalGas)
+        self.lblNaturalGasTitle.setObjectName(u"lblNaturalGasTitle")
+        self.lblNaturalGasTitle.setGeometry(QRect(20, 10, 281, 41))
+        self.lblNaturalGasTitle.setFont(font2)
+        self.lblNaturalGasTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblNaturalGasTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageNaturalGas)
+        self.pageInternetTV = QWidget()
+        self.pageInternetTV.setObjectName(u"pageInternetTV")
+        self.lblInternetTVTitle = QLabel(self.pageInternetTV)
+        self.lblInternetTVTitle.setObjectName(u"lblInternetTVTitle")
+        self.lblInternetTVTitle.setGeometry(QRect(20, 10, 281, 41))
+        self.lblInternetTVTitle.setFont(font2)
+        self.lblInternetTVTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblInternetTVTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageInternetTV)
+        self.pageSubscriptions = QWidget()
+        self.pageSubscriptions.setObjectName(u"pageSubscriptions")
+        self.lblSubscriptionsTitle = QLabel(self.pageSubscriptions)
+        self.lblSubscriptionsTitle.setObjectName(u"lblSubscriptionsTitle")
+        self.lblSubscriptionsTitle.setGeometry(QRect(20, 10, 281, 41))
+        self.lblSubscriptionsTitle.setFont(font2)
+        self.lblSubscriptionsTitle.setStyleSheet(u"color: #6c6e71;")
+        self.lblSubscriptionsTitle.setTextFormat(Qt.MarkdownText)
+        self.stackedWidget.addWidget(self.pageSubscriptions)
 
         self.verticalLayout_2.addWidget(self.frameContentArea)
 
@@ -383,5 +448,11 @@ class Ui_BillyAppMain(object):
         self.btnMinimize.setText("")
         self.btnMaximizeRestore.setText("")
         self.btnClose.setText("")
+        self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
+        self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
+        self.lblElectricityTitle.setText(QCoreApplication.translate("BillyAppMain", u"Electricity", None))
+        self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
+        self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
+        self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
     # retranslateUi
 
