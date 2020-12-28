@@ -1,5 +1,21 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/set_earnings.png</file>
+    <file>Resources/gts_supplier_not_available.png</file>
+    <file>Resources/earnigns.png</file>
+    <file>Resources/earnigns.png</file>
+    <file>Resources/rcsrds_supplier.png</file>
+    <file>Resources/billing_country.png</file>
+    <file>Resources/telekom_supplier_not_available.png</file>
+    <file>Resources/upc_supplier_not_available.png</file>
+    <file>Resources/enel_supplier_not_available.png</file>
+    <file>Resources/engie_supplier.png</file>
+    <file>Resources/digiEnergy_supplier_not_available.png</file>
+    <file>Resources/cez_supplier_not_available.png</file>
+    <file>Resources/eon_supplier_not_available.png</file>
+    <file>Resources/cez_supplier.png</file>
+    <file>Resources/enel_supplier.png</file>
+    <file>Resources/eon_supplier.png</file>
     <file>Resources/subscriptions_clicked.png</file>
     <file>Resources/profile.png</file>
     <file>Resources/username.png</file>

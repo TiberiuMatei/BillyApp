@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
+    <width>1304</width>
     <height>800</height>
    </rect>
   </property>
@@ -284,6 +284,9 @@ QPushButton:checked{
              <bool>false</bool>
             </property>
             <property name="autoDefault">
+             <bool>false</bool>
+            </property>
+            <property name="default">
              <bool>false</bool>
             </property>
             <property name="flat">
@@ -622,73 +625,153 @@ QPushButton:checked{
             <property name="lineWidth">
              <number>0</number>
             </property>
-            <widget class="QPushButton" name="btnProfile">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>40</width>
-               <height>40</height>
-              </rect>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="spacing">
+              <number>0</number>
              </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
+             <property name="leftMargin">
+              <number>0</number>
              </property>
-             <property name="styleSheet">
-              <string notr="true">QPushButton{
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="headerButtons">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QPushButton" name="btnProfile">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>40</width>
+                  <height>40</height>
+                 </rect>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton{
 	border: none;
 	background-color: rgb(32, 37, 40);
 }
 QPushButton:hover{
 	background-color: rgb(39, 43, 47);
 }</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="billy_app.qrc">
-               <normaloff>:/images/Resources/profile.png</normaloff>:/images/Resources/profile.png</iconset>
-             </property>
-             <property name="iconSize">
-              <size>
-               <width>40</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="flat">
-              <bool>true</bool>
-             </property>
-            </widget>
-            <widget class="QLabel" name="lblSetProfileName">
-             <property name="geometry">
-              <rect>
-               <x>40</x>
-               <y>0</y>
-               <width>400</width>
-               <height>40</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>SF UI Display</family>
-               <pointsize>10</pointsize>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="cursor">
-              <cursorShape>ArrowCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: #d0cfd0;
-padding-left: 5px;	
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="billy_app.qrc">
+                  <normaloff>:/images/Resources/profile.png</normaloff>:/images/Resources/profile.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="flat">
+                 <bool>true</bool>
+                </property>
+               </widget>
+               <widget class="QLabel" name="lblSetProfileName">
+                <property name="geometry">
+                 <rect>
+                  <x>50</x>
+                  <y>0</y>
+                  <width>400</width>
+                  <height>40</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>SF UI Display</family>
+                  <pointsize>10</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="cursor">
+                 <cursorShape>ArrowCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: #d0cfd0;	
 background-color:#202528;	</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="headerInfo">
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <widget class="QLabel" name="lblBillingFlag">
+                <property name="geometry">
+                 <rect>
+                  <x>320</x>
+                  <y>0</y>
+                  <width>40</width>
+                  <height>40</height>
+                 </rect>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-image: url(:/images/Resources/billing_country.png);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+               <widget class="QLabel" name="lblBillingCountry">
+                <property name="geometry">
+                 <rect>
+                  <x>220</x>
+                  <y>0</y>
+                  <width>100</width>
+                  <height>40</height>
+                 </rect>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>SF UI Display</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: #6c6e71;</string>
+                </property>
+                <property name="text">
+                 <string>Billing Country</string>
+                </property>
+               </widget>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
           <item>
@@ -848,7 +931,7 @@ QPushButton:hover{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>991</width>
+            <width>1091</width>
             <height>751</height>
            </rect>
           </property>
@@ -1032,7 +1115,7 @@ QPushButton:hover{
            </widget>
           </widget>
           <widget class="QWidget" name="pageProfile">
-           <widget class="QLabel" name="lblProfile">
+           <widget class="QLabel" name="lblAccountPreferences">
             <property name="geometry">
              <rect>
               <x>30</x>
@@ -1053,7 +1136,7 @@ QPushButton:hover{
              <string notr="true">color: #6c6e71;</string>
             </property>
             <property name="text">
-             <string>Profile</string>
+             <string>Account preferences</string>
             </property>
             <property name="textFormat">
              <enum>Qt::MarkdownText</enum>
@@ -1064,8 +1147,8 @@ QPushButton:hover{
              <rect>
               <x>30</x>
               <y>80</y>
-              <width>401</width>
-              <height>121</height>
+              <width>731</width>
+              <height>130</height>
              </rect>
             </property>
             <property name="cursor">
@@ -1088,7 +1171,7 @@ QPushButton:hover{
               <rect>
                <x>20</x>
                <y>10</y>
-               <width>121</width>
+               <width>191</width>
                <height>21</height>
               </rect>
              </property>
@@ -1099,17 +1182,17 @@ QPushButton:hover{
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: #d0cfd0;</string>
+              <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
-              <string>Account user</string>
+              <string>Account information</string>
              </property>
             </widget>
             <widget class="QLineEdit" name="txtUsername">
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>50</y>
+               <y>60</y>
                <width>280</width>
                <height>50</height>
               </rect>
@@ -1131,7 +1214,7 @@ QPushButton:hover{
 	background-repeat: none;
 }
 QLineEdit:hover{
-	border: 2px solid #C72C41;
+	border: 2px solid #EE4540;
 }
 QLineEdit:focus{
 	border: 2px solid #EE4540;
@@ -1141,11 +1224,47 @@ QLineEdit:focus{
               <string>Username</string>
              </property>
             </widget>
+            <widget class="QLineEdit" name="txtEarnings">
+             <property name="geometry">
+              <rect>
+               <x>320</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/set_earnings.png);
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Earnings</string>
+             </property>
+            </widget>
             <widget class="QPushButton" name="btnSetProfileName">
              <property name="geometry">
               <rect>
-               <x>310</x>
-               <y>50</y>
+               <x>630</x>
+               <y>60</y>
                <width>75</width>
                <height>50</height>
               </rect>
@@ -1179,8 +1298,834 @@ QPushButton:hover{
              <property name="text">
               <string>Set</string>
              </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
              <property name="flat">
               <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricitySupplier">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>230</y>
+              <width>1050</width>
+              <height>140</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricitySupplier">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Electricity Supplier</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricitySupplierInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Please select the electricity supplier</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnEnelSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/enel_supplier.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnCEZSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>280</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/cez_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnEONSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>540</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/eon_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnDigiEnergySelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>800</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/digiEnergy_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasSupplier">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>390</y>
+              <width>1050</width>
+              <height>140</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasSupplier">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Natural Gas Supplier</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasSupplierInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>241</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Please select the natural gas supplier</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnEngieSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/engie_supplier.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnCEZGasSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>280</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/cez_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnEONGasSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>540</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/eon_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnEnelGasSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>800</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/enel_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="internetProvider">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>550</y>
+              <width>1050</width>
+              <height>140</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblInternetProvider">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Internet &amp; TV Provider</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblInternetProviderInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>251</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Please select the internet &amp; TV provider</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnRCSRDSSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/rcsrds_supplier.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnUPCSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>280</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/upc_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnTelekomSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>540</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/telekom_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnGTSSelection">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>800</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/gts_supplier_not_available.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="earnings">
+            <property name="geometry">
+             <rect>
+              <x>780</x>
+              <y>80</y>
+              <width>300</width>
+              <height>130</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+	background-image: url(:/images/Resources/earnigns.png);
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblEarnings">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>121</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Earnings</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblEarningsPerMonth">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>100</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Per month</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblEarningsCurrency">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>61</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #C72C41;</string>
+             </property>
+             <property name="text">
+              <string>RON</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblEarningsValue">
+             <property name="geometry">
+              <rect>
+               <x>80</x>
+               <y>70</y>
+               <width>111</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </widget>

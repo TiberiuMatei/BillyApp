@@ -68,7 +68,9 @@ class MainWindow(QMainWindow):
         self.ui.btnProfile.clicked.connect(self.profilePage)
 
         # Profile page buttons
-        self.ui.btnSetProfileName.clicked.connect(self.setProfileName)
+        self.ui.btnSetProfileName.clicked.connect(self.setAccountInformation)
+        self.ui.txtUsername.returnPressed.connect(self.setAccountInformation)
+        self.ui.txtEarnings.returnPressed.connect(self.setAccountInformation)
 
         # Show Main Window
         self.show()
@@ -127,18 +129,50 @@ class MainWindow(QMainWindow):
     def profilePage(self):
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
         # Animate profile frame
-        self.ui.profileName.setGeometry(30, 80, 0, 121)
-        self.animation = QPropertyAnimation(self.ui.profileName, b"geometry")
-        self.animation.setDuration(800)
-        self.animation.setEndValue(QRect(30, 80, 401, 121))
-        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation.start()
+        self.ui.profileName.setGeometry(30, 80, 0, 130)
+        self.animation1 = QPropertyAnimation(self.ui.profileName, b"geometry")
+        self.animation1.setDuration(800)
+        self.animation1.setEndValue(QRect(30, 80, 731, 130))
+        self.animation1.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation1.start()
+        # Animate electricity supplier frame
+        self.ui.electricitySupplier.setGeometry(30, 230, 0, 140)
+        self.animation2 = QPropertyAnimation(self.ui.electricitySupplier, b"geometry")
+        self.animation2.setDuration(800)
+        self.animation2.setEndValue(QRect(30, 230, 1050, 140))
+        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation2.start()
+        # Animate natural gas supplier frame
+        self.ui.naturalGasSupplier.setGeometry(30, 390, 0, 140)
+        self.animation3 = QPropertyAnimation(self.ui.naturalGasSupplier, b"geometry")
+        self.animation3.setDuration(800)
+        self.animation3.setEndValue(QRect(30, 390, 1050, 140))
+        self.animation3.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation3.start()
+        # Animate internet provider frame
+        self.ui.internetProvider.setGeometry(30, 550, 0, 140)
+        self.animation4 = QPropertyAnimation(self.ui.internetProvider, b"geometry")
+        self.animation4.setDuration(800)
+        self.animation4.setEndValue(QRect(30, 550, 1050, 140))
+        self.animation4.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation4.start()
+        # Animate earnings frame
+        self.ui.earnings.setGeometry(780, 80, 0, 130)
+        self.animation5 = QPropertyAnimation(self.ui.earnings, b"geometry")
+        self.animation5.setDuration(800)
+        self.animation5.setEndValue(QRect(780, 80, 300, 130))
+        self.animation5.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation5.start()
 
-    def setProfileName(self):
+    def setAccountInformation(self):
         if self.ui.txtUsername.text() == '':
-            self.generateMessageBox(window_title='Username information', msg_text='Please fill in the Username field!')
+            self.generateMessageBox(window_title='Account information', msg_text='Please fill in the Username field!')
         else:
             self.ui.lblSetProfileName.setText(self.ui.txtUsername.text())
+        if self.ui.txtEarnings.text() == '':
+            self.generateMessageBox(window_title='Account information', msg_text='Please fill in the Earnings field!')
+        else:
+            self.ui.lblEarningsValue.setText(self.ui.txtEarnings.text())
 
     # Move app window - drag
     def mousePressEvent(self, event):

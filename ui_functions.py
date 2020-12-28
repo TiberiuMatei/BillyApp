@@ -38,8 +38,27 @@ class UIFunctions(MainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+        #####################
+        # APP TOOLTIP SECTION
+        #####################
+
         # MAXIMIZE TOOLTIP
         self.ui.btnMaximizeRestore.setToolTip("Maximize")
+
+        # BILLING FLAG
+        self.ui.lblBillingFlag.setToolTip("RO")
+
+        # Engie supplier
+        self.ui.btnEngieSelection.setToolTip("ENGIE Romania S.A.")
+
+        # Enel supplier
+        self.ui.btnEnelSelection.setToolTip("Enel Energie Muntenia SA")
+
+        # RCSRDS supplier
+        self.ui.btnRCSRDSSelection.setToolTip("RCS & RDS S.A.")
+
+        # Profile button
+        self.ui.btnProfile.setToolTip("Account preferences")
 
         # SET DROPSHADOW WINDOW
         self.shadow = QGraphicsDropShadowEffect(self)

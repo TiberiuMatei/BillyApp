@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uizBBqFm.ui'
+## Form generated from reading UI file 'billy_uiGviPnT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -18,7 +18,7 @@ class Ui_BillyAppMain(object):
     def setupUi(self, BillyAppMain):
         if not BillyAppMain.objectName():
             BillyAppMain.setObjectName(u"BillyAppMain")
-        BillyAppMain.resize(1200, 800)
+        BillyAppMain.resize(1304, 800)
         BillyAppMain.setMinimumSize(QSize(1200, 800))
         self.mainCentralWidget = QWidget(BillyAppMain)
         self.mainCentralWidget.setObjectName(u"mainCentralWidget")
@@ -278,7 +278,15 @@ class Ui_BillyAppMain(object):
         self.frameTitle.setFrameShape(QFrame.NoFrame)
         self.frameTitle.setFrameShadow(QFrame.Raised)
         self.frameTitle.setLineWidth(0)
-        self.btnProfile = QPushButton(self.frameTitle)
+        self.horizontalLayout_4 = QHBoxLayout(self.frameTitle)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.headerButtons = QFrame(self.frameTitle)
+        self.headerButtons.setObjectName(u"headerButtons")
+        self.headerButtons.setFrameShape(QFrame.StyledPanel)
+        self.headerButtons.setFrameShadow(QFrame.Raised)
+        self.btnProfile = QPushButton(self.headerButtons)
         self.btnProfile.setObjectName(u"btnProfile")
         self.btnProfile.setGeometry(QRect(0, 0, 40, 40))
         self.btnProfile.setCursor(QCursor(Qt.PointingHandCursor))
@@ -294,9 +302,9 @@ class Ui_BillyAppMain(object):
         self.btnProfile.setIcon(icon)
         self.btnProfile.setIconSize(QSize(40, 40))
         self.btnProfile.setFlat(True)
-        self.lblSetProfileName = QLabel(self.frameTitle)
+        self.lblSetProfileName = QLabel(self.headerButtons)
         self.lblSetProfileName.setObjectName(u"lblSetProfileName")
-        self.lblSetProfileName.setGeometry(QRect(40, 0, 400, 40))
+        self.lblSetProfileName.setGeometry(QRect(50, 0, 400, 40))
         font1 = QFont()
         font1.setFamily(u"SF UI Display")
         font1.setPointSize(10)
@@ -304,9 +312,31 @@ class Ui_BillyAppMain(object):
         font1.setWeight(75)
         self.lblSetProfileName.setFont(font1)
         self.lblSetProfileName.setCursor(QCursor(Qt.ArrowCursor))
-        self.lblSetProfileName.setStyleSheet(u"color: #d0cfd0;\n"
-"padding-left: 5px; \n"
+        self.lblSetProfileName.setStyleSheet(u"color: #d0cfd0;  \n"
 "background-color:#202528;  ")
+
+        self.horizontalLayout_4.addWidget(self.headerButtons)
+
+        self.headerInfo = QFrame(self.frameTitle)
+        self.headerInfo.setObjectName(u"headerInfo")
+        self.headerInfo.setMaximumSize(QSize(400, 16777215))
+        self.headerInfo.setFrameShape(QFrame.StyledPanel)
+        self.headerInfo.setFrameShadow(QFrame.Raised)
+        self.lblBillingFlag = QLabel(self.headerInfo)
+        self.lblBillingFlag.setObjectName(u"lblBillingFlag")
+        self.lblBillingFlag.setGeometry(QRect(320, 0, 40, 40))
+        self.lblBillingFlag.setStyleSheet(u"background-image: url(:/images/Resources/billing_country.png);")
+        self.lblBillingCountry = QLabel(self.headerInfo)
+        self.lblBillingCountry.setObjectName(u"lblBillingCountry")
+        self.lblBillingCountry.setGeometry(QRect(220, 0, 100, 40))
+        font2 = QFont()
+        font2.setFamily(u"SF UI Display")
+        font2.setPointSize(10)
+        self.lblBillingCountry.setFont(font2)
+        self.lblBillingCountry.setStyleSheet(u"color: #6c6e71;")
+
+        self.horizontalLayout_4.addWidget(self.headerInfo)
+
 
         self.horizontalLayout_2.addWidget(self.frameTitle)
 
@@ -325,9 +355,9 @@ class Ui_BillyAppMain(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.btnMinimize = QPushButton(self.frameControlButtons)
         self.btnMinimize.setObjectName(u"btnMinimize")
-        font2 = QFont()
-        font2.setKerning(False)
-        self.btnMinimize.setFont(font2)
+        font3 = QFont()
+        font3.setKerning(False)
+        self.btnMinimize.setFont(font3)
         self.btnMinimize.setStyleSheet(u"QPushButton{\n"
 "   border: none;\n"
 "   background-color: rgb(32, 37, 40);\n"
@@ -393,7 +423,7 @@ class Ui_BillyAppMain(object):
         self.frameContentArea.setLineWidth(0)
         self.stackedWidget = QStackedWidget(self.frameContentArea)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 0, 991, 751))
+        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 751))
         self.stackedWidget.setStyleSheet(u"QWidget{\n"
 "   background-color: rgb(32, 37, 40);\n"
 "}")
@@ -402,12 +432,12 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle = QLabel(self.pageDashboard)
         self.lblDashTitle.setObjectName(u"lblDashTitle")
         self.lblDashTitle.setGeometry(QRect(30, 10, 281, 41))
-        font3 = QFont()
-        font3.setFamily(u"SF UI Display")
-        font3.setPointSize(18)
-        font3.setBold(True)
-        font3.setWeight(75)
-        self.lblDashTitle.setFont(font3)
+        font4 = QFont()
+        font4.setFamily(u"SF UI Display")
+        font4.setPointSize(18)
+        font4.setBold(True)
+        font4.setWeight(75)
+        self.lblDashTitle.setFont(font4)
         self.lblDashTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblDashTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageDashboard)
@@ -416,7 +446,7 @@ class Ui_BillyAppMain(object):
         self.lblCalendarTitle = QLabel(self.pageCalendar)
         self.lblCalendarTitle.setObjectName(u"lblCalendarTitle")
         self.lblCalendarTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblCalendarTitle.setFont(font3)
+        self.lblCalendarTitle.setFont(font4)
         self.lblCalendarTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblCalendarTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageCalendar)
@@ -425,7 +455,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityTitle = QLabel(self.pageElectricity)
         self.lblElectricityTitle.setObjectName(u"lblElectricityTitle")
         self.lblElectricityTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblElectricityTitle.setFont(font3)
+        self.lblElectricityTitle.setFont(font4)
         self.lblElectricityTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageElectricity)
@@ -434,7 +464,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasTitle = QLabel(self.pageNaturalGas)
         self.lblNaturalGasTitle.setObjectName(u"lblNaturalGasTitle")
         self.lblNaturalGasTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblNaturalGasTitle.setFont(font3)
+        self.lblNaturalGasTitle.setFont(font4)
         self.lblNaturalGasTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblNaturalGasTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageNaturalGas)
@@ -443,7 +473,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVTitle = QLabel(self.pageInternetTV)
         self.lblInternetTVTitle.setObjectName(u"lblInternetTVTitle")
         self.lblInternetTVTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblInternetTVTitle.setFont(font3)
+        self.lblInternetTVTitle.setFont(font4)
         self.lblInternetTVTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblInternetTVTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageInternetTV)
@@ -452,21 +482,21 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsTitle = QLabel(self.pageSubscriptions)
         self.lblSubscriptionsTitle.setObjectName(u"lblSubscriptionsTitle")
         self.lblSubscriptionsTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblSubscriptionsTitle.setFont(font3)
+        self.lblSubscriptionsTitle.setFont(font4)
         self.lblSubscriptionsTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblSubscriptionsTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageSubscriptions)
         self.pageProfile = QWidget()
         self.pageProfile.setObjectName(u"pageProfile")
-        self.lblProfile = QLabel(self.pageProfile)
-        self.lblProfile.setObjectName(u"lblProfile")
-        self.lblProfile.setGeometry(QRect(30, 10, 281, 41))
-        self.lblProfile.setFont(font3)
-        self.lblProfile.setStyleSheet(u"color: #6c6e71;")
-        self.lblProfile.setTextFormat(Qt.MarkdownText)
+        self.lblAccountPreferences = QLabel(self.pageProfile)
+        self.lblAccountPreferences.setObjectName(u"lblAccountPreferences")
+        self.lblAccountPreferences.setGeometry(QRect(30, 10, 281, 41))
+        self.lblAccountPreferences.setFont(font4)
+        self.lblAccountPreferences.setStyleSheet(u"color: #6c6e71;")
+        self.lblAccountPreferences.setTextFormat(Qt.MarkdownText)
         self.profileName = QFrame(self.pageProfile)
         self.profileName.setObjectName(u"profileName")
-        self.profileName.setGeometry(QRect(30, 80, 401, 121))
+        self.profileName.setGeometry(QRect(30, 80, 731, 130))
         self.profileName.setCursor(QCursor(Qt.ArrowCursor))
         self.profileName.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -476,19 +506,19 @@ class Ui_BillyAppMain(object):
         self.profileName.setFrameShadow(QFrame.Raised)
         self.lblProfileName = QLabel(self.profileName)
         self.lblProfileName.setObjectName(u"lblProfileName")
-        self.lblProfileName.setGeometry(QRect(20, 10, 121, 21))
-        font4 = QFont()
-        font4.setFamily(u"SF UI Display")
-        font4.setPointSize(14)
-        self.lblProfileName.setFont(font4)
-        self.lblProfileName.setStyleSheet(u"color: #d0cfd0;")
-        self.txtUsername = QLineEdit(self.profileName)
-        self.txtUsername.setObjectName(u"txtUsername")
-        self.txtUsername.setGeometry(QRect(20, 50, 280, 50))
+        self.lblProfileName.setGeometry(QRect(20, 10, 191, 21))
         font5 = QFont()
         font5.setFamily(u"SF UI Display")
-        font5.setPointSize(12)
-        self.txtUsername.setFont(font5)
+        font5.setPointSize(14)
+        self.lblProfileName.setFont(font5)
+        self.lblProfileName.setStyleSheet(u"color: #f3f5f6;")
+        self.txtUsername = QLineEdit(self.profileName)
+        self.txtUsername.setObjectName(u"txtUsername")
+        self.txtUsername.setGeometry(QRect(20, 60, 280, 50))
+        font6 = QFont()
+        font6.setFamily(u"SF UI Display")
+        font6.setPointSize(12)
+        self.txtUsername.setFont(font6)
         self.txtUsername.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -499,14 +529,33 @@ class Ui_BillyAppMain(object):
 "   background-repeat: none;\n"
 "}\n"
 "QLineEdit:hover{\n"
-"   border: 2px solid #C72C41;\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.txtEarnings = QLineEdit(self.profileName)
+        self.txtEarnings.setObjectName(u"txtEarnings")
+        self.txtEarnings.setGeometry(QRect(320, 60, 280, 50))
+        self.txtEarnings.setFont(font6)
+        self.txtEarnings.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
 "}\n"
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
         self.btnSetProfileName = QPushButton(self.profileName)
         self.btnSetProfileName.setObjectName(u"btnSetProfileName")
-        self.btnSetProfileName.setGeometry(QRect(310, 50, 75, 50))
+        self.btnSetProfileName.setGeometry(QRect(630, 60, 75, 50))
         self.btnSetProfileName.setFont(font)
         self.btnSetProfileName.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnSetProfileName.setStyleSheet(u"QPushButton{\n"
@@ -522,7 +571,338 @@ class Ui_BillyAppMain(object):
 "QPushButton:hover{\n"
 "   background-color: #C72C41;\n"
 "}")
+        self.btnSetProfileName.setAutoDefault(True)
         self.btnSetProfileName.setFlat(True)
+        self.electricitySupplier = QFrame(self.pageProfile)
+        self.electricitySupplier.setObjectName(u"electricitySupplier")
+        self.electricitySupplier.setGeometry(QRect(30, 230, 1050, 140))
+        self.electricitySupplier.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.electricitySupplier.setFrameShape(QFrame.StyledPanel)
+        self.electricitySupplier.setFrameShadow(QFrame.Raised)
+        self.lblElectricitySupplier = QLabel(self.electricitySupplier)
+        self.lblElectricitySupplier.setObjectName(u"lblElectricitySupplier")
+        self.lblElectricitySupplier.setGeometry(QRect(20, 10, 181, 21))
+        self.lblElectricitySupplier.setFont(font5)
+        self.lblElectricitySupplier.setStyleSheet(u"color: #f3f5f6;")
+        self.lblElectricitySupplierInfo = QLabel(self.electricitySupplier)
+        self.lblElectricitySupplierInfo.setObjectName(u"lblElectricitySupplierInfo")
+        self.lblElectricitySupplierInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblElectricitySupplierInfo.setFont(font2)
+        self.lblElectricitySupplierInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnEnelSelection = QPushButton(self.electricitySupplier)
+        self.btnEnelSelection.setObjectName(u"btnEnelSelection")
+        self.btnEnelSelection.setGeometry(QRect(20, 70, 230, 50))
+        self.btnEnelSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnEnelSelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnEnelSelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnEnelSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/enel_supplier.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnEnelSelection.setCheckable(True)
+        self.btnEnelSelection.setChecked(False)
+        self.btnEnelSelection.setAutoDefault(True)
+        self.btnEnelSelection.setFlat(True)
+        self.btnCEZSelection = QPushButton(self.electricitySupplier)
+        self.btnCEZSelection.setObjectName(u"btnCEZSelection")
+        self.btnCEZSelection.setEnabled(False)
+        self.btnCEZSelection.setGeometry(QRect(280, 70, 230, 50))
+        self.btnCEZSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnCEZSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/cez_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnCEZSelection.setCheckable(True)
+        self.btnCEZSelection.setFlat(True)
+        self.btnEONSelection = QPushButton(self.electricitySupplier)
+        self.btnEONSelection.setObjectName(u"btnEONSelection")
+        self.btnEONSelection.setEnabled(False)
+        self.btnEONSelection.setGeometry(QRect(540, 70, 230, 50))
+        self.btnEONSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnEONSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/eon_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnEONSelection.setCheckable(True)
+        self.btnEONSelection.setFlat(True)
+        self.btnDigiEnergySelection = QPushButton(self.electricitySupplier)
+        self.btnDigiEnergySelection.setObjectName(u"btnDigiEnergySelection")
+        self.btnDigiEnergySelection.setEnabled(False)
+        self.btnDigiEnergySelection.setGeometry(QRect(800, 70, 230, 50))
+        self.btnDigiEnergySelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnDigiEnergySelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/digiEnergy_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnDigiEnergySelection.setCheckable(True)
+        self.btnDigiEnergySelection.setFlat(True)
+        self.naturalGasSupplier = QFrame(self.pageProfile)
+        self.naturalGasSupplier.setObjectName(u"naturalGasSupplier")
+        self.naturalGasSupplier.setGeometry(QRect(30, 390, 1050, 140))
+        self.naturalGasSupplier.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.naturalGasSupplier.setFrameShape(QFrame.StyledPanel)
+        self.naturalGasSupplier.setFrameShadow(QFrame.Raised)
+        self.lblNaturalGasSupplier = QLabel(self.naturalGasSupplier)
+        self.lblNaturalGasSupplier.setObjectName(u"lblNaturalGasSupplier")
+        self.lblNaturalGasSupplier.setGeometry(QRect(20, 10, 201, 21))
+        self.lblNaturalGasSupplier.setFont(font5)
+        self.lblNaturalGasSupplier.setStyleSheet(u"color: #f3f5f6;")
+        self.lblNaturalGasSupplierInfo = QLabel(self.naturalGasSupplier)
+        self.lblNaturalGasSupplierInfo.setObjectName(u"lblNaturalGasSupplierInfo")
+        self.lblNaturalGasSupplierInfo.setGeometry(QRect(20, 40, 241, 21))
+        self.lblNaturalGasSupplierInfo.setFont(font2)
+        self.lblNaturalGasSupplierInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnEngieSelection = QPushButton(self.naturalGasSupplier)
+        self.btnEngieSelection.setObjectName(u"btnEngieSelection")
+        self.btnEngieSelection.setGeometry(QRect(20, 70, 230, 50))
+        self.btnEngieSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnEngieSelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnEngieSelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnEngieSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/engie_supplier.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnEngieSelection.setCheckable(True)
+        self.btnEngieSelection.setChecked(False)
+        self.btnEngieSelection.setAutoDefault(True)
+        self.btnEngieSelection.setFlat(True)
+        self.btnCEZGasSelection = QPushButton(self.naturalGasSupplier)
+        self.btnCEZGasSelection.setObjectName(u"btnCEZGasSelection")
+        self.btnCEZGasSelection.setEnabled(False)
+        self.btnCEZGasSelection.setGeometry(QRect(280, 70, 230, 50))
+        self.btnCEZGasSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnCEZGasSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/cez_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnCEZGasSelection.setCheckable(True)
+        self.btnCEZGasSelection.setFlat(True)
+        self.btnEONGasSelection = QPushButton(self.naturalGasSupplier)
+        self.btnEONGasSelection.setObjectName(u"btnEONGasSelection")
+        self.btnEONGasSelection.setEnabled(False)
+        self.btnEONGasSelection.setGeometry(QRect(540, 70, 230, 50))
+        self.btnEONGasSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnEONGasSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/eon_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnEONGasSelection.setCheckable(True)
+        self.btnEONGasSelection.setFlat(True)
+        self.btnEnelGasSelection = QPushButton(self.naturalGasSupplier)
+        self.btnEnelGasSelection.setObjectName(u"btnEnelGasSelection")
+        self.btnEnelGasSelection.setEnabled(False)
+        self.btnEnelGasSelection.setGeometry(QRect(800, 70, 230, 50))
+        self.btnEnelGasSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnEnelGasSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/enel_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnEnelGasSelection.setCheckable(True)
+        self.btnEnelGasSelection.setFlat(True)
+        self.internetProvider = QFrame(self.pageProfile)
+        self.internetProvider.setObjectName(u"internetProvider")
+        self.internetProvider.setGeometry(QRect(30, 550, 1050, 140))
+        self.internetProvider.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.internetProvider.setFrameShape(QFrame.StyledPanel)
+        self.internetProvider.setFrameShadow(QFrame.Raised)
+        self.lblInternetProvider = QLabel(self.internetProvider)
+        self.lblInternetProvider.setObjectName(u"lblInternetProvider")
+        self.lblInternetProvider.setGeometry(QRect(20, 10, 201, 21))
+        self.lblInternetProvider.setFont(font5)
+        self.lblInternetProvider.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetProviderInfo = QLabel(self.internetProvider)
+        self.lblInternetProviderInfo.setObjectName(u"lblInternetProviderInfo")
+        self.lblInternetProviderInfo.setGeometry(QRect(20, 40, 251, 21))
+        self.lblInternetProviderInfo.setFont(font2)
+        self.lblInternetProviderInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnRCSRDSSelection = QPushButton(self.internetProvider)
+        self.btnRCSRDSSelection.setObjectName(u"btnRCSRDSSelection")
+        self.btnRCSRDSSelection.setGeometry(QRect(20, 70, 230, 50))
+        self.btnRCSRDSSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnRCSRDSSelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnRCSRDSSelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnRCSRDSSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/rcsrds_supplier.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnRCSRDSSelection.setCheckable(True)
+        self.btnRCSRDSSelection.setChecked(False)
+        self.btnRCSRDSSelection.setAutoDefault(True)
+        self.btnRCSRDSSelection.setFlat(True)
+        self.btnUPCSelection = QPushButton(self.internetProvider)
+        self.btnUPCSelection.setObjectName(u"btnUPCSelection")
+        self.btnUPCSelection.setEnabled(False)
+        self.btnUPCSelection.setGeometry(QRect(280, 70, 230, 50))
+        self.btnUPCSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnUPCSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/upc_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnUPCSelection.setCheckable(True)
+        self.btnUPCSelection.setFlat(True)
+        self.btnTelekomSelection = QPushButton(self.internetProvider)
+        self.btnTelekomSelection.setObjectName(u"btnTelekomSelection")
+        self.btnTelekomSelection.setEnabled(False)
+        self.btnTelekomSelection.setGeometry(QRect(540, 70, 230, 50))
+        self.btnTelekomSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnTelekomSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/telekom_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnTelekomSelection.setCheckable(True)
+        self.btnTelekomSelection.setFlat(True)
+        self.btnGTSSelection = QPushButton(self.internetProvider)
+        self.btnGTSSelection.setObjectName(u"btnGTSSelection")
+        self.btnGTSSelection.setEnabled(False)
+        self.btnGTSSelection.setGeometry(QRect(800, 70, 230, 50))
+        self.btnGTSSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnGTSSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/gts_supplier_not_available.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnGTSSelection.setCheckable(True)
+        self.btnGTSSelection.setFlat(True)
+        self.earnings = QFrame(self.pageProfile)
+        self.earnings.setObjectName(u"earnings")
+        self.earnings.setGeometry(QRect(780, 80, 300, 130))
+        self.earnings.setCursor(QCursor(Qt.ArrowCursor))
+        self.earnings.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"   background-image: url(:/images/Resources/earnigns.png);\n"
+"}")
+        self.earnings.setFrameShape(QFrame.NoFrame)
+        self.earnings.setFrameShadow(QFrame.Raised)
+        self.lblEarnings = QLabel(self.earnings)
+        self.lblEarnings.setObjectName(u"lblEarnings")
+        self.lblEarnings.setGeometry(QRect(20, 10, 121, 21))
+        self.lblEarnings.setFont(font5)
+        self.lblEarnings.setStyleSheet(u"color: #f3f5f6;")
+        self.lblEarningsPerMonth = QLabel(self.earnings)
+        self.lblEarningsPerMonth.setObjectName(u"lblEarningsPerMonth")
+        self.lblEarningsPerMonth.setGeometry(QRect(20, 100, 71, 21))
+        self.lblEarningsPerMonth.setFont(font2)
+        self.lblEarningsPerMonth.setStyleSheet(u"color: #6c6e71;")
+        self.lblEarningsCurrency = QLabel(self.earnings)
+        self.lblEarningsCurrency.setObjectName(u"lblEarningsCurrency")
+        self.lblEarningsCurrency.setGeometry(QRect(20, 70, 61, 21))
+        font7 = QFont()
+        font7.setFamily(u"SF UI Display")
+        font7.setPointSize(20)
+        font7.setBold(True)
+        font7.setWeight(75)
+        self.lblEarningsCurrency.setFont(font7)
+        self.lblEarningsCurrency.setStyleSheet(u"color: #C72C41;")
+        self.lblEarningsValue = QLabel(self.earnings)
+        self.lblEarningsValue.setObjectName(u"lblEarningsValue")
+        self.lblEarningsValue.setGeometry(QRect(80, 70, 111, 21))
+        self.lblEarningsValue.setFont(font7)
+        self.lblEarningsValue.setStyleSheet(u"color: #EE4540;")
         self.stackedWidget.addWidget(self.pageProfile)
 
         self.verticalLayout_2.addWidget(self.frameContentArea)
@@ -533,6 +913,13 @@ class Ui_BillyAppMain(object):
         BillyAppMain.setCentralWidget(self.mainCentralWidget)
 
         self.retranslateUi(BillyAppMain)
+
+        self.btnDashboard.setDefault(False)
+        self.btnSetProfileName.setDefault(False)
+        self.btnEnelSelection.setDefault(False)
+        self.btnEngieSelection.setDefault(False)
+        self.btnRCSRDSSelection.setDefault(False)
+
 
         QMetaObject.connectSlotsByName(BillyAppMain)
     # setupUi
@@ -547,6 +934,8 @@ class Ui_BillyAppMain(object):
         self.btnSubscriptions.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
         self.btnProfile.setText("")
         self.lblSetProfileName.setText("")
+        self.lblBillingFlag.setText("")
+        self.lblBillingCountry.setText(QCoreApplication.translate("BillyAppMain", u"Billing Country", None))
         self.btnMinimize.setText("")
         self.btnMaximizeRestore.setText("")
         self.btnClose.setText("")
@@ -556,9 +945,32 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
-        self.lblProfile.setText(QCoreApplication.translate("BillyAppMain", u"Profile", None))
-        self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account user", None))
+        self.lblAccountPreferences.setText(QCoreApplication.translate("BillyAppMain", u"Account preferences", None))
+        self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
         self.txtUsername.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
+        self.txtEarnings.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
         self.btnSetProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Set", None))
+        self.lblElectricitySupplier.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Supplier", None))
+        self.lblElectricitySupplierInfo.setText(QCoreApplication.translate("BillyAppMain", u"Please select the electricity supplier", None))
+        self.btnEnelSelection.setText("")
+        self.btnCEZSelection.setText("")
+        self.btnEONSelection.setText("")
+        self.btnDigiEnergySelection.setText("")
+        self.lblNaturalGasSupplier.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas Supplier", None))
+        self.lblNaturalGasSupplierInfo.setText(QCoreApplication.translate("BillyAppMain", u"Please select the natural gas supplier", None))
+        self.btnEngieSelection.setText("")
+        self.btnCEZGasSelection.setText("")
+        self.btnEONGasSelection.setText("")
+        self.btnEnelGasSelection.setText("")
+        self.lblInternetProvider.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV Provider", None))
+        self.lblInternetProviderInfo.setText(QCoreApplication.translate("BillyAppMain", u"Please select the internet & TV provider", None))
+        self.btnRCSRDSSelection.setText("")
+        self.btnUPCSelection.setText("")
+        self.btnTelekomSelection.setText("")
+        self.btnGTSSelection.setText("")
+        self.lblEarnings.setText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
+        self.lblEarningsPerMonth.setText(QCoreApplication.translate("BillyAppMain", u"Per month", None))
+        self.lblEarningsCurrency.setText(QCoreApplication.translate("BillyAppMain", u"RON", None))
+        self.lblEarningsValue.setText("")
     # retranslateUi
 
