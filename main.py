@@ -23,11 +23,10 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Animate left side menu upon app loading
-        # Get current left menu width
-        self.ui.frameMenuContent.setGeometry(240, 240, 0, 560)
+        self.ui.frameMenuContent.setGeometry(240, 240, 0, 540)
         self.animation = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
-        self.animation.setDuration(1300)
-        self.animation.setEndValue(QRect(0, 240, 200, 560))
+        self.animation.setDuration(1000)
+        self.animation.setEndValue(QRect(0, 240, 200, 540))
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutSine)
         self.animation.start() 
 
@@ -50,14 +49,6 @@ class MainWindow(QMainWindow):
         # Set the default opened page
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageDashboard)
 
-        # Set the stacked widget switch and button check logic        
-        self.ui.btnDashboard.clicked.connect(self.dashboardButton)
-        self.ui.btnCalendar.clicked.connect(self.calendarButton)
-        self.ui.btnElectricity.clicked.connect(self.electricityButton)
-        self.ui.btnNaturalGas.clicked.connect(self.naturalGasButton)
-        self.ui.btnInternetTV.clicked.connect(self.internetTVButton)
-        self.ui.btnSubscriptions.clicked.connect(self.subscriptionsButton)
-
         # Set title name
         self.setWindowTitle("Billy")
 
@@ -67,11 +58,27 @@ class MainWindow(QMainWindow):
         # Set UI Definitions
         UIFunctions.uiDefinitions(self)
 
+        # Set the stacked widget switch and button check logic        
+        self.ui.btnDashboard.clicked.connect(self.dashboardButton)
+        self.ui.btnCalendar.clicked.connect(self.calendarButton)
+        self.ui.btnElectricity.clicked.connect(self.electricityButton)
+        self.ui.btnNaturalGas.clicked.connect(self.naturalGasButton)
+        self.ui.btnInternetTV.clicked.connect(self.internetTVButton)
+        self.ui.btnSubscriptions.clicked.connect(self.subscriptionsButton)
+        self.ui.btnProfile.clicked.connect(self.profilePage)
+
+        # Profile page buttons
+        self.ui.btnSetProfileName.clicked.connect(self.setProfileName)
+
         # Show Main Window
         self.show()
 
     ############
     # APP EVENTS
+
+    # Generate message boxes
+    def generateMessageBox(self, window_title, msg_text):        
+        QMessageBox.about(self, window_title, msg_text)
 
     # Method to unselect all buttons once one is pressed
     def uncheckOtherButtons(clickedButton, otherButtonsList):
@@ -116,6 +123,22 @@ class MainWindow(QMainWindow):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageSubscriptions, self.ui.btnSubscriptions, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV])
 
+    # Profile Page content and buttons
+    def profilePage(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
+        # Animate profile frame
+        self.ui.profileName.setGeometry(30, 80, 0, 121)
+        self.animation = QPropertyAnimation(self.ui.profileName, b"geometry")
+        self.animation.setDuration(800)
+        self.animation.setEndValue(QRect(30, 80, 401, 121))
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation.start()
+
+    def setProfileName(self):
+        if self.ui.txtUsername.text() == '':
+            self.generateMessageBox(window_title='Username information', msg_text='Please fill in the Username field!')
+        else:
+            self.ui.lblSetProfileName.setText(self.ui.txtUsername.text())
 
     # Move app window - drag
     def mousePressEvent(self, event):

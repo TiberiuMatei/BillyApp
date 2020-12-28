@@ -1,6 +1,8 @@
 <RCC>
   <qresource prefix="images">
     <file>Resources/subscriptions_clicked.png</file>
+    <file>Resources/profile.png</file>
+    <file>Resources/username.png</file>
     <file>Resources/subscriptions_not_clicked.png</file>
     <file>Resources/internet_clicked.png</file>
     <file>Resources/internet_not_clicked.png</file>
