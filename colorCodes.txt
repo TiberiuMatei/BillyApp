@@ -8,23 +8,36 @@ Text colors:
 
 #C72C41
 
-#EE4540
+color: #EE4540;
 
-Text non-colors:
+TEXT non-colors:
 
-#6c6e71
+Main frame title:
+color: #d0cfd0;
 
+Sub frame title:
+color: #6c6e71;
+
+Text form placeholder:
+color: #d0cfd0;
+
+Light text:
 #b6b7b7
 
-#f3f5f6
+Very light text:
+color: #f3f5f6;
 
 
 Background colors:
 
-#202528
+Main background:
+background-color: #202528;
 
+Left menu color:
 #272b2f
 
+Frame background:
 #2a2e32
 
+Highlight frame:
 #2d3136
