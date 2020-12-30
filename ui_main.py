@@ -15,7 +15,7 @@ from PySide2.QtWidgets import *
 import billy_app_qrc
 
 class Ui_BillyAppMain(object):
-    def setupUi(self, BillyAppMain):
+    def setupUiMain(self, BillyAppMain):
         if not BillyAppMain.objectName():
             BillyAppMain.setObjectName(u"BillyAppMain")
         BillyAppMain.resize(1304, 800)

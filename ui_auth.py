@@ -1,75 +1,21 @@
-import sys
-import platform
-import os
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'billy_auth_uihGBxyx.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import *
+from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
+from main_app import *
+# from main import MainWindowAuth
 
 import billy_app_qrc
-
-# GUI File
-# from ui_auth import Ui_BillyAuth
-from ui_main import Ui_BillyAppMain
-from main_app import *
-
-# Import functions
-from ui_functions_auth import *
-
-class MainWindowAuth(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        self.ui = Ui_BillyAuth()
-        self.ui.setupUi(self)
-
-        # Set title name
-        self.setWindowTitle("Billy")
-
-        # Set window icon
-        self.setWindowIcon(QtGui.QIcon(":/images/Resources/billy_logo.png"))
-
-        # Set UI Definitions
-        UIFunctionsAuth.uiDefinitionsAuth(self)
-
-        self.ui.btnSignInSelection.clicked.connect(self.signInFrame)
-        self.ui.btnSignUpSelection.clicked.connect(self.signUpFrame)
-
-        # Show Main Window
-        self.show()
-
-    ############
-    # APP EVENTS
-	#
- 	############
-
-    # Generate message boxes
-    def generateMessageBox(self, window_title, msg_text):        
-        QMessageBox.about(self, window_title, msg_text)
-
-    def signInFrame(self):
-    	self.ui.stackedWidget.setCurrentWidget(self.ui.signInPage)
-    	self.ui.btnSignInSelection.setChecked(True)
-    	self.ui.btnSignUpSelection.setChecked(False)
-    	self.ui.signInPage.setGeometry(0, 0, 0, 331)
-    	self.animation6 = QPropertyAnimation(self.ui.signInPage, b"geometry")
-    	self.animation6.setDuration(1000)
-    	self.animation6.setEndValue(QRect(0, 0, 511, 331))
-    	self.animation6.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-    	self.animation6.start() 
-    	
-
-    def signUpFrame(self):
-    	self.ui.stackedWidget.setCurrentWidget(self.ui.signUpPage)
-    	self.ui.btnSignUpSelection.setChecked(True)
-    	self.ui.btnSignInSelection.setChecked(False)
-    	self.ui.signUpPage.setGeometry(0, 0, 0, 331)
-    	self.animation7 = QPropertyAnimation(self.ui.signUpPage, b"geometry")
-    	self.animation7.setDuration(1000)
-    	self.animation7.setEndValue(QRect(0, 0, 511, 331))
-    	self.animation7.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-    	self.animation7.start() 
 
 class Ui_BillyAuth(object):
 
@@ -77,8 +23,7 @@ class Ui_BillyAuth(object):
         self.window = QMainWindow()
         self.ui = Ui_BillyAppMain()
         self.ui.setupUiMain(self.window)
-        self.window = MainWindow()
-        window1.hide()
+        # MainWindowAuth.hide()
         self.window.show()
 
     def setupUi(self, BillyAuth):
@@ -449,9 +394,3 @@ class Ui_BillyAuth(object):
         self.lblAppVersion.setText(QCoreApplication.translate("BillyAuth", u"v1.0", None))
     # retranslateUi
 
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window1 = MainWindowAuth()
-    sys.exit(app.exec_())

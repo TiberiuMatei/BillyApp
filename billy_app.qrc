@@ -1,7 +1,14 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/email.png</file>
+    <file>Resources/password.png</file>
+    <file>Resources/sign_in.png</file>
+    <file>Resources/sign_in_selected.png</file>
+    <file>Resources/sign_up.png</file>
+    <file>Resources/sign_up_selected.png</file>
     <file>Resources/set_earnings.png</file>
     <file>Resources/gts_supplier_not_available.png</file>
+    <file>Resources/billy_full_logo_auth.png</file>
     <file>Resources/earnigns.png</file>
     <file>Resources/earnigns.png</file>
     <file>Resources/rcsrds_supplier.png</file>
