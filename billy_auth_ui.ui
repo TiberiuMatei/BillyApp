@@ -610,7 +610,7 @@ QLineEdit:focus{
           <string>Password</string>
          </property>
         </widget>
-        <widget class="QPushButton" name="btnSignIn_2">
+        <widget class="QPushButton" name="btnSignUp">
          <property name="geometry">
           <rect>
            <x>110</x>

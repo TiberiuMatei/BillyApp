@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiGviPnT.ui'
+## Form generated from reading UI file 'billy_uikpvQWi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -18,11 +18,11 @@ class Ui_BillyAppMain(object):
     def setupUiMain(self, BillyAppMain):
         if not BillyAppMain.objectName():
             BillyAppMain.setObjectName(u"BillyAppMain")
-        BillyAppMain.resize(1304, 800)
+        BillyAppMain.resize(1304, 920)
         BillyAppMain.setMinimumSize(QSize(1200, 800))
         self.mainCentralWidget = QWidget(BillyAppMain)
         self.mainCentralWidget.setObjectName(u"mainCentralWidget")
-        self.mainCentralWidget.setStyleSheet(u"background-color: rgb(45, 20, 44);")
+        self.mainCentralWidget.setStyleSheet(u"background-color: rgb(39, 43, 47);")
         self.horizontalLayout = QHBoxLayout(self.mainCentralWidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -423,7 +423,7 @@ class Ui_BillyAppMain(object):
         self.frameContentArea.setLineWidth(0)
         self.stackedWidget = QStackedWidget(self.frameContentArea)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 751))
+        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 871))
         self.stackedWidget.setStyleSheet(u"QWidget{\n"
 "   background-color: rgb(32, 37, 40);\n"
 "}")
@@ -903,6 +903,69 @@ class Ui_BillyAppMain(object):
         self.lblEarningsValue.setGeometry(QRect(80, 70, 111, 21))
         self.lblEarningsValue.setFont(font7)
         self.lblEarningsValue.setStyleSheet(u"color: #EE4540;")
+        self.subscriptionsPage = QFrame(self.pageProfile)
+        self.subscriptionsPage.setObjectName(u"subscriptionsPage")
+        self.subscriptionsPage.setGeometry(QRect(30, 710, 531, 140))
+        self.subscriptionsPage.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.subscriptionsPage.setFrameShape(QFrame.StyledPanel)
+        self.subscriptionsPage.setFrameShadow(QFrame.Raised)
+        self.lblSubscriptionsPage = QLabel(self.subscriptionsPage)
+        self.lblSubscriptionsPage.setObjectName(u"lblSubscriptionsPage")
+        self.lblSubscriptionsPage.setGeometry(QRect(20, 10, 201, 21))
+        self.lblSubscriptionsPage.setFont(font5)
+        self.lblSubscriptionsPage.setStyleSheet(u"color: #f3f5f6;")
+        self.lblSubscriptionsPageInfo = QLabel(self.subscriptionsPage)
+        self.lblSubscriptionsPageInfo.setObjectName(u"lblSubscriptionsPageInfo")
+        self.lblSubscriptionsPageInfo.setGeometry(QRect(20, 40, 421, 21))
+        self.lblSubscriptionsPageInfo.setFont(font2)
+        self.lblSubscriptionsPageInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnNetflixSelection = QPushButton(self.subscriptionsPage)
+        self.btnNetflixSelection.setObjectName(u"btnNetflixSelection")
+        self.btnNetflixSelection.setGeometry(QRect(20, 70, 230, 50))
+        self.btnNetflixSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnNetflixSelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnNetflixSelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnNetflixSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/netflix_sub_selection.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnNetflixSelection.setCheckable(True)
+        self.btnNetflixSelection.setChecked(False)
+        self.btnNetflixSelection.setAutoDefault(True)
+        self.btnNetflixSelection.setFlat(True)
+        self.btnSpotifySelection = QPushButton(self.subscriptionsPage)
+        self.btnSpotifySelection.setObjectName(u"btnSpotifySelection")
+        self.btnSpotifySelection.setGeometry(QRect(280, 70, 230, 50))
+        self.btnSpotifySelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnSpotifySelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnSpotifySelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnSpotifySelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;\n"
+"   background-image: url(:/images/Resources/spotify_sub_selection.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnSpotifySelection.setCheckable(True)
+        self.btnSpotifySelection.setChecked(False)
+        self.btnSpotifySelection.setAutoDefault(True)
+        self.btnSpotifySelection.setFlat(True)
         self.stackedWidget.addWidget(self.pageProfile)
 
         self.verticalLayout_2.addWidget(self.frameContentArea)
@@ -919,6 +982,8 @@ class Ui_BillyAppMain(object):
         self.btnEnelSelection.setDefault(False)
         self.btnEngieSelection.setDefault(False)
         self.btnRCSRDSSelection.setDefault(False)
+        self.btnNetflixSelection.setDefault(False)
+        self.btnSpotifySelection.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(BillyAppMain)
@@ -972,5 +1037,9 @@ class Ui_BillyAppMain(object):
         self.lblEarningsPerMonth.setText(QCoreApplication.translate("BillyAppMain", u"Per month", None))
         self.lblEarningsCurrency.setText(QCoreApplication.translate("BillyAppMain", u"RON", None))
         self.lblEarningsValue.setText("")
+        self.lblSubscriptionsPage.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
+        self.lblSubscriptionsPageInfo.setText(QCoreApplication.translate("BillyAppMain", u"Please select the services for which you have an active subscription", None))
+        self.btnNetflixSelection.setText("")
+        self.btnSpotifySelection.setText("")
     # retranslateUi
 

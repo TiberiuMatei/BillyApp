@@ -18,7 +18,6 @@ from ui_main import Ui_BillyAppMain
 GLOBAL_STATE = 0
 
 # Import functions
-#from ui_functions import *
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -167,6 +166,13 @@ class MainWindow(QMainWindow):
         self.animation5.setEndValue(QRect(780, 80, 300, 130))
         self.animation5.setEasingCurve(QtCore.QEasingCurve.InOutSine)
         self.animation5.start()
+        # Animate subscriptions frame
+        self.ui.subscriptionsPage.setGeometry(30, 710, 0, 140)
+        self.animation8 = QPropertyAnimation(self.ui.subscriptionsPage, b"geometry")
+        self.animation8.setDuration(800)
+        self.animation8.setEndValue(QRect(30, 710, 530, 140))
+        self.animation8.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation8.start()
 
     def setAccountInformation(self):
         if self.ui.txtUsername.text() == '':

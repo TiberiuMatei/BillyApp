@@ -13,19 +13,10 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 from main_app import *
-# from main import MainWindowAuth
 
 import billy_app_qrc
 
 class Ui_BillyAuth(object):
-
-    def openMainApp(self):
-        self.window = QMainWindow()
-        self.ui = Ui_BillyAppMain()
-        self.ui.setupUiMain(self.window)
-        # MainWindowAuth.hide()
-        self.window.show()
-
     def setupUi(self, BillyAuth):
         if not BillyAuth.objectName():
             BillyAuth.setObjectName(u"BillyAuth")
@@ -257,9 +248,6 @@ class Ui_BillyAuth(object):
 "}")
         self.btnSignIn.setAutoDefault(True)
         self.btnSignIn.setFlat(True)
-
-        self.btnSignIn.clicked.connect(self.openMainApp)
-
         self.stackedWidget.addWidget(self.signInPage)
         self.signUpPage = QWidget()
         self.signUpPage.setObjectName(u"signUpPage")
@@ -324,12 +312,12 @@ class Ui_BillyAuth(object):
 "   border: 2px solid #EE4540;\n"
 "}")
         self.txtSignUpPassword.setEchoMode(QLineEdit.Password)
-        self.btnSignIn_2 = QPushButton(self.signUpPage)
-        self.btnSignIn_2.setObjectName(u"btnSignIn_2")
-        self.btnSignIn_2.setGeometry(QRect(110, 270, 300, 50))
-        self.btnSignIn_2.setFont(font1)
-        self.btnSignIn_2.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btnSignIn_2.setStyleSheet(u"QPushButton{\n"
+        self.btnSignUp = QPushButton(self.signUpPage)
+        self.btnSignUp.setObjectName(u"btnSignUp")
+        self.btnSignUp.setGeometry(QRect(110, 270, 300, 50))
+        self.btnSignUp.setFont(font1)
+        self.btnSignUp.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnSignUp.setStyleSheet(u"QPushButton{\n"
 "   background-color: #EE4540;\n"
 "   color: #f3f5f6;\n"
 "   border-radius: 5px;\n"
@@ -342,8 +330,8 @@ class Ui_BillyAuth(object):
 "QPushButton:hover{\n"
 "   background-color: #C72C41;\n"
 "}")
-        self.btnSignIn_2.setAutoDefault(True)
-        self.btnSignIn_2.setFlat(True)
+        self.btnSignUp.setAutoDefault(True)
+        self.btnSignUp.setFlat(True)
         self.stackedWidget.addWidget(self.signUpPage)
 
         self.verticalLayout.addWidget(self.authFields)
@@ -372,7 +360,7 @@ class Ui_BillyAuth(object):
         self.btnSignInSelection.setDefault(False)
         self.btnSignUpSelection.setDefault(False)
         self.btnSignIn.setDefault(False)
-        self.btnSignIn_2.setDefault(False)
+        self.btnSignUp.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(BillyAuth)
@@ -390,7 +378,6 @@ class Ui_BillyAuth(object):
         self.txtSignUpEmail.setPlaceholderText(QCoreApplication.translate("BillyAuth", u"Email", None))
         self.txtSignUpUsername.setPlaceholderText(QCoreApplication.translate("BillyAuth", u"Username", None))
         self.txtSignUpPassword.setPlaceholderText(QCoreApplication.translate("BillyAuth", u"Password", None))
-        self.btnSignIn_2.setText(QCoreApplication.translate("BillyAuth", u"Sign Up", None))
+        self.btnSignUp.setText(QCoreApplication.translate("BillyAuth", u"Sign Up", None))
         self.lblAppVersion.setText(QCoreApplication.translate("BillyAuth", u"v1.0", None))
     # retranslateUi
-
