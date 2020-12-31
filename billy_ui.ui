@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1304</width>
-    <height>800</height>
+    <height>920</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -21,7 +21,7 @@
   </property>
   <widget class="QWidget" name="mainCentralWidget">
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(45, 20, 44);</string>
+    <string notr="true">background-color: rgb(39, 43, 47);</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
@@ -932,7 +932,7 @@ QPushButton:hover{
             <x>0</x>
             <y>0</y>
             <width>1091</width>
-            <height>751</height>
+            <height>871</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -2126,6 +2126,174 @@ QPushButton:hover{
              </property>
              <property name="text">
               <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="subscriptionsPage">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>710</y>
+              <width>530</width>
+              <height>140</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblSubscriptionsPage">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Subscriptions</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSubscriptionsPageInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>421</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Please select the services for which you have an active subscription</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnNetflixSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/netflix_sub_selection.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSpotifySelection">
+             <property name="geometry">
+              <rect>
+               <x>280</x>
+               <y>70</y>
+               <width>230</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton:checked{
+	border: 2px solid #EE4540;
+}
+QPushButton{
+	background-color: #202528;
+	background-image: url(:/images/Resources/spotify_sub_selection.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
              </property>
             </widget>
            </widget>

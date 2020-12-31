@@ -1,12 +1,12 @@
 # GUI File
-from main import *
+from main_app import *
 
 # GLOBALS
 
 GLOBAL_STATE = 0
 
-class UIFunctions(MainWindow):   
-
+class UIFunctions(MainWindow):
+    
     #  MAXIMIZE RESTORE FUNCTION
     def maximize_restore(self):
         global GLOBAL_STATE
@@ -81,6 +81,6 @@ class UIFunctions(MainWindow):
         self.ui.btnClose.clicked.connect(lambda: self.close())
         self.ui.btnClose.setToolTip("Close")
 
-    # RETURN STATUS IF WINDOWS IS MAXIMIZE OR RESTAURED
+    # RETURN STATUS IF WINDOWS IS MAXIMIZED OR RESTORED
     def returnStatus():
         return GLOBAL_STATE

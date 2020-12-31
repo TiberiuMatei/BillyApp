@@ -1,172 +1,21 @@
-import sys
-import platform
-import os
-from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
-from PySide2.QtWidgets import *
-import pathlib
-import sqlite3
+# -*- coding: utf-8 -*-
 
-os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
+################################################################################
+## Form generated from reading UI file 'billy_auth_uihGBxyx.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+from PySide2.QtWidgets import *
+
+from main_app import *
 
 import billy_app_qrc
 
-# GUI File for main UI body + main
-from ui_main import Ui_BillyAppMain
-from main_app import *
-
-# Import functions
-from ui_functions_auth import *
-
-class MainWindowAuth(QMainWindow):
-    def __init__(self):
-        QMainWindow.__init__(self)
-        self.ui = Ui_BillyAuth()
-        self.ui.setupUi(self)
-
-        # Set title name
-        self.setWindowTitle("Billy")
-
-        # Set window icon
-        self.setWindowIcon(QtGui.QIcon(":/images/Resources/billy_logo.png"))
-
-        # Set UI Definitions
-        UIFunctionsAuth.uiDefinitionsAuth(self)
-
-        # Setting up the billy db with the accounts table
-        currpath = pathlib.Path().absolute()
-        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
-        connection = sqlite3.connect(f'{db_path}')
-        connection.execute("CREATE TABLE IF NOT EXISTS accounts([id_account] integer PRIMARY KEY,\
-        	[username] text,\
-        	[email] text,\
-        	[password] text,\
-        	[earnings] real,\
-        	[electricity_enel] integer,\
-        	[electricity_cez] integer,\
-        	[electricity_eon] integer,\
-        	[electricity_digi] integer,\
-        	[gas_engie] integer,\
-        	[gas_cez] integer,\
-        	[gas_eon] integer,\
-        	[gas_enel] integer,\
-        	[internet_rds] integer,\
-        	[internet_upc] integer,\
-        	[internet_telekom] integer,\
-        	[internet_gts] integer,\
-        	[subscription_spotify] integer,\
-        	[subscription_netflix] integer)")
-        connection.commit()
-        connection.close()
-
-
-        # Switch between Sign in and Sign up buttons
-        self.ui.btnSignInSelection.clicked.connect(self.signInFrame)
-        self.ui.btnSignUpSelection.clicked.connect(self.signUpFrame)
-
-        # Sign in and user validation
-        self.ui.btnSignIn.clicked.connect(self.openMainAppAndValidateUser)
-        self.ui.txtSignInUsername.returnPressed.connect(self.openMainAppAndValidateUser)
-        self.ui.txtSignInPassword.returnPressed.connect(self.openMainAppAndValidateUser)
-
-        # Sign up and user validation
-        self.ui.btnSignUp.clicked.connect(self.userSignUpAndValidation)
-        self.ui.txtSignUpEmail.returnPressed.connect(self.userSignUpAndValidation)
-        self.ui.txtSignUpUsername.returnPressed.connect(self.userSignUpAndValidation)
-        self.ui.txtSignUpPassword.returnPressed.connect(self.userSignUpAndValidation)
-
-        # Show Main Window
-        self.show()
-
-    ############
-    # APP EVENTS
- 	############
-
-    # Generate message boxes
-    def generateMessageBox(self, window_title, msg_text):        
-        QMessageBox.about(self, window_title, msg_text)
-
-    def signInFrame(self):
-    	self.ui.stackedWidget.setCurrentWidget(self.ui.signInPage)
-    	self.ui.btnSignInSelection.setChecked(True)
-    	self.ui.btnSignUpSelection.setChecked(False)
-    	self.ui.signInPage.setGeometry(0, 0, 0, 331)
-    	self.animation6 = QPropertyAnimation(self.ui.signInPage, b"geometry")
-    	self.animation6.setDuration(1000)
-    	self.animation6.setEndValue(QRect(0, 0, 511, 331))
-    	self.animation6.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-    	self.animation6.start()    	
-
-    def signUpFrame(self):
-    	self.ui.stackedWidget.setCurrentWidget(self.ui.signUpPage)
-    	self.ui.btnSignUpSelection.setChecked(True)
-    	self.ui.btnSignInSelection.setChecked(False)
-    	self.ui.signUpPage.setGeometry(0, 0, 0, 331)
-    	self.animation7 = QPropertyAnimation(self.ui.signUpPage, b"geometry")
-    	self.animation7.setDuration(1000)
-    	self.animation7.setEndValue(QRect(0, 0, 511, 331))
-    	self.animation7.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-    	self.animation7.start()
-
-    def userSignUpAndValidation(self):
-    	if self.ui.txtSignUpEmail.text() == '':
-    		self.generateMessageBox(window_title='Sign up information', msg_text='Please fill in the email field!')
-    	elif self.ui.txtSignUpUsername.text() == '':
-    		self.generateMessageBox(window_title='Sign up information', msg_text='Please fill in the username field!')
-    	elif self.ui.txtSignUpPassword.text() == '':
-    		self.generateMessageBox(window_title='Sign up information', msg_text='Please fill in the password field!')
-    	else:
-    		email = self.ui.txtSignUpEmail.text()
-    		username = self.ui.txtSignUpUsername.text()
-    		password = self.ui.txtSignUpPassword.text()
-    		currpath = pathlib.Path().absolute()
-    		db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
-    		connection = sqlite3.connect(f'{db_path}')
-    		db_connection = connection.cursor()
-    		# Check if the user already exists in the db
-    		result = db_connection.execute("SELECT * FROM accounts WHERE email = ? AND username = ?",(email, username))
-    		if(len(result.fetchall()) > 0):
-    			self.generateMessageBox(window_title='Sign up information', msg_text='User already exists!')
-    			connection.commit()
-    			connection.close()
-    		else:
-    			db_connection.execute("INSERT INTO accounts(email, username, password) VALUES (?,?,?)",(email,username,password))
-    			connection.commit()
-    			connection.close()
-    			self.generateMessageBox(window_title='Sign up information', msg_text='Account was created successfully!')
-
-    # Switching to main app body after successful sign in
-    def openMainAppAndValidateUser(self):
-    	if self.ui.txtSignInUsername.text() == '':
-    		self.generateMessageBox(window_title='Sign in information', msg_text='Please fill in the username field!')
-    	elif self.ui.txtSignInPassword.text() == '':
-    		self.generateMessageBox(window_title='Sign in information', msg_text='Please fill in the password field!')
-    	else:
-        	username = self.ui.txtSignInUsername.text()
-        	password = self.ui.txtSignInPassword.text()
-
-        	currpath = pathlib.Path().absolute()
-        	db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
-        	connection = sqlite3.connect(f'{db_path}')
-        	db_connection = connection.cursor()
-        	# Check if the user already exists in the db
-        	result = db_connection.execute("SELECT * FROM accounts WHERE username = ? AND password = ?",(username, password))
-        	if(len(result.fetchall()) > 0):
-        		connection.commit()
-        		connection.close()
-        		self.window = QMainWindow()
-        		self.ui = Ui_BillyAppMain()
-        		self.ui.setupUiMain(self.window)
-        		self.window = MainWindow()
-        		window1.hide()
-        		self.window.show()
-        	else:
-        		connection.commit()
-        		connection.close()
-        		self.generateMessageBox(window_title='Sign in information', msg_text='Incorrect username or password!')	        
-
-# UI File for Splash sign in/sign up window
 class Ui_BillyAuth(object):
     def setupUi(self, BillyAuth):
         if not BillyAuth.objectName():
@@ -532,10 +381,3 @@ class Ui_BillyAuth(object):
         self.btnSignUp.setText(QCoreApplication.translate("BillyAuth", u"Sign Up", None))
         self.lblAppVersion.setText(QCoreApplication.translate("BillyAuth", u"v1.0", None))
     # retranslateUi
-
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window1 = MainWindowAuth()
-    sys.exit(app.exec_())
