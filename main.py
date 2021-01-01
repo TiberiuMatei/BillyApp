@@ -7,6 +7,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
 from PySide2.QtWidgets import *
 import pathlib
 import sqlite3
+from cryptography.fernet import Fernet
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -41,8 +42,9 @@ class MainWindowAuth(QMainWindow):
         connection.execute("CREATE TABLE IF NOT EXISTS accounts([id_account] integer PRIMARY KEY,\
         	[username] text,\
         	[email] text,\
+        	[key] blob,\
         	[password] text,\
-        	[earnings] real,\
+        	[earnings] text,\
         	[electricity_enel] integer,\
         	[electricity_cez] integer,\
         	[electricity_eon] integer,\
@@ -120,6 +122,10 @@ class MainWindowAuth(QMainWindow):
     		email = self.ui.txtSignUpEmail.text()
     		username = self.ui.txtSignUpUsername.text()
     		password = self.ui.txtSignUpPassword.text()
+    		# Generating a key for password encryption
+    		key = Fernet.generate_key()
+    		key_value = Fernet(key)
+    		# Getting the app path
     		currpath = pathlib.Path().absolute()
     		db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
     		connection = sqlite3.connect(f'{db_path}')
@@ -131,7 +137,8 @@ class MainWindowAuth(QMainWindow):
     			connection.commit()
     			connection.close()
     		else:
-    			db_connection.execute("INSERT INTO accounts(email, username, password) VALUES (?,?,?)",(email,username,password))
+    			safe_password = key_value.encrypt(password.encode())
+    			db_connection.execute("INSERT INTO accounts(email, username, key, password) VALUES (?,?,?,?)",(email,username,key,safe_password))
     			connection.commit()
     			connection.close()
     			self.generateMessageBox(window_title='Sign up information', msg_text='Account was created successfully!')
@@ -150,17 +157,35 @@ class MainWindowAuth(QMainWindow):
         	db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         	connection = sqlite3.connect(f'{db_path}')
         	db_connection = connection.cursor()
-        	# Check if the user already exists in the db
-        	result = db_connection.execute("SELECT * FROM accounts WHERE username = ? AND password = ?",(username, password))
+        	# Username validation
+        	result = db_connection.execute("SELECT * FROM accounts WHERE username = ?",(username,))
         	if(len(result.fetchall()) > 0):
-        		connection.commit()
-        		connection.close()
-        		self.window = QMainWindow()
-        		self.ui = Ui_BillyAppMain()
-        		self.ui.setupUiMain(self.window)
-        		self.window = MainWindow()
-        		window1.hide()
-        		self.window.show()
+        		# Password validation
+        		key_result = db_connection.execute("SELECT key FROM accounts WHERE username = ?",(username,))
+        		# Get the key value from the query if the user exists
+        		key = key_result.fetchall()[0][0]
+        		# Get the encrypted password value from the query if the user exists
+        		safe_password_result = db_connection.execute("SELECT password FROM accounts WHERE username = ?",(username,))
+        		safe_password = safe_password_result.fetchone()[0]
+        		key_value = Fernet(key)
+        		# Decoding the password based on the key
+        		pass_decoded = key_value.decrypt(safe_password).decode()
+        		# Checking the stored encrypted password against the typed password from the sign in form
+        		if pass_decoded == password:
+        			email_result = db_connection.execute("SELECT email FROM accounts WHERE username = ?",(username,))
+        			email = email_result.fetchone()[0]
+        			connection.commit()
+        			connection.close()
+        			self.window = QMainWindow()
+        			self.ui = Ui_BillyAppMain()
+        			self.ui.setupUiMain(self.window)
+        			self.window = MainWindow(username, email)
+        			window1.hide()
+        			self.window.show()
+        		else:
+        			connection.commit()
+        			connection.close()
+        			self.generateMessageBox(window_title='Sign in information', msg_text='Incorrect username or password!')
         	else:
         		connection.commit()
         		connection.close()

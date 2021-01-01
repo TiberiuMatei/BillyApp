@@ -2,7 +2,9 @@
   <qresource prefix="images">
     <file>Resources/netflix_sub_selection.png</file>
     <file>Resources/spotify_sub_selection.png</file>
+    <file>Resources/logo_clear.png</file>
     <file>Resources/email.png</file>
+    <file>Resources/logo_hover.png</file>
     <file>Resources/password.png</file>
     <file>Resources/sign_in.png</file>
     <file>Resources/sign_in_selected.png</file>

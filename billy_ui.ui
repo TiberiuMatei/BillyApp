@@ -49,7 +49,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">QFrame{
-	background-color: rgb(39, 43, 47);
+	background-color: #272b2f;
 }</string>
       </property>
       <property name="frameShape">
@@ -136,12 +136,12 @@
            <widget class="QFrame" name="frameLogo">
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
-              <height>120</height>
+              <width>200</width>
+              <height>150</height>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">image: url(:/images/Resources/billy_logo.png);</string>
+             <string notr="true">background-color: #272b2f;</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -152,6 +152,48 @@
             <property name="lineWidth">
              <number>0</number>
             </property>
+            <widget class="QPushButton" name="btnBillyMain">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>200</width>
+               <height>150</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{		
+	background-image: url(:/images/Resources/logo_clear.png);
+	border-radius: 5px;
+	background-repeat: none;
+	background-position: center;
+}
+QPushButton:hover{
+	background-image: url(:/images/Resources/logo_hover.png);
+	border-radius: 5px;
+	background-repeat: none;
+	background-position: center;
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -162,8 +204,11 @@
          <property name="maximumSize">
           <size>
            <width>200</width>
-           <height>80</height>
+           <height>70</height>
           </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #272b2f;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -174,6 +219,56 @@
          <property name="lineWidth">
           <number>0</number>
          </property>
+         <widget class="QPushButton" name="btnUsername">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>200</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>SF UI Display</family>
+            <pointsize>16</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton
+{
+	color: #C72C41;
+	border: none;
+}
+QPushButton:pressed
+{	
+	color: #EE4540;
+	border: none;
+}
+QPushButton:hover
+{	
+	color: #EE4540;
+	border: none;
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>false</bool>
+          </property>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
        </item>
        <item>
@@ -242,7 +337,7 @@ QPushButton:hover{
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -304,7 +399,7 @@ QPushButton:checked{
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -354,7 +449,7 @@ QPushButton:checked{
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -406,7 +501,7 @@ background-image: url(:/images/Resources/electricity_clicked.png);
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -453,7 +548,7 @@ QPushButton:checked{
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -500,7 +595,7 @@ QPushButton:checked{
             </property>
             <property name="maximumSize">
              <size>
-              <width>16777215</width>
+              <width>200</width>
               <height>50</height>
              </size>
             </property>
@@ -683,11 +778,14 @@ QPushButton:hover{
                   <height>40</height>
                  </size>
                 </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
                 <property name="flat">
                  <bool>true</bool>
                 </property>
                </widget>
-               <widget class="QLabel" name="lblSetProfileName">
+               <widget class="QLabel" name="lblSetProfileEmail">
                 <property name="geometry">
                  <rect>
                   <x>50</x>
@@ -1189,6 +1287,9 @@ QPushButton:hover{
              </property>
             </widget>
             <widget class="QLineEdit" name="txtUsername">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -1212,12 +1313,6 @@ QPushButton:hover{
 	background-color:#202528;	
 	background-image: url(:/images/Resources/username.png);
 	background-repeat: none;
-}
-QLineEdit:hover{
-	border: 2px solid #EE4540;
-}
-QLineEdit:focus{
-	border: 2px solid #EE4540;
 }</string>
              </property>
              <property name="placeholderText">
@@ -2109,7 +2204,7 @@ QPushButton:hover{
               <rect>
                <x>80</x>
                <y>70</y>
-               <width>111</width>
+               <width>121</width>
                <height>21</height>
               </rect>
              </property>
