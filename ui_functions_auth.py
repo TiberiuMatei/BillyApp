@@ -14,10 +14,6 @@ class UIFunctionsAuth(MainWindowAuth):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
-        #####################
-        # APP TOOLTIP SECTION
-        #####################
-
         # SET DROPSHADOW WINDOW
         self.shadow = QGraphicsDropShadowEffect(self)
         self.shadow.setBlurRadius(20)

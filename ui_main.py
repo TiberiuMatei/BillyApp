@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiTjtNTF.ui'
+## Form generated from reading UI file 'billy_uiFRTlTb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -31,7 +31,7 @@ class Ui_BillyAppMain(object):
         self.frameLeftMenu.setObjectName(u"frameLeftMenu")
         self.frameLeftMenu.setMaximumSize(QSize(200, 16777215))
         self.frameLeftMenu.setStyleSheet(u"QFrame{\n"
-"   background-color: rgb(39, 43, 47);\n"
+"   background-color: #272b2f;\n"
 "}")
         self.frameLeftMenu.setFrameShape(QFrame.NoFrame)
         self.frameLeftMenu.setFrameShadow(QFrame.Raised)
@@ -62,11 +62,30 @@ class Ui_BillyAppMain(object):
 
         self.frameLogo = QFrame(self.frameTitleLogo)
         self.frameLogo.setObjectName(u"frameLogo")
-        self.frameLogo.setMaximumSize(QSize(16777215, 120))
-        self.frameLogo.setStyleSheet(u"image: url(:/images/Resources/billy_logo.png);")
+        self.frameLogo.setMaximumSize(QSize(200, 150))
+        self.frameLogo.setStyleSheet(u"background-color: #272b2f;")
         self.frameLogo.setFrameShape(QFrame.StyledPanel)
         self.frameLogo.setFrameShadow(QFrame.Raised)
         self.frameLogo.setLineWidth(0)
+        self.btnBillyMain = QPushButton(self.frameLogo)
+        self.btnBillyMain.setObjectName(u"btnBillyMain")
+        self.btnBillyMain.setGeometry(QRect(0, 0, 200, 150))
+        self.btnBillyMain.setMaximumSize(QSize(200, 150))
+        self.btnBillyMain.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnBillyMain.setStyleSheet(u"QPushButton{      \n"
+"   background-image: url(:/images/Resources/logo_clear.png);\n"
+"   border-radius: 5px;\n"
+"   background-repeat: none;\n"
+"   background-position: center;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-image: url(:/images/Resources/logo_hover.png);\n"
+"   border-radius: 5px;\n"
+"   background-repeat: none;\n"
+"   background-position: center;\n"
+"}")
+        self.btnBillyMain.setAutoDefault(False)
+        self.btnBillyMain.setFlat(True)
 
         self.verticalLayout_3.addWidget(self.frameLogo)
 
@@ -75,10 +94,39 @@ class Ui_BillyAppMain(object):
 
         self.frameUsername = QFrame(self.frameLeftMenu)
         self.frameUsername.setObjectName(u"frameUsername")
-        self.frameUsername.setMaximumSize(QSize(200, 80))
+        self.frameUsername.setMaximumSize(QSize(200, 70))
+        self.frameUsername.setStyleSheet(u"background-color: #272b2f;")
         self.frameUsername.setFrameShape(QFrame.StyledPanel)
         self.frameUsername.setFrameShadow(QFrame.Raised)
         self.frameUsername.setLineWidth(0)
+        self.btnUsername = QPushButton(self.frameUsername)
+        self.btnUsername.setObjectName(u"btnUsername")
+        self.btnUsername.setGeometry(QRect(0, 10, 200, 50))
+        font = QFont()
+        font.setFamily(u"SF UI Display")
+        font.setPointSize(16)
+        font.setBold(False)
+        font.setWeight(50)
+        self.btnUsername.setFont(font)
+        self.btnUsername.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnUsername.setStyleSheet(u"QPushButton\n"
+"{\n"
+"   color: #C72C41;\n"
+"   border: none;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   color: #EE4540;\n"
+"   border: none;\n"
+"}\n"
+"QPushButton:hover\n"
+"{  \n"
+"   color: #EE4540;\n"
+"   border: none;\n"
+"}")
+        self.btnUsername.setCheckable(False)
+        self.btnUsername.setAutoDefault(False)
+        self.btnUsername.setFlat(True)
 
         self.verticalLayout.addWidget(self.frameUsername)
 
@@ -113,13 +161,13 @@ class Ui_BillyAppMain(object):
         sizePolicy.setHeightForWidth(self.btnDashboard.sizePolicy().hasHeightForWidth())
         self.btnDashboard.setSizePolicy(sizePolicy)
         self.btnDashboard.setMinimumSize(QSize(0, 0))
-        self.btnDashboard.setMaximumSize(QSize(16777215, 50))
-        font = QFont()
-        font.setFamily(u"SF UI Display")
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.btnDashboard.setFont(font)
+        self.btnDashboard.setMaximumSize(QSize(200, 50))
+        font1 = QFont()
+        font1.setFamily(u"SF UI Display")
+        font1.setPointSize(14)
+        font1.setBold(True)
+        font1.setWeight(75)
+        self.btnDashboard.setFont(font1)
         self.btnDashboard.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnDashboard.setStyleSheet(u"QPushButton{\n"
 "background-image: url(:/images/Resources/dashboard_not_clicked.png);\n"
@@ -142,8 +190,8 @@ class Ui_BillyAppMain(object):
         self.btnCalendar.setObjectName(u"btnCalendar")
         sizePolicy.setHeightForWidth(self.btnCalendar.sizePolicy().hasHeightForWidth())
         self.btnCalendar.setSizePolicy(sizePolicy)
-        self.btnCalendar.setMaximumSize(QSize(16777215, 50))
-        self.btnCalendar.setFont(font)
+        self.btnCalendar.setMaximumSize(QSize(200, 50))
+        self.btnCalendar.setFont(font1)
         self.btnCalendar.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnCalendar.setStyleSheet(u"QPushButton{\n"
 "   background-image: url(:/images/Resources/calendar_not_clicked.png);\n"
@@ -164,8 +212,8 @@ class Ui_BillyAppMain(object):
         self.btnElectricity.setObjectName(u"btnElectricity")
         sizePolicy.setHeightForWidth(self.btnElectricity.sizePolicy().hasHeightForWidth())
         self.btnElectricity.setSizePolicy(sizePolicy)
-        self.btnElectricity.setMaximumSize(QSize(16777215, 50))
-        self.btnElectricity.setFont(font)
+        self.btnElectricity.setMaximumSize(QSize(200, 50))
+        self.btnElectricity.setFont(font1)
         self.btnElectricity.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnElectricity.setStyleSheet(u"QPushButton{\n"
 "   background-image: url(:/images/Resources/electricity_not_clicked.png);\n"
@@ -185,8 +233,8 @@ class Ui_BillyAppMain(object):
         self.btnNaturalGas.setObjectName(u"btnNaturalGas")
         sizePolicy.setHeightForWidth(self.btnNaturalGas.sizePolicy().hasHeightForWidth())
         self.btnNaturalGas.setSizePolicy(sizePolicy)
-        self.btnNaturalGas.setMaximumSize(QSize(16777215, 50))
-        self.btnNaturalGas.setFont(font)
+        self.btnNaturalGas.setMaximumSize(QSize(200, 50))
+        self.btnNaturalGas.setFont(font1)
         self.btnNaturalGas.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnNaturalGas.setStyleSheet(u"QPushButton{\n"
 "   background-image: url(:/images/Resources/gas_not_clicked.png);\n"
@@ -206,8 +254,8 @@ class Ui_BillyAppMain(object):
         self.btnInternetTV.setObjectName(u"btnInternetTV")
         sizePolicy.setHeightForWidth(self.btnInternetTV.sizePolicy().hasHeightForWidth())
         self.btnInternetTV.setSizePolicy(sizePolicy)
-        self.btnInternetTV.setMaximumSize(QSize(16777215, 50))
-        self.btnInternetTV.setFont(font)
+        self.btnInternetTV.setMaximumSize(QSize(200, 50))
+        self.btnInternetTV.setFont(font1)
         self.btnInternetTV.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnInternetTV.setStyleSheet(u"QPushButton{\n"
 "   background-image: url(:/images/Resources/internet_not_clicked.png);\n"
@@ -227,8 +275,8 @@ class Ui_BillyAppMain(object):
         self.btnSubscriptions.setObjectName(u"btnSubscriptions")
         sizePolicy.setHeightForWidth(self.btnSubscriptions.sizePolicy().hasHeightForWidth())
         self.btnSubscriptions.setSizePolicy(sizePolicy)
-        self.btnSubscriptions.setMaximumSize(QSize(16777215, 50))
-        self.btnSubscriptions.setFont(font)
+        self.btnSubscriptions.setMaximumSize(QSize(200, 50))
+        self.btnSubscriptions.setFont(font1)
         self.btnSubscriptions.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnSubscriptions.setStyleSheet(u"QPushButton{\n"
 "   background-image: url(:/images/Resources/subscriptions_not_clicked.png);\n"
@@ -301,18 +349,19 @@ class Ui_BillyAppMain(object):
         icon.addFile(u":/images/Resources/profile.png", QSize(), QIcon.Normal, QIcon.Off)
         self.btnProfile.setIcon(icon)
         self.btnProfile.setIconSize(QSize(40, 40))
+        self.btnProfile.setCheckable(True)
         self.btnProfile.setFlat(True)
-        self.lblSetProfileName = QLabel(self.headerButtons)
-        self.lblSetProfileName.setObjectName(u"lblSetProfileName")
-        self.lblSetProfileName.setGeometry(QRect(50, 0, 400, 40))
-        font1 = QFont()
-        font1.setFamily(u"SF UI Display")
-        font1.setPointSize(10)
-        font1.setBold(True)
-        font1.setWeight(75)
-        self.lblSetProfileName.setFont(font1)
-        self.lblSetProfileName.setCursor(QCursor(Qt.ArrowCursor))
-        self.lblSetProfileName.setStyleSheet(u"color: #d0cfd0;  \n"
+        self.lblSetProfileEmail = QLabel(self.headerButtons)
+        self.lblSetProfileEmail.setObjectName(u"lblSetProfileEmail")
+        self.lblSetProfileEmail.setGeometry(QRect(50, 0, 400, 40))
+        font2 = QFont()
+        font2.setFamily(u"SF UI Display")
+        font2.setPointSize(10)
+        font2.setBold(True)
+        font2.setWeight(75)
+        self.lblSetProfileEmail.setFont(font2)
+        self.lblSetProfileEmail.setCursor(QCursor(Qt.ArrowCursor))
+        self.lblSetProfileEmail.setStyleSheet(u"color: #d0cfd0; \n"
 "background-color:#202528;  ")
 
         self.horizontalLayout_4.addWidget(self.headerButtons)
@@ -329,10 +378,10 @@ class Ui_BillyAppMain(object):
         self.lblBillingCountry = QLabel(self.headerInfo)
         self.lblBillingCountry.setObjectName(u"lblBillingCountry")
         self.lblBillingCountry.setGeometry(QRect(220, 0, 100, 40))
-        font2 = QFont()
-        font2.setFamily(u"SF UI Display")
-        font2.setPointSize(10)
-        self.lblBillingCountry.setFont(font2)
+        font3 = QFont()
+        font3.setFamily(u"SF UI Display")
+        font3.setPointSize(10)
+        self.lblBillingCountry.setFont(font3)
         self.lblBillingCountry.setStyleSheet(u"color: #6c6e71;")
 
         self.horizontalLayout_4.addWidget(self.headerInfo)
@@ -355,9 +404,9 @@ class Ui_BillyAppMain(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.btnMinimize = QPushButton(self.frameControlButtons)
         self.btnMinimize.setObjectName(u"btnMinimize")
-        font3 = QFont()
-        font3.setKerning(False)
-        self.btnMinimize.setFont(font3)
+        font4 = QFont()
+        font4.setKerning(False)
+        self.btnMinimize.setFont(font4)
         self.btnMinimize.setStyleSheet(u"QPushButton{\n"
 "   border: none;\n"
 "   background-color: rgb(32, 37, 40);\n"
@@ -432,12 +481,12 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle = QLabel(self.pageDashboard)
         self.lblDashTitle.setObjectName(u"lblDashTitle")
         self.lblDashTitle.setGeometry(QRect(30, 10, 281, 41))
-        font4 = QFont()
-        font4.setFamily(u"SF UI Display")
-        font4.setPointSize(18)
-        font4.setBold(True)
-        font4.setWeight(75)
-        self.lblDashTitle.setFont(font4)
+        font5 = QFont()
+        font5.setFamily(u"SF UI Display")
+        font5.setPointSize(18)
+        font5.setBold(True)
+        font5.setWeight(75)
+        self.lblDashTitle.setFont(font5)
         self.lblDashTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblDashTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageDashboard)
@@ -446,7 +495,7 @@ class Ui_BillyAppMain(object):
         self.lblCalendarTitle = QLabel(self.pageCalendar)
         self.lblCalendarTitle.setObjectName(u"lblCalendarTitle")
         self.lblCalendarTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblCalendarTitle.setFont(font4)
+        self.lblCalendarTitle.setFont(font5)
         self.lblCalendarTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblCalendarTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageCalendar)
@@ -455,7 +504,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityTitle = QLabel(self.pageElectricity)
         self.lblElectricityTitle.setObjectName(u"lblElectricityTitle")
         self.lblElectricityTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblElectricityTitle.setFont(font4)
+        self.lblElectricityTitle.setFont(font5)
         self.lblElectricityTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageElectricity)
@@ -464,7 +513,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasTitle = QLabel(self.pageNaturalGas)
         self.lblNaturalGasTitle.setObjectName(u"lblNaturalGasTitle")
         self.lblNaturalGasTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblNaturalGasTitle.setFont(font4)
+        self.lblNaturalGasTitle.setFont(font5)
         self.lblNaturalGasTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblNaturalGasTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageNaturalGas)
@@ -473,7 +522,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVTitle = QLabel(self.pageInternetTV)
         self.lblInternetTVTitle.setObjectName(u"lblInternetTVTitle")
         self.lblInternetTVTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblInternetTVTitle.setFont(font4)
+        self.lblInternetTVTitle.setFont(font5)
         self.lblInternetTVTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblInternetTVTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageInternetTV)
@@ -482,7 +531,7 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsTitle = QLabel(self.pageSubscriptions)
         self.lblSubscriptionsTitle.setObjectName(u"lblSubscriptionsTitle")
         self.lblSubscriptionsTitle.setGeometry(QRect(30, 10, 281, 41))
-        self.lblSubscriptionsTitle.setFont(font4)
+        self.lblSubscriptionsTitle.setFont(font5)
         self.lblSubscriptionsTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblSubscriptionsTitle.setTextFormat(Qt.MarkdownText)
         self.stackedWidget.addWidget(self.pageSubscriptions)
@@ -491,7 +540,7 @@ class Ui_BillyAppMain(object):
         self.lblAccountPreferences = QLabel(self.pageProfile)
         self.lblAccountPreferences.setObjectName(u"lblAccountPreferences")
         self.lblAccountPreferences.setGeometry(QRect(30, 10, 281, 41))
-        self.lblAccountPreferences.setFont(font4)
+        self.lblAccountPreferences.setFont(font5)
         self.lblAccountPreferences.setStyleSheet(u"color: #6c6e71;")
         self.lblAccountPreferences.setTextFormat(Qt.MarkdownText)
         self.profileName = QFrame(self.pageProfile)
@@ -507,19 +556,19 @@ class Ui_BillyAppMain(object):
         self.lblProfileName = QLabel(self.profileName)
         self.lblProfileName.setObjectName(u"lblProfileName")
         self.lblProfileName.setGeometry(QRect(20, 10, 191, 21))
-        font5 = QFont()
-        font5.setFamily(u"SF UI Display")
-        font5.setPointSize(14)
-        self.lblProfileName.setFont(font5)
+        font6 = QFont()
+        font6.setFamily(u"SF UI Display")
+        font6.setPointSize(14)
+        self.lblProfileName.setFont(font6)
         self.lblProfileName.setStyleSheet(u"color: #f3f5f6;")
         self.txtUsername = QLineEdit(self.profileName)
         self.txtUsername.setObjectName(u"txtUsername")
         self.txtUsername.setEnabled(False)
         self.txtUsername.setGeometry(QRect(20, 60, 280, 50))
-        font6 = QFont()
-        font6.setFamily(u"SF UI Display")
-        font6.setPointSize(12)
-        self.txtUsername.setFont(font6)
+        font7 = QFont()
+        font7.setFamily(u"SF UI Display")
+        font7.setPointSize(12)
+        self.txtUsername.setFont(font7)
         self.txtUsername.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -532,7 +581,7 @@ class Ui_BillyAppMain(object):
         self.txtEarnings = QLineEdit(self.profileName)
         self.txtEarnings.setObjectName(u"txtEarnings")
         self.txtEarnings.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings.setFont(font6)
+        self.txtEarnings.setFont(font7)
         self.txtEarnings.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -551,7 +600,7 @@ class Ui_BillyAppMain(object):
         self.btnSetProfileName = QPushButton(self.profileName)
         self.btnSetProfileName.setObjectName(u"btnSetProfileName")
         self.btnSetProfileName.setGeometry(QRect(630, 60, 75, 50))
-        self.btnSetProfileName.setFont(font)
+        self.btnSetProfileName.setFont(font1)
         self.btnSetProfileName.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnSetProfileName.setStyleSheet(u"QPushButton{\n"
 "   background-color: #EE4540;\n"
@@ -580,12 +629,12 @@ class Ui_BillyAppMain(object):
         self.lblElectricitySupplier = QLabel(self.electricitySupplier)
         self.lblElectricitySupplier.setObjectName(u"lblElectricitySupplier")
         self.lblElectricitySupplier.setGeometry(QRect(20, 10, 181, 21))
-        self.lblElectricitySupplier.setFont(font5)
+        self.lblElectricitySupplier.setFont(font6)
         self.lblElectricitySupplier.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricitySupplierInfo = QLabel(self.electricitySupplier)
         self.lblElectricitySupplierInfo.setObjectName(u"lblElectricitySupplierInfo")
         self.lblElectricitySupplierInfo.setGeometry(QRect(20, 40, 231, 21))
-        self.lblElectricitySupplierInfo.setFont(font2)
+        self.lblElectricitySupplierInfo.setFont(font3)
         self.lblElectricitySupplierInfo.setStyleSheet(u"color: #6c6e71;")
         self.btnEnelSelection = QPushButton(self.electricitySupplier)
         self.btnEnelSelection.setObjectName(u"btnEnelSelection")
@@ -678,12 +727,12 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasSupplier = QLabel(self.naturalGasSupplier)
         self.lblNaturalGasSupplier.setObjectName(u"lblNaturalGasSupplier")
         self.lblNaturalGasSupplier.setGeometry(QRect(20, 10, 201, 21))
-        self.lblNaturalGasSupplier.setFont(font5)
+        self.lblNaturalGasSupplier.setFont(font6)
         self.lblNaturalGasSupplier.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasSupplierInfo = QLabel(self.naturalGasSupplier)
         self.lblNaturalGasSupplierInfo.setObjectName(u"lblNaturalGasSupplierInfo")
         self.lblNaturalGasSupplierInfo.setGeometry(QRect(20, 40, 241, 21))
-        self.lblNaturalGasSupplierInfo.setFont(font2)
+        self.lblNaturalGasSupplierInfo.setFont(font3)
         self.lblNaturalGasSupplierInfo.setStyleSheet(u"color: #6c6e71;")
         self.btnEngieSelection = QPushButton(self.naturalGasSupplier)
         self.btnEngieSelection.setObjectName(u"btnEngieSelection")
@@ -776,12 +825,12 @@ class Ui_BillyAppMain(object):
         self.lblInternetProvider = QLabel(self.internetProvider)
         self.lblInternetProvider.setObjectName(u"lblInternetProvider")
         self.lblInternetProvider.setGeometry(QRect(20, 10, 201, 21))
-        self.lblInternetProvider.setFont(font5)
+        self.lblInternetProvider.setFont(font6)
         self.lblInternetProvider.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetProviderInfo = QLabel(self.internetProvider)
         self.lblInternetProviderInfo.setObjectName(u"lblInternetProviderInfo")
         self.lblInternetProviderInfo.setGeometry(QRect(20, 40, 251, 21))
-        self.lblInternetProviderInfo.setFont(font2)
+        self.lblInternetProviderInfo.setFont(font3)
         self.lblInternetProviderInfo.setStyleSheet(u"color: #6c6e71;")
         self.btnRCSRDSSelection = QPushButton(self.internetProvider)
         self.btnRCSRDSSelection.setObjectName(u"btnRCSRDSSelection")
@@ -876,27 +925,27 @@ class Ui_BillyAppMain(object):
         self.lblEarnings = QLabel(self.earnings)
         self.lblEarnings.setObjectName(u"lblEarnings")
         self.lblEarnings.setGeometry(QRect(20, 10, 121, 21))
-        self.lblEarnings.setFont(font5)
+        self.lblEarnings.setFont(font6)
         self.lblEarnings.setStyleSheet(u"color: #f3f5f6;")
         self.lblEarningsPerMonth = QLabel(self.earnings)
         self.lblEarningsPerMonth.setObjectName(u"lblEarningsPerMonth")
         self.lblEarningsPerMonth.setGeometry(QRect(20, 100, 71, 21))
-        self.lblEarningsPerMonth.setFont(font2)
+        self.lblEarningsPerMonth.setFont(font3)
         self.lblEarningsPerMonth.setStyleSheet(u"color: #6c6e71;")
         self.lblEarningsCurrency = QLabel(self.earnings)
         self.lblEarningsCurrency.setObjectName(u"lblEarningsCurrency")
         self.lblEarningsCurrency.setGeometry(QRect(20, 70, 61, 21))
-        font7 = QFont()
-        font7.setFamily(u"SF UI Display")
-        font7.setPointSize(20)
-        font7.setBold(True)
-        font7.setWeight(75)
-        self.lblEarningsCurrency.setFont(font7)
+        font8 = QFont()
+        font8.setFamily(u"SF UI Display")
+        font8.setPointSize(20)
+        font8.setBold(True)
+        font8.setWeight(75)
+        self.lblEarningsCurrency.setFont(font8)
         self.lblEarningsCurrency.setStyleSheet(u"color: #C72C41;")
         self.lblEarningsValue = QLabel(self.earnings)
         self.lblEarningsValue.setObjectName(u"lblEarningsValue")
         self.lblEarningsValue.setGeometry(QRect(80, 70, 121, 21))
-        self.lblEarningsValue.setFont(font7)
+        self.lblEarningsValue.setFont(font8)
         self.lblEarningsValue.setStyleSheet(u"color: #EE4540;")
         self.subscriptionsPage = QFrame(self.pageProfile)
         self.subscriptionsPage.setObjectName(u"subscriptionsPage")
@@ -910,12 +959,12 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsPage = QLabel(self.subscriptionsPage)
         self.lblSubscriptionsPage.setObjectName(u"lblSubscriptionsPage")
         self.lblSubscriptionsPage.setGeometry(QRect(20, 10, 201, 21))
-        self.lblSubscriptionsPage.setFont(font5)
+        self.lblSubscriptionsPage.setFont(font6)
         self.lblSubscriptionsPage.setStyleSheet(u"color: #f3f5f6;")
         self.lblSubscriptionsPageInfo = QLabel(self.subscriptionsPage)
         self.lblSubscriptionsPageInfo.setObjectName(u"lblSubscriptionsPageInfo")
         self.lblSubscriptionsPageInfo.setGeometry(QRect(20, 40, 421, 21))
-        self.lblSubscriptionsPageInfo.setFont(font2)
+        self.lblSubscriptionsPageInfo.setFont(font3)
         self.lblSubscriptionsPageInfo.setStyleSheet(u"color: #6c6e71;")
         self.btnNetflixSelection = QPushButton(self.subscriptionsPage)
         self.btnNetflixSelection.setObjectName(u"btnNetflixSelection")
@@ -986,6 +1035,8 @@ class Ui_BillyAppMain(object):
 
     def retranslateUi(self, BillyAppMain):
         BillyAppMain.setWindowTitle(QCoreApplication.translate("BillyAppMain", u"Billy", None))
+        self.btnBillyMain.setText("")
+        self.btnUsername.setText("")
         self.btnDashboard.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
         self.btnCalendar.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.btnElectricity.setText(QCoreApplication.translate("BillyAppMain", u"Electricity", None))
@@ -993,7 +1044,7 @@ class Ui_BillyAppMain(object):
         self.btnInternetTV.setText(QCoreApplication.translate("BillyAppMain", u"Internet && TV", None))
         self.btnSubscriptions.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
         self.btnProfile.setText("")
-        self.lblSetProfileName.setText("")
+        self.lblSetProfileEmail.setText("")
         self.lblBillingFlag.setText("")
         self.lblBillingCountry.setText(QCoreApplication.translate("BillyAppMain", u"Billing Country", None))
         self.btnMinimize.setText("")

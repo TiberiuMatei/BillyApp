@@ -29,8 +29,10 @@ class MainWindow(QMainWindow):
 
         username = usernameAuth
         email = emailAuth
-        self.ui.lblSetProfileName.setText(username)
+        self.ui.lblSetProfileEmail.setText(email)
         self.ui.txtUsername.setText(username)
+        self.ui.btnUsername.setText(username)
+
         # Initializing existing profile page data from db
         # Getting the app path
         currpath = pathlib.Path().absolute()
@@ -49,16 +51,27 @@ class MainWindow(QMainWindow):
         if (enel == 1):
             self.ui.btnEnelSelection.setChecked(True)
         # Setting the Engie natural gas supplier
+        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(username,))
+        engie = engie_result.fetchone()[0]
+        if (engie == 1):
+            self.ui.btnEngieSelection.setChecked(True)
+        # Setting the Internet provider
+        rds_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(username,))
+        rds = rds_result.fetchone()[0]
+        if (rds == 1):
+            self.ui.btnRCSRDSSelection.setChecked(True)
+        # Setting the Netflix subscription
+        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(username,))
+        netflix = netflix_result.fetchone()[0]
+        if (netflix == 1):
+            self.ui.btnNetflixSelection.setChecked(True)
+        # Setting the Spotify subscription
+        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(username,))
+        spotify = spotify_result.fetchone()[0]
+        if (spotify == 1):
+            self.ui.btnSpotifySelection.setChecked(True)
         connection.commit()
         connection.close()
-
-        # Animate left side menu upon app loading
-        # self.ui.frameMenuContent.setGeometry(240, 240, 0, 540)
-        # self.animation = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
-        # self.animation.setDuration(1000)
-        # self.animation.setEndValue(QRect(0, 240, 200, 540))
-        # self.animation.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        # self.animation.start() 
 
         # Move window
         def moveWindow(event):
@@ -96,15 +109,17 @@ class MainWindow(QMainWindow):
         self.ui.btnInternetTV.clicked.connect(self.internetTVButton)
         self.ui.btnSubscriptions.clicked.connect(self.subscriptionsButton)
         self.ui.btnProfile.clicked.connect(self.profilePage)
+        self.ui.btnBillyMain.clicked.connect(self.mainBillyDashboard)
+        self.ui.btnUsername.clicked.connect(self.usernameProfilePage)
 
         # Profile page buttons
         self.ui.btnSetProfileName.clicked.connect(self.setAccountInformation)
         self.ui.txtEarnings.returnPressed.connect(self.setAccountInformation)
         self.ui.btnEnelSelection.clicked.connect(self.setElectricitySupplierEnel)
-        # self.ui.btnEngieSelection.clicked.connect(self.setNaturalGasSupplierEngie)
-        # self.ui.btnRCSRDSSelection.clicked.connect(self.setInternetProviderRCSRDS)
-        # self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
-        # self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
+        self.ui.btnEngieSelection.clicked.connect(self.setNaturalGasSupplierEngie)
+        self.ui.btnRCSRDSSelection.clicked.connect(self.setInternetProviderRCSRDS)
+        self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
+        self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
 
         # Show Main Window
         self.show()
@@ -172,12 +187,87 @@ class MainWindow(QMainWindow):
                                 electricity_eon = 0,\
                                 electricity_digi = 0\
                                 WHERE username = '{}'".format(username))
-        self.ui.lblEarningsValue.setText(self.ui.txtEarnings.text())
         connection.commit()
         connection.close()
 
+    def setNaturalGasSupplierEngie(self):
+        self.ui.btnEngieSelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the earnings field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET gas_engie = 1,\
+                                gas_cez = 0,\
+                                gas_eon = 0,\
+                                gas_enel = 0\
+                                WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def setInternetProviderRCSRDS(self):
+        self.ui.btnRCSRDSSelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the earnings field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET internet_rds = 1,\
+                                internet_upc = 0,\
+                                internet_telekom = 0,\
+                                internet_gts = 0\
+                                WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def setSubscriptionNetflix(self):
+        self.ui.btnNetflixSelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the earnings field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET subscription_netflix = 1 WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def setSubscriptionSpotify(self):
+        self.ui.btnSpotifySelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the earnings field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET subscription_spotify = 1 WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def mainBillyDashboard(self):
+        # Animate left side menu upon pressing the main logo button and focus on Dashboard
+        self.ui.frameMenuContent.setGeometry(250, 250, 0, 670)
+        self.animation9 = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
+        self.animation9.setDuration(700)
+        self.animation9.setEndValue(QRect(0, 250, 200, 670))
+        self.animation9.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation9.start()
+        MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
+    def usernameProfilePage(self):
+        mainButtonsList = [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions]
+        for button in mainButtonsList:
+            button.setChecked(False)
+        # self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
+        MainWindow.profilePage(self)
+
     # Profile Page content and buttons
     def profilePage(self):
+        mainButtonsList = [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions]
+        for button in mainButtonsList:
+            button.setChecked(False)
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
         # Animate profile frame
         self.ui.profileName.setGeometry(30, 80, 0, 130)
