@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uikpvQWi.ui'
+## Form generated from reading UI file 'billy_uiTjtNTF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -514,6 +514,7 @@ class Ui_BillyAppMain(object):
         self.lblProfileName.setStyleSheet(u"color: #f3f5f6;")
         self.txtUsername = QLineEdit(self.profileName)
         self.txtUsername.setObjectName(u"txtUsername")
+        self.txtUsername.setEnabled(False)
         self.txtUsername.setGeometry(QRect(20, 60, 280, 50))
         font6 = QFont()
         font6.setFamily(u"SF UI Display")
@@ -527,12 +528,6 @@ class Ui_BillyAppMain(object):
 "   background-color:#202528;   \n"
 "   background-image: url(:/images/Resources/username.png);\n"
 "   background-repeat: none;\n"
-"}\n"
-"QLineEdit:hover{\n"
-"   border: 2px solid #EE4540;\n"
-"}\n"
-"QLineEdit:focus{\n"
-"   border: 2px solid #EE4540;\n"
 "}")
         self.txtEarnings = QLineEdit(self.profileName)
         self.txtEarnings.setObjectName(u"txtEarnings")
@@ -900,12 +895,12 @@ class Ui_BillyAppMain(object):
         self.lblEarningsCurrency.setStyleSheet(u"color: #C72C41;")
         self.lblEarningsValue = QLabel(self.earnings)
         self.lblEarningsValue.setObjectName(u"lblEarningsValue")
-        self.lblEarningsValue.setGeometry(QRect(80, 70, 111, 21))
+        self.lblEarningsValue.setGeometry(QRect(80, 70, 121, 21))
         self.lblEarningsValue.setFont(font7)
         self.lblEarningsValue.setStyleSheet(u"color: #EE4540;")
         self.subscriptionsPage = QFrame(self.pageProfile)
         self.subscriptionsPage.setObjectName(u"subscriptionsPage")
-        self.subscriptionsPage.setGeometry(QRect(30, 710, 531, 140))
+        self.subscriptionsPage.setGeometry(QRect(30, 710, 530, 140))
         self.subscriptionsPage.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"

@@ -44,7 +44,7 @@ class MainWindowAuth(QMainWindow):
         	[email] text,\
         	[key] blob,\
         	[password] text,\
-        	[earnings] real,\
+        	[earnings] text,\
         	[electricity_enel] integer,\
         	[electricity_cez] integer,\
         	[electricity_eon] integer,\
@@ -122,8 +122,10 @@ class MainWindowAuth(QMainWindow):
     		email = self.ui.txtSignUpEmail.text()
     		username = self.ui.txtSignUpUsername.text()
     		password = self.ui.txtSignUpPassword.text()
+    		# Generating a key for password encryption
     		key = Fernet.generate_key()
     		key_value = Fernet(key)
+    		# Getting the app path
     		currpath = pathlib.Path().absolute()
     		db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
     		connection = sqlite3.connect(f'{db_path}')
@@ -160,18 +162,24 @@ class MainWindowAuth(QMainWindow):
         	if(len(result.fetchall()) > 0):
         		# Password validation
         		key_result = db_connection.execute("SELECT key FROM accounts WHERE username = ?",(username,))
+        		# Get the key value from the query if the user exists
         		key = key_result.fetchall()[0][0]
+        		# Get the encrypted password value from the query if the user exists
         		safe_password_result = db_connection.execute("SELECT password FROM accounts WHERE username = ?",(username,))
         		safe_password = safe_password_result.fetchone()[0]
         		key_value = Fernet(key)
+        		# Decoding the password based on the key
         		pass_decoded = key_value.decrypt(safe_password).decode()
+        		# Checking the stored encrypted password against the typed password from the sign in form
         		if pass_decoded == password:
+        			email_result = db_connection.execute("SELECT email FROM accounts WHERE username = ?",(username,))
+        			email = email_result.fetchone()[0]
         			connection.commit()
         			connection.close()
         			self.window = QMainWindow()
         			self.ui = Ui_BillyAppMain()
         			self.ui.setupUiMain(self.window)
-        			self.window = MainWindow()
+        			self.window = MainWindow(username, email)
         			window1.hide()
         			self.window.show()
         		else:
