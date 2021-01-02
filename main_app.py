@@ -7,6 +7,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFo
 from PySide2.QtWidgets import *
 import sqlite3
 import pathlib
+import datetime
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -27,11 +28,11 @@ class MainWindow(QMainWindow):
         self.ui = Ui_BillyAppMain()
         self.ui.setupUiMain(self)
 
-        username = usernameAuth
-        email = emailAuth
-        self.ui.lblSetProfileEmail.setText(email)
-        self.ui.txtUsername.setText(username)
-        self.ui.btnUsername.setText(username)
+        self.username = usernameAuth
+        self.email = emailAuth
+        self.ui.lblSetProfileEmail.setText(self.email)
+        self.ui.txtUsername.setText(self.username)
+        self.ui.btnUsername.setText(self.username)
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -40,38 +41,44 @@ class MainWindow(QMainWindow):
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
-        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
         earnings = earnings_result.fetchone()[0]
         if (earnings != None):
             self.ui.txtEarnings.setText(earnings)
             self.ui.lblEarningsValue.setText(earnings)
         # Setting the Enel electricity supplier
-        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(username,))
+        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(self.username,))
         enel = earnings_result.fetchone()[0]
         if (enel == 1):
             self.ui.btnEnelSelection.setChecked(True)
         # Setting the Engie natural gas supplier
-        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(username,))
+        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(self.username,))
         engie = engie_result.fetchone()[0]
         if (engie == 1):
             self.ui.btnEngieSelection.setChecked(True)
         # Setting the Internet provider
-        rds_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(username,))
+        rds_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(self.username,))
         rds = rds_result.fetchone()[0]
         if (rds == 1):
             self.ui.btnRCSRDSSelection.setChecked(True)
         # Setting the Netflix subscription
-        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(username,))
+        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(self.username,))
         netflix = netflix_result.fetchone()[0]
         if (netflix == 1):
             self.ui.btnNetflixSelection.setChecked(True)
         # Setting the Spotify subscription
-        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(username,))
+        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(self.username,))
         spotify = spotify_result.fetchone()[0]
         if (spotify == 1):
             self.ui.btnSpotifySelection.setChecked(True)
         connection.commit()
         connection.close()
+
+        # Create directories for bill storage
+        now = datetime.datetime.now()
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{now.year}').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{now.year}').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{now.year}').mkdir(parents=True, exist_ok=True)
 
         # Move window
         def moveWindow(event):
@@ -156,8 +163,38 @@ class MainWindow(QMainWindow):
 
     # Click on the Electricity button
     def electricityButton(self):
+        # Full Electricity page functionality
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageElectricity, self.ui.btnElectricity, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+        username = self.username
+        email = self.email
+        # Checking the selected Electricity supplier
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Setting the earnings data fields from db if it exists
+        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(username,))
+        enel = enel_result.fetchone()[0]
+        cez_result = db_connection.execute("SELECT electricity_cez FROM accounts WHERE username = ?",(username,))
+        cez = cez_result.fetchone()[0]
+        eon_result = db_connection.execute("SELECT electricity_eon FROM accounts WHERE username = ?",(username,))
+        eon = eon_result.fetchone()[0]
+        digi_result = db_connection.execute("SELECT electricity_digi FROM accounts WHERE username = ?",(username,))
+        digi = digi_result.fetchone()[0]
+        connection.commit()
+        connection.close()
+        if enel == 1 or cez == 1 or eon == 1 or digi == 1:
+            # Checking the selected Electricity supplier
+            if enel == 1:
+                self.ui.btnElectricitySupplierDisplay.setStyleSheet("background-image: url(:/images/Resources/enel_supplier.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+        else:
+            self.generateMessageBox(window_title='Electricity page', msg_text='Please select the desired Electricity supplier from the Account preferences!')
+
 
     # Click on the NaturalGas button
     def naturalGasButton(self):

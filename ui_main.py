@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiFRTlTb.ui'
+## Form generated from reading UI file 'billy_uiXfXeyM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -507,6 +507,43 @@ class Ui_BillyAppMain(object):
         self.lblElectricityTitle.setFont(font5)
         self.lblElectricityTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityTitle.setTextFormat(Qt.MarkdownText)
+        self.electricitySupplierSelection = QFrame(self.pageElectricity)
+        self.electricitySupplierSelection.setObjectName(u"electricitySupplierSelection")
+        self.electricitySupplierSelection.setGeometry(QRect(20, 80, 381, 71))
+        self.electricitySupplierSelection.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.electricitySupplierSelection.setFrameShape(QFrame.StyledPanel)
+        self.electricitySupplierSelection.setFrameShadow(QFrame.Raised)
+        self.lblElectricitySupplierSelection = QLabel(self.electricitySupplierSelection)
+        self.lblElectricitySupplierSelection.setObjectName(u"lblElectricitySupplierSelection")
+        self.lblElectricitySupplierSelection.setGeometry(QRect(20, 10, 181, 21))
+        font6 = QFont()
+        font6.setFamily(u"SF UI Display")
+        font6.setPointSize(14)
+        self.lblElectricitySupplierSelection.setFont(font6)
+        self.lblElectricitySupplierSelection.setStyleSheet(u"color: #f3f5f6;")
+        self.lblElectricitySupplierSelectionInfo = QLabel(self.electricitySupplierSelection)
+        self.lblElectricitySupplierSelectionInfo.setObjectName(u"lblElectricitySupplierSelectionInfo")
+        self.lblElectricitySupplierSelectionInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblElectricitySupplierSelectionInfo.setFont(font3)
+        self.lblElectricitySupplierSelectionInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnElectricitySupplierDisplay = QPushButton(self.electricitySupplierSelection)
+        self.btnElectricitySupplierDisplay.setObjectName(u"btnElectricitySupplierDisplay")
+        self.btnElectricitySupplierDisplay.setEnabled(False)
+        self.btnElectricitySupplierDisplay.setGeometry(QRect(210, 10, 151, 50))
+        self.btnElectricitySupplierDisplay.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnElectricitySupplierDisplay.setFocusPolicy(Qt.StrongFocus)
+        self.btnElectricitySupplierDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnElectricitySupplierDisplay.setStyleSheet(u"background-color: #202528;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;")
+        self.btnElectricitySupplierDisplay.setCheckable(True)
+        self.btnElectricitySupplierDisplay.setChecked(False)
+        self.btnElectricitySupplierDisplay.setAutoDefault(True)
+        self.btnElectricitySupplierDisplay.setFlat(True)
         self.stackedWidget.addWidget(self.pageElectricity)
         self.pageNaturalGas = QWidget()
         self.pageNaturalGas.setObjectName(u"pageNaturalGas")
@@ -556,9 +593,6 @@ class Ui_BillyAppMain(object):
         self.lblProfileName = QLabel(self.profileName)
         self.lblProfileName.setObjectName(u"lblProfileName")
         self.lblProfileName.setGeometry(QRect(20, 10, 191, 21))
-        font6 = QFont()
-        font6.setFamily(u"SF UI Display")
-        font6.setPointSize(14)
         self.lblProfileName.setFont(font6)
         self.lblProfileName.setStyleSheet(u"color: #f3f5f6;")
         self.txtUsername = QLineEdit(self.profileName)
@@ -1022,6 +1056,7 @@ class Ui_BillyAppMain(object):
         self.retranslateUi(BillyAppMain)
 
         self.btnDashboard.setDefault(False)
+        self.btnElectricitySupplierDisplay.setDefault(False)
         self.btnSetProfileName.setDefault(False)
         self.btnEnelSelection.setDefault(False)
         self.btnEngieSelection.setDefault(False)
@@ -1053,6 +1088,9 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.lblElectricityTitle.setText(QCoreApplication.translate("BillyAppMain", u"Electricity", None))
+        self.lblElectricitySupplierSelection.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Supplier", None))
+        self.lblElectricitySupplierSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))
+        self.btnElectricitySupplierDisplay.setText("")
         self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
