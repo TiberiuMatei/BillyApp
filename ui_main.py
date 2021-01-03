@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiXfXeyM.ui'
+## Form generated from reading UI file 'billy_uivTARHc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -22,7 +22,8 @@ class Ui_BillyAppMain(object):
         BillyAppMain.setMinimumSize(QSize(1200, 800))
         self.mainCentralWidget = QWidget(BillyAppMain)
         self.mainCentralWidget.setObjectName(u"mainCentralWidget")
-        self.mainCentralWidget.setStyleSheet(u"background-color: rgb(39, 43, 47);")
+        self.mainCentralWidget.setStyleSheet(u"background-color: rgb(39, 43, 47);\n"
+"outline: none;")
         self.horizontalLayout = QHBoxLayout(self.mainCentralWidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -544,6 +545,70 @@ class Ui_BillyAppMain(object):
         self.btnElectricitySupplierDisplay.setChecked(False)
         self.btnElectricitySupplierDisplay.setAutoDefault(True)
         self.btnElectricitySupplierDisplay.setFlat(True)
+        self.electricityDirectoryFrame = QFrame(self.pageElectricity)
+        self.electricityDirectoryFrame.setObjectName(u"electricityDirectoryFrame")
+        self.electricityDirectoryFrame.setGeometry(QRect(20, 180, 741, 341))
+        self.electricityDirectoryFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.electricityDirectoryFrame.setFrameShape(QFrame.StyledPanel)
+        self.electricityDirectoryFrame.setFrameShadow(QFrame.Raised)
+        self.gridLayout = QGridLayout(self.electricityDirectoryFrame)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(9, 9, 9, -1)
+        self.lblElectricityDirectory = QLabel(self.electricityDirectoryFrame)
+        self.lblElectricityDirectory.setObjectName(u"lblElectricityDirectory")
+        self.lblElectricityDirectory.setFont(font6)
+        self.lblElectricityDirectory.setStyleSheet(u"color: #f3f5f6;")
+
+        self.gridLayout.addWidget(self.lblElectricityDirectory, 0, 0, 1, 1)
+
+        self.lblElectricityDirectoryInfo = QLabel(self.electricityDirectoryFrame)
+        self.lblElectricityDirectoryInfo.setObjectName(u"lblElectricityDirectoryInfo")
+        self.lblElectricityDirectoryInfo.setFont(font3)
+        self.lblElectricityDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
+
+        self.gridLayout.addWidget(self.lblElectricityDirectoryInfo, 1, 0, 1, 1)
+
+        self.treeElectricityDirectory = QTreeView(self.electricityDirectoryFrame)
+        self.treeElectricityDirectory.setObjectName(u"treeElectricityDirectory")
+        self.treeElectricityDirectory.setFont(font3)
+        self.treeElectricityDirectory.setStyleSheet(u"QTreeView {\n"
+"    background: #2a2e32;\n"
+"   color: #f3f5f6;\n"
+"}\n"
+"QTreeView::item:open {\n"
+"   background-color: #EE4540;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"QTreeView::item:hover {\n"
+"   background-color: #6c6e71;\n"
+"}\n"
+"QTreeView::item:selected {\n"
+"   background-color: #C72C41;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"QTreeView::branch:open {\n"
+"   image: url(:/images/Resources/branch-open.png);\n"
+"}\n"
+"QTreeView::branch:closed:has-children {    \n"
+"   image: url(:/images/Resources/branch-closed.png);\n"
+"}\n"
+"QTreeView::branch:hover {\n"
+"   background-color: #6c6e71;\n"
+"}\n"
+"QHeaderView::section {\n"
+"   font-family: \"SF UI Display\";\n"
+"   font-size: 10pt;\n"
+"    background-color: #2a2e32;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"")
+        self.treeElectricityDirectory.setSortingEnabled(True)
+
+        self.gridLayout.addWidget(self.treeElectricityDirectory, 2, 0, 1, 1)
+
         self.stackedWidget.addWidget(self.pageElectricity)
         self.pageNaturalGas = QWidget()
         self.pageNaturalGas.setObjectName(u"pageNaturalGas")
@@ -1091,6 +1156,8 @@ class Ui_BillyAppMain(object):
         self.lblElectricitySupplierSelection.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Supplier", None))
         self.lblElectricitySupplierSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))
         self.btnElectricitySupplierDisplay.setText("")
+        self.lblElectricityDirectory.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Bills", None))
+        self.lblElectricityDirectoryInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))
         self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))

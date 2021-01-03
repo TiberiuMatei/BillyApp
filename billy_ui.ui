@@ -21,7 +21,8 @@
   </property>
   <widget class="QWidget" name="mainCentralWidget">
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(39, 43, 47);</string>
+    <string notr="true">background-color: rgb(39, 43, 47);
+outline: none;</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
@@ -1235,6 +1236,117 @@ background-position: center;</string>
               <bool>true</bool>
              </property>
             </widget>
+           </widget>
+           <widget class="QFrame" name="electricityDirectoryFrame">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>180</y>
+              <width>741</width>
+              <height>341</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>9</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="lblElectricityDirectory">
+               <property name="font">
+                <font>
+                 <family>SF UI Display</family>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: #f3f5f6;</string>
+               </property>
+               <property name="text">
+                <string>Electricity Bills</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="lblElectricityDirectoryInfo">
+               <property name="font">
+                <font>
+                 <family>SF UI Display</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: #6c6e71;</string>
+               </property>
+               <property name="text">
+                <string>Selected electricity supplier</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QTreeView" name="treeElectricityDirectory">
+               <property name="font">
+                <font>
+                 <family>SF UI Display</family>
+                 <pointsize>10</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QTreeView {
+    background: #2a2e32;
+	color: #f3f5f6;
+}
+QTreeView::item:open {
+	background-color: #EE4540;
+    color: #f3f5f6;
+}
+QTreeView::item:hover {
+	background-color: #6c6e71;
+}
+QTreeView::item:selected {
+	background-color: #C72C41;
+    color: #f3f5f6;
+}
+QTreeView::branch:open {
+	image: url(:/images/Resources/branch-open.png);
+}
+QTreeView::branch:closed:has-children {    
+	image: url(:/images/Resources/branch-closed.png);
+}
+QTreeView::branch:hover {
+	background-color: #6c6e71;
+}
+QHeaderView::section {
+	font-family: &quot;SF UI Display&quot;;
+	font-size: 10pt;
+    background-color: #2a2e32;
+    color: #f3f5f6;
+}
+</string>
+               </property>
+               <property name="sortingEnabled">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </widget>
           <widget class="QWidget" name="pageNaturalGas">

@@ -199,7 +199,8 @@ class Ui_BillyAuth(object):
         BillyAuth.resize(531, 800)
         self.mainAuthWidget = QWidget(BillyAuth)
         self.mainAuthWidget.setObjectName(u"mainAuthWidget")
-        self.mainAuthWidget.setStyleSheet(u"background-color: rgb(32, 37, 40);")
+        self.mainAuthWidget.setStyleSheet(u"background-color: rgb(32, 37, 40);\n"
+"outline: none;")
         self.verticalLayout = QVBoxLayout(self.mainAuthWidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")

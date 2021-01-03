@@ -8,6 +8,7 @@ from PySide2.QtWidgets import *
 import sqlite3
 import pathlib
 import datetime
+import os
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -128,6 +129,10 @@ class MainWindow(QMainWindow):
         self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
         self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
 
+        # Tree view context
+        self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.ui.treeElectricityDirectory.customContextMenuRequested.connect(self.contextMenu)
+
         # Show Main Window
         self.show()
 
@@ -192,9 +197,30 @@ class MainWindow(QMainWindow):
                                                                         border-radius: 5px;\
                                                                         background-repeat: none;\
                                                                         background-position: center;")
+                currpath = pathlib.Path().absolute()
+                electricity_path = str(currpath)+f'\\Bills\\{self.username}\\Electricity'
+                self.model = QtWidgets.QFileSystemModel()
+                self.model.setRootPath(electricity_path)
+                self.ui.treeElectricityDirectory.setModel(self.model)
+                self.ui.treeElectricityDirectory.setRootIndex(self.model.index(electricity_path))
+                self.ui.treeElectricityDirectory.setSortingEnabled(True)
+
         else:
             self.generateMessageBox(window_title='Electricity page', msg_text='Please select the desired Electricity supplier from the Account preferences!')
 
+    # Tree view open menu
+    def contextMenu(self):
+        menu = QtWidgets.QMenu()
+        menu.setStyleSheet("QMenu{height: 25px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
+        open = menu.addAction("Open")
+        open.triggered.connect(self.openFile)
+        cursor = QtGui.QCursor()
+        menu.exec_(cursor.pos())
+
+    def openFile(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        file_path = self.model.filePath(index)
+        os.startfile(file_path)
 
     # Click on the NaturalGas button
     def naturalGasButton(self):

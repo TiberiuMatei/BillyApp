@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/branch-closed.png</file>
+    <file>Resources/branch-open.png</file>
     <file>Resources/netflix_sub_selection.png</file>
     <file>Resources/spotify_sub_selection.png</file>
     <file>Resources/logo_clear.png</file>
