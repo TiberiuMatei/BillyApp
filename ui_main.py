@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uivTARHc.ui'
+## Form generated from reading UI file 'billy_uiiMwQmW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -547,32 +547,22 @@ class Ui_BillyAppMain(object):
         self.btnElectricitySupplierDisplay.setFlat(True)
         self.electricityDirectoryFrame = QFrame(self.pageElectricity)
         self.electricityDirectoryFrame.setObjectName(u"electricityDirectoryFrame")
-        self.electricityDirectoryFrame.setGeometry(QRect(20, 180, 741, 341))
+        self.electricityDirectoryFrame.setGeometry(QRect(20, 180, 601, 441))
         self.electricityDirectoryFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
 "}")
         self.electricityDirectoryFrame.setFrameShape(QFrame.StyledPanel)
         self.electricityDirectoryFrame.setFrameShadow(QFrame.Raised)
-        self.gridLayout = QGridLayout(self.electricityDirectoryFrame)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(9, 9, 9, -1)
-        self.lblElectricityDirectory = QLabel(self.electricityDirectoryFrame)
-        self.lblElectricityDirectory.setObjectName(u"lblElectricityDirectory")
-        self.lblElectricityDirectory.setFont(font6)
-        self.lblElectricityDirectory.setStyleSheet(u"color: #f3f5f6;")
-
-        self.gridLayout.addWidget(self.lblElectricityDirectory, 0, 0, 1, 1)
-
         self.lblElectricityDirectoryInfo = QLabel(self.electricityDirectoryFrame)
         self.lblElectricityDirectoryInfo.setObjectName(u"lblElectricityDirectoryInfo")
+        self.lblElectricityDirectoryInfo.setGeometry(QRect(20, 40, 166, 16))
         self.lblElectricityDirectoryInfo.setFont(font3)
         self.lblElectricityDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
-
-        self.gridLayout.addWidget(self.lblElectricityDirectoryInfo, 1, 0, 1, 1)
-
         self.treeElectricityDirectory = QTreeView(self.electricityDirectoryFrame)
         self.treeElectricityDirectory.setObjectName(u"treeElectricityDirectory")
+        self.treeElectricityDirectory.setGeometry(QRect(10, 81, 581, 281))
+        self.treeElectricityDirectory.setMaximumSize(QSize(16777215, 300))
         self.treeElectricityDirectory.setFont(font3)
         self.treeElectricityDirectory.setStyleSheet(u"QTreeView {\n"
 "    background: #2a2e32;\n"
@@ -606,9 +596,38 @@ class Ui_BillyAppMain(object):
 "}\n"
 "")
         self.treeElectricityDirectory.setSortingEnabled(True)
-
-        self.gridLayout.addWidget(self.treeElectricityDirectory, 2, 0, 1, 1)
-
+        self.addElectricityBillFrame = QFrame(self.electricityDirectoryFrame)
+        self.addElectricityBillFrame.setObjectName(u"addElectricityBillFrame")
+        self.addElectricityBillFrame.setGeometry(QRect(10, 380, 591, 60))
+        self.addElectricityBillFrame.setMaximumSize(QSize(16777215, 60))
+        self.addElectricityBillFrame.setFrameShape(QFrame.StyledPanel)
+        self.addElectricityBillFrame.setFrameShadow(QFrame.Raised)
+        self.btnAddElectricityBill = QPushButton(self.addElectricityBillFrame)
+        self.btnAddElectricityBill.setObjectName(u"btnAddElectricityBill")
+        self.btnAddElectricityBill.setGeometry(QRect(510, 0, 75, 50))
+        self.btnAddElectricityBill.setFont(font1)
+        self.btnAddElectricityBill.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnAddElectricityBill.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnAddElectricityBill.setAutoDefault(True)
+        self.btnAddElectricityBill.setFlat(True)
+        self.lblElectricityDirectory = QLabel(self.electricityDirectoryFrame)
+        self.lblElectricityDirectory.setObjectName(u"lblElectricityDirectory")
+        self.lblElectricityDirectory.setGeometry(QRect(20, 10, 132, 23))
+        self.lblElectricityDirectory.setMaximumSize(QSize(200, 16777215))
+        self.lblElectricityDirectory.setFont(font6)
+        self.lblElectricityDirectory.setStyleSheet(u"color: #f3f5f6;")
         self.stackedWidget.addWidget(self.pageElectricity)
         self.pageNaturalGas = QWidget()
         self.pageNaturalGas.setObjectName(u"pageNaturalGas")
@@ -1122,6 +1141,7 @@ class Ui_BillyAppMain(object):
 
         self.btnDashboard.setDefault(False)
         self.btnElectricitySupplierDisplay.setDefault(False)
+        self.btnAddElectricityBill.setDefault(False)
         self.btnSetProfileName.setDefault(False)
         self.btnEnelSelection.setDefault(False)
         self.btnEngieSelection.setDefault(False)
@@ -1156,8 +1176,9 @@ class Ui_BillyAppMain(object):
         self.lblElectricitySupplierSelection.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Supplier", None))
         self.lblElectricitySupplierSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))
         self.btnElectricitySupplierDisplay.setText("")
-        self.lblElectricityDirectory.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Bills", None))
         self.lblElectricityDirectoryInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))
+        self.btnAddElectricityBill.setText(QCoreApplication.translate("BillyAppMain", u"Add", None))
+        self.lblElectricityDirectory.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Bills", None))
         self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))

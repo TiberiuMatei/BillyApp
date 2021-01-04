@@ -1242,8 +1242,8 @@ background-position: center;</string>
              <rect>
               <x>20</x>
               <y>180</y>
-              <width>741</width>
-              <height>341</height>
+              <width>601</width>
+              <height>441</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1258,58 +1258,51 @@ background-position: center;</string>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QGridLayout" name="gridLayout">
-             <property name="leftMargin">
-              <number>9</number>
+            <widget class="QLabel" name="lblElectricityDirectoryInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
              </property>
-             <property name="topMargin">
-              <number>9</number>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
              </property>
-             <property name="rightMargin">
-              <number>9</number>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
              </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="lblElectricityDirectory">
-               <property name="font">
-                <font>
-                 <family>SF UI Display</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: #f3f5f6;</string>
-               </property>
-               <property name="text">
-                <string>Electricity Bills</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="lblElectricityDirectoryInfo">
-               <property name="font">
-                <font>
-                 <family>SF UI Display</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">color: #6c6e71;</string>
-               </property>
-               <property name="text">
-                <string>Selected electricity supplier</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QTreeView" name="treeElectricityDirectory">
-               <property name="font">
-                <font>
-                 <family>SF UI Display</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QTreeView {
+             <property name="text">
+              <string>Selected electricity supplier</string>
+             </property>
+            </widget>
+            <widget class="QTreeView" name="treeElectricityDirectory">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>81</y>
+               <width>581</width>
+               <height>281</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTreeView {
     background: #2a2e32;
 	color: #f3f5f6;
 }
@@ -1340,13 +1333,109 @@ QHeaderView::section {
     color: #f3f5f6;
 }
 </string>
-               </property>
-               <property name="sortingEnabled">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QFrame" name="addElectricityBillFrame">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>380</y>
+               <width>591</width>
+               <height>60</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QPushButton" name="btnAddElectricityBill">
+              <property name="geometry">
+               <rect>
+                <x>510</x>
+                <y>0</y>
+                <width>75</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>SF UI Display</family>
+                <pointsize>14</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+              </property>
+              <property name="text">
+               <string>Add</string>
+              </property>
+              <property name="autoDefault">
+               <bool>true</bool>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QLabel" name="lblElectricityDirectory">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>132</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Electricity Bills</string>
+             </property>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="pageNaturalGas">

@@ -9,6 +9,15 @@ import sqlite3
 import pathlib
 import datetime
 import os
+import shutil
+from pdfminer3.layout import LAParams, LTTextBox
+from pdfminer3.pdfpage import PDFPage
+from pdfminer3.pdfinterp import PDFResourceManager
+from pdfminer3.pdfinterp import PDFPageInterpreter
+from pdfminer3.converter import PDFPageAggregator
+from pdfminer3.converter import TextConverter
+import io
+import re
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -133,6 +142,9 @@ class MainWindow(QMainWindow):
         self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.ui.treeElectricityDirectory.customContextMenuRequested.connect(self.contextMenu)
 
+        # Electricity page buttons
+        self.ui.btnAddElectricityBill.clicked.connect(self.addElectricityBill)
+
         # Show Main Window
         self.show()
 
@@ -155,6 +167,26 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(widgetPage)
         currentButton.setChecked(True)
         MainWindow.uncheckOtherButtons(currentButton, remainingButtonsList)
+
+    def readBillContent(self, billPath):
+        resource_manager = PDFResourceManager()
+        fake_file_handle = io.StringIO()
+        converter = TextConverter(resource_manager, fake_file_handle, laparams=LAParams())
+        page_interpreter = PDFPageInterpreter(resource_manager, converter)
+
+        with open(pathlib.Path(billPath), 'rb') as fh:
+
+            for page in PDFPage.get_pages(fh,
+                                          caching=True,
+                                          check_extractable=True):
+                page_interpreter.process_page(page)
+
+            text = fake_file_handle.getvalue()
+
+        # close open handles
+        converter.close()
+        fake_file_handle.close()
+        return text
 
     # Click on the Dashboard button
     def dashboardButton(self):
@@ -226,8 +258,24 @@ class MainWindow(QMainWindow):
 
     def deleteFile(self):
         index = self.ui.treeElectricityDirectory.currentIndex()
-        file_path = self.model.filePath(index)
-        os.remove(file_path)
+        path = self.model.filePath(index)
+        try:
+            os.remove(path)
+        except:
+            shutil.rmtree(path)
+
+    def addElectricityBill(self):
+        file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
+        file_path = file_full_path[0]
+        self.bill_content = self.readBillContent(file_path)
+        # Get the year from the selected bill for ENEL and create a directory if it doesn't exist
+        try:
+            bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFURNIZOR Enel", self.bill_content)[0].split()[0]
+            pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{bill_year}').mkdir(parents=True, exist_ok=True)
+            new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{bill_year}'
+            shutil.copy2(file_path, new_file_path, follow_symlinks=True)
+        except:
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!') 
 
     # Click on the NaturalGas button
     def naturalGasButton(self):
@@ -251,7 +299,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the electricity field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET electricity_enel = 1,\
                                 electricity_cez = 0,\
                                 electricity_eon = 0,\
@@ -267,7 +315,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the natural gas field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET gas_engie = 1,\
                                 gas_cez = 0,\
                                 gas_eon = 0,\
@@ -283,7 +331,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the internet field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET internet_rds = 1,\
                                 internet_upc = 0,\
                                 internet_telekom = 0,\
@@ -299,7 +347,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_netflix = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
@@ -311,7 +359,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_spotify = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
