@@ -211,9 +211,11 @@ class MainWindow(QMainWindow):
     # Tree view open menu
     def contextMenu(self):
         menu = QtWidgets.QMenu()
-        menu.setStyleSheet("QMenu{height: 25px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
         open = menu.addAction("Open")
+        delete = menu.addAction("Delete")
+        menu.setStyleSheet("QMenu{height: 53px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
         open.triggered.connect(self.openFile)
+        delete.triggered.connect(self.deleteFile)
         cursor = QtGui.QCursor()
         menu.exec_(cursor.pos())
 
@@ -221,6 +223,11 @@ class MainWindow(QMainWindow):
         index = self.ui.treeElectricityDirectory.currentIndex()
         file_path = self.model.filePath(index)
         os.startfile(file_path)
+
+    def deleteFile(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        file_path = self.model.filePath(index)
+        os.remove(file_path)
 
     # Click on the NaturalGas button
     def naturalGasButton(self):
