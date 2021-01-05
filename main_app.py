@@ -49,6 +49,19 @@ class MainWindow(QMainWindow):
         currpath = pathlib.Path().absolute()
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
+        # Creating the enel electricity table
+        connection.execute("CREATE TABLE IF NOT EXISTS enel_bills([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [bill_year] text,\
+            [id_bill] text,\
+            [address] text,\
+            [client] text,\
+            [client_code] text,\
+            [pay_code] text,\
+            [total_pay] text,\
+            [issue_date] text,\
+            [due_date] date)")
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
         earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
@@ -140,7 +153,7 @@ class MainWindow(QMainWindow):
 
         # Tree view context
         self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.ui.treeElectricityDirectory.customContextMenuRequested.connect(self.contextMenu)
+        self.ui.treeElectricityDirectory.customContextMenuRequested.connect(self.contextMenuElectricity)
 
         # Electricity page buttons
         self.ui.btnAddElectricityBill.clicked.connect(self.addElectricityBill)
@@ -241,39 +254,83 @@ class MainWindow(QMainWindow):
             self.generateMessageBox(window_title='Electricity page', msg_text='Please select the desired Electricity supplier from the Account preferences!')
 
     # Tree view open menu
-    def contextMenu(self):
+    def contextMenuElectricity(self):
         menu = QtWidgets.QMenu()
         open = menu.addAction("Open")
         delete = menu.addAction("Delete")
         menu.setStyleSheet("QMenu{height: 53px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
-        open.triggered.connect(self.openFile)
-        delete.triggered.connect(self.deleteFile)
+        open.triggered.connect(self.openFileElectricity)
+        delete.triggered.connect(self.deleteFileElectricity)
         cursor = QtGui.QCursor()
         menu.exec_(cursor.pos())
 
-    def openFile(self):
+    def openFileElectricity(self):
         index = self.ui.treeElectricityDirectory.currentIndex()
         file_path = self.model.filePath(index)
         os.startfile(file_path)
 
-    def deleteFile(self):
+    def deleteFileElectricity(self):
         index = self.ui.treeElectricityDirectory.currentIndex()
         path = self.model.filePath(index)
         try:
+            self.bill_content = self.readBillContent(path)
+            self.enel_id_bill_to_delete = re.findall(r"ID factură:\s*([^\n\r]*)", self.bill_content)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill_to_delete,))
+            connection.commit()
+            connection.close()
             os.remove(path)
+            print("file")
         except:
-            shutil.rmtree(path)
+            directory_to_delete = os.path.basename(os.path.normpath(path))
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM enel_bills WHERE bill_year = ?",(directory_to_delete,))
+            connection.commit()
+            connection.close()
+            shutil.rmtree(path)            
+            print("directory")
 
     def addElectricityBill(self):
-        file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
-        file_path = file_full_path[0]
-        self.bill_content = self.readBillContent(file_path)
+        enel_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
+        enel_file_path = enel_file_full_path[0]
+        self.enel_bill_content = self.readBillContent(enel_file_path)
         # Get the year from the selected bill for ENEL and create a directory if it doesn't exist
         try:
-            bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFURNIZOR Enel", self.bill_content)[0].split()[0]
-            pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{bill_year}').mkdir(parents=True, exist_ok=True)
-            new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{bill_year}'
-            shutil.copy2(file_path, new_file_path, follow_symlinks=True)
+            # Bill year for directory creation
+            self.enel_bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFURNIZOR Enel", self.enel_bill_content)[0].split()[0]
+            # Bill enel electricity bill data
+            self.enel_id_bill = re.findall(r"ID factură:\s*([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_address = re.findall(r"Adresa de corespondenţă\n([^\n\r]*\n[^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_client = re.findall(r"Client:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_client_code = re.findall(r"Cod Client:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_pay_code = re.findall(r"Cod plata:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_total_pay = re.findall(r"([^\n\r]*)Lei", self.enel_bill_content)[0]
+            self.enel_issue_date = re.findall(r"([0-9]{2}.[0-9]{2}.[0-9]{4})\n\nFURNIZOR Enel", self.enel_bill_content)[0]
+            self.enel_due_date = re.findall(r"Dată scadenţă:\s([^\n\r]*)", self.enel_bill_content)[0]            
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill,))
+            if(len(result.fetchall()) > 0):
+                self.generateMessageBox(window_title='Add bill information', msg_text='The selected bill is already added!')
+                connection.commit()
+                connection.close()
+            else:
+                db_connection.execute("INSERT INTO enel_bills(username, email, bill_year, id_bill, address, client, client_code, pay_code,\
+                    total_pay, issue_date, due_date ) VALUES (?,?,?,?,?,?,?,?,?,?,?)",(self.username, self.email, self.enel_bill_year, self.enel_id_bill,\
+                    self.enel_address, self.enel_client, self.enel_client_code, self.enel_pay_code, self.enel_total_pay, self.enel_issue_date, self.enel_due_date))
+                connection.commit()
+                connection.close()
+                pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}').mkdir(parents=True, exist_ok=True)
+                enel_new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}'
+                shutil.copy2(enel_file_path, enel_new_file_path, follow_symlinks=True)
         except:
             self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!') 
 
