@@ -18,6 +18,12 @@ from pdfminer3.converter import PDFPageAggregator
 from pdfminer3.converter import TextConverter
 import io
 import re
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+import numpy as np
+
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -244,6 +250,21 @@ class MainWindow(QMainWindow):
                                                                         background-position: center;")
                 currpath = pathlib.Path().absolute()
                 electricity_path = str(currpath)+f'\\Bills\\{self.username}\\Electricity'
+                db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                connection = sqlite3.connect(f'{db_path}')
+                try:
+                    db_connection = connection.cursor()
+                    db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills ORDER BY due_date desc LIMIT 1")
+                    latest_bill_info = db_connection.fetchall()
+                    self.ui.lblElectricityLastBillID.setText(latest_bill_info[0][0])
+                    self.ui.lblElectricityLastBillAddress.setText(latest_bill_info[0][1])
+                    self.ui.lblElectricityLastBillIssueDate.setText(latest_bill_info[0][2])
+                    self.ui.lblElectricityLastBillDueDate.setText(latest_bill_info[0][3])
+                    self.ui.lblElectricityLastBillTotalPay.setText(latest_bill_info[0][4])
+                    connection.commit()
+                    connection.close()
+                except:
+                    self.generateMessageBox(window_title='Electricity page', msg_text='Please add electricity bills in order to view data!')
                 self.model = QtWidgets.QFileSystemModel()
                 self.model.setRootPath(electricity_path)
                 self.ui.treeElectricityDirectory.setModel(self.model)
@@ -258,9 +279,11 @@ class MainWindow(QMainWindow):
         menu = QtWidgets.QMenu()
         open = menu.addAction("Open")
         delete = menu.addAction("Delete")
-        menu.setStyleSheet("QMenu{height: 53px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
+        get_info = menu.addAction("Get info")
+        menu.setStyleSheet("QMenu{height: 81px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
         open.triggered.connect(self.openFileElectricity)
         delete.triggered.connect(self.deleteFileElectricity)
+        get_info.triggered.connect(self.getInfoElectricity)
         cursor = QtGui.QCursor()
         menu.exec_(cursor.pos())
 
@@ -283,7 +306,6 @@ class MainWindow(QMainWindow):
             connection.commit()
             connection.close()
             os.remove(path)
-            print("file")
         except:
             directory_to_delete = os.path.basename(os.path.normpath(path))
             currpath = pathlib.Path().absolute()
@@ -293,8 +315,54 @@ class MainWindow(QMainWindow):
             result = db_connection.execute("DELETE FROM enel_bills WHERE bill_year = ?",(directory_to_delete,))
             connection.commit()
             connection.close()
-            shutil.rmtree(path)            
-            print("directory")
+            shutil.rmtree(path)
+
+    def getInfoElectricity(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        path = self.model.filePath(index)
+        try:
+            self.bill_content = self.readBillContent(path)
+            self.enel_id_bill = re.findall(r"ID factură:\s*([^\n\r]*)", self.bill_content)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill,))
+            bill_info = db_connection.fetchall()
+            earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
+            earnings = earnings_result.fetchone()[0]
+            self.ui.lblElectricityLastBillID.setText(bill_info[0][0])
+            self.ui.lblElectricityLastBillAddress.setText(bill_info[0][1])
+            self.ui.lblElectricityLastBillIssueDate.setText(bill_info[0][2])
+            self.ui.lblElectricityLastBillDueDate.setText(bill_info[0][3])
+            self.ui.lblElectricityLastBillTotalPay.setText(bill_info[0][4])
+            total_pay = bill_info[0][4]
+            connection.commit()
+            connection.close()
+
+            # Plotting the donut
+            # Data
+            # names='groupA', 'groupB', 'groupC', 'groupD',
+            # size=[12,11,3,30]
+             
+            # # create a figure and set different background
+            # fig = plt.figure()
+            # fig.patch.set_facecolor('black')
+             
+            # # Change color of text
+            # plt.rcParams['text.color'] = 'white'
+             
+            # # Create a circle for the center of the plot
+            # my_circle=plt.Circle( (0,0), 0.7, color='black')
+             
+            # # Pieplot + circle on it
+            # plt.pie(size, labels=names)
+            # p=plt.gcf()
+            # p.gca().add_artist(my_circle)
+            # plt.show()
+            # add toolbar
+        except:
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Please select a bill from the list!') 
 
     def addElectricityBill(self):
         enel_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
@@ -331,6 +399,11 @@ class MainWindow(QMainWindow):
                 pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}').mkdir(parents=True, exist_ok=True)
                 enel_new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}'
                 shutil.copy2(enel_file_path, enel_new_file_path, follow_symlinks=True)
+                self.ui.lblElectricityLastBillID.setText(self.enel_id_bill)
+                self.ui.lblElectricityLastBillAddress.setText(self.enel_address)
+                self.ui.lblElectricityLastBillIssueDate.setText(self.enel_issue_date)
+                self.ui.lblElectricityLastBillDueDate.setText(self.enel_due_date)
+                self.ui.lblElectricityLastBillTotalPay.setText(self.enel_total_pay)
         except:
             self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!') 
 
