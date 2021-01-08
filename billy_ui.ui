@@ -1687,7 +1687,7 @@ QPushButton:hover{
             <property name="styleSheet">
              <string notr="true">QFrame{
 	border-radius: 10px;	
-	background-color: #2a2e32;
+	background-color: #C72C41;;
 }</string>
             </property>
             <property name="frameShape">
@@ -1740,7 +1740,7 @@ QPushButton:hover{
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: #EE4540;</string>
+              <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
               <string/>
@@ -1764,7 +1764,7 @@ QPushButton:hover{
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">color: #C72C41;</string>
+              <string notr="true">color: #2a2e32;</string>
              </property>
              <property name="text">
               <string>RON</string>

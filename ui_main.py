@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiBZmhdy.ui'
+## Form generated from reading UI file 'billy_uiEfPYLI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -704,7 +704,7 @@ class Ui_BillyAppMain(object):
         self.electricityLastBillTotalPay.setGeometry(QRect(640, 460, 441, 81))
         self.electricityLastBillTotalPay.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
-"   background-color: #2a2e32;\n"
+"   background-color: #C72C41;;\n"
 "}")
         self.electricityLastBillTotalPay.setFrameShape(QFrame.StyledPanel)
         self.electricityLastBillTotalPay.setFrameShadow(QFrame.Raised)
@@ -718,7 +718,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillTotalPay.setObjectName(u"lblElectricityLastBillTotalPay")
         self.lblElectricityLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
         self.lblElectricityLastBillTotalPay.setFont(font7)
-        self.lblElectricityLastBillTotalPay.setStyleSheet(u"color: #EE4540;")
+        self.lblElectricityLastBillTotalPay.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityBillCurrency = QLabel(self.electricityLastBillTotalPay)
         self.lblElectricityBillCurrency.setObjectName(u"lblElectricityBillCurrency")
         self.lblElectricityBillCurrency.setGeometry(QRect(20, 40, 61, 31))
@@ -728,7 +728,7 @@ class Ui_BillyAppMain(object):
         font9.setBold(True)
         font9.setWeight(75)
         self.lblElectricityBillCurrency.setFont(font9)
-        self.lblElectricityBillCurrency.setStyleSheet(u"color: #C72C41;")
+        self.lblElectricityBillCurrency.setStyleSheet(u"color: #2a2e32;")
         self.electricityLastBill = QFrame(self.pageElectricity)
         self.electricityLastBill.setObjectName(u"electricityLastBill")
         self.electricityLastBill.setGeometry(QRect(20, 560, 391, 291))

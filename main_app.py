@@ -256,7 +256,7 @@ class MainWindow(QMainWindow):
                 connection = sqlite3.connect(f'{db_path}')
                 try:
                     db_connection = connection.cursor()
-                    db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills ORDER BY due_date desc LIMIT 1")
+                    db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
                     latest_bill_info = db_connection.fetchall()
                     self.ui.lblElectricityLastBillID.setText(latest_bill_info[0][0])
                     self.ui.lblElectricityLastBillAddress.setText(latest_bill_info[0][1])
@@ -414,7 +414,7 @@ class MainWindow(QMainWindow):
             db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
             connection = sqlite3.connect(f'{db_path}')
             db_connection = connection.cursor()
-            result = db_connection.execute("SELECT * FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill,))
+            result = db_connection.execute("SELECT * FROM enel_bills WHERE id_bill = ? AND username = ?",(self.enel_id_bill, self.username))
             if(len(result.fetchall()) > 0):
                 self.generateMessageBox(window_title='Add bill information', msg_text='The selected bill is already added!')
                 connection.commit()
