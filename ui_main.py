@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiSnuVEk.ui'
+## Form generated from reading UI file 'billy_uiBZmhdy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -547,7 +547,7 @@ class Ui_BillyAppMain(object):
         self.btnElectricitySupplierDisplay.setFlat(True)
         self.electricityDirectoryFrame = QFrame(self.pageElectricity)
         self.electricityDirectoryFrame.setObjectName(u"electricityDirectoryFrame")
-        self.electricityDirectoryFrame.setGeometry(QRect(20, 160, 601, 441))
+        self.electricityDirectoryFrame.setGeometry(QRect(20, 160, 601, 381))
         self.electricityDirectoryFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -561,7 +561,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
         self.treeElectricityDirectory = QTreeView(self.electricityDirectoryFrame)
         self.treeElectricityDirectory.setObjectName(u"treeElectricityDirectory")
-        self.treeElectricityDirectory.setGeometry(QRect(10, 81, 581, 281))
+        self.treeElectricityDirectory.setGeometry(QRect(10, 81, 581, 231))
         self.treeElectricityDirectory.setMaximumSize(QSize(16777215, 300))
         self.treeElectricityDirectory.setFont(font3)
         self.treeElectricityDirectory.setStyleSheet(u"QTreeView {\n"
@@ -598,8 +598,9 @@ class Ui_BillyAppMain(object):
         self.treeElectricityDirectory.setSortingEnabled(True)
         self.addElectricityBillFrame = QFrame(self.electricityDirectoryFrame)
         self.addElectricityBillFrame.setObjectName(u"addElectricityBillFrame")
-        self.addElectricityBillFrame.setGeometry(QRect(10, 380, 591, 60))
+        self.addElectricityBillFrame.setGeometry(QRect(10, 320, 591, 60))
         self.addElectricityBillFrame.setMaximumSize(QSize(16777215, 60))
+        self.addElectricityBillFrame.setStyleSheet(u"")
         self.addElectricityBillFrame.setFrameShape(QFrame.StyledPanel)
         self.addElectricityBillFrame.setFrameShadow(QFrame.Raised)
         self.btnAddElectricityBill = QPushButton(self.addElectricityBillFrame)
@@ -630,7 +631,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityDirectory.setStyleSheet(u"color: #f3f5f6;")
         self.electricityLastBillData = QFrame(self.pageElectricity)
         self.electricityLastBillData.setObjectName(u"electricityLastBillData")
-        self.electricityLastBillData.setGeometry(QRect(640, 160, 441, 321))
+        self.electricityLastBillData.setGeometry(QRect(640, 160, 441, 281))
         self.electricityLastBillData.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -639,7 +640,7 @@ class Ui_BillyAppMain(object):
         self.electricityLastBillData.setFrameShadow(QFrame.Raised)
         self.lblElectricityLastBilltipID = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipID.setObjectName(u"lblElectricityLastBilltipID")
-        self.lblElectricityLastBilltipID.setGeometry(QRect(20, 90, 166, 16))
+        self.lblElectricityLastBilltipID.setGeometry(QRect(20, 70, 166, 16))
         self.lblElectricityLastBilltipID.setFont(font3)
         self.lblElectricityLastBilltipID.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityLastBillI = QLabel(self.electricityLastBillData)
@@ -650,52 +651,60 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillI.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityLastBillID = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillID.setObjectName(u"lblElectricityLastBillID")
-        self.lblElectricityLastBillID.setGeometry(QRect(20, 60, 391, 31))
+        self.lblElectricityLastBillID.setGeometry(QRect(20, 40, 391, 31))
         font7 = QFont()
         font7.setFamily(u"SF UI Display")
-        font7.setPointSize(12)
+        font7.setPointSize(20)
         self.lblElectricityLastBillID.setFont(font7)
         self.lblElectricityLastBillID.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBillAddress = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillAddress.setObjectName(u"lblElectricityLastBillAddress")
-        self.lblElectricityLastBillAddress.setGeometry(QRect(20, 120, 401, 41))
-        self.lblElectricityLastBillAddress.setFont(font7)
+        self.lblElectricityLastBillAddress.setGeometry(QRect(20, 90, 401, 41))
+        font8 = QFont()
+        font8.setFamily(u"SF UI Display")
+        font8.setPointSize(12)
+        self.lblElectricityLastBillAddress.setFont(font8)
         self.lblElectricityLastBillAddress.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipAddress = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipAddress.setObjectName(u"lblElectricityLastBilltipAddress")
-        self.lblElectricityLastBilltipAddress.setGeometry(QRect(20, 160, 166, 16))
+        self.lblElectricityLastBilltipAddress.setGeometry(QRect(20, 130, 166, 16))
         self.lblElectricityLastBilltipAddress.setFont(font3)
         self.lblElectricityLastBilltipAddress.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityLastBillIssueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillIssueDate.setObjectName(u"lblElectricityLastBillIssueDate")
-        self.lblElectricityLastBillIssueDate.setGeometry(QRect(20, 200, 301, 31))
-        font8 = QFont()
-        font8.setFamily(u"SF UI Display")
-        font8.setPointSize(20)
-        self.lblElectricityLastBillIssueDate.setFont(font8)
+        self.lblElectricityLastBillIssueDate.setGeometry(QRect(20, 160, 301, 31))
+        self.lblElectricityLastBillIssueDate.setFont(font7)
         self.lblElectricityLastBillIssueDate.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipIssueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipIssueDate.setObjectName(u"lblElectricityLastBilltipIssueDate")
-        self.lblElectricityLastBilltipIssueDate.setGeometry(QRect(20, 230, 166, 16))
+        self.lblElectricityLastBilltipIssueDate.setGeometry(QRect(20, 190, 166, 16))
         self.lblElectricityLastBilltipIssueDate.setFont(font3)
         self.lblElectricityLastBilltipIssueDate.setStyleSheet(u"color: #6c6e71;")
         self.lblElectricityLastBillDueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillDueDate.setObjectName(u"lblElectricityLastBillDueDate")
-        self.lblElectricityLastBillDueDate.setGeometry(QRect(20, 260, 301, 31))
-        self.lblElectricityLastBillDueDate.setFont(font8)
+        self.lblElectricityLastBillDueDate.setGeometry(QRect(20, 220, 301, 31))
+        self.lblElectricityLastBillDueDate.setFont(font7)
         self.lblElectricityLastBillDueDate.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipDueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipDueDate.setObjectName(u"lblElectricityLastBilltipDueDate")
-        self.lblElectricityLastBilltipDueDate.setGeometry(QRect(20, 290, 166, 16))
+        self.lblElectricityLastBilltipDueDate.setGeometry(QRect(20, 250, 166, 16))
         self.lblElectricityLastBilltipDueDate.setFont(font3)
         self.lblElectricityLastBilltipDueDate.setStyleSheet(u"color: #6c6e71;")
+        self.lblElectricityLastBillI.raise_()
+        self.lblElectricityLastBillID.raise_()
+        self.lblElectricityLastBillAddress.raise_()
+        self.lblElectricityLastBilltipAddress.raise_()
+        self.lblElectricityLastBillIssueDate.raise_()
+        self.lblElectricityLastBilltipIssueDate.raise_()
+        self.lblElectricityLastBillDueDate.raise_()
+        self.lblElectricityLastBilltipDueDate.raise_()
+        self.lblElectricityLastBilltipID.raise_()
         self.electricityLastBillTotalPay = QFrame(self.pageElectricity)
         self.electricityLastBillTotalPay.setObjectName(u"electricityLastBillTotalPay")
-        self.electricityLastBillTotalPay.setGeometry(QRect(640, 500, 441, 101))
+        self.electricityLastBillTotalPay.setGeometry(QRect(640, 460, 441, 81))
         self.electricityLastBillTotalPay.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
-"   background-color: #2a2e32;  \n"
-"   background-image: url(:/images/Resources/bill_total_pay.png);\n"
+"   background-color: #2a2e32;\n"
 "}")
         self.electricityLastBillTotalPay.setFrameShape(QFrame.StyledPanel)
         self.electricityLastBillTotalPay.setFrameShadow(QFrame.Raised)
@@ -707,12 +716,12 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillTotalPayInfo.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityLastBillTotalPay = QLabel(self.electricityLastBillTotalPay)
         self.lblElectricityLastBillTotalPay.setObjectName(u"lblElectricityLastBillTotalPay")
-        self.lblElectricityLastBillTotalPay.setGeometry(QRect(90, 50, 191, 31))
-        self.lblElectricityLastBillTotalPay.setFont(font8)
+        self.lblElectricityLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
+        self.lblElectricityLastBillTotalPay.setFont(font7)
         self.lblElectricityLastBillTotalPay.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityBillCurrency = QLabel(self.electricityLastBillTotalPay)
         self.lblElectricityBillCurrency.setObjectName(u"lblElectricityBillCurrency")
-        self.lblElectricityBillCurrency.setGeometry(QRect(20, 50, 61, 31))
+        self.lblElectricityBillCurrency.setGeometry(QRect(20, 40, 61, 31))
         font9 = QFont()
         font9.setFamily(u"SF UI Display")
         font9.setPointSize(20)
@@ -722,7 +731,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityBillCurrency.setStyleSheet(u"color: #C72C41;")
         self.electricityLastBill = QFrame(self.pageElectricity)
         self.electricityLastBill.setObjectName(u"electricityLastBill")
-        self.electricityLastBill.setGeometry(QRect(20, 620, 371, 231))
+        self.electricityLastBill.setGeometry(QRect(20, 560, 391, 291))
         self.electricityLastBill.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -735,9 +744,11 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
         self.lblElectricityLastBillPlotTitle.setFont(font6)
         self.lblElectricityLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
-        self.widgetElectricityDonutPlot = QWidget(self.electricityLastBill)
-        self.widgetElectricityDonutPlot.setObjectName(u"widgetElectricityDonutPlot")
-        self.widgetElectricityDonutPlot.setGeometry(QRect(10, 40, 351, 181))
+        self.widget = QWidget(self.electricityLastBill)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(10, 40, 371, 251))
+        self.widget.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
         self.stackedWidget.addWidget(self.pageElectricity)
         self.pageNaturalGas = QWidget()
         self.pageNaturalGas.setObjectName(u"pageNaturalGas")
@@ -793,7 +804,7 @@ class Ui_BillyAppMain(object):
         self.txtUsername.setObjectName(u"txtUsername")
         self.txtUsername.setEnabled(False)
         self.txtUsername.setGeometry(QRect(20, 60, 280, 50))
-        self.txtUsername.setFont(font7)
+        self.txtUsername.setFont(font8)
         self.txtUsername.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -806,7 +817,7 @@ class Ui_BillyAppMain(object):
         self.txtEarnings = QLineEdit(self.profileName)
         self.txtEarnings.setObjectName(u"txtEarnings")
         self.txtEarnings.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings.setFont(font7)
+        self.txtEarnings.setFont(font8)
         self.txtEarnings.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"

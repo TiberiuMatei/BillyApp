@@ -5,6 +5,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+from PySide2.QtCharts import *
 import sqlite3
 import pathlib
 import datetime
@@ -18,12 +19,6 @@ from pdfminer3.converter import PDFPageAggregator
 from pdfminer3.converter import TextConverter
 import io
 import re
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
-import numpy as np
-
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -49,6 +44,13 @@ class MainWindow(QMainWindow):
         self.ui.lblSetProfileEmail.setText(self.email)
         self.ui.txtUsername.setText(self.username)
         self.ui.btnUsername.setText(self.username)
+
+        self.lay = QtWidgets.QVBoxLayout(self.ui.widget)
+        self.ui.widget.setContentsMargins(0, 0, 0, 0)
+        self.lay.setContentsMargins(0, 0, 0, 0)
+        self.chartview = QtCharts.QChartView()
+        # chartview.setContentsMargins(0, 0, 0, 0)
+        self.lay.addWidget(self.chartview)
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -263,6 +265,7 @@ class MainWindow(QMainWindow):
                     self.ui.lblElectricityLastBillTotalPay.setText(latest_bill_info[0][4])
                     connection.commit()
                     connection.close()
+                    # add here the charts
                 except:
                     self.generateMessageBox(window_title='Electricity page', msg_text='Please add electricity bills in order to view data!')
                 self.model = QtWidgets.QFileSystemModel()
@@ -337,32 +340,58 @@ class MainWindow(QMainWindow):
             self.ui.lblElectricityLastBillDueDate.setText(bill_info[0][3])
             self.ui.lblElectricityLastBillTotalPay.setText(bill_info[0][4])
             total_pay = bill_info[0][4]
+
+            #####################
+            # Try adding the chart
+            #####################
+
+            # Calculate percentage
+            bill_value_strip = total_pay.strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+
+            earnings_strip = earnings.strip()
+            earnings_float = float(earnings_strip)
+
+            bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+            remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+
+            series = QtCharts.QPieSeries()
+            series.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = series.append(f"Bill {bill_percentage}%", bill_percentage+25)
+            slice1.setBrush(QColor('#EE4540'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#EE4540'))
+            slice1.setLabelVisible()
+            slice2 = QtCharts.QPieSlice()
+            slice2 = series.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelVisible()
+            
+            
+            # Create Chart and set General Chart setting
+            chart = QtCharts.QChart()
+            # chart.legend().hide()
+            chart.addSeries(series)
+            chart.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chart.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chart.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chart.setBackgroundBrush(QBrush(QColor("transparent")))
+   
+            self.chartview.setChart(chart)
+            self.chartview.setRenderHint(QPainter.Antialiasing)
+            # self.ui.widget.setParent(None)
+
             connection.commit()
             connection.close()
 
-            # Plotting the donut
-            # Data
-            # names='groupA', 'groupB', 'groupC', 'groupD',
-            # size=[12,11,3,30]
-             
-            # # create a figure and set different background
-            # fig = plt.figure()
-            # fig.patch.set_facecolor('black')
-             
-            # # Change color of text
-            # plt.rcParams['text.color'] = 'white'
-             
-            # # Create a circle for the center of the plot
-            # my_circle=plt.Circle( (0,0), 0.7, color='black')
-             
-            # # Pieplot + circle on it
-            # plt.pie(size, labels=names)
-            # p=plt.gcf()
-            # p.gca().add_artist(my_circle)
-            # plt.show()
-            # add toolbar
         except:
-            self.generateMessageBox(window_title='Electricity bill', msg_text='Please select a bill from the list!') 
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Please select a bill from the list!')
 
     def addElectricityBill(self):
         enel_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')

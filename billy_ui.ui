@@ -1243,7 +1243,7 @@ background-position: center;</string>
               <x>20</x>
               <y>160</y>
               <width>601</width>
-              <height>441</height>
+              <height>381</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1286,7 +1286,7 @@ background-position: center;</string>
                <x>10</x>
                <y>81</y>
                <width>581</width>
-               <height>281</height>
+               <height>231</height>
               </rect>
              </property>
              <property name="maximumSize">
@@ -1342,7 +1342,7 @@ QHeaderView::section {
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>380</y>
+               <y>320</y>
                <width>591</width>
                <height>60</height>
               </rect>
@@ -1352,6 +1352,9 @@ QHeaderView::section {
                <width>16777215</width>
                <height>60</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
              </property>
              <property name="frameShape">
               <enum>QFrame::StyledPanel</enum>
@@ -1443,7 +1446,7 @@ QPushButton:hover{
               <x>640</x>
               <y>160</y>
               <width>441</width>
-              <height>321</height>
+              <height>281</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1462,7 +1465,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>90</y>
+               <y>70</y>
                <width>166</width>
                <height>16</height>
               </rect>
@@ -1512,7 +1515,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>60</y>
+               <y>40</y>
                <width>391</width>
                <height>31</height>
               </rect>
@@ -1520,7 +1523,7 @@ QPushButton:hover{
              <property name="font">
               <font>
                <family>SF UI Display</family>
-               <pointsize>12</pointsize>
+               <pointsize>20</pointsize>
               </font>
              </property>
              <property name="styleSheet">
@@ -1534,7 +1537,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>120</y>
+               <y>90</y>
                <width>401</width>
                <height>41</height>
               </rect>
@@ -1556,7 +1559,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>160</y>
+               <y>130</y>
                <width>166</width>
                <height>16</height>
               </rect>
@@ -1578,7 +1581,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>200</y>
+               <y>160</y>
                <width>301</width>
                <height>31</height>
               </rect>
@@ -1600,7 +1603,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>230</y>
+               <y>190</y>
                <width>166</width>
                <height>16</height>
               </rect>
@@ -1622,7 +1625,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>260</y>
+               <y>220</y>
                <width>301</width>
                <height>31</height>
               </rect>
@@ -1644,7 +1647,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>290</y>
+               <y>250</y>
                <width>166</width>
                <height>16</height>
               </rect>
@@ -1662,21 +1665,29 @@ QPushButton:hover{
               <string>Due date</string>
              </property>
             </widget>
+            <zorder>lblElectricityLastBillI</zorder>
+            <zorder>lblElectricityLastBillID</zorder>
+            <zorder>lblElectricityLastBillAddress</zorder>
+            <zorder>lblElectricityLastBilltipAddress</zorder>
+            <zorder>lblElectricityLastBillIssueDate</zorder>
+            <zorder>lblElectricityLastBilltipIssueDate</zorder>
+            <zorder>lblElectricityLastBillDueDate</zorder>
+            <zorder>lblElectricityLastBilltipDueDate</zorder>
+            <zorder>lblElectricityLastBilltipID</zorder>
            </widget>
            <widget class="QFrame" name="electricityLastBillTotalPay">
             <property name="geometry">
              <rect>
               <x>640</x>
-              <y>500</y>
+              <y>460</y>
               <width>441</width>
-              <height>101</height>
+              <height>81</height>
              </rect>
             </property>
             <property name="styleSheet">
              <string notr="true">QFrame{
 	border-radius: 10px;	
-	background-color: #2a2e32;	
-	background-image: url(:/images/Resources/bill_total_pay.png);
+	background-color: #2a2e32;
 }</string>
             </property>
             <property name="frameShape">
@@ -1717,7 +1728,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>90</x>
-               <y>50</y>
+               <y>40</y>
                <width>191</width>
                <height>31</height>
               </rect>
@@ -1739,7 +1750,7 @@ QPushButton:hover{
              <property name="geometry">
               <rect>
                <x>20</x>
-               <y>50</y>
+               <y>40</y>
                <width>61</width>
                <height>31</height>
               </rect>
@@ -1764,9 +1775,9 @@ QPushButton:hover{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>620</y>
-              <width>371</width>
-              <height>231</height>
+              <y>560</y>
+              <width>391</width>
+              <height>291</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1809,14 +1820,18 @@ QPushButton:hover{
               <string>Latest bill total pay related to earnings</string>
              </property>
             </widget>
-            <widget class="QWidget" name="widgetElectricityDonutPlot" native="true">
+            <widget class="QWidget" name="widget" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
                <y>40</y>
-               <width>351</width>
-               <height>181</height>
+               <width>371</width>
+               <height>251</height>
               </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
              </property>
             </widget>
            </widget>
