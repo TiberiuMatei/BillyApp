@@ -1820,7 +1820,7 @@ QPushButton:hover{
               <string>Latest bill total pay related to earnings</string>
              </property>
             </widget>
-            <widget class="QWidget" name="widget" native="true">
+            <widget class="QWidget" name="donutElectricityLastBill" native="true">
              <property name="geometry">
               <rect>
                <x>10</x>
@@ -1832,6 +1832,111 @@ QPushButton:hover{
              <property name="styleSheet">
               <string notr="true">border-radius: 0px;
 background-color: #2a2e32;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricityBillsCosts">
+            <property name="geometry">
+             <rect>
+              <x>430</x>
+              <y>560</y>
+              <width>651</width>
+              <height>291</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityAllBillsPlot">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill costs overview</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="donutElectricityAllBillsPlot" native="true">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>40</y>
+               <width>631</width>
+               <height>251</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxElectricityBillYear">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>10</y>
+               <width>131</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Select year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Select year</string>
              </property>
             </widget>
            </widget>

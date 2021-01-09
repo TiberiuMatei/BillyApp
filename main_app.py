@@ -45,12 +45,13 @@ class MainWindow(QMainWindow):
         self.ui.txtUsername.setText(self.username)
         self.ui.btnUsername.setText(self.username)
 
-        self.lay = QtWidgets.QVBoxLayout(self.ui.widget)
-        self.ui.widget.setContentsMargins(0, 0, 0, 0)
-        self.lay.setContentsMargins(0, 0, 0, 0)
-        self.chartview = QtCharts.QChartView()
+        # Electricit page chart widgets
+        self.laydonutElectricityLastBill = QtWidgets.QVBoxLayout(self.ui.donutElectricityLastBill)
+        self.ui.donutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
+        self.laydonutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
+        self.chartviewElectricityLastBill = QtCharts.QChartView()
         # chartview.setContentsMargins(0, 0, 0, 0)
-        self.lay.addWidget(self.chartview)
+        self.laydonutElectricityLastBill.addWidget(self.chartviewElectricityLastBill)
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -224,6 +225,7 @@ class MainWindow(QMainWindow):
         # Full Electricity page functionality
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageElectricity, self.ui.btnElectricity, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
         username = self.username
         email = self.email
         # Checking the selected Electricity supplier
@@ -258,11 +260,60 @@ class MainWindow(QMainWindow):
                     db_connection = connection.cursor()
                     db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
                     latest_bill_info = db_connection.fetchall()
+                    earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                    earnings = earnings_result.fetchone()[0]
                     self.ui.lblElectricityLastBillID.setText(latest_bill_info[0][0])
                     self.ui.lblElectricityLastBillAddress.setText(latest_bill_info[0][1])
                     self.ui.lblElectricityLastBillIssueDate.setText(latest_bill_info[0][2])
                     self.ui.lblElectricityLastBillDueDate.setText(latest_bill_info[0][3])
                     self.ui.lblElectricityLastBillTotalPay.setText(latest_bill_info[0][4])
+
+                    # Plot the donut chart for clicking on the Electricity page button
+                    bill_value_strip = latest_bill_info[0][4].strip()
+                    bill_value_string = bill_value_strip.replace(',','.')
+                    total_pay_float = float(bill_value_string)
+
+                    earnings_strip = earnings.strip()
+                    earnings_float = float(earnings_strip)
+
+                    bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+                    remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+                    seriesDonutElectricityLastBill = QtCharts.QPieSeries()
+                    seriesDonutElectricityLastBill.setHoleSize(0.35)
+                    slice1 = QtCharts.QPieSlice()
+                    slice1 = seriesDonutElectricityLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+                    slice1.setBrush(QColor('#EE4540'))
+                    slice1.setExploded()
+                    slice1.setLabelColor(QColor('#EE4540'))
+                    slice1.setLabelVisible()
+                    slice2 = QtCharts.QPieSlice()
+                    slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                    slice2.setBrush(QColor('#6c6e71'))
+                    slice2.setLabelColor(QColor('#EE4540'))
+                    slice2.setLabelVisible()
+                                
+                    # Create Chart and set General Chart setting
+                    chartDonutElectricityLastBill = QtCharts.QChart()
+                    chartDonutElectricityLastBill.addSeries(seriesDonutElectricityLastBill)
+                    chartDonutElectricityLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+                    chartDonutElectricityLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                    chartDonutElectricityLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+             
+                    chartDonutElectricityLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                    chartDonutElectricityLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+           
+                    self.chartviewElectricityLastBill.setChart(chartDonutElectricityLastBill)
+                    self.chartviewElectricityLastBill.setRenderHint(QPainter.Antialiasing)
+
+                    # Add plotting the line chart
+                    self.ui.comboBoxElectricityBillYear.clear()
+                    db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(username,))
+                    bill_years = db_connection.fetchall()
+                    for year in bill_years:
+                        self.ui.comboBoxElectricityBillYear.addItems(year)
+                    
+
                     connection.commit()
                     connection.close()
                     # add here the charts
@@ -357,35 +408,32 @@ class MainWindow(QMainWindow):
             remaining_earnings_percentage = round(100 - bill_percentage, 2)
 
 
-            series = QtCharts.QPieSeries()
-            series.setHoleSize(0.35)
+            seriesDonutElectricityLastBill = QtCharts.QPieSeries()
+            seriesDonutElectricityLastBill.setHoleSize(0.35)
             slice1 = QtCharts.QPieSlice()
-            slice1 = series.append(f"Bill {bill_percentage}%", bill_percentage+25)
+            slice1 = seriesDonutElectricityLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
             slice1.setBrush(QColor('#EE4540'))
             slice1.setExploded()
             slice1.setLabelColor(QColor('#EE4540'))
             slice1.setLabelVisible()
             slice2 = QtCharts.QPieSlice()
-            slice2 = series.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
             slice2.setBrush(QColor('#6c6e71'))
             slice2.setLabelColor(QColor('#EE4540'))
             slice2.setLabelVisible()
-            
-            
+                        
             # Create Chart and set General Chart setting
-            chart = QtCharts.QChart()
-            # chart.legend().hide()
-            chart.addSeries(series)
-            chart.legend().setAlignment(QtCore.Qt.AlignBottom)
-            chart.legend().setFont(QtGui.QFont("SF UI Display", 10))
-            chart.legend().setColor(QtGui.QColor('#EE4540'))
+            chartDonutElectricityLastBill = QtCharts.QChart()
+            chartDonutElectricityLastBill.addSeries(seriesDonutElectricityLastBill)
+            chartDonutElectricityLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutElectricityLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutElectricityLastBill.legend().setColor(QtGui.QColor('#EE4540'))
      
-            chart.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
-            chart.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartDonutElectricityLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutElectricityLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
    
-            self.chartview.setChart(chart)
-            self.chartview.setRenderHint(QPainter.Antialiasing)
-            # self.ui.widget.setParent(None)
+            self.chartviewElectricityLastBill.setChart(chartDonutElectricityLastBill)
+            self.chartviewElectricityLastBill.setRenderHint(QPainter.Antialiasing)
 
             connection.commit()
             connection.close()
@@ -526,18 +574,17 @@ class MainWindow(QMainWindow):
     def mainBillyDashboard(self):
         # Animate left side menu upon pressing the main logo button and focus on Dashboard
         self.ui.frameMenuContent.setGeometry(250, 250, 0, 670)
-        self.animation9 = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
-        self.animation9.setDuration(700)
-        self.animation9.setEndValue(QRect(0, 250, 200, 670))
-        self.animation9.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation9.start()
+        self.animation2 = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
+        self.animation2.setDuration(500)
+        self.animation2.setEndValue(QRect(0, 250, 200, 670))
+        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation2.start()
         MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
 
     def usernameProfilePage(self):
         mainButtonsList = [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions]
         for button in mainButtonsList:
             button.setChecked(False)
-        # self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
         MainWindow.profilePage(self)
 
     # Profile Page content and buttons
@@ -546,48 +593,13 @@ class MainWindow(QMainWindow):
         for button in mainButtonsList:
             button.setChecked(False)
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
-        # Animate profile frame
-        self.ui.profileName.setGeometry(30, 80, 0, 130)
-        self.animation1 = QPropertyAnimation(self.ui.profileName, b"geometry")
-        self.animation1.setDuration(800)
-        self.animation1.setEndValue(QRect(30, 80, 731, 130))
+        # Animate profile page
+        self.ui.pageProfile.setGeometry(0, 0, 0, 861)
+        self.animation1 = QPropertyAnimation(self.ui.pageProfile, b"geometry")
+        self.animation1.setDuration(400)
+        self.animation1.setEndValue(QRect(0, 0, 1091, 861))
         self.animation1.setEasingCurve(QtCore.QEasingCurve.InOutSine)
         self.animation1.start()
-        # Animate electricity supplier frame
-        self.ui.electricitySupplier.setGeometry(30, 230, 0, 140)
-        self.animation2 = QPropertyAnimation(self.ui.electricitySupplier, b"geometry")
-        self.animation2.setDuration(800)
-        self.animation2.setEndValue(QRect(30, 230, 1050, 140))
-        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation2.start()
-        # Animate natural gas supplier frame
-        self.ui.naturalGasSupplier.setGeometry(30, 390, 0, 140)
-        self.animation3 = QPropertyAnimation(self.ui.naturalGasSupplier, b"geometry")
-        self.animation3.setDuration(800)
-        self.animation3.setEndValue(QRect(30, 390, 1050, 140))
-        self.animation3.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation3.start()
-        # Animate internet provider frame
-        self.ui.internetProvider.setGeometry(30, 550, 0, 140)
-        self.animation4 = QPropertyAnimation(self.ui.internetProvider, b"geometry")
-        self.animation4.setDuration(800)
-        self.animation4.setEndValue(QRect(30, 550, 1050, 140))
-        self.animation4.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation4.start()
-        # Animate earnings frame
-        self.ui.earnings.setGeometry(780, 80, 0, 130)
-        self.animation5 = QPropertyAnimation(self.ui.earnings, b"geometry")
-        self.animation5.setDuration(800)
-        self.animation5.setEndValue(QRect(780, 80, 300, 130))
-        self.animation5.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation5.start()
-        # Animate subscriptions frame
-        self.ui.subscriptionsPage.setGeometry(30, 710, 0, 140)
-        self.animation8 = QPropertyAnimation(self.ui.subscriptionsPage, b"geometry")
-        self.animation8.setDuration(800)
-        self.animation8.setEndValue(QRect(30, 710, 530, 140))
-        self.animation8.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation8.start()
 
     def setAccountInformation(self):
         if self.ui.txtEarnings.text() == '':

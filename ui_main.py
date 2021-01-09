@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiEfPYLI.ui'
+## Form generated from reading UI file 'billy_uiMfZKWG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -744,11 +744,50 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
         self.lblElectricityLastBillPlotTitle.setFont(font6)
         self.lblElectricityLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
-        self.widget = QWidget(self.electricityLastBill)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(10, 40, 371, 251))
-        self.widget.setStyleSheet(u"border-radius: 0px;\n"
+        self.donutElectricityLastBill = QWidget(self.electricityLastBill)
+        self.donutElectricityLastBill.setObjectName(u"donutElectricityLastBill")
+        self.donutElectricityLastBill.setGeometry(QRect(10, 40, 371, 251))
+        self.donutElectricityLastBill.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
+        self.electricityBillsCosts = QFrame(self.pageElectricity)
+        self.electricityBillsCosts.setObjectName(u"electricityBillsCosts")
+        self.electricityBillsCosts.setGeometry(QRect(430, 560, 651, 291))
+        self.electricityBillsCosts.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.electricityBillsCosts.setFrameShape(QFrame.StyledPanel)
+        self.electricityBillsCosts.setFrameShadow(QFrame.Raised)
+        self.lblElectricityAllBillsPlot = QLabel(self.electricityBillsCosts)
+        self.lblElectricityAllBillsPlot.setObjectName(u"lblElectricityAllBillsPlot")
+        self.lblElectricityAllBillsPlot.setGeometry(QRect(20, 10, 181, 23))
+        self.lblElectricityAllBillsPlot.setMaximumSize(QSize(500, 16777215))
+        self.lblElectricityAllBillsPlot.setFont(font6)
+        self.lblElectricityAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
+        self.donutElectricityAllBillsPlot = QWidget(self.electricityBillsCosts)
+        self.donutElectricityAllBillsPlot.setObjectName(u"donutElectricityAllBillsPlot")
+        self.donutElectricityAllBillsPlot.setGeometry(QRect(10, 40, 631, 251))
+        self.donutElectricityAllBillsPlot.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
+        self.comboBoxElectricityBillYear = QComboBox(self.electricityBillsCosts)
+        self.comboBoxElectricityBillYear.setObjectName(u"comboBoxElectricityBillYear")
+        self.comboBoxElectricityBillYear.setGeometry(QRect(210, 10, 131, 22))
+        self.comboBoxElectricityBillYear.setFont(font3)
+        self.comboBoxElectricityBillYear.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxElectricityBillYear.setEditable(False)
         self.stackedWidget.addWidget(self.pageElectricity)
         self.pageNaturalGas = QWidget()
         self.pageNaturalGas.setObjectName(u"pageNaturalGas")
@@ -1305,6 +1344,9 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillTotalPay.setText("")
         self.lblElectricityBillCurrency.setText(QCoreApplication.translate("BillyAppMain", u"RON", None))
         self.lblElectricityLastBillPlotTitle.setText(QCoreApplication.translate("BillyAppMain", u"Latest bill total pay related to earnings", None))
+        self.lblElectricityAllBillsPlot.setText(QCoreApplication.translate("BillyAppMain", u"Bill costs overview", None))
+        self.comboBoxElectricityBillYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
+        self.comboBoxElectricityBillYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.lblNaturalGasTitle.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
