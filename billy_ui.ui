@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1304</width>
-    <height>909</height>
+    <height>926</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1031,7 +1031,7 @@ QPushButton:hover{
             <x>0</x>
             <y>0</y>
             <width>1091</width>
-            <height>861</height>
+            <height>881</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1508,7 +1508,7 @@ QPushButton:hover{
               <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
-              <string>Latest added electricity bill info</string>
+              <string>Bill info</string>
              </property>
             </widget>
             <widget class="QLabel" name="lblElectricityLastBillID">
@@ -1721,7 +1721,7 @@ QPushButton:hover{
               <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
-              <string>Latest added electricity bill total pay</string>
+              <string>Bill amount to pay</string>
              </property>
             </widget>
             <widget class="QLabel" name="lblElectricityLastBillTotalPay">
@@ -1777,7 +1777,7 @@ QPushButton:hover{
               <x>20</x>
               <y>560</y>
               <width>391</width>
-              <height>291</height>
+              <height>311</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1817,16 +1817,16 @@ QPushButton:hover{
               <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
-              <string>Latest bill total pay related to earnings</string>
+              <string>Bill impact on earning</string>
              </property>
             </widget>
             <widget class="QWidget" name="donutElectricityLastBill" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
+               <x>0</x>
                <y>40</y>
-               <width>371</width>
-               <height>251</height>
+               <width>391</width>
+               <height>271</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -1841,7 +1841,7 @@ background-color: #2a2e32;</string>
               <x>430</x>
               <y>560</y>
               <width>651</width>
-              <height>291</height>
+              <height>311</height>
              </rect>
             </property>
             <property name="styleSheet">
@@ -1884,13 +1884,13 @@ background-color: #2a2e32;</string>
               <string>Bill costs overview</string>
              </property>
             </widget>
-            <widget class="QWidget" name="donutElectricityAllBillsPlot" native="true">
+            <widget class="QWidget" name="lineElectricityAllBillsPlot" native="true">
              <property name="geometry">
               <rect>
-               <x>10</x>
+               <x>0</x>
                <y>40</y>
-               <width>631</width>
-               <height>251</height>
+               <width>651</width>
+               <height>271</height>
               </rect>
              </property>
              <property name="styleSheet">

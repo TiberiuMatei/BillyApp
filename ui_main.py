@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiMfZKWG.ui'
+## Form generated from reading UI file 'billy_uiuyExiV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -18,7 +18,7 @@ class Ui_BillyAppMain(object):
     def setupUiMain(self, BillyAppMain):
         if not BillyAppMain.objectName():
             BillyAppMain.setObjectName(u"BillyAppMain")
-        BillyAppMain.resize(1304, 909)
+        BillyAppMain.resize(1304, 926)
         BillyAppMain.setMinimumSize(QSize(1200, 800))
         self.mainCentralWidget = QWidget(BillyAppMain)
         self.mainCentralWidget.setObjectName(u"mainCentralWidget")
@@ -473,7 +473,7 @@ class Ui_BillyAppMain(object):
         self.frameContentArea.setLineWidth(0)
         self.stackedWidget = QStackedWidget(self.frameContentArea)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 861))
+        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 881))
         self.stackedWidget.setStyleSheet(u"QWidget{\n"
 "   background-color: rgb(32, 37, 40);\n"
 "}")
@@ -731,7 +731,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityBillCurrency.setStyleSheet(u"color: #2a2e32;")
         self.electricityLastBill = QFrame(self.pageElectricity)
         self.electricityLastBill.setObjectName(u"electricityLastBill")
-        self.electricityLastBill.setGeometry(QRect(20, 560, 391, 291))
+        self.electricityLastBill.setGeometry(QRect(20, 560, 391, 311))
         self.electricityLastBill.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -746,12 +746,12 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
         self.donutElectricityLastBill = QWidget(self.electricityLastBill)
         self.donutElectricityLastBill.setObjectName(u"donutElectricityLastBill")
-        self.donutElectricityLastBill.setGeometry(QRect(10, 40, 371, 251))
+        self.donutElectricityLastBill.setGeometry(QRect(0, 40, 391, 271))
         self.donutElectricityLastBill.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.electricityBillsCosts = QFrame(self.pageElectricity)
         self.electricityBillsCosts.setObjectName(u"electricityBillsCosts")
-        self.electricityBillsCosts.setGeometry(QRect(430, 560, 651, 291))
+        self.electricityBillsCosts.setGeometry(QRect(430, 560, 651, 311))
         self.electricityBillsCosts.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -764,10 +764,10 @@ class Ui_BillyAppMain(object):
         self.lblElectricityAllBillsPlot.setMaximumSize(QSize(500, 16777215))
         self.lblElectricityAllBillsPlot.setFont(font6)
         self.lblElectricityAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
-        self.donutElectricityAllBillsPlot = QWidget(self.electricityBillsCosts)
-        self.donutElectricityAllBillsPlot.setObjectName(u"donutElectricityAllBillsPlot")
-        self.donutElectricityAllBillsPlot.setGeometry(QRect(10, 40, 631, 251))
-        self.donutElectricityAllBillsPlot.setStyleSheet(u"border-radius: 0px;\n"
+        self.lineElectricityAllBillsPlot = QWidget(self.electricityBillsCosts)
+        self.lineElectricityAllBillsPlot.setObjectName(u"lineElectricityAllBillsPlot")
+        self.lineElectricityAllBillsPlot.setGeometry(QRect(0, 40, 651, 271))
+        self.lineElectricityAllBillsPlot.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.comboBoxElectricityBillYear = QComboBox(self.electricityBillsCosts)
         self.comboBoxElectricityBillYear.setObjectName(u"comboBoxElectricityBillYear")
@@ -1332,7 +1332,7 @@ class Ui_BillyAppMain(object):
         self.btnAddElectricityBill.setText(QCoreApplication.translate("BillyAppMain", u"Add", None))
         self.lblElectricityDirectory.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Bills", None))
         self.lblElectricityLastBilltipID.setText(QCoreApplication.translate("BillyAppMain", u"ID", None))
-        self.lblElectricityLastBillI.setText(QCoreApplication.translate("BillyAppMain", u"Latest added electricity bill info", None))
+        self.lblElectricityLastBillI.setText(QCoreApplication.translate("BillyAppMain", u"Bill info", None))
         self.lblElectricityLastBillID.setText("")
         self.lblElectricityLastBillAddress.setText("")
         self.lblElectricityLastBilltipAddress.setText(QCoreApplication.translate("BillyAppMain", u"Address", None))
@@ -1340,10 +1340,10 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBilltipIssueDate.setText(QCoreApplication.translate("BillyAppMain", u"Issue Date", None))
         self.lblElectricityLastBillDueDate.setText("")
         self.lblElectricityLastBilltipDueDate.setText(QCoreApplication.translate("BillyAppMain", u"Due date", None))
-        self.lblElectricityLastBillTotalPayInfo.setText(QCoreApplication.translate("BillyAppMain", u"Latest added electricity bill total pay", None))
+        self.lblElectricityLastBillTotalPayInfo.setText(QCoreApplication.translate("BillyAppMain", u"Bill amount to pay", None))
         self.lblElectricityLastBillTotalPay.setText("")
         self.lblElectricityBillCurrency.setText(QCoreApplication.translate("BillyAppMain", u"RON", None))
-        self.lblElectricityLastBillPlotTitle.setText(QCoreApplication.translate("BillyAppMain", u"Latest bill total pay related to earnings", None))
+        self.lblElectricityLastBillPlotTitle.setText(QCoreApplication.translate("BillyAppMain", u"Bill impact on earning", None))
         self.lblElectricityAllBillsPlot.setText(QCoreApplication.translate("BillyAppMain", u"Bill costs overview", None))
         self.comboBoxElectricityBillYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.comboBoxElectricityBillYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))

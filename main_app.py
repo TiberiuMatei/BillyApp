@@ -50,8 +50,14 @@ class MainWindow(QMainWindow):
         self.ui.donutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
         self.laydonutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
         self.chartviewElectricityLastBill = QtCharts.QChartView()
-        # chartview.setContentsMargins(0, 0, 0, 0)
         self.laydonutElectricityLastBill.addWidget(self.chartviewElectricityLastBill)
+
+        self.laylineElectricityAllBills = QtWidgets.QVBoxLayout(self.ui.lineElectricityAllBillsPlot)
+        self.ui.lineElectricityAllBillsPlot.setContentsMargins(0, 0, 0, 0)
+        self.laylineElectricityAllBills.setContentsMargins(0, 0, 0, 0)
+        self.chartviewElectricityAllBillsPlot = QtCharts.QChartView()
+        self.laylineElectricityAllBills.addWidget(self.chartviewElectricityAllBillsPlot)
+        
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -69,7 +75,7 @@ class MainWindow(QMainWindow):
             [client_code] text,\
             [pay_code] text,\
             [total_pay] text,\
-            [issue_date] text,\
+            [issue_date] date,\
             [due_date] date)")
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
@@ -166,6 +172,12 @@ class MainWindow(QMainWindow):
 
         # Electricity page buttons
         self.ui.btnAddElectricityBill.clicked.connect(self.addElectricityBill)
+        self.ui.comboBoxElectricityBillYear.currentIndexChanged.connect(self.plotElectricityLineChart)
+
+        qtRectangle = self.frameGeometry()
+        centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
 
         # Show Main Window
         self.show()
@@ -258,7 +270,7 @@ class MainWindow(QMainWindow):
                 connection = sqlite3.connect(f'{db_path}')
                 try:
                     db_connection = connection.cursor()
-                    db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+                    db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay, bill_year FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
                     latest_bill_info = db_connection.fetchall()
                     earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
                     earnings = earnings_result.fetchone()[0]
@@ -267,6 +279,7 @@ class MainWindow(QMainWindow):
                     self.ui.lblElectricityLastBillIssueDate.setText(latest_bill_info[0][2])
                     self.ui.lblElectricityLastBillDueDate.setText(latest_bill_info[0][3])
                     self.ui.lblElectricityLastBillTotalPay.setText(latest_bill_info[0][4])
+                    latest_bill_year = latest_bill_info[0][5]
 
                     # Plot the donut chart for clicking on the Electricity page button
                     bill_value_strip = latest_bill_info[0][4].strip()
@@ -314,9 +327,68 @@ class MainWindow(QMainWindow):
                         self.ui.comboBoxElectricityBillYear.addItems(year)
                     
 
+                    # add here the charts
+                    selected_year = latest_bill_year
+                    db_connection.execute("SELECT issue_date,total_pay FROM enel_bills WHERE username = ? AND bill_year = ? ORDER BY date(due_date) ASC", (self.username, selected_year))
+                    query_result = db_connection.fetchall()
+                    query_result.reverse()
+
+                    # Line Electricity chart
+                    seriesLineElectricityAllBills = QtCharts.QLineSeries()
+                     # Create Chart and set General Chart setting
+                    chartLineElectricityAllBills = QtCharts.QChart()
+                    chartLineElectricityAllBills.addSeries(seriesLineElectricityAllBills)        
+
+                     # Setting X-axis
+                    axis_x = QtCharts.QDateTimeAxis()
+                    axis_x.setTickCount(12)
+                    axis_x.setLabelsAngle(70)
+                    axis_x.setFormat("MM.yyyy")
+                    axis_x.setTitleText("Date")
+                    axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+                    axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+                    axis_x_brush = QBrush(QColor("#EE4540"))
+                    axis_x.setLabelsBrush(axis_x_brush)
+                    axis_x.setTitleBrush(axis_x_brush)
+
+                    # Setting Y-axis
+                    axis_y = QtCharts.QValueAxis()
+                    axis_y.setTickCount(5)
+                    axis_y.setLabelFormat("%i")
+                    axis_y.setTitleText("Bill cost [RON]")
+                    axis_y.setMax(250)
+                    axis_y.setMin(0)
+                    axis_y_brush = QBrush(QColor("#EE4540"))
+                    axis_y.setLabelsBrush(axis_y_brush)            
+                    axis_y.setTitleBrush(axis_y_brush)
+
+                    chartLineElectricityAllBills.addAxis(axis_x, Qt.AlignBottom)
+                    chartLineElectricityAllBills.addAxis(axis_y, Qt.AlignLeft)
+                    seriesLineElectricityAllBills.attachAxis(axis_x)
+                    seriesLineElectricityAllBills.attachAxis(axis_y)
+
+                    for item in query_result:
+                        electricity_issue_time = QtCore.QDateTime()
+                        list_of_date_info = item[0].split(".")
+                        bill_value_strip = item[1].strip()
+                        bill_value_string = bill_value_strip.replace(',','.')
+                        total_pay_float = float(bill_value_string)
+                        # QDate - year, month, day
+                        electricity_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+                        seriesLineElectricityAllBills.append(float(electricity_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+                    seriesLineElectricityAllBills.setColor(QtGui.QColor('#EE4540'))
+
+                    chartLineElectricityAllBills.legend().setVisible(False)            
+                    chartLineElectricityAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+                    chartLineElectricityAllBills.setTitleBrush(QBrush(Qt.white));
+
+                    self.chartviewElectricityAllBillsPlot.setChart(chartLineElectricityAllBills)
+                    self.chartviewElectricityAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+
                     connection.commit()
                     connection.close()
-                    # add here the charts
+
                 except:
                     self.generateMessageBox(window_title='Electricity page', msg_text='Please add electricity bills in order to view data!')
                 self.model = QtWidgets.QFileSystemModel()
@@ -357,6 +429,14 @@ class MainWindow(QMainWindow):
             connection = sqlite3.connect(f'{db_path}')
             db_connection = connection.cursor()
             result = db_connection.execute("DELETE FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill_to_delete,))
+
+            # Updating the dropdown menu as well
+            self.ui.comboBoxElectricityBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxElectricityBillYear.addItems(year)
+
             connection.commit()
             connection.close()
             os.remove(path)
@@ -367,6 +447,14 @@ class MainWindow(QMainWindow):
             connection = sqlite3.connect(f'{db_path}')
             db_connection = connection.cursor()
             result = db_connection.execute("DELETE FROM enel_bills WHERE bill_year = ?",(directory_to_delete,))
+            
+            # Updating the dropdown menu as well
+            self.ui.comboBoxElectricityBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxElectricityBillYear.addItems(year)
+
             connection.commit()
             connection.close()
             shutil.rmtree(path)
@@ -407,7 +495,7 @@ class MainWindow(QMainWindow):
             bill_percentage = round((total_pay_float/earnings_float)*100, 2)
             remaining_earnings_percentage = round(100 - bill_percentage, 2)
 
-
+            # Donut Electricity chart
             seriesDonutElectricityLastBill = QtCharts.QPieSeries()
             seriesDonutElectricityLastBill.setHoleSize(0.35)
             slice1 = QtCharts.QPieSlice()
@@ -415,7 +503,9 @@ class MainWindow(QMainWindow):
             slice1.setBrush(QColor('#EE4540'))
             slice1.setExploded()
             slice1.setLabelColor(QColor('#EE4540'))
+            slice1.setLabelFont(QFont("SF UI Display", 10))
             slice1.setLabelVisible()
+
             slice2 = QtCharts.QPieSlice()
             slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
             slice2.setBrush(QColor('#6c6e71'))
@@ -471,6 +561,14 @@ class MainWindow(QMainWindow):
                 db_connection.execute("INSERT INTO enel_bills(username, email, bill_year, id_bill, address, client, client_code, pay_code,\
                     total_pay, issue_date, due_date ) VALUES (?,?,?,?,?,?,?,?,?,?,?)",(self.username, self.email, self.enel_bill_year, self.enel_id_bill,\
                     self.enel_address, self.enel_client, self.enel_client_code, self.enel_pay_code, self.enel_total_pay, self.enel_issue_date, self.enel_due_date))
+                
+                # Adding the newly inserted year in the dropdown menu as well
+                self.ui.comboBoxElectricityBillYear.clear()
+                db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+                bill_years = db_connection.fetchall()
+                for year in bill_years:
+                    self.ui.comboBoxElectricityBillYear.addItems(year)
+
                 connection.commit()
                 connection.close()
                 pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}').mkdir(parents=True, exist_ok=True)
@@ -482,7 +580,73 @@ class MainWindow(QMainWindow):
                 self.ui.lblElectricityLastBillDueDate.setText(self.enel_due_date)
                 self.ui.lblElectricityLastBillTotalPay.setText(self.enel_total_pay)
         except:
-            self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!') 
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!')
+
+    def plotElectricityLineChart(self):
+        selected_year = self.ui.comboBoxElectricityBillYear.currentText()
+
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        db_connection.execute("SELECT issue_date,total_pay FROM enel_bills WHERE username = ? AND bill_year = ? ORDER BY date(due_date) ASC", (self.username, selected_year))
+        query_result = db_connection.fetchall()
+        query_result.reverse()
+
+        # Line Electricity chart
+        seriesLineElectricityAllBills = QtCharts.QLineSeries()
+         # Create Chart and set General Chart setting
+        chartLineElectricityAllBills = QtCharts.QChart()
+        chartLineElectricityAllBills.addSeries(seriesLineElectricityAllBills)        
+
+         # Setting X-axis
+        axis_x = QtCharts.QDateTimeAxis()
+        axis_x.setTickCount(12)
+        axis_x.setLabelsAngle(70)
+        axis_x.setFormat("MM.yyyy")
+        axis_x.setTitleText("Date")
+        axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+        axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+        axis_x_brush = QBrush(QColor("#EE4540"))
+        axis_x.setLabelsBrush(axis_x_brush)
+        axis_x.setTitleBrush(axis_x_brush)
+
+        # Setting Y-axis
+        axis_y = QtCharts.QValueAxis()
+        axis_y.setTickCount(5)
+        axis_y.setLabelFormat("%i")
+        axis_y.setTitleText("Bill cost [RON]")
+        axis_y.setMax(250)
+        axis_y.setMin(0)
+        axis_y_brush = QBrush(QColor("#EE4540"))
+        axis_y.setLabelsBrush(axis_y_brush)            
+        axis_y.setTitleBrush(axis_y_brush)
+
+        chartLineElectricityAllBills.addAxis(axis_x, Qt.AlignBottom)
+        chartLineElectricityAllBills.addAxis(axis_y, Qt.AlignLeft)
+        seriesLineElectricityAllBills.attachAxis(axis_x)
+        seriesLineElectricityAllBills.attachAxis(axis_y)
+
+        for item in query_result:
+            electricity_issue_time = QtCore.QDateTime()
+            list_of_date_info = item[0].split(".")
+            bill_value_strip = item[1].strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+            # QDate - year, month, day
+            electricity_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+            seriesLineElectricityAllBills.append(float(electricity_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+        seriesLineElectricityAllBills.setColor(QtGui.QColor('#EE4540'))
+
+        chartLineElectricityAllBills.legend().setVisible(False)            
+        chartLineElectricityAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+        chartLineElectricityAllBills.setTitleBrush(QBrush(Qt.white));
+
+        self.chartviewElectricityAllBillsPlot.setChart(chartLineElectricityAllBills)
+        self.chartviewElectricityAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+        connection.commit()
+        connection.close()
 
     # Click on the NaturalGas button
     def naturalGasButton(self):
