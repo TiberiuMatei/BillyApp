@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1304</width>
-    <height>920</height>
+    <height>926</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -21,7 +21,8 @@
   </property>
   <widget class="QWidget" name="mainCentralWidget">
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(39, 43, 47);</string>
+    <string notr="true">background-color: rgb(39, 43, 47);
+outline: none;</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
@@ -1030,7 +1031,7 @@ QPushButton:hover{
             <x>0</x>
             <y>0</y>
             <width>1091</width>
-            <height>871</height>
+            <height>881</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1124,6 +1125,821 @@ QPushButton:hover{
              <enum>Qt::MarkdownText</enum>
             </property>
            </widget>
+           <widget class="QFrame" name="electricitySupplierSelection">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>381</width>
+              <height>71</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricitySupplierSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Electricity Supplier</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricitySupplierSelectionInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Selected electricity supplier</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnElectricitySupplierDisplay">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>10</y>
+               <width>151</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #202528;
+border-radius: 5px;
+background-repeat: none;
+background-position: center;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricityDirectoryFrame">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>160</y>
+              <width>601</width>
+              <height>381</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityDirectoryInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Management of added electricity bills</string>
+             </property>
+            </widget>
+            <widget class="QTreeView" name="treeElectricityDirectory">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>81</y>
+               <width>581</width>
+               <height>231</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTreeView {
+    background: #2a2e32;
+	color: #f3f5f6;
+}
+QTreeView::item:open {
+	background-color: #EE4540;
+    color: #f3f5f6;
+}
+QTreeView::item:hover {
+	background-color: #6c6e71;
+}
+QTreeView::item:selected {
+	background-color: #C72C41;
+    color: #f3f5f6;
+}
+QTreeView::branch:open {
+	image: url(:/images/Resources/branch-open.png);
+}
+QTreeView::branch:closed:has-children {    
+	image: url(:/images/Resources/branch-closed.png);
+}
+QTreeView::branch:hover {
+	background-color: #6c6e71;
+}
+QHeaderView::section {
+	font-family: &quot;SF UI Display&quot;;
+	font-size: 10pt;
+    background-color: #2a2e32;
+    color: #f3f5f6;
+}
+</string>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QFrame" name="addElectricityBillFrame">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>320</y>
+               <width>591</width>
+               <height>60</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QPushButton" name="btnAddElectricityBill">
+              <property name="geometry">
+               <rect>
+                <x>510</x>
+                <y>0</y>
+                <width>75</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>SF UI Display</family>
+                <pointsize>14</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+              </property>
+              <property name="text">
+               <string>Add</string>
+              </property>
+              <property name="autoDefault">
+               <bool>true</bool>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QLabel" name="lblElectricityDirectory">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>132</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Electricity Bills</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricityLastBillData">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>160</y>
+              <width>441</width>
+              <height>281</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityLastBilltipID">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillI">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>291</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill info</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillID">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>391</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillAddress">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>90</y>
+               <width>401</width>
+               <height>41</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBilltipAddress">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>130</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Address</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillIssueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>160</y>
+               <width>301</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBilltipIssueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>190</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Issue Date</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillDueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>220</y>
+               <width>301</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBilltipDueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>250</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Due date</string>
+             </property>
+            </widget>
+            <zorder>lblElectricityLastBillI</zorder>
+            <zorder>lblElectricityLastBillID</zorder>
+            <zorder>lblElectricityLastBillAddress</zorder>
+            <zorder>lblElectricityLastBilltipAddress</zorder>
+            <zorder>lblElectricityLastBillIssueDate</zorder>
+            <zorder>lblElectricityLastBilltipIssueDate</zorder>
+            <zorder>lblElectricityLastBillDueDate</zorder>
+            <zorder>lblElectricityLastBilltipDueDate</zorder>
+            <zorder>lblElectricityLastBilltipID</zorder>
+           </widget>
+           <widget class="QFrame" name="electricityLastBillTotalPay">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>460</y>
+              <width>441</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #C72C41;;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityLastBillTotalPayInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>331</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill amount to pay</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityLastBillTotalPay">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>40</y>
+               <width>191</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblElectricityBillCurrency">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>61</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #2a2e32;</string>
+             </property>
+             <property name="text">
+              <string>RON</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricityLastBill">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>560</y>
+              <width>391</width>
+              <height>311</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityLastBillPlotTitle">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>341</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill impact on earnings</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="donutElectricityLastBill" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>391</width>
+               <height>271</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="electricityBillsCosts">
+            <property name="geometry">
+             <rect>
+              <x>430</x>
+              <y>560</y>
+              <width>651</width>
+              <height>311</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblElectricityAllBillsPlot">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill costs overview</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="lineElectricityAllBillsPlot" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>651</width>
+               <height>271</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxElectricityBillYear">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>10</y>
+               <width>131</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Select year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Select year</string>
+             </property>
+            </widget>
+           </widget>
           </widget>
           <widget class="QWidget" name="pageNaturalGas">
            <widget class="QLabel" name="lblNaturalGasTitle">
@@ -1152,6 +1968,812 @@ QPushButton:hover{
             <property name="textFormat">
              <enum>Qt::MarkdownText</enum>
             </property>
+           </widget>
+           <widget class="QFrame" name="naturalGasSupplierSelection">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>391</width>
+              <height>71</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasSupplierSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>191</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Natural Gas Supplier</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasSupplierSelectionInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Selected natural gas supplier</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnNaturalGasSupplierDisplay">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>220</x>
+               <y>10</y>
+               <width>151</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #202528;
+border-radius: 5px;
+background-repeat: none;
+background-position: center;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasDirectoryFrame">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>160</y>
+              <width>601</width>
+              <height>381</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasDirectoryInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Management of added electricity bills</string>
+             </property>
+            </widget>
+            <widget class="QTreeView" name="treeNaturalGasDirectory">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>81</y>
+               <width>581</width>
+               <height>231</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>300</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QTreeView {
+    background: #2a2e32;
+	color: #f3f5f6;
+}
+QTreeView::item:open {
+	background-color: #EE4540;
+    color: #f3f5f6;
+}
+QTreeView::item:hover {
+	background-color: #6c6e71;
+}
+QTreeView::item:selected {
+	background-color: #C72C41;
+    color: #f3f5f6;
+}
+QTreeView::branch:open {
+	image: url(:/images/Resources/branch-open.png);
+}
+QTreeView::branch:closed:has-children {    
+	image: url(:/images/Resources/branch-closed.png);
+}
+QTreeView::branch:hover {
+	background-color: #6c6e71;
+}
+QHeaderView::section {
+	font-family: &quot;SF UI Display&quot;;
+	font-size: 10pt;
+    background-color: #2a2e32;
+    color: #f3f5f6;
+}
+</string>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QFrame" name="addNaturalGasBillFrame">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>320</y>
+               <width>591</width>
+               <height>60</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <widget class="QPushButton" name="btnAddNaturalGasBill">
+              <property name="geometry">
+               <rect>
+                <x>510</x>
+                <y>0</y>
+                <width>75</width>
+                <height>50</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <family>SF UI Display</family>
+                <pointsize>14</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+              </property>
+              <property name="text">
+               <string>Add</string>
+              </property>
+              <property name="autoDefault">
+               <bool>true</bool>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasDirectory">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>132</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>200</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Electricity Bills</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasLastBillData">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>160</y>
+              <width>441</width>
+              <height>281</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasLastBilltipID">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>70</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>ID</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillI">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>291</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill info</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillID">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>391</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillAddress">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>100</y>
+               <width>401</width>
+               <height>51</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBilltipAddress">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>150</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Address</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillIssueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>170</y>
+               <width>301</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBilltipIssueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>200</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Issue Date</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillDueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>230</y>
+               <width>301</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #EE4540;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBilltipDueDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>260</y>
+               <width>166</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Due date</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasLastBillTotalPay">
+            <property name="geometry">
+             <rect>
+              <x>640</x>
+              <y>460</y>
+              <width>441</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #C72C41;;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasLastBillTotalPayInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>331</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill amount to pay</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasLastBillTotalPay">
+             <property name="geometry">
+              <rect>
+               <x>90</x>
+               <y>40</y>
+               <width>191</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNaturalGasBillCurrency">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>61</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>20</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #2a2e32;</string>
+             </property>
+             <property name="text">
+              <string>RON</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasLastBill">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>560</y>
+              <width>391</width>
+              <height>311</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalGasLastBillPlotTitle">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>341</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill impact on earnings</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="donutNaturalGasLastBill" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>391</width>
+               <height>271</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="naturalGasBillsCosts">
+            <property name="geometry">
+             <rect>
+              <x>430</x>
+              <y>560</y>
+              <width>651</width>
+              <height>311</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNaturalAllBillsPlot">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Bill costs overview</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="lineNaturalGasAllBillsPlot" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>651</width>
+               <height>271</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxNaturalGasBillYear">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>10</y>
+               <width>131</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Select year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Select year</string>
+             </property>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="pageInternetTV">

@@ -5,8 +5,20 @@ from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
+from PySide2.QtCharts import *
 import sqlite3
 import pathlib
+import datetime
+import os
+import shutil
+from pdfminer3.layout import LAParams, LTTextBox
+from pdfminer3.pdfpage import PDFPage
+from pdfminer3.pdfinterp import PDFResourceManager
+from pdfminer3.pdfinterp import PDFPageInterpreter
+from pdfminer3.converter import PDFPageAggregator
+from pdfminer3.converter import TextConverter
+import io
+import re
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -27,51 +39,109 @@ class MainWindow(QMainWindow):
         self.ui = Ui_BillyAppMain()
         self.ui.setupUiMain(self)
 
-        username = usernameAuth
-        email = emailAuth
-        self.ui.lblSetProfileEmail.setText(email)
-        self.ui.txtUsername.setText(username)
-        self.ui.btnUsername.setText(username)
+        self.username = usernameAuth
+        self.email = emailAuth
+        self.ui.lblSetProfileEmail.setText(self.email)
+        self.ui.txtUsername.setText(self.username)
+        self.ui.btnUsername.setText(self.username)
+
+        # Electricit page chart widgets
+        self.laydonutElectricityLastBill = QtWidgets.QVBoxLayout(self.ui.donutElectricityLastBill)
+        self.ui.donutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
+        self.laydonutElectricityLastBill.setContentsMargins(0, 0, 0, 0)
+        self.chartviewElectricityLastBill = QtCharts.QChartView()
+        self.laydonutElectricityLastBill.addWidget(self.chartviewElectricityLastBill)
+
+        self.laylineElectricityAllBills = QtWidgets.QVBoxLayout(self.ui.lineElectricityAllBillsPlot)
+        self.ui.lineElectricityAllBillsPlot.setContentsMargins(0, 0, 0, 0)
+        self.laylineElectricityAllBills.setContentsMargins(0, 0, 0, 0)
+        self.chartviewElectricityAllBillsPlot = QtCharts.QChartView()
+        self.laylineElectricityAllBills.addWidget(self.chartviewElectricityAllBillsPlot)
+
+        # Natural gas page chart widgets
+        self.laydonutNaturalGasLastBill = QtWidgets.QVBoxLayout(self.ui.donutNaturalGasLastBill)
+        self.ui.donutNaturalGasLastBill.setContentsMargins(0, 0, 0, 0)
+        self.laydonutNaturalGasLastBill.setContentsMargins(0, 0, 0, 0)
+        self.chartviewNaturalGasLastBill = QtCharts.QChartView()
+        self.laydonutNaturalGasLastBill.addWidget(self.chartviewNaturalGasLastBill)
+
+        self.laylineNaturalGasAllBills = QtWidgets.QVBoxLayout(self.ui.lineNaturalGasAllBillsPlot)
+        self.ui.lineNaturalGasAllBillsPlot.setContentsMargins(0, 0, 0, 0)
+        self.laylineNaturalGasAllBills.setContentsMargins(0, 0, 0, 0)
+        self.chartviewNaturalGasAllBillsPlot = QtCharts.QChartView()
+        self.laylineNaturalGasAllBills.addWidget(self.chartviewNaturalGasAllBillsPlot)
+        
 
         # Initializing existing profile page data from db
         # Getting the app path
         currpath = pathlib.Path().absolute()
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
+        # Creating the enel electricity table
+        connection.execute("CREATE TABLE IF NOT EXISTS enel_bills([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [bill_year] text,\
+            [id_bill] text,\
+            [address] text,\
+            [client] text,\
+            [client_code] text,\
+            [pay_code] text,\
+            [total_pay] text,\
+            [issue_date] date,\
+            [due_date] date)")
+        # Creating the engie electricity table
+        connection.execute("CREATE TABLE IF NOT EXISTS engie_bills([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [bill_year] text,\
+            [id_bill] text,\
+            [address] text,\
+            [client] text,\
+            [client_code] text,\
+            [total_pay] text,\
+            [issue_date] date,\
+            [due_date] date)")
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
-        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
         earnings = earnings_result.fetchone()[0]
         if (earnings != None):
             self.ui.txtEarnings.setText(earnings)
             self.ui.lblEarningsValue.setText(earnings)
         # Setting the Enel electricity supplier
-        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(username,))
+        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(self.username,))
         enel = earnings_result.fetchone()[0]
         if (enel == 1):
             self.ui.btnEnelSelection.setChecked(True)
         # Setting the Engie natural gas supplier
-        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(username,))
+        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(self.username,))
         engie = engie_result.fetchone()[0]
         if (engie == 1):
             self.ui.btnEngieSelection.setChecked(True)
         # Setting the Internet provider
-        rds_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(username,))
+        rds_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(self.username,))
         rds = rds_result.fetchone()[0]
         if (rds == 1):
             self.ui.btnRCSRDSSelection.setChecked(True)
         # Setting the Netflix subscription
-        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(username,))
+        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(self.username,))
         netflix = netflix_result.fetchone()[0]
         if (netflix == 1):
             self.ui.btnNetflixSelection.setChecked(True)
         # Setting the Spotify subscription
-        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(username,))
+        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(self.username,))
         spotify = spotify_result.fetchone()[0]
         if (spotify == 1):
             self.ui.btnSpotifySelection.setChecked(True)
         connection.commit()
         connection.close()
+
+        # Create directories for bill storage
+        now = datetime.datetime.now()
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{now.year}').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{now.year}').mkdir(parents=True, exist_ok=True)
+        pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{now.year}').mkdir(parents=True, exist_ok=True)
 
         # Move window
         def moveWindow(event):
@@ -121,6 +191,25 @@ class MainWindow(QMainWindow):
         self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
         self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
 
+        # Tree view context
+        self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.ui.treeElectricityDirectory.customContextMenuRequested.connect(self.contextMenuElectricity)
+
+        self.ui.treeNaturalGasDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.ui.treeNaturalGasDirectory.customContextMenuRequested.connect(self.contextMenuNaturalGas)
+
+        # Electricity page buttons
+        self.ui.btnAddElectricityBill.clicked.connect(self.addElectricityBill)
+        self.ui.comboBoxElectricityBillYear.currentIndexChanged.connect(self.plotElectricityLineChart)
+
+        self.ui.btnAddNaturalGasBill.clicked.connect(self.addNaturalGasBill)
+        self.ui.comboBoxNaturalGasBillYear.currentIndexChanged.connect(self.plotNaturalGasLineChart)
+
+        qtRectangle = self.frameGeometry()
+        centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
+
         # Show Main Window
         self.show()
 
@@ -144,6 +233,26 @@ class MainWindow(QMainWindow):
         currentButton.setChecked(True)
         MainWindow.uncheckOtherButtons(currentButton, remainingButtonsList)
 
+    def readBillContent(self, billPath):
+        resource_manager = PDFResourceManager()
+        fake_file_handle = io.StringIO()
+        converter = TextConverter(resource_manager, fake_file_handle, laparams=LAParams())
+        page_interpreter = PDFPageInterpreter(resource_manager, converter)
+
+        with open(pathlib.Path(billPath), 'rb') as fh:
+
+            for page in PDFPage.get_pages(fh,
+                                          caching=True,
+                                          check_extractable=True):
+                page_interpreter.process_page(page)
+
+            text = fake_file_handle.getvalue()
+
+        # close open handles
+        converter.close()
+        fake_file_handle.close()
+        return text
+
     # Click on the Dashboard button
     def dashboardButton(self):
         # Select the page in focus
@@ -156,13 +265,875 @@ class MainWindow(QMainWindow):
 
     # Click on the Electricity button
     def electricityButton(self):
+        # Full Electricity page functionality
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageElectricity, self.ui.btnElectricity, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
+        username = self.username
+        email = self.email
+        # Checking the selected Electricity supplier
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Setting the earnings data fields from db if it exists
+        enel_result = db_connection.execute("SELECT electricity_enel FROM accounts WHERE username = ?",(username,))
+        enel = enel_result.fetchone()[0]
+        cez_result = db_connection.execute("SELECT electricity_cez FROM accounts WHERE username = ?",(username,))
+        cez = cez_result.fetchone()[0]
+        eon_result = db_connection.execute("SELECT electricity_eon FROM accounts WHERE username = ?",(username,))
+        eon = eon_result.fetchone()[0]
+        digi_result = db_connection.execute("SELECT electricity_digi FROM accounts WHERE username = ?",(username,))
+        digi = digi_result.fetchone()[0]
+        connection.commit()
+        connection.close()
+        if enel == 1 or cez == 1 or eon == 1 or digi == 1:
+            # Checking the selected Electricity supplier else display message box
+            if enel == 1:
+                self.ui.btnElectricitySupplierDisplay.setStyleSheet("background-image: url(:/images/Resources/enel_supplier.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+                currpath = pathlib.Path().absolute()
+                electricity_path = str(currpath)+f'\\Bills\\{self.username}\\Electricity'
+                db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                connection = sqlite3.connect(f'{db_path}')
+                db_connection = connection.cursor()
+                earnings_result_check = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                earnings_check = earnings_result_check.fetchone()[0]
+                connection.commit()
+                connection.close()
+                # Checking if the earnings field has data else display message box
+                if earnings_check is not None:
+                    try:
+                        currpath = pathlib.Path().absolute()
+                        electricity_path = str(currpath)+f'\\Bills\\{self.username}\\Electricity'
+                        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                        connection = sqlite3.connect(f'{db_path}')
+                        db_connection = connection.cursor()
+                        db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay, bill_year FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+                        latest_bill_info = db_connection.fetchall()
+                        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                        earnings = earnings_result.fetchone()[0]
+                        self.ui.lblElectricityLastBillID.setText(latest_bill_info[0][0])
+                        self.ui.lblElectricityLastBillAddress.setText(latest_bill_info[0][1])
+                        self.ui.lblElectricityLastBillIssueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblElectricityLastBillDueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblElectricityLastBillTotalPay.setText(latest_bill_info[0][4])
+                        latest_bill_year = latest_bill_info[0][5]
+
+                        # Plot the donut chart for clicking on the Electricity page button
+                        bill_value_strip = latest_bill_info[0][4].strip()
+                        bill_value_string = bill_value_strip.replace(',','.')
+                        total_pay_float = float(bill_value_string)
+
+                        earnings_strip = earnings.strip()
+                        earnings_float = float(earnings_strip)
+
+                        bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+                        remaining_earnings_percentage = round(100 - bill_percentage, 2)
+                        seriesDonutElectricityLastBill = QtCharts.QPieSeries()
+                        seriesDonutElectricityLastBill.setHoleSize(0.35)
+                        slice1 = QtCharts.QPieSlice()
+                        slice1 = seriesDonutElectricityLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+                        slice1.setBrush(QColor('#EE4540'))
+                        slice1.setExploded()
+                        slice1.setLabelColor(QColor('#EE4540'))
+                        slice1.setLabelFont(QFont("SF UI Display", 8))
+                        slice1.setLabelVisible()
+                        slice2 = QtCharts.QPieSlice()
+                        slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                        slice2.setBrush(QColor('#6c6e71'))
+                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelFont(QFont("SF UI Display", 8))
+                        slice2.setLabelVisible()
+                                    
+                        # Create Chart and set General Chart setting
+                        chartDonutElectricityLastBill = QtCharts.QChart()
+                        chartDonutElectricityLastBill.addSeries(seriesDonutElectricityLastBill)
+                        chartDonutElectricityLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+                        chartDonutElectricityLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                        chartDonutElectricityLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+                 
+                        chartDonutElectricityLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                        chartDonutElectricityLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+               
+                        self.chartviewElectricityLastBill.setChart(chartDonutElectricityLastBill)
+                        self.chartviewElectricityLastBill.setRenderHint(QPainter.Antialiasing)
+                        # Add plotting the line chart
+                        self.ui.comboBoxElectricityBillYear.clear()
+                        db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(username,))
+                        bill_years = db_connection.fetchall()
+                        for year in bill_years:
+                            self.ui.comboBoxElectricityBillYear.addItems(year)
+                        
+
+                        # add here the charts
+                        selected_year = latest_bill_year
+                        self.ui.comboBoxElectricityBillYear.setCurrentText(selected_year)
+                        db_connection.execute("SELECT issue_date,total_pay FROM enel_bills WHERE username = ? AND bill_year = ? ORDER BY due_date ASC", (self.username, selected_year))
+                        query_result = db_connection.fetchall()
+                        query_result.reverse()
+
+                        # Line Electricity chart
+                        seriesLineElectricityAllBills = QtCharts.QLineSeries()
+                         # Create Chart and set General Chart setting
+                        chartLineElectricityAllBills = QtCharts.QChart()
+                        chartLineElectricityAllBills.addSeries(seriesLineElectricityAllBills)        
+
+                         # Setting X-axis
+                        axis_x = QtCharts.QDateTimeAxis()
+                        axis_x.setTickCount(12)
+                        axis_x.setLabelsAngle(70)
+                        axis_x.setFormat("MM.yyyy")
+                        axis_x.setTitleText("Date")
+                        axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+                        axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+                        axis_x_brush = QBrush(QColor("#EE4540"))
+                        axis_x.setLabelsBrush(axis_x_brush)
+                        axis_x.setTitleBrush(axis_x_brush)
+
+                        # Setting Y-axis
+                        axis_y = QtCharts.QValueAxis()
+                        axis_y.setTickCount(5)
+                        axis_y.setLabelFormat("%i")
+                        axis_y.setTitleText("Bill cost [RON]")
+                        axis_y.setMax(250)
+                        axis_y.setMin(0)
+                        axis_y_brush = QBrush(QColor("#EE4540"))
+                        axis_y.setLabelsBrush(axis_y_brush)            
+                        axis_y.setTitleBrush(axis_y_brush)
+
+                        chartLineElectricityAllBills.addAxis(axis_x, Qt.AlignBottom)
+                        chartLineElectricityAllBills.addAxis(axis_y, Qt.AlignLeft)
+                        seriesLineElectricityAllBills.attachAxis(axis_x)
+                        seriesLineElectricityAllBills.attachAxis(axis_y)
+
+                        for item in query_result:
+                            electricity_issue_time = QtCore.QDateTime()
+                            correct_date = datetime.datetime.strptime(f"{item[0]}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                            list_of_date_info = correct_date.split(".")
+                            bill_value_strip = item[1].strip()
+                            bill_value_string = bill_value_strip.replace(',','.')
+                            total_pay_float = float(bill_value_string)
+                            # QDate - year, month, day
+                            electricity_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+                            seriesLineElectricityAllBills.append(float(electricity_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+                        seriesLineElectricityAllBills.setColor(QtGui.QColor('#EE4540'))
+
+                        chartLineElectricityAllBills.legend().setVisible(False)            
+                        chartLineElectricityAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+                        chartLineElectricityAllBills.setTitleBrush(QBrush(Qt.white));
+
+                        self.chartviewElectricityAllBillsPlot.setChart(chartLineElectricityAllBills)
+                        self.chartviewElectricityAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+
+                        connection.commit()
+                        connection.close()
+
+                    except:
+                        self.generateMessageBox(window_title='Electricity page', msg_text='Please add electricity bills in order to view data!')
+                    self.modelElectricity = QtWidgets.QFileSystemModel()
+                    self.modelElectricity.setRootPath(electricity_path)
+                    self.ui.treeElectricityDirectory.setModel(self.modelElectricity)
+                    self.ui.treeElectricityDirectory.setRootIndex(self.modelElectricity.index(electricity_path))
+                    self.ui.treeElectricityDirectory.setSortingEnabled(True)
+                else:
+                    self.generateMessageBox(window_title='Electricity page', msg_text='Please add the earnings from the Account preferences!')
+        else:
+            self.generateMessageBox(window_title='Electricity page', msg_text='Please select the desired Electricity supplier from the Account preferences!')
+
+    # Tree view open menu
+    def contextMenuElectricity(self):
+        menu = QtWidgets.QMenu()
+        open = menu.addAction("Open")
+        delete = menu.addAction("Delete")
+        get_info = menu.addAction("Get info")
+        menu.setStyleSheet("QMenu{height: 81px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
+        open.triggered.connect(self.openFileElectricity)
+        delete.triggered.connect(self.deleteFileElectricity)
+        get_info.triggered.connect(self.getInfoElectricity)
+        cursor = QtGui.QCursor()
+        menu.exec_(cursor.pos())
+
+    def openFileElectricity(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        file_path = self.modelElectricity.filePath(index)
+        os.startfile(file_path)
+
+    def deleteFileElectricity(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        path = self.modelElectricity.filePath(index)
+        try:
+            self.bill_content = self.readBillContent(path)
+            self.enel_id_bill_to_delete = re.findall(r"ID factură:\s*([^\n\r]*)", self.bill_content)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill_to_delete,))
+
+            # Updating the dropdown menu as well
+            self.ui.comboBoxElectricityBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxElectricityBillYear.addItems(year)
+
+            connection.commit()
+            connection.close()
+            os.remove(path)
+        except:
+            directory_to_delete = os.path.basename(os.path.normpath(path))
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM enel_bills WHERE bill_year = ?",(directory_to_delete,))
+            
+            # Updating the dropdown menu as well
+            self.ui.comboBoxElectricityBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxElectricityBillYear.addItems(year)
+
+            connection.commit()
+            connection.close()
+            shutil.rmtree(path)
+
+    def getInfoElectricity(self):
+        index = self.ui.treeElectricityDirectory.currentIndex()
+        path = self.modelElectricity.filePath(index)
+        try:
+            self.bill_content = self.readBillContent(path)
+            self.enel_id_bill = re.findall(r"ID factură:\s*([^\n\r]*)", self.bill_content)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM enel_bills WHERE id_bill = ?",(self.enel_id_bill,))
+            bill_info = db_connection.fetchall()
+            earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
+            earnings = earnings_result.fetchone()[0]
+            self.ui.lblElectricityLastBillID.setText(bill_info[0][0])
+            self.ui.lblElectricityLastBillAddress.setText(bill_info[0][1])
+            self.ui.lblElectricityLastBillIssueDate.setText(datetime.datetime.strptime(f"{bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblElectricityLastBillDueDate.setText(datetime.datetime.strptime(f"{bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblElectricityLastBillTotalPay.setText(bill_info[0][4])
+            total_pay = bill_info[0][4]
+
+            #####################
+            # Try adding the chart
+            #####################
+
+            # Calculate percentage
+            bill_value_strip = total_pay.strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+
+            earnings_strip = earnings.strip()
+            earnings_float = float(earnings_strip)
+
+            bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+            remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+            # Donut Electricity chart
+            seriesDonutElectricityLastBill = QtCharts.QPieSeries()
+            seriesDonutElectricityLastBill.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutElectricityLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+            slice1.setBrush(QColor('#EE4540'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#EE4540'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutElectricityLastBill = QtCharts.QChart()
+            chartDonutElectricityLastBill.addSeries(seriesDonutElectricityLastBill)
+            chartDonutElectricityLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutElectricityLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutElectricityLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutElectricityLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutElectricityLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+   
+            self.chartviewElectricityLastBill.setChart(chartDonutElectricityLastBill)
+            self.chartviewElectricityLastBill.setRenderHint(QPainter.Antialiasing)
+
+            connection.commit()
+            connection.close()
+
+        except:
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Please select a bill from the list!')
+
+    def addElectricityBill(self):
+        enel_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
+        enel_file_path = enel_file_full_path[0]
+        self.enel_bill_content = self.readBillContent(enel_file_path)
+        # Get the year from the selected bill for ENEL and create a directory if it doesn't exist
+        try:
+            # Bill year for directory creation
+            self.enel_bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFURNIZOR Enel", self.enel_bill_content)[0].split()[0]
+            # Bill enel electricity bill data
+            self.enel_id_bill = re.findall(r"ID factură:\s*([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_address = re.findall(r"Adresa de corespondenţă\n([^\n\r]*\n[^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_client = re.findall(r"Client:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_client_code = re.findall(r"Cod Client:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_pay_code = re.findall(r"Cod plata:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_total_pay = re.findall(r"([^\n\r]*)Lei", self.enel_bill_content)[0]
+            enel_issue_date_raw = re.findall(r"([0-9]{2}.[0-9]{2}.[0-9]{4})\n\nFURNIZOR Enel", self.enel_bill_content)[0]
+            enel_due_date_raw = re.findall(r"Dată scadenţă:\s([^\n\r]*)", self.enel_bill_content)[0]
+            self.enel_issue_date = datetime.datetime.strptime(f"{enel_issue_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            self.enel_due_date = datetime.datetime.strptime(f"{enel_due_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM enel_bills WHERE id_bill = ? AND username = ?",(self.enel_id_bill, self.username))
+            if(len(result.fetchall()) > 0):
+                self.generateMessageBox(window_title='Add bill information', msg_text='The selected bill is already added!')
+                connection.commit()
+                connection.close()
+            else:
+                db_connection.execute("INSERT INTO enel_bills(username, email, bill_year, id_bill, address, client, client_code, pay_code,\
+                    total_pay, issue_date, due_date ) VALUES (?,?,?,?,?,?,?,?,?,?,?)",(self.username, self.email, self.enel_bill_year, self.enel_id_bill,\
+                    self.enel_address, self.enel_client, self.enel_client_code, self.enel_pay_code, self.enel_total_pay, self.enel_issue_date, self.enel_due_date))
+                
+                # Adding the newly inserted year in the dropdown menu as well
+                self.ui.comboBoxElectricityBillYear.clear()
+                db_connection.execute("SELECT DISTINCT bill_year FROM enel_bills WHERE username = ?",(self.username,))
+                bill_years = db_connection.fetchall()
+                for year in bill_years:
+                    self.ui.comboBoxElectricityBillYear.addItems(year)
+
+                connection.commit()
+                connection.close()
+                pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}').mkdir(parents=True, exist_ok=True)
+                enel_new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{self.enel_bill_year}'
+                shutil.copy2(enel_file_path, enel_new_file_path, follow_symlinks=True)
+                enel_issue_date_correct = datetime.datetime.strptime(f"{self.enel_issue_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                enel_due_date_correct = datetime.datetime.strptime(f"{self.enel_due_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                self.ui.lblElectricityLastBillID.setText(self.enel_id_bill)
+                self.ui.lblElectricityLastBillAddress.setText(self.enel_address)
+                self.ui.lblElectricityLastBillIssueDate.setText(enel_issue_date_correct)
+                self.ui.lblElectricityLastBillDueDate.setText(enel_due_date_correct)
+                self.ui.lblElectricityLastBillTotalPay.setText(self.enel_total_pay)
+        except:
+            self.generateMessageBox(window_title='Electricity bill', msg_text='Added electricity bill is not a(n) Enel bill!')
+
+    def plotElectricityLineChart(self):
+        selected_year = self.ui.comboBoxElectricityBillYear.currentText()
+
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        db_connection.execute("SELECT issue_date,total_pay FROM enel_bills WHERE username = ? AND bill_year = ? ORDER BY due_date ASC", (self.username, selected_year))
+        query_result = db_connection.fetchall()
+        query_result.reverse()
+
+        # Line Electricity chart
+        seriesLineElectricityAllBills = QtCharts.QLineSeries()
+         # Create Chart and set General Chart setting
+        chartLineElectricityAllBills = QtCharts.QChart()
+        chartLineElectricityAllBills.addSeries(seriesLineElectricityAllBills)        
+
+         # Setting X-axis
+        axis_x = QtCharts.QDateTimeAxis()
+        axis_x.setTickCount(12)
+        axis_x.setLabelsAngle(70)
+        axis_x.setFormat("MM.yyyy")
+        axis_x.setTitleText("Date")
+        axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+        axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+        axis_x_brush = QBrush(QColor("#EE4540"))
+        axis_x.setLabelsBrush(axis_x_brush)
+        axis_x.setTitleBrush(axis_x_brush)
+
+        # Setting Y-axis
+        axis_y = QtCharts.QValueAxis()
+        axis_y.setTickCount(5)
+        axis_y.setLabelFormat("%i")
+        axis_y.setTitleText("Bill cost [RON]")
+        axis_y.setMax(250)
+        axis_y.setMin(0)
+        axis_y_brush = QBrush(QColor("#EE4540"))
+        axis_y.setLabelsBrush(axis_y_brush)            
+        axis_y.setTitleBrush(axis_y_brush)
+
+        chartLineElectricityAllBills.addAxis(axis_x, Qt.AlignBottom)
+        chartLineElectricityAllBills.addAxis(axis_y, Qt.AlignLeft)
+        seriesLineElectricityAllBills.attachAxis(axis_x)
+        seriesLineElectricityAllBills.attachAxis(axis_y)
+
+        for item in query_result:
+            electricity_issue_time = QtCore.QDateTime()
+            correct_date = datetime.datetime.strptime(f"{item[0]}", "%Y-%m-%d").strftime("%d.%m.%Y")
+            list_of_date_info = correct_date.split(".")
+            bill_value_strip = item[1].strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+            # QDate - year, month, day
+            electricity_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+            seriesLineElectricityAllBills.append(float(electricity_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+        seriesLineElectricityAllBills.setColor(QtGui.QColor('#EE4540'))
+
+        chartLineElectricityAllBills.legend().setVisible(False)            
+        chartLineElectricityAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+        chartLineElectricityAllBills.setTitleBrush(QBrush(Qt.white));
+
+        self.chartviewElectricityAllBillsPlot.setChart(chartLineElectricityAllBills)
+        self.chartviewElectricityAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+        connection.commit()
+        connection.close()
 
     # Click on the NaturalGas button
     def naturalGasButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageNaturalGas, self.ui.btnNaturalGas, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
+        username = self.username
+        email = self.email
+        # Checking the selected Natural gas supplier
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Setting the earnings data fields from db if it exists
+        engie_result = db_connection.execute("SELECT gas_engie FROM accounts WHERE username = ?",(username,))
+        engie = engie_result.fetchone()[0]
+        cez_result = db_connection.execute("SELECT gas_cez FROM accounts WHERE username = ?",(username,))
+        cez = cez_result.fetchone()[0]
+        enel_result = db_connection.execute("SELECT gas_enel FROM accounts WHERE username = ?",(username,))
+        enel = enel_result.fetchone()[0]
+        eon_result = db_connection.execute("SELECT gas_eon FROM accounts WHERE username = ?",(username,))
+        eon = eon_result.fetchone()[0]
+        connection.commit()
+        connection.close()
+        if enel == 1 or cez == 1 or eon == 1 or engie == 1:
+            # Checking the selected Natural gas supplier else display message box
+            if engie == 1:
+                self.ui.btnNaturalGasSupplierDisplay.setStyleSheet("background-image: url(:/images/Resources/engie_supplier.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+                currpath = pathlib.Path().absolute()
+                natural_gas_path = str(currpath)+f'\\Bills\\{self.username}\\NaturalGas'
+                db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                connection = sqlite3.connect(f'{db_path}')
+                db_connection = connection.cursor()
+                earnings_result_check = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                earnings_check = earnings_result_check.fetchone()[0]
+                connection.commit()
+                connection.close()
+                # Checking if the earnings field has data else display message box
+                if earnings_check is not None:
+                    try:
+                        currpath = pathlib.Path().absolute()
+                        natural_gas_path = str(currpath)+f'\\Bills\\{self.username}\\NaturalGas'
+                        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                        connection = sqlite3.connect(f'{db_path}')
+                        db_connection = connection.cursor()
+                        db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay, bill_year FROM engie_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+                        latest_bill_info = db_connection.fetchall()
+                        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                        earnings = earnings_result.fetchone()[0]
+                        self.ui.lblNaturalGasLastBillID.setText(latest_bill_info[0][0])
+                        self.ui.lblNaturalGasLastBillAddress.setText(latest_bill_info[0][1])
+                        self.ui.lblNaturalGasLastBillIssueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblNaturalGasLastBillDueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblNaturalGasLastBillTotalPay.setText(latest_bill_info[0][4])
+                        latest_bill_year = latest_bill_info[0][5]
+
+                        # Plot the donut chart for clicking on the Natural gas page button
+                        bill_value_strip = latest_bill_info[0][4].strip()
+                        bill_value_string = bill_value_strip.replace(',','.')
+                        total_pay_float = float(bill_value_string)
+
+                        earnings_strip = earnings.strip()
+                        earnings_float = float(earnings_strip)
+
+                        bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+                        remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+                        seriesDonutNaturalGasLastBill = QtCharts.QPieSeries()
+                        seriesDonutNaturalGasLastBill.setHoleSize(0.35)
+                        slice1 = QtCharts.QPieSlice()
+                        slice1 = seriesDonutNaturalGasLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+                        slice1.setBrush(QColor('#EE4540'))
+                        slice1.setExploded()
+                        slice1.setLabelColor(QColor('#EE4540'))
+                        slice1.setLabelFont(QFont("SF UI Display", 8))
+                        slice1.setLabelVisible()
+                        slice2 = QtCharts.QPieSlice()
+                        slice2 = seriesDonutNaturalGasLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                        slice2.setBrush(QColor('#6c6e71'))
+                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelFont(QFont("SF UI Display", 8))
+                        slice2.setLabelVisible()
+                                    
+                        # Create Chart and set General Chart setting
+                        chartDonutNaturalGasLastBill = QtCharts.QChart()
+                        chartDonutNaturalGasLastBill.addSeries(seriesDonutNaturalGasLastBill)
+                        chartDonutNaturalGasLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+                        chartDonutNaturalGasLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                        chartDonutNaturalGasLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+                 
+                        chartDonutNaturalGasLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                        chartDonutNaturalGasLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+               
+                        self.chartviewNaturalGasLastBill.setChart(chartDonutNaturalGasLastBill)
+                        self.chartviewNaturalGasLastBill.setRenderHint(QPainter.Antialiasing)
+
+                        # Add plotting the line chart
+                        self.ui.comboBoxNaturalGasBillYear.clear()
+                        db_connection.execute("SELECT DISTINCT bill_year FROM engie_bills WHERE username = ?",(username,))
+                        bill_years = db_connection.fetchall()
+                        for year in bill_years:
+                            self.ui.comboBoxNaturalGasBillYear.addItems(year)
+                        
+
+                        # add here the charts
+                        selected_year = latest_bill_year
+                        self.ui.comboBoxNaturalGasBillYear.setCurrentText(selected_year)
+                        db_connection.execute("SELECT issue_date,total_pay FROM engie_bills WHERE username = ? AND bill_year = ? ORDER BY due_date ASC", (self.username, selected_year))
+                        query_result = db_connection.fetchall()
+                        query_result.reverse()
+
+                        # Line Natural gas chart
+                        seriesLineNaturalGasAllBills = QtCharts.QLineSeries()
+                         # Create Chart and set General Chart setting
+                        chartLineNaturalGasAllBills = QtCharts.QChart()
+                        chartLineNaturalGasAllBills.addSeries(seriesLineNaturalGasAllBills)        
+
+                         # Setting X-axis
+                        axis_x = QtCharts.QDateTimeAxis()
+                        axis_x.setTickCount(12)
+                        axis_x.setLabelsAngle(70)
+                        axis_x.setFormat("MM.yyyy")
+                        axis_x.setTitleText("Date")
+                        axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+                        axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+                        axis_x_brush = QBrush(QColor("#EE4540"))
+                        axis_x.setLabelsBrush(axis_x_brush)
+                        axis_x.setTitleBrush(axis_x_brush)
+
+                        # Setting Y-axis
+                        axis_y = QtCharts.QValueAxis()
+                        axis_y.setTickCount(5)
+                        axis_y.setLabelFormat("%i")
+                        axis_y.setTitleText("Bill cost [RON]")
+                        axis_y.setMax(500)
+                        axis_y.setMin(0)
+                        axis_y_brush = QBrush(QColor("#EE4540"))
+                        axis_y.setLabelsBrush(axis_y_brush)            
+                        axis_y.setTitleBrush(axis_y_brush)
+
+                        chartLineNaturalGasAllBills.addAxis(axis_x, Qt.AlignBottom)
+                        chartLineNaturalGasAllBills.addAxis(axis_y, Qt.AlignLeft)
+                        seriesLineNaturalGasAllBills.attachAxis(axis_x)
+                        seriesLineNaturalGasAllBills.attachAxis(axis_y)
+
+                        for item in query_result:
+                            natural_gas_issue_time = QtCore.QDateTime()
+                            correct_date = datetime.datetime.strptime(f"{item[0]}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                            list_of_date_info = correct_date.split(".")
+                            bill_value_strip = item[1].strip()
+                            bill_value_string = bill_value_strip.replace(',','.')
+                            total_pay_float = float(bill_value_string)
+                            # QDate - year, month, day
+                            natural_gas_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+                            seriesLineNaturalGasAllBills.append(float(natural_gas_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+                        seriesLineNaturalGasAllBills.setColor(QtGui.QColor('#EE4540'))
+
+                        chartLineNaturalGasAllBills.legend().setVisible(False)            
+                        chartLineNaturalGasAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+                        chartLineNaturalGasAllBills.setTitleBrush(QBrush(Qt.white));
+
+                        self.chartviewNaturalGasAllBillsPlot.setChart(chartLineNaturalGasAllBills)
+                        self.chartviewNaturalGasAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+
+                        connection.commit()
+                        connection.close()
+
+                    except:
+                        self.generateMessageBox(window_title='Natural Gas page', msg_text='Please add natural gas bills in order to view data!')
+                    self.modelNaturalGas = QtWidgets.QFileSystemModel()
+                    self.modelNaturalGas.setRootPath(natural_gas_path)
+                    self.ui.treeNaturalGasDirectory.setModel(self.modelNaturalGas)
+                    self.ui.treeNaturalGasDirectory.setRootIndex(self.modelNaturalGas.index(natural_gas_path))
+                    self.ui.treeNaturalGasDirectory.setSortingEnabled(True)
+                else:
+                    self.generateMessageBox(window_title='Natural Gas page', msg_text='Please add the earnings from the Account preferences!')
+        else:
+            self.generateMessageBox(window_title='Natural Gas page', msg_text='Please select the desired Natural gas supplier from the Account preferences!')
+
+    # Tree view open menu
+    def contextMenuNaturalGas(self):
+        menu = QtWidgets.QMenu()
+        open = menu.addAction("Open")
+        delete = menu.addAction("Delete")
+        get_info = menu.addAction("Get info")
+        menu.setStyleSheet("QMenu{height: 81px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
+        open.triggered.connect(self.openFileNaturalGas)
+        delete.triggered.connect(self.deleteFileNaturalGas)
+        get_info.triggered.connect(self.getInfoNaturalGas)
+        cursor = QtGui.QCursor()
+        menu.exec_(cursor.pos())
+
+    def openFileNaturalGas(self):
+        index = self.ui.treeNaturalGasDirectory.currentIndex()
+        file_path = self.modelNaturalGas.filePath(index)
+        os.startfile(file_path)
+
+    def deleteFileNaturalGas(self):
+        index = self.ui.treeNaturalGasDirectory.currentIndex()
+        path = self.modelNaturalGas.filePath(index)
+        try:
+            self.bill_content_natural_gas = self.readBillContent(path)
+            self.engie_id_bill_to_delete = re.findall(r"(\d+)(?!.*\d)+\nData facturii", self.bill_content_natural_gas)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM engie_bills WHERE id_bill = ?",(self.engie_id_bill_to_delete,))
+
+            # Updating the dropdown menu as well
+            self.ui.comboBoxNaturalGasBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM engie_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxNaturalGasBillYear.addItems(year)
+
+            connection.commit()
+            connection.close()
+            os.remove(path)
+        except:
+            directory_to_delete = os.path.basename(os.path.normpath(path))
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM engie_bills WHERE bill_year = ?",(directory_to_delete,))
+            
+            # Updating the dropdown menu as well
+            self.ui.comboBoxNaturalGasBillYear.clear()
+            db_connection.execute("SELECT DISTINCT bill_year FROM engie_bills WHERE username = ?",(self.username,))
+            bill_years = db_connection.fetchall()
+            for year in bill_years:
+                self.ui.comboBoxNaturalGasBillYear.addItems(year)
+
+            connection.commit()
+            connection.close()
+            shutil.rmtree(path)
+
+    def getInfoNaturalGas(self):
+        index = self.ui.treeNaturalGasDirectory.currentIndex()
+        path = self.modelNaturalGas.filePath(index)
+        try:
+            self.bill_content_natural_gas = self.readBillContent(path)
+            self.engie_id_bill = re.findall(r"(\d+)(?!.*\d)+\nData facturii", self.bill_content_natural_gas)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM engie_bills WHERE id_bill = ?",(self.engie_id_bill,))
+            bill_info = db_connection.fetchall()
+            earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
+            earnings = earnings_result.fetchone()[0]
+            self.ui.lblNaturalGasLastBillID.setText(bill_info[0][0])
+            self.ui.lblNaturalGasLastBillAddress.setText(bill_info[0][1])
+            self.ui.lblNaturalGasLastBillIssueDate.setText(datetime.datetime.strptime(f"{bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblNaturalGasLastBillDueDate.setText(datetime.datetime.strptime(f"{bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblNaturalGasLastBillTotalPay.setText(bill_info[0][4])
+            total_pay = bill_info[0][4]
+
+            #####################
+            # Try adding the chart
+            #####################
+
+            # Calculate percentage
+            bill_value_strip = total_pay.strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+
+            earnings_strip = earnings.strip()
+            earnings_float = float(earnings_strip)
+
+            bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+            remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+            # Donut NaturalGas chart
+            seriesDonutNaturalGasLastBill = QtCharts.QPieSeries()
+            seriesDonutNaturalGasLastBill.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutNaturalGasLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+            slice1.setBrush(QColor('#EE4540'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#EE4540'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutNaturalGasLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutNaturalGasLastBill = QtCharts.QChart()
+            chartDonutNaturalGasLastBill.addSeries(seriesDonutNaturalGasLastBill)
+            chartDonutNaturalGasLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutNaturalGasLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutNaturalGasLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutNaturalGasLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutNaturalGasLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+   
+            self.chartviewNaturalGasLastBill.setChart(chartDonutNaturalGasLastBill)
+            self.chartviewNaturalGasLastBill.setRenderHint(QPainter.Antialiasing)
+
+            connection.commit()
+            connection.close()
+
+        except:
+            self.generateMessageBox(window_title='Natural gas bill', msg_text='Please select a bill from the list!')
+
+    def addNaturalGasBill(self):
+        engie_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
+        engie_file_path = engie_file_full_path[0]
+        self.engie_bill_content = self.readBillContent(engie_file_path)
+        # Get the year from the selected bill for ENGIE and create a directory if it doesn't exist
+        try:
+            # Bill year for directory creation
+            self.engie_bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFactura transmisa", self.engie_bill_content)[0].split()[0]
+            # Bill engie natural gas bill data
+            self.engie_id_bill = re.findall(r"(\d+)(?!.*\d)+\nData facturii", self.engie_bill_content)[0]
+            self.engie_address = re.findall(r"Adresa: ([^\n\r]*\n[^\n\r]*\n[^\n\r]*)", self.engie_bill_content)[0]
+            self.engie_client = re.findall(r"Nume client:\s([^\n\r]*)", self.engie_bill_content)[0]
+            self.engie_client_code = re.findall(r"2018\n\n(\d+)(?!.*\d)", self.engie_bill_content)[0]
+            self.engie_total_pay = re.findall(r"([^\n\r]*) LEI\n\nDATA", self.engie_bill_content)[0]
+            engie_issue_date_raw = re.findall(r"([0-9]{2}.[0-9]{2}.[0-9]{4})\n\nFactura", self.engie_bill_content)[0]
+            engie_due_date_raw = re.findall(r"DATA SCADENTĂ\n\s([^\n\r]*)", self.engie_bill_content)[0]
+            self.engie_issue_date = datetime.datetime.strptime(f"{engie_issue_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            self.engie_due_date = datetime.datetime.strptime(f"{engie_due_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            # Check if the bill is already added
+            result = db_connection.execute("SELECT * FROM engie_bills WHERE id_bill = ? AND username = ?",(self.engie_id_bill, self.username))
+            if(len(result.fetchall()) > 0):
+                self.generateMessageBox(window_title='Add bill information', msg_text='The selected bill is already added!')
+                connection.commit()
+                connection.close()
+            else:
+                db_connection.execute("INSERT INTO engie_bills(username, email, bill_year, id_bill, address, client, client_code,\
+                    total_pay, issue_date, due_date ) VALUES (?,?,?,?,?,?,?,?,?,?)",(self.username, self.email, self.engie_bill_year, self.engie_id_bill,\
+                    self.engie_address, self.engie_client, self.engie_client_code, self.engie_total_pay, self.engie_issue_date, self.engie_due_date))
+                
+                # Adding the newly inserted year in the dropdown menu as well
+                self.ui.comboBoxNaturalGasBillYear.clear()
+                db_connection.execute("SELECT DISTINCT bill_year FROM engie_bills WHERE username = ?",(self.username,))
+                bill_years = db_connection.fetchall()
+                for year in bill_years:
+                    self.ui.comboBoxNaturalGasBillYear.addItems(year)
+
+                connection.commit()
+                connection.close()
+                pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{self.engie_bill_year}').mkdir(parents=True, exist_ok=True)
+                engie_new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{self.engie_bill_year}'
+                shutil.copy2(engie_file_path, engie_new_file_path, follow_symlinks=True)
+                engie_issue_date_correct = datetime.datetime.strptime(f"{self.engie_issue_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                engie_due_date_correct = datetime.datetime.strptime(f"{self.engie_due_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                self.ui.lblNaturalGasLastBillID.setText(self.engie_id_bill)
+                self.ui.lblNaturalGasLastBillAddress.setText(self.engie_address)
+                self.ui.lblNaturalGasLastBillIssueDate.setText(engie_issue_date_correct)
+                self.ui.lblNaturalGasLastBillDueDate.setText(engie_due_date_correct)
+                self.ui.lblNaturalGasLastBillTotalPay.setText(self.engie_total_pay)
+        except:
+            self.generateMessageBox(window_title='Natural gas bill', msg_text='Added natural gas bill is not a(n) Engie bill!')
+
+    def plotNaturalGasLineChart(self):
+        selected_year = self.ui.comboBoxNaturalGasBillYear.currentText()
+
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        db_connection.execute("SELECT issue_date,total_pay FROM engie_bills WHERE username = ? AND bill_year = ? ORDER BY due_date ASC", (self.username, selected_year))
+        query_result = db_connection.fetchall()
+        query_result.reverse()
+        # Line natural gas chart
+        seriesLineNaturalGasAllBills = QtCharts.QLineSeries()
+         # Create Chart and set General Chart setting
+        chartLineNaturalGasAllBills = QtCharts.QChart()
+        chartLineNaturalGasAllBills.addSeries(seriesLineNaturalGasAllBills)        
+
+         # Setting X-axis
+        axis_x = QtCharts.QDateTimeAxis()
+        axis_x.setTickCount(12)
+        axis_x.setLabelsAngle(70)
+        axis_x.setFormat("MM.yyyy")
+        axis_x.setTitleText("Date")
+        axis_x.setMin(QDate(int(f"{selected_year}"), 1 , 1))
+        axis_x.setMax(QDate(int(f"{selected_year}"), 12 , 31))        
+        axis_x_brush = QBrush(QColor("#EE4540"))
+        axis_x.setLabelsBrush(axis_x_brush)
+        axis_x.setTitleBrush(axis_x_brush)
+
+        # Setting Y-axis
+        axis_y = QtCharts.QValueAxis()
+        axis_y.setTickCount(5)
+        axis_y.setLabelFormat("%i")
+        axis_y.setTitleText("Bill cost [RON]")
+        axis_y.setMax(500)
+        axis_y.setMin(0)
+        axis_y_brush = QBrush(QColor("#EE4540"))
+        axis_y.setLabelsBrush(axis_y_brush)            
+        axis_y.setTitleBrush(axis_y_brush)
+
+        chartLineNaturalGasAllBills.addAxis(axis_x, Qt.AlignBottom)
+        chartLineNaturalGasAllBills.addAxis(axis_y, Qt.AlignLeft)
+        seriesLineNaturalGasAllBills.attachAxis(axis_x)
+        seriesLineNaturalGasAllBills.attachAxis(axis_y)
+
+        for item in query_result:
+            natural_gas_issue_time = QtCore.QDateTime()
+            correct_date = datetime.datetime.strptime(f"{item[0]}", "%Y-%m-%d").strftime("%d.%m.%Y")
+            list_of_date_info = correct_date.split(".")
+            bill_value_strip = item[1].strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+            # QDate - year, month, day
+            natural_gas_issue_time.setDate(QDate(int(f"{list_of_date_info[2]}"), int(f"{list_of_date_info[1]}") , int(f"{list_of_date_info[0]}")))
+            seriesLineNaturalGasAllBills.append(float(natural_gas_issue_time.toMSecsSinceEpoch()), total_pay_float)
+
+        seriesLineNaturalGasAllBills.setColor(QtGui.QColor('#EE4540'))
+
+        chartLineNaturalGasAllBills.legend().setVisible(False)            
+        chartLineNaturalGasAllBills.setBackgroundBrush(QBrush(QColor("transparent")))
+        chartLineNaturalGasAllBills.setTitleBrush(QBrush(Qt.white));
+
+        self.chartviewNaturalGasAllBillsPlot.setChart(chartLineNaturalGasAllBills)
+        self.chartviewNaturalGasAllBillsPlot.setRenderHint(QPainter.Antialiasing)
+        connection.commit()
+        connection.close()
 
     # Click on the InternetTV button
     def internetTVButton(self):
@@ -181,7 +1152,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the electricity field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET electricity_enel = 1,\
                                 electricity_cez = 0,\
                                 electricity_eon = 0,\
@@ -197,7 +1168,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the natural gas field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET gas_engie = 1,\
                                 gas_cez = 0,\
                                 gas_eon = 0,\
@@ -213,7 +1184,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the internet field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET internet_rds = 1,\
                                 internet_upc = 0,\
                                 internet_telekom = 0,\
@@ -229,7 +1200,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_netflix = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
@@ -241,7 +1212,7 @@ class MainWindow(QMainWindow):
         db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
         connection = sqlite3.connect(f'{db_path}')
         db_connection = connection.cursor()
-        # Updating the earnings field for the logged in user in the db
+        # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_spotify = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
@@ -249,18 +1220,17 @@ class MainWindow(QMainWindow):
     def mainBillyDashboard(self):
         # Animate left side menu upon pressing the main logo button and focus on Dashboard
         self.ui.frameMenuContent.setGeometry(250, 250, 0, 670)
-        self.animation9 = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
-        self.animation9.setDuration(700)
-        self.animation9.setEndValue(QRect(0, 250, 200, 670))
-        self.animation9.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation9.start()
+        self.animation2 = QPropertyAnimation(self.ui.frameMenuContent, b"geometry")
+        self.animation2.setDuration(500)
+        self.animation2.setEndValue(QRect(0, 250, 200, 670))
+        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
+        self.animation2.start()
         MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
 
     def usernameProfilePage(self):
         mainButtonsList = [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions]
         for button in mainButtonsList:
             button.setChecked(False)
-        # self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
         MainWindow.profilePage(self)
 
     # Profile Page content and buttons
@@ -269,48 +1239,13 @@ class MainWindow(QMainWindow):
         for button in mainButtonsList:
             button.setChecked(False)
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
-        # Animate profile frame
-        self.ui.profileName.setGeometry(30, 80, 0, 130)
-        self.animation1 = QPropertyAnimation(self.ui.profileName, b"geometry")
-        self.animation1.setDuration(800)
-        self.animation1.setEndValue(QRect(30, 80, 731, 130))
+        # Animate profile page
+        self.ui.pageProfile.setGeometry(0, 0, 0, 861)
+        self.animation1 = QPropertyAnimation(self.ui.pageProfile, b"geometry")
+        self.animation1.setDuration(400)
+        self.animation1.setEndValue(QRect(0, 0, 1091, 861))
         self.animation1.setEasingCurve(QtCore.QEasingCurve.InOutSine)
         self.animation1.start()
-        # Animate electricity supplier frame
-        self.ui.electricitySupplier.setGeometry(30, 230, 0, 140)
-        self.animation2 = QPropertyAnimation(self.ui.electricitySupplier, b"geometry")
-        self.animation2.setDuration(800)
-        self.animation2.setEndValue(QRect(30, 230, 1050, 140))
-        self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation2.start()
-        # Animate natural gas supplier frame
-        self.ui.naturalGasSupplier.setGeometry(30, 390, 0, 140)
-        self.animation3 = QPropertyAnimation(self.ui.naturalGasSupplier, b"geometry")
-        self.animation3.setDuration(800)
-        self.animation3.setEndValue(QRect(30, 390, 1050, 140))
-        self.animation3.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation3.start()
-        # Animate internet provider frame
-        self.ui.internetProvider.setGeometry(30, 550, 0, 140)
-        self.animation4 = QPropertyAnimation(self.ui.internetProvider, b"geometry")
-        self.animation4.setDuration(800)
-        self.animation4.setEndValue(QRect(30, 550, 1050, 140))
-        self.animation4.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation4.start()
-        # Animate earnings frame
-        self.ui.earnings.setGeometry(780, 80, 0, 130)
-        self.animation5 = QPropertyAnimation(self.ui.earnings, b"geometry")
-        self.animation5.setDuration(800)
-        self.animation5.setEndValue(QRect(780, 80, 300, 130))
-        self.animation5.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation5.start()
-        # Animate subscriptions frame
-        self.ui.subscriptionsPage.setGeometry(30, 710, 0, 140)
-        self.animation8 = QPropertyAnimation(self.ui.subscriptionsPage, b"geometry")
-        self.animation8.setDuration(800)
-        self.animation8.setEndValue(QRect(30, 710, 530, 140))
-        self.animation8.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation8.start()
 
     def setAccountInformation(self):
         if self.ui.txtEarnings.text() == '':

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_auth_uihGBxyx.ui'
+## Form generated from reading UI file 'billy_auth_uizjhSpz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -12,8 +12,6 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-from main_app import *
-
 import billy_app_qrc
 
 class Ui_BillyAuth(object):
@@ -23,7 +21,8 @@ class Ui_BillyAuth(object):
         BillyAuth.resize(531, 800)
         self.mainAuthWidget = QWidget(BillyAuth)
         self.mainAuthWidget.setObjectName(u"mainAuthWidget")
-        self.mainAuthWidget.setStyleSheet(u"background-color: rgb(32, 37, 40);")
+        self.mainAuthWidget.setStyleSheet(u"background-color: rgb(32, 37, 40);\n"
+"outline: none;")
         self.verticalLayout = QVBoxLayout(self.mainAuthWidget)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
@@ -381,3 +380,4 @@ class Ui_BillyAuth(object):
         self.btnSignUp.setText(QCoreApplication.translate("BillyAuth", u"Sign Up", None))
         self.lblAppVersion.setText(QCoreApplication.translate("BillyAuth", u"v1.0", None))
     # retranslateUi
+

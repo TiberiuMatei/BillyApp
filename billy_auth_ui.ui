@@ -15,7 +15,8 @@
   </property>
   <widget class="QWidget" name="mainAuthWidget">
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(32, 37, 40);</string>
+    <string notr="true">background-color: rgb(32, 37, 40);
+outline: none;</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
