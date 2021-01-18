@@ -19,6 +19,7 @@ from pdfminer3.converter import PDFPageAggregator
 from pdfminer3.converter import TextConverter
 import io
 import re
+import speedtest
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -70,6 +71,13 @@ class MainWindow(QMainWindow):
         self.laylineNaturalGasAllBills.setContentsMargins(0, 0, 0, 0)
         self.chartviewNaturalGasAllBillsPlot = QtCharts.QChartView()
         self.laylineNaturalGasAllBills.addWidget(self.chartviewNaturalGasAllBillsPlot)
+
+        # Internet TV page chart widgets
+        self.laydonutInternetTVLastBill = QtWidgets.QVBoxLayout(self.ui.donutInternetTVLastBill)
+        self.ui.donutInternetTVLastBill.setContentsMargins(0, 0, 0, 0)
+        self.laydonutInternetTVLastBill.setContentsMargins(0, 0, 0, 0)
+        self.chartviewInternetTVLastBill = QtCharts.QChartView()
+        self.laydonutInternetTVLastBill.addWidget(self.chartviewInternetTVLastBill)
         
 
         # Initializing existing profile page data from db
@@ -92,6 +100,18 @@ class MainWindow(QMainWindow):
             [due_date] date)")
         # Creating the engie electricity table
         connection.execute("CREATE TABLE IF NOT EXISTS engie_bills([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [bill_year] text,\
+            [id_bill] text,\
+            [address] text,\
+            [client] text,\
+            [client_code] text,\
+            [total_pay] text,\
+            [issue_date] date,\
+            [due_date] date)")
+        # Creating the digi internet tv table
+        connection.execute("CREATE TABLE IF NOT EXISTS digi_bills([id_counter] integer PRIMARY KEY,\
             [username] text,\
             [email] text,\
             [bill_year] text,\
@@ -198,12 +218,20 @@ class MainWindow(QMainWindow):
         self.ui.treeNaturalGasDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.ui.treeNaturalGasDirectory.customContextMenuRequested.connect(self.contextMenuNaturalGas)
 
+        self.ui.treeInternetTVDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.ui.treeInternetTVDirectory.customContextMenuRequested.connect(self.contextMenuInternetTV)
+
         # Electricity page buttons
         self.ui.btnAddElectricityBill.clicked.connect(self.addElectricityBill)
         self.ui.comboBoxElectricityBillYear.currentIndexChanged.connect(self.plotElectricityLineChart)
 
+        # Natural gas buttons
         self.ui.btnAddNaturalGasBill.clicked.connect(self.addNaturalGasBill)
         self.ui.comboBoxNaturalGasBillYear.currentIndexChanged.connect(self.plotNaturalGasLineChart)
+
+        # Internet TV buttons
+        self.ui.btnAddInternetTVBill.clicked.connect(self.addInternetTVBill)
+        self.ui.btnTestInternetSpeed.clicked.connect(self.testInternetSpeed)
 
         qtRectangle = self.frameGeometry()
         centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
@@ -804,9 +832,7 @@ class MainWindow(QMainWindow):
                         bill_years = db_connection.fetchall()
                         for year in bill_years:
                             self.ui.comboBoxNaturalGasBillYear.addItems(year)
-                        
 
-                        # add here the charts
                         selected_year = latest_bill_year
                         self.ui.comboBoxNaturalGasBillYear.setCurrentText(selected_year)
                         db_connection.execute("SELECT issue_date,total_pay FROM engie_bills WHERE username = ? AND bill_year = ? ORDER BY due_date ASC", (self.username, selected_year))
@@ -1139,6 +1165,292 @@ class MainWindow(QMainWindow):
     def internetTVButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageInternetTV, self.ui.btnInternetTV, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnSubscriptions])
+
+        username = self.username
+        email = self.email
+        # Checking the selected Natural gas supplier
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Setting the earnings data fields from db if it exists
+        digi_result = db_connection.execute("SELECT internet_rds FROM accounts WHERE username = ?",(username,))
+        digi = digi_result.fetchone()[0]
+        upc_result = db_connection.execute("SELECT internet_upc FROM accounts WHERE username = ?",(username,))
+        upc = upc_result.fetchone()[0]
+        telekom_result = db_connection.execute("SELECT internet_telekom FROM accounts WHERE username = ?",(username,))
+        telekom = telekom_result.fetchone()[0]
+        gts_result = db_connection.execute("SELECT internet_gts FROM accounts WHERE username = ?",(username,))
+        gts = gts_result.fetchone()[0]
+        connection.commit()
+        connection.close()
+        if digi == 1 or upc == 1 or telekom == 1 or gts == 1:
+            # Checking the selected Natural gas supplier else display message box
+            if digi == 1:
+                self.ui.btnInternetProviderDisplay.setStyleSheet("background-image: url(:/images/Resources/rcsrds_supplier.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+                currpath = pathlib.Path().absolute()
+                internet_tv_path = str(currpath)+f'\\Bills\\{self.username}\\InternetTV'
+                db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                connection = sqlite3.connect(f'{db_path}')
+                db_connection = connection.cursor()
+                earnings_result_check = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                earnings_check = earnings_result_check.fetchone()[0]
+                connection.commit()
+                connection.close()
+                # Checking if the earnings field has data else display message box
+                if earnings_check is not None:
+                    try:
+                        currpath = pathlib.Path().absolute()
+                        internet_tv_path = str(currpath)+f'\\Bills\\{self.username}\\InternetTV'
+                        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+                        connection = sqlite3.connect(f'{db_path}')
+                        db_connection = connection.cursor()
+                        db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay, bill_year FROM digi_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+                        latest_bill_info = db_connection.fetchall()
+                        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+                        earnings = earnings_result.fetchone()[0]
+                        self.ui.lblInternetTVLastBillID.setText(latest_bill_info[0][0])
+                        self.ui.lblInternetTVLastBillAddress.setText(latest_bill_info[0][1])
+                        self.ui.lblInternetTVLastBillIssueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblInternetTVLastBillDueDate.setText(datetime.datetime.strptime(f"{latest_bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+                        self.ui.lblInternetTVLastBillTotalPay.setText(latest_bill_info[0][4])
+                        latest_bill_year = latest_bill_info[0][5]
+
+                        # Plot the donut chart for clicking on the Natural gas page button
+                        bill_value_strip = latest_bill_info[0][4].strip()
+                        bill_value_string = bill_value_strip.replace(',','.')
+                        total_pay_float = float(bill_value_string)
+
+                        earnings_strip = earnings.strip()
+                        earnings_float = float(earnings_strip)
+
+                        bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+                        remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+                        seriesDonutInternetTVLastBill = QtCharts.QPieSeries()
+                        seriesDonutInternetTVLastBill.setHoleSize(0.35)
+                        slice1 = QtCharts.QPieSlice()
+                        slice1 = seriesDonutInternetTVLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+                        slice1.setBrush(QColor('#EE4540'))
+                        slice1.setExploded()
+                        slice1.setLabelColor(QColor('#EE4540'))
+                        slice1.setLabelFont(QFont("SF UI Display", 8))
+                        slice1.setLabelVisible()
+
+                        slice2 = QtCharts.QPieSlice()
+                        slice2 = seriesDonutInternetTVLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                        slice2.setBrush(QColor('#6c6e71'))
+                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelFont(QFont("SF UI Display", 8))
+                        slice2.setLabelVisible()
+                                    
+                        # Create Chart and set General Chart setting
+                        chartDonutInternetTVLastBill = QtCharts.QChart()
+                        chartDonutInternetTVLastBill.addSeries(seriesDonutInternetTVLastBill)
+                        chartDonutInternetTVLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+                        chartDonutInternetTVLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                        chartDonutInternetTVLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+                 
+                        chartDonutInternetTVLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                        chartDonutInternetTVLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+               
+                        self.chartviewInternetTVLastBill.setChart(chartDonutInternetTVLastBill)
+                        self.chartviewInternetTVLastBill.setRenderHint(QPainter.Antialiasing)
+                        connection.commit()
+                        connection.close()
+
+                    except:
+                        self.generateMessageBox(window_title='InternetTV page', msg_text='Please add internet tv bills in order to view data!')
+                    self.modelInternetTV = QtWidgets.QFileSystemModel()
+                    self.modelInternetTV.setRootPath(internet_tv_path)
+                    self.ui.treeInternetTVDirectory.setModel(self.modelInternetTV)
+                    self.ui.treeInternetTVDirectory.setRootIndex(self.modelInternetTV.index(internet_tv_path))
+                    self.ui.treeInternetTVDirectory.setSortingEnabled(True)
+                else:
+                    self.generateMessageBox(window_title='InternetTV page', msg_text='Please add the earnings from the Account preferences!')
+        else:
+            self.generateMessageBox(window_title='InternetTV page', msg_text='Please select the desired InternetTV provider from the Account preferences!')
+
+    # Tree view open menu
+    def contextMenuInternetTV(self):
+        menu = QtWidgets.QMenu()
+        open = menu.addAction("Open")
+        delete = menu.addAction("Delete")
+        get_info = menu.addAction("Get info")
+        menu.setStyleSheet("QMenu{height: 81px; width: 80px; background-color: #2a2e32;} QMenu::item {height: 25px; width: 80px; font-family: \"SF UI Display\"; font-size: 10pt; color: #f3f5f6;} QMenu::item:selected {height: 25px; width: 80px; background-color: #EE4540; color: #f3f5f6;}")
+        open.triggered.connect(self.openFileInternetTV)
+        delete.triggered.connect(self.deleteFileInternetTV)
+        get_info.triggered.connect(self.getInfoInternetTV)
+        cursor = QtGui.QCursor()
+        menu.exec_(cursor.pos())
+
+    def openFileInternetTV(self):
+        index = self.ui.treeInternetTVDirectory.currentIndex()
+        file_path = self.modelInternetTV.filePath(index)
+        os.startfile(file_path)
+
+    def deleteFileInternetTV(self):
+        index = self.ui.treeInternetTVDirectory.currentIndex()
+        path = self.modelInternetTV.filePath(index)
+        try:
+            self.bill_content_internet_tv = self.readBillContent(path)
+            self.digi_id_bill_to_delete = re.findall(r"plată:\n\n.*/.(\d+)(?!.*\d)+\n", self.bill_content_internet_tv)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM digi_bills WHERE id_bill = ?",(self.digi_id_bill_to_delete,))
+
+            connection.commit()
+            connection.close()
+            os.remove(path)
+        except:
+            directory_to_delete = os.path.basename(os.path.normpath(path))
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("DELETE FROM digi_bills WHERE bill_year = ?",(directory_to_delete,))
+
+            connection.commit()
+            connection.close()
+            shutil.rmtree(path)
+
+    def getInfoInternetTV(self):
+        index = self.ui.treeInternetTVDirectory.currentIndex()
+        path = self.modelInternetTV.filePath(index)
+        try:
+            self.bill_content_internet_tv = self.readBillContent(path)
+            self.digi_id_bill = re.findall(r"plată:\n\n.*/.(\d+)(?!.*\d)+\n", self.bill_content_internet_tv)[0]
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            db_connection.execute("SELECT id_bill, address, issue_date, due_date, total_pay FROM digi_bills WHERE id_bill = ?",(self.digi_id_bill,))
+            bill_info = db_connection.fetchall()
+            earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
+            earnings = earnings_result.fetchone()[0]
+            self.ui.lblInternetTVLastBillID.setText(bill_info[0][0])
+            self.ui.lblInternetTVLastBillAddress.setText(bill_info[0][1])
+            self.ui.lblInternetTVLastBillIssueDate.setText(datetime.datetime.strptime(f"{bill_info[0][2]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblInternetTVLastBillDueDate.setText(datetime.datetime.strptime(f"{bill_info[0][3]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.lblInternetTVLastBillTotalPay.setText(bill_info[0][4])
+            total_pay = bill_info[0][4]
+
+            #####################
+            # Try adding the chart
+            #####################
+
+            # Calculate percentage
+            bill_value_strip = total_pay.strip()
+            bill_value_string = bill_value_strip.replace(',','.')
+            total_pay_float = float(bill_value_string)
+
+            earnings_strip = earnings.strip()
+            earnings_float = float(earnings_strip)
+
+            bill_percentage = round((total_pay_float/earnings_float)*100, 2)
+            remaining_earnings_percentage = round(100 - bill_percentage, 2)
+
+            # Donut Internet TV chart
+            seriesDonutInternetTVLastBill = QtCharts.QPieSeries()
+            seriesDonutInternetTVLastBill.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutInternetTVLastBill.append(f"Bill {bill_percentage}%", bill_percentage+25)
+            slice1.setBrush(QColor('#EE4540'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#EE4540'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutInternetTVLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutInternetTVLastBill = QtCharts.QChart()
+            chartDonutInternetTVLastBill.addSeries(seriesDonutInternetTVLastBill)
+            chartDonutInternetTVLastBill.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutInternetTVLastBill.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutInternetTVLastBill.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutInternetTVLastBill.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutInternetTVLastBill.setBackgroundBrush(QBrush(QColor("transparent")))
+   
+            self.chartviewInternetTVLastBill.setChart(chartDonutInternetTVLastBill)
+            self.chartviewInternetTVLastBill.setRenderHint(QPainter.Antialiasing)
+
+            connection.commit()
+            connection.close()
+
+        except:
+            self.generateMessageBox(window_title='InternetTV bill', msg_text='Please select a bill from the list!')
+
+    def addInternetTVBill(self):
+        digi_file_full_path = QFileDialog.getOpenFileName(self, 'OpenFile')
+        digi_file_path = digi_file_full_path[0]
+        self.digi_bill_content = self.readBillContent(digi_file_path)
+        # Get the year from the selected bill for DIGI and create a directory if it doesn't exist
+        try:
+            # Bill year for directory creation
+            self.digi_bill_year = re.search(r"(\d+)(?!.*\d)\n\nProduse si", self.digi_bill_content)[0].split()[0]
+            # Bill digi internet tv bill data
+            self.digi_id_bill = re.findall(r"plată:\n\n.*/.(\d+)(?!.*\d)+\n", self.digi_bill_content)[0]
+            self.digi_address = re.findall(r"([^\n\r]*\n[^\n\r]*\n[^\n\r]*)\nJudet", self.digi_bill_content)[0]
+            self.digi_client = re.findall(r"Cod client:\n.*\n.*\n.*\n\s([^\n\r]*)", self.digi_bill_content)[0]
+            self.digi_client_code = re.findall(r"Cod client:\n.*\n.*\s([^\n\r]*)", self.digi_bill_content)[0][0]
+            self.digi_total_pay = re.findall(r"Total de achitat:\n\n([^\n\r]*)", self.digi_bill_content)[0]
+            digi_issue_date_raw = re.findall(r"plată:\n\n.*\n([0-9]{2}.[0-9]{2}.[0-9]{4})", self.digi_bill_content)[0]
+            digi_due_date_raw = re.findall(r"([0-9]{2}.[0-9]{2}.[0-9]{4})\n\nProduse si", self.digi_bill_content)[0]
+            self.digi_issue_date = datetime.datetime.strptime(f"{digi_issue_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            self.digi_due_date = datetime.datetime.strptime(f"{digi_due_date_raw}", "%d.%m.%Y").strftime("%Y-%m-%d")
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            # Check if the bill is already added
+            result = db_connection.execute("SELECT * FROM digi_bills WHERE id_bill = ? AND username = ?",(self.digi_id_bill, self.username))
+            if(len(result.fetchall()) > 0):
+                self.generateMessageBox(window_title='Add bill information', msg_text='The selected bill is already added!')
+                connection.commit()
+                connection.close()
+            else:
+                db_connection.execute("INSERT INTO digi_bills(username, email, bill_year, id_bill, address, client, client_code,\
+                    total_pay, issue_date, due_date ) VALUES (?,?,?,?,?,?,?,?,?,?)",(self.username, self.email, self.digi_bill_year, self.digi_id_bill,\
+                    self.digi_address, self.digi_client, self.digi_client_code, self.digi_total_pay, self.digi_issue_date, self.digi_due_date))
+
+                connection.commit()
+                connection.close()
+                pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{self.digi_bill_year}').mkdir(parents=True, exist_ok=True)
+                digi_new_file_path = str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{self.digi_bill_year}'
+                shutil.copy2(digi_file_path, digi_new_file_path, follow_symlinks=True)
+                digi_issue_date_correct = datetime.datetime.strptime(f"{self.digi_issue_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                digi_due_date_correct = datetime.datetime.strptime(f"{self.digi_due_date}", "%Y-%m-%d").strftime("%d.%m.%Y")
+                self.ui.lblInternetTVLastBillID.setText(self.digi_id_bill)
+                self.ui.lblInternetTVLastBillAddress.setText(self.digi_address)
+                self.ui.lblInternetTVLastBillIssueDate.setText(digi_issue_date_correct)
+                self.ui.lblInternetTVLastBillDueDate.setText(digi_due_date_correct)
+                self.ui.lblInternetTVLastBillTotalPay.setText(self.digi_total_pay)
+        except:
+            self.generateMessageBox(window_title='InternetTV bill', msg_text='Added internet tv bill is not a(n) DIGI bill!')
+
+    def testInternetSpeed(self):
+        s = speedtest.Speedtest()
+        s.get_servers()
+        s.get_best_server()
+        s.download()
+        s.upload()
+        res = s.results.dict()
+        self.ui.lblTestInternetPingData.setText('{} ms'.format(res["ping"]))
+        self.ui.lblTestInternetDownloadData.setText('{:.2f} Mb/s'.format(res["download"] / 1024/1024))
+        self.ui.lblTestInternetUploadData.setText('{:.2f} Mb/s'.format(res["upload"] / 1024/1024))
 
     # Click on the Subscriptions button
     def subscriptionsButton(self):
