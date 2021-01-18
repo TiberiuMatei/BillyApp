@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uisPtaLQ.ui'
+## Form generated from reading UI file 'billy_uiLPFJMh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -561,7 +561,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
         self.treeElectricityDirectory = QTreeView(self.electricityDirectoryFrame)
         self.treeElectricityDirectory.setObjectName(u"treeElectricityDirectory")
-        self.treeElectricityDirectory.setGeometry(QRect(10, 81, 581, 231))
+        self.treeElectricityDirectory.setGeometry(QRect(10, 81, 581, 224))
         self.treeElectricityDirectory.setMaximumSize(QSize(16777215, 300))
         self.treeElectricityDirectory.setFont(font3)
         self.treeElectricityDirectory.setStyleSheet(u"QTreeView {\n"
@@ -847,7 +847,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
         self.treeNaturalGasDirectory = QTreeView(self.naturalGasDirectoryFrame)
         self.treeNaturalGasDirectory.setObjectName(u"treeNaturalGasDirectory")
-        self.treeNaturalGasDirectory.setGeometry(QRect(10, 81, 581, 231))
+        self.treeNaturalGasDirectory.setGeometry(QRect(10, 81, 581, 224))
         self.treeNaturalGasDirectory.setMaximumSize(QSize(16777215, 300))
         self.treeNaturalGasDirectory.setFont(font3)
         self.treeNaturalGasDirectory.setStyleSheet(u"QTreeView {\n"
@@ -1063,6 +1063,301 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVTitle.setFont(font5)
         self.lblInternetTVTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblInternetTVTitle.setTextFormat(Qt.MarkdownText)
+        self.internetProviderSelection = QFrame(self.pageInternetTV)
+        self.internetProviderSelection.setObjectName(u"internetProviderSelection")
+        self.internetProviderSelection.setGeometry(QRect(20, 70, 401, 71))
+        self.internetProviderSelection.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.internetProviderSelection.setFrameShape(QFrame.StyledPanel)
+        self.internetProviderSelection.setFrameShadow(QFrame.Raised)
+        self.lblInternetProviderSelection = QLabel(self.internetProviderSelection)
+        self.lblInternetProviderSelection.setObjectName(u"lblInternetProviderSelection")
+        self.lblInternetProviderSelection.setGeometry(QRect(20, 10, 201, 21))
+        self.lblInternetProviderSelection.setFont(font6)
+        self.lblInternetProviderSelection.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetProviderSelectionInfo = QLabel(self.internetProviderSelection)
+        self.lblInternetProviderSelectionInfo.setObjectName(u"lblInternetProviderSelectionInfo")
+        self.lblInternetProviderSelectionInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblInternetProviderSelectionInfo.setFont(font3)
+        self.lblInternetProviderSelectionInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnInternetProviderDisplay = QPushButton(self.internetProviderSelection)
+        self.btnInternetProviderDisplay.setObjectName(u"btnInternetProviderDisplay")
+        self.btnInternetProviderDisplay.setEnabled(False)
+        self.btnInternetProviderDisplay.setGeometry(QRect(230, 10, 151, 50))
+        self.btnInternetProviderDisplay.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnInternetProviderDisplay.setFocusPolicy(Qt.StrongFocus)
+        self.btnInternetProviderDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnInternetProviderDisplay.setStyleSheet(u"background-color: #202528;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;")
+        self.btnInternetProviderDisplay.setCheckable(True)
+        self.btnInternetProviderDisplay.setChecked(False)
+        self.btnInternetProviderDisplay.setAutoDefault(True)
+        self.btnInternetProviderDisplay.setFlat(True)
+        self.internetTVDirectoryFrame = QFrame(self.pageInternetTV)
+        self.internetTVDirectoryFrame.setObjectName(u"internetTVDirectoryFrame")
+        self.internetTVDirectoryFrame.setGeometry(QRect(20, 160, 601, 381))
+        self.internetTVDirectoryFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.internetTVDirectoryFrame.setFrameShape(QFrame.StyledPanel)
+        self.internetTVDirectoryFrame.setFrameShadow(QFrame.Raised)
+        self.lblInternetTVDirectoryInfo = QLabel(self.internetTVDirectoryFrame)
+        self.lblInternetTVDirectoryInfo.setObjectName(u"lblInternetTVDirectoryInfo")
+        self.lblInternetTVDirectoryInfo.setGeometry(QRect(20, 40, 251, 16))
+        self.lblInternetTVDirectoryInfo.setFont(font3)
+        self.lblInternetTVDirectoryInfo.setStyleSheet(u"color: #6c6e71;")
+        self.treeInternetTVDirectory = QTreeView(self.internetTVDirectoryFrame)
+        self.treeInternetTVDirectory.setObjectName(u"treeInternetTVDirectory")
+        self.treeInternetTVDirectory.setGeometry(QRect(10, 81, 581, 224))
+        self.treeInternetTVDirectory.setMaximumSize(QSize(16777215, 300))
+        self.treeInternetTVDirectory.setFont(font3)
+        self.treeInternetTVDirectory.setStyleSheet(u"QTreeView {\n"
+"    background: #2a2e32;\n"
+"   color: #f3f5f6;\n"
+"}\n"
+"QTreeView::item:open {\n"
+"   background-color: #EE4540;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"QTreeView::item:hover {\n"
+"   background-color: #6c6e71;\n"
+"}\n"
+"QTreeView::item:selected {\n"
+"   background-color: #C72C41;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"QTreeView::branch:open {\n"
+"   image: url(:/images/Resources/branch-open.png);\n"
+"}\n"
+"QTreeView::branch:closed:has-children {    \n"
+"   image: url(:/images/Resources/branch-closed.png);\n"
+"}\n"
+"QTreeView::branch:hover {\n"
+"   background-color: #6c6e71;\n"
+"}\n"
+"QHeaderView::section {\n"
+"   font-family: \"SF UI Display\";\n"
+"   font-size: 10pt;\n"
+"    background-color: #2a2e32;\n"
+"    color: #f3f5f6;\n"
+"}\n"
+"")
+        self.treeInternetTVDirectory.setSortingEnabled(True)
+        self.addInternetTVBillFrame = QFrame(self.internetTVDirectoryFrame)
+        self.addInternetTVBillFrame.setObjectName(u"addInternetTVBillFrame")
+        self.addInternetTVBillFrame.setGeometry(QRect(10, 320, 591, 60))
+        self.addInternetTVBillFrame.setMaximumSize(QSize(16777215, 60))
+        self.addInternetTVBillFrame.setStyleSheet(u"")
+        self.addInternetTVBillFrame.setFrameShape(QFrame.StyledPanel)
+        self.addInternetTVBillFrame.setFrameShadow(QFrame.Raised)
+        self.btnAddInternetTVBill = QPushButton(self.addInternetTVBillFrame)
+        self.btnAddInternetTVBill.setObjectName(u"btnAddInternetTVBill")
+        self.btnAddInternetTVBill.setGeometry(QRect(510, 0, 75, 50))
+        self.btnAddInternetTVBill.setFont(font1)
+        self.btnAddInternetTVBill.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnAddInternetTVBill.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnAddInternetTVBill.setAutoDefault(True)
+        self.btnAddInternetTVBill.setFlat(True)
+        self.lblInternetTVDirectory = QLabel(self.internetTVDirectoryFrame)
+        self.lblInternetTVDirectory.setObjectName(u"lblInternetTVDirectory")
+        self.lblInternetTVDirectory.setGeometry(QRect(20, 10, 161, 23))
+        self.lblInternetTVDirectory.setMaximumSize(QSize(200, 16777215))
+        self.lblInternetTVDirectory.setFont(font6)
+        self.lblInternetTVDirectory.setStyleSheet(u"color: #f3f5f6;")
+        self.internetTVLastBillData = QFrame(self.pageInternetTV)
+        self.internetTVLastBillData.setObjectName(u"internetTVLastBillData")
+        self.internetTVLastBillData.setGeometry(QRect(640, 160, 441, 281))
+        self.internetTVLastBillData.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.internetTVLastBillData.setFrameShape(QFrame.StyledPanel)
+        self.internetTVLastBillData.setFrameShadow(QFrame.Raised)
+        self.lblInternetTVLastBilltipID = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBilltipID.setObjectName(u"lblInternetTVLastBilltipID")
+        self.lblInternetTVLastBilltipID.setGeometry(QRect(20, 70, 166, 16))
+        self.lblInternetTVLastBilltipID.setFont(font3)
+        self.lblInternetTVLastBilltipID.setStyleSheet(u"color: #6c6e71;")
+        self.lblInternetTVLastBillI = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBillI.setObjectName(u"lblInternetTVLastBillI")
+        self.lblInternetTVLastBillI.setGeometry(QRect(20, 10, 291, 23))
+        self.lblInternetTVLastBillI.setMaximumSize(QSize(500, 16777215))
+        self.lblInternetTVLastBillI.setFont(font6)
+        self.lblInternetTVLastBillI.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetTVLastBillID = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBillID.setObjectName(u"lblInternetTVLastBillID")
+        self.lblInternetTVLastBillID.setGeometry(QRect(20, 40, 391, 31))
+        self.lblInternetTVLastBillID.setFont(font7)
+        self.lblInternetTVLastBillID.setStyleSheet(u"color: #EE4540;")
+        self.lblInternetTVLastBillAddress = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBillAddress.setObjectName(u"lblInternetTVLastBillAddress")
+        self.lblInternetTVLastBillAddress.setGeometry(QRect(20, 100, 401, 51))
+        self.lblInternetTVLastBillAddress.setFont(font8)
+        self.lblInternetTVLastBillAddress.setStyleSheet(u"color: #EE4540;")
+        self.lblInternetTVLastBilltipAddress = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBilltipAddress.setObjectName(u"lblInternetTVLastBilltipAddress")
+        self.lblInternetTVLastBilltipAddress.setGeometry(QRect(20, 140, 166, 16))
+        self.lblInternetTVLastBilltipAddress.setFont(font3)
+        self.lblInternetTVLastBilltipAddress.setStyleSheet(u"color: #6c6e71;")
+        self.lblInternetTVLastBillIssueDate = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBillIssueDate.setObjectName(u"lblInternetTVLastBillIssueDate")
+        self.lblInternetTVLastBillIssueDate.setGeometry(QRect(20, 170, 301, 31))
+        self.lblInternetTVLastBillIssueDate.setFont(font7)
+        self.lblInternetTVLastBillIssueDate.setStyleSheet(u"color: #EE4540;")
+        self.lblInternetTVLastBilltipIssueDate = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBilltipIssueDate.setObjectName(u"lblInternetTVLastBilltipIssueDate")
+        self.lblInternetTVLastBilltipIssueDate.setGeometry(QRect(20, 200, 166, 16))
+        self.lblInternetTVLastBilltipIssueDate.setFont(font3)
+        self.lblInternetTVLastBilltipIssueDate.setStyleSheet(u"color: #6c6e71;")
+        self.lblInternetTVLastBillDueDate = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBillDueDate.setObjectName(u"lblInternetTVLastBillDueDate")
+        self.lblInternetTVLastBillDueDate.setGeometry(QRect(20, 230, 301, 31))
+        self.lblInternetTVLastBillDueDate.setFont(font7)
+        self.lblInternetTVLastBillDueDate.setStyleSheet(u"color: #EE4540;")
+        self.lblInternetTVLastBilltipDueDate = QLabel(self.internetTVLastBillData)
+        self.lblInternetTVLastBilltipDueDate.setObjectName(u"lblInternetTVLastBilltipDueDate")
+        self.lblInternetTVLastBilltipDueDate.setGeometry(QRect(20, 260, 166, 16))
+        self.lblInternetTVLastBilltipDueDate.setFont(font3)
+        self.lblInternetTVLastBilltipDueDate.setStyleSheet(u"color: #6c6e71;")
+        self.internetTVLastBillTotalPay = QFrame(self.pageInternetTV)
+        self.internetTVLastBillTotalPay.setObjectName(u"internetTVLastBillTotalPay")
+        self.internetTVLastBillTotalPay.setGeometry(QRect(640, 460, 441, 81))
+        self.internetTVLastBillTotalPay.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #C72C41;;\n"
+"}")
+        self.internetTVLastBillTotalPay.setFrameShape(QFrame.StyledPanel)
+        self.internetTVLastBillTotalPay.setFrameShadow(QFrame.Raised)
+        self.lblInternetTVLastBillTotalPayInfo = QLabel(self.internetTVLastBillTotalPay)
+        self.lblInternetTVLastBillTotalPayInfo.setObjectName(u"lblInternetTVLastBillTotalPayInfo")
+        self.lblInternetTVLastBillTotalPayInfo.setGeometry(QRect(20, 10, 331, 23))
+        self.lblInternetTVLastBillTotalPayInfo.setMaximumSize(QSize(500, 16777215))
+        self.lblInternetTVLastBillTotalPayInfo.setFont(font6)
+        self.lblInternetTVLastBillTotalPayInfo.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetTVLastBillTotalPay = QLabel(self.internetTVLastBillTotalPay)
+        self.lblInternetTVLastBillTotalPay.setObjectName(u"lblInternetTVLastBillTotalPay")
+        self.lblInternetTVLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
+        self.lblInternetTVLastBillTotalPay.setFont(font7)
+        self.lblInternetTVLastBillTotalPay.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetTVBillCurrency = QLabel(self.internetTVLastBillTotalPay)
+        self.lblInternetTVBillCurrency.setObjectName(u"lblInternetTVBillCurrency")
+        self.lblInternetTVBillCurrency.setGeometry(QRect(20, 40, 61, 31))
+        self.lblInternetTVBillCurrency.setFont(font9)
+        self.lblInternetTVBillCurrency.setStyleSheet(u"color: #2a2e32;")
+        self.internetTVLastBill = QFrame(self.pageInternetTV)
+        self.internetTVLastBill.setObjectName(u"internetTVLastBill")
+        self.internetTVLastBill.setGeometry(QRect(20, 560, 391, 311))
+        self.internetTVLastBill.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.internetTVLastBill.setFrameShape(QFrame.StyledPanel)
+        self.internetTVLastBill.setFrameShadow(QFrame.Raised)
+        self.lblInternetTVLastBillPlotTitle = QLabel(self.internetTVLastBill)
+        self.lblInternetTVLastBillPlotTitle.setObjectName(u"lblInternetTVLastBillPlotTitle")
+        self.lblInternetTVLastBillPlotTitle.setGeometry(QRect(20, 10, 341, 23))
+        self.lblInternetTVLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
+        self.lblInternetTVLastBillPlotTitle.setFont(font6)
+        self.lblInternetTVLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
+        self.donutInternetTVLastBill = QWidget(self.internetTVLastBill)
+        self.donutInternetTVLastBill.setObjectName(u"donutInternetTVLastBill")
+        self.donutInternetTVLastBill.setGeometry(QRect(0, 40, 391, 271))
+        self.donutInternetTVLastBill.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
+        self.internetSpeedtest = QFrame(self.pageInternetTV)
+        self.internetSpeedtest.setObjectName(u"internetSpeedtest")
+        self.internetSpeedtest.setGeometry(QRect(430, 560, 651, 311))
+        self.internetSpeedtest.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"   background-image: url(:/images/Resources/internet-speed.png);\n"
+"}")
+        self.internetSpeedtest.setFrameShape(QFrame.StyledPanel)
+        self.internetSpeedtest.setFrameShadow(QFrame.Raised)
+        self.lblTestInternetSpeed = QLabel(self.internetSpeedtest)
+        self.lblTestInternetSpeed.setObjectName(u"lblTestInternetSpeed")
+        self.lblTestInternetSpeed.setGeometry(QRect(20, 10, 181, 23))
+        self.lblTestInternetSpeed.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetSpeed.setFont(font6)
+        self.lblTestInternetSpeed.setStyleSheet(u"color: #f3f5f6;")
+        self.btnTestInternetSpeed = QPushButton(self.internetSpeedtest)
+        self.btnTestInternetSpeed.setObjectName(u"btnTestInternetSpeed")
+        self.btnTestInternetSpeed.setGeometry(QRect(30, 240, 111, 50))
+        self.btnTestInternetSpeed.setFont(font1)
+        self.btnTestInternetSpeed.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnTestInternetSpeed.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnTestInternetSpeed.setAutoDefault(True)
+        self.btnTestInternetSpeed.setFlat(True)
+        self.lblTestInternetPing = QLabel(self.internetSpeedtest)
+        self.lblTestInternetPing.setObjectName(u"lblTestInternetPing")
+        self.lblTestInternetPing.setGeometry(QRect(70, 75, 51, 23))
+        self.lblTestInternetPing.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetPing.setFont(font6)
+        self.lblTestInternetPing.setStyleSheet(u"color: #C72C41;")
+        self.lblTestInternetDownload = QLabel(self.internetSpeedtest)
+        self.lblTestInternetDownload.setObjectName(u"lblTestInternetDownload")
+        self.lblTestInternetDownload.setGeometry(QRect(70, 130, 101, 23))
+        self.lblTestInternetDownload.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetDownload.setFont(font6)
+        self.lblTestInternetDownload.setStyleSheet(u"color: #C72C41;")
+        self.lblTestInternetUpload = QLabel(self.internetSpeedtest)
+        self.lblTestInternetUpload.setObjectName(u"lblTestInternetUpload")
+        self.lblTestInternetUpload.setGeometry(QRect(70, 185, 71, 23))
+        self.lblTestInternetUpload.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetUpload.setFont(font6)
+        self.lblTestInternetUpload.setStyleSheet(u"color: #C72C41;")
+        self.lblTestInternetPingData = QLabel(self.internetSpeedtest)
+        self.lblTestInternetPingData.setObjectName(u"lblTestInternetPingData")
+        self.lblTestInternetPingData.setGeometry(QRect(125, 75, 181, 23))
+        self.lblTestInternetPingData.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetPingData.setFont(font6)
+        self.lblTestInternetPingData.setStyleSheet(u"color: #f3f5f6;")
+        self.lblTestInternetDownloadData = QLabel(self.internetSpeedtest)
+        self.lblTestInternetDownloadData.setObjectName(u"lblTestInternetDownloadData")
+        self.lblTestInternetDownloadData.setGeometry(QRect(175, 130, 151, 23))
+        self.lblTestInternetDownloadData.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetDownloadData.setFont(font6)
+        self.lblTestInternetDownloadData.setStyleSheet(u"color: #f3f5f6;")
+        self.lblTestInternetUploadData = QLabel(self.internetSpeedtest)
+        self.lblTestInternetUploadData.setObjectName(u"lblTestInternetUploadData")
+        self.lblTestInternetUploadData.setGeometry(QRect(150, 185, 181, 23))
+        self.lblTestInternetUploadData.setMaximumSize(QSize(500, 16777215))
+        self.lblTestInternetUploadData.setFont(font6)
+        self.lblTestInternetUploadData.setStyleSheet(u"color: #f3f5f6;")
+        self.lblInternetSpeedAdditionalInfo = QLabel(self.internetSpeedtest)
+        self.lblInternetSpeedAdditionalInfo.setObjectName(u"lblInternetSpeedAdditionalInfo")
+        self.lblInternetSpeedAdditionalInfo.setGeometry(QRect(20, 37, 291, 16))
+        self.lblInternetSpeedAdditionalInfo.setFont(font3)
+        self.lblInternetSpeedAdditionalInfo.setStyleSheet(u"color: #6c6e71;")
         self.stackedWidget.addWidget(self.pageInternetTV)
         self.pageSubscriptions = QWidget()
         self.pageSubscriptions.setObjectName(u"pageSubscriptions")
@@ -1553,6 +1848,9 @@ class Ui_BillyAppMain(object):
         self.btnAddElectricityBill.setDefault(False)
         self.btnNaturalGasSupplierDisplay.setDefault(False)
         self.btnAddNaturalGasBill.setDefault(False)
+        self.btnInternetProviderDisplay.setDefault(False)
+        self.btnAddInternetTVBill.setDefault(False)
+        self.btnTestInternetSpeed.setDefault(False)
         self.btnSetProfileName.setDefault(False)
         self.btnEnelSelection.setDefault(False)
         self.btnEngieSelection.setDefault(False)
@@ -1630,6 +1928,34 @@ class Ui_BillyAppMain(object):
         self.comboBoxNaturalGasBillYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.comboBoxNaturalGasBillYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.lblInternetTVTitle.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV", None))
+        self.lblInternetProviderSelection.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV Provider", None))
+        self.lblInternetProviderSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected internet & TV provider", None))
+        self.btnInternetProviderDisplay.setText("")
+        self.lblInternetTVDirectoryInfo.setText(QCoreApplication.translate("BillyAppMain", u"Management of added internet & TV bills", None))
+        self.btnAddInternetTVBill.setText(QCoreApplication.translate("BillyAppMain", u"Add", None))
+        self.lblInternetTVDirectory.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV Bills", None))
+        self.lblInternetTVLastBilltipID.setText(QCoreApplication.translate("BillyAppMain", u"ID", None))
+        self.lblInternetTVLastBillI.setText(QCoreApplication.translate("BillyAppMain", u"Bill info", None))
+        self.lblInternetTVLastBillID.setText("")
+        self.lblInternetTVLastBillAddress.setText("")
+        self.lblInternetTVLastBilltipAddress.setText(QCoreApplication.translate("BillyAppMain", u"Address", None))
+        self.lblInternetTVLastBillIssueDate.setText("")
+        self.lblInternetTVLastBilltipIssueDate.setText(QCoreApplication.translate("BillyAppMain", u"Issue Date", None))
+        self.lblInternetTVLastBillDueDate.setText("")
+        self.lblInternetTVLastBilltipDueDate.setText(QCoreApplication.translate("BillyAppMain", u"Due date", None))
+        self.lblInternetTVLastBillTotalPayInfo.setText(QCoreApplication.translate("BillyAppMain", u"Bill amount to pay", None))
+        self.lblInternetTVLastBillTotalPay.setText("")
+        self.lblInternetTVBillCurrency.setText(QCoreApplication.translate("BillyAppMain", u"RON", None))
+        self.lblInternetTVLastBillPlotTitle.setText(QCoreApplication.translate("BillyAppMain", u"Bill impact on earnings", None))
+        self.lblTestInternetSpeed.setText(QCoreApplication.translate("BillyAppMain", u"Test Internet Speed", None))
+        self.btnTestInternetSpeed.setText(QCoreApplication.translate("BillyAppMain", u"Test", None))
+        self.lblTestInternetPing.setText(QCoreApplication.translate("BillyAppMain", u"Ping", None))
+        self.lblTestInternetDownload.setText(QCoreApplication.translate("BillyAppMain", u"Download", None))
+        self.lblTestInternetUpload.setText(QCoreApplication.translate("BillyAppMain", u"Upload", None))
+        self.lblTestInternetPingData.setText("")
+        self.lblTestInternetDownloadData.setText("")
+        self.lblTestInternetUploadData.setText("")
+        self.lblInternetSpeedAdditionalInfo.setText(QCoreApplication.translate("BillyAppMain", u"Running this test will take a couple of seconds", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
         self.lblAccountPreferences.setText(QCoreApplication.translate("BillyAppMain", u"Account preferences", None))
         self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
