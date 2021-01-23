@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiLPFJMh.ui'
+## Form generated from reading UI file 'billy_uiwThoRG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -499,6 +499,196 @@ class Ui_BillyAppMain(object):
         self.lblCalendarTitle.setFont(font5)
         self.lblCalendarTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblCalendarTitle.setTextFormat(Qt.MarkdownText)
+        self.calendarFrame = QFrame(self.pageCalendar)
+        self.calendarFrame.setObjectName(u"calendarFrame")
+        self.calendarFrame.setGeometry(QRect(20, 70, 1061, 691))
+        self.calendarFrame.setFrameShape(QFrame.StyledPanel)
+        self.calendarFrame.setFrameShadow(QFrame.Raised)
+        self.calendarWidget = QCalendarWidget(self.calendarFrame)
+        self.calendarWidget.setObjectName(u"calendarWidget")
+        self.calendarWidget.setGeometry(QRect(0, 0, 1061, 691))
+        self.calendarWidget.setStyleSheet(u"QCalendarWidget QToolButton {\n"
+"height: 50 px;\n"
+"color: #C72C41;\n"
+"font-size: 20px;\n"
+"font-family: \"SF UI Display\";\n"
+"icon-size: 30px,30px;\n"
+"selection-background-color: #202528;\n"
+"selection-color: #C72C41;\n"
+"}\n"
+"\n"
+"QCalendarWidget QWidget {\n"
+"   alternate-background-color: #272b2f;\n"
+"   font-size:20px;\n"
+"   font-family: \"SF UI Display\";\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #f3f5f6;\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:enabled{\n"
+"   font-size: 20px;\n"
+"   font-family: \"SF UI Display\";\n"
+"   color: #f3f5f6;\n"
+"   selection-color: #f3f5f6;\n"
+"   selection-background-color: #202528;\n"
+"}\n"
+"\n"
+" QCalendarWidget QSpinBox {\n"
+"   color:#b6b7b7;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"   font-size:20px;\n"
+"   font-family: \"SF UI Display\";\n"
+"   background-color: #202528;\n"
+"}\n"
+"\n"
+"QCalendarWidget QSpinBox::up-button {\n"
+"   subcontrol-origin: border;  subcontrol-position: top right;  width:65px;\n"
+"}\n"
+"QCal"
+                        "endarWidget QSpinBox::down-button {\n"
+"   subcontrol-origin: border; subcontrol-position: bottom right;  width:65px;\n"
+"}\n"
+"QCalendarWidget QSpinBox::up-arrow {\n"
+"   width:30px;  height:30px;\n"
+"}\n"
+"QCalendarWidget QSpinBox::down-arrow {\n"
+"   width:30px;  height:30px;\n"
+"}\n"
+"\n"
+"QCalendarWidget QWidget#qt_calendar_prevmonth\n"
+"{\n"
+"  qproperty-icon: url(:/images/Resources/prev_month.png);\n"
+"}\n"
+"\n"
+"QCalendarWidget QWidget#qt_calendar_nextmonth\n"
+"{\n"
+"   qproperty-icon: url(:/images/Resources/next_month.png);\n"
+"}\n"
+"")
+        self.calendarWidget.setFirstDayOfWeek(Qt.Monday)
+        self.calendarWidget.setGridVisible(True)
+        self.calendarWidget.setSelectionMode(QCalendarWidget.NoSelection)
+        self.calendarWidget.setVerticalHeaderFormat(QCalendarWidget.NoVerticalHeader)
+        self.calendarWidget.setNavigationBarVisible(True)
+        self.calendarWidget.setDateEditEnabled(True)
+        self.calendarLegendFrame = QFrame(self.pageCalendar)
+        self.calendarLegendFrame.setObjectName(u"calendarLegendFrame")
+        self.calendarLegendFrame.setGeometry(QRect(20, 780, 1071, 91))
+        self.calendarLegendFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.calendarLegendFrame.setFrameShape(QFrame.StyledPanel)
+        self.calendarLegendFrame.setFrameShadow(QFrame.Raised)
+        self.electricityLegendIssueColor = QPushButton(self.calendarLegendFrame)
+        self.electricityLegendIssueColor.setObjectName(u"electricityLegendIssueColor")
+        self.electricityLegendIssueColor.setEnabled(False)
+        self.electricityLegendIssueColor.setGeometry(QRect(10, 10, 330, 31))
+        self.electricityLegendIssueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.electricityLegendIssueColor.setFocusPolicy(Qt.StrongFocus)
+        self.electricityLegendIssueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.electricityLegendIssueColor.setStyleSheet(u"background-color: #a2ded0;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.electricityLegendIssueColor.setCheckable(True)
+        self.electricityLegendIssueColor.setChecked(False)
+        self.electricityLegendIssueColor.setAutoDefault(True)
+        self.electricityLegendIssueColor.setFlat(True)
+        self.electricityLegendDueColor = QPushButton(self.calendarLegendFrame)
+        self.electricityLegendDueColor.setObjectName(u"electricityLegendDueColor")
+        self.electricityLegendDueColor.setEnabled(False)
+        self.electricityLegendDueColor.setGeometry(QRect(10, 50, 330, 31))
+        self.electricityLegendDueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.electricityLegendDueColor.setFocusPolicy(Qt.StrongFocus)
+        self.electricityLegendDueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.electricityLegendDueColor.setStyleSheet(u"background-color: #00b16a;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.electricityLegendDueColor.setCheckable(True)
+        self.electricityLegendDueColor.setChecked(False)
+        self.electricityLegendDueColor.setAutoDefault(True)
+        self.electricityLegendDueColor.setFlat(True)
+        self.naturalGasLegendIssueColor = QPushButton(self.calendarLegendFrame)
+        self.naturalGasLegendIssueColor.setObjectName(u"naturalGasLegendIssueColor")
+        self.naturalGasLegendIssueColor.setEnabled(False)
+        self.naturalGasLegendIssueColor.setGeometry(QRect(370, 10, 330, 31))
+        self.naturalGasLegendIssueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.naturalGasLegendIssueColor.setFocusPolicy(Qt.StrongFocus)
+        self.naturalGasLegendIssueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.naturalGasLegendIssueColor.setStyleSheet(u"background-color: #6bb9f0;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.naturalGasLegendIssueColor.setCheckable(True)
+        self.naturalGasLegendIssueColor.setChecked(False)
+        self.naturalGasLegendIssueColor.setAutoDefault(True)
+        self.naturalGasLegendIssueColor.setFlat(True)
+        self.naturalGasLegendDueColor = QPushButton(self.calendarLegendFrame)
+        self.naturalGasLegendDueColor.setObjectName(u"naturalGasLegendDueColor")
+        self.naturalGasLegendDueColor.setEnabled(False)
+        self.naturalGasLegendDueColor.setGeometry(QRect(370, 50, 330, 31))
+        self.naturalGasLegendDueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.naturalGasLegendDueColor.setFocusPolicy(Qt.StrongFocus)
+        self.naturalGasLegendDueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.naturalGasLegendDueColor.setStyleSheet(u"background-color: #5333ed;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.naturalGasLegendDueColor.setCheckable(True)
+        self.naturalGasLegendDueColor.setChecked(False)
+        self.naturalGasLegendDueColor.setAutoDefault(True)
+        self.naturalGasLegendDueColor.setFlat(True)
+        self.internetTVLegendIssueColor = QPushButton(self.calendarLegendFrame)
+        self.internetTVLegendIssueColor.setObjectName(u"internetTVLegendIssueColor")
+        self.internetTVLegendIssueColor.setEnabled(False)
+        self.internetTVLegendIssueColor.setGeometry(QRect(730, 10, 330, 31))
+        self.internetTVLegendIssueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.internetTVLegendIssueColor.setFocusPolicy(Qt.StrongFocus)
+        self.internetTVLegendIssueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.internetTVLegendIssueColor.setStyleSheet(u"background-color: #f1a9a0;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.internetTVLegendIssueColor.setCheckable(True)
+        self.internetTVLegendIssueColor.setChecked(False)
+        self.internetTVLegendIssueColor.setAutoDefault(True)
+        self.internetTVLegendIssueColor.setFlat(True)
+        self.internetTVLegendDueColor = QPushButton(self.calendarLegendFrame)
+        self.internetTVLegendDueColor.setObjectName(u"internetTVLegendDueColor")
+        self.internetTVLegendDueColor.setEnabled(False)
+        self.internetTVLegendDueColor.setGeometry(QRect(730, 50, 330, 31))
+        self.internetTVLegendDueColor.setCursor(QCursor(Qt.PointingHandCursor))
+        self.internetTVLegendDueColor.setFocusPolicy(Qt.StrongFocus)
+        self.internetTVLegendDueColor.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.internetTVLegendDueColor.setStyleSheet(u"background-color: #ec644b;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"font-size: 15px;\n"
+"font-family: \"SF UI Display\";\n"
+"color: #202528;")
+        self.internetTVLegendDueColor.setCheckable(True)
+        self.internetTVLegendDueColor.setChecked(False)
+        self.internetTVLegendDueColor.setAutoDefault(True)
+        self.internetTVLegendDueColor.setFlat(True)
         self.stackedWidget.addWidget(self.pageCalendar)
         self.pageElectricity = QWidget()
         self.pageElectricity.setObjectName(u"pageElectricity")
@@ -1844,6 +2034,12 @@ class Ui_BillyAppMain(object):
         self.retranslateUi(BillyAppMain)
 
         self.btnDashboard.setDefault(False)
+        self.electricityLegendIssueColor.setDefault(False)
+        self.electricityLegendDueColor.setDefault(False)
+        self.naturalGasLegendIssueColor.setDefault(False)
+        self.naturalGasLegendDueColor.setDefault(False)
+        self.internetTVLegendIssueColor.setDefault(False)
+        self.internetTVLegendDueColor.setDefault(False)
         self.btnElectricitySupplierDisplay.setDefault(False)
         self.btnAddElectricityBill.setDefault(False)
         self.btnNaturalGasSupplierDisplay.setDefault(False)
@@ -1881,6 +2077,12 @@ class Ui_BillyAppMain(object):
         self.btnClose.setText("")
         self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
+        self.electricityLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Issue Day", None))
+        self.electricityLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Due Day", None))
+        self.naturalGasLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas Issue Day", None))
+        self.naturalGasLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas Due Day", None))
+        self.internetTVLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Internet TV Issue Day", None))
+        self.internetTVLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Internet TV Due Day", None))
         self.lblElectricityTitle.setText(QCoreApplication.translate("BillyAppMain", u"Electricity", None))
         self.lblElectricitySupplierSelection.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Supplier", None))
         self.lblElectricitySupplierSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Selected electricity supplier", None))

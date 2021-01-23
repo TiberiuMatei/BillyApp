@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/prev_month.png</file>
+    <file>Resources/next_month.png</file>
     <file>Resources/branch-closed.png</file>
     <file>Resources/bill_total_pay.png</file>
     <file>Resources/internet-speed.png</file>

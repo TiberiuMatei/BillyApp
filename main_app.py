@@ -205,6 +205,7 @@ class MainWindow(QMainWindow):
         # Profile page buttons
         self.ui.btnSetProfileName.clicked.connect(self.setAccountInformation)
         self.ui.txtEarnings.returnPressed.connect(self.setAccountInformation)
+
         self.ui.btnEnelSelection.clicked.connect(self.setElectricitySupplierEnel)
         self.ui.btnEngieSelection.clicked.connect(self.setNaturalGasSupplierEngie)
         self.ui.btnRCSRDSSelection.clicked.connect(self.setInternetProviderRCSRDS)
@@ -290,6 +291,66 @@ class MainWindow(QMainWindow):
     def calendarButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageCalendar, self.ui.btnCalendar, [self.ui.btnDashboard, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+        
+        calendar = self.ui.calendarWidget
+        # Check if there is available data to display
+        username = self.username
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+
+        db_connection.execute("SELECT issue_date, due_date FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        electricity_bill_data = db_connection.fetchall()
+        if (electricity_bill_data != []):
+            electricity_issue_date_raw = electricity_bill_data[0][0]
+            electricity_due_date_raw = electricity_bill_data[0][1]
+
+            electricity_issue_date = QtCore.QDate.fromString(electricity_issue_date_raw, "yyyy-MM-dd")
+            cell_format_electricity_issue_date = QtGui.QTextCharFormat()
+            cell_format_electricity_issue_date.setBackground(QtGui.QColor("#a2ded0"))
+            calendar.setDateTextFormat(electricity_issue_date, cell_format_electricity_issue_date)
+
+            electricity_due_date = QtCore.QDate.fromString(electricity_due_date_raw, "yyyy-MM-dd")
+            cell_format_electricity_due_date = QtGui.QTextCharFormat()
+            cell_format_electricity_due_date.setBackground(QtGui.QColor("#00b16a"))
+            calendar.setDateTextFormat(electricity_due_date, cell_format_electricity_due_date)
+
+        db_connection.execute("SELECT issue_date, due_date FROM engie_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        natural_gas_bill_data = db_connection.fetchall()
+        if (natural_gas_bill_data != []):
+            natural_gas_issue_date_raw = natural_gas_bill_data[0][0]
+            natural_gas_due_date_raw = natural_gas_bill_data[0][1]
+
+            natural_gas_issue_date = QtCore.QDate.fromString(natural_gas_issue_date_raw, "yyyy-MM-dd")
+            cell_format_natural_gas_issue_date = QtGui.QTextCharFormat()
+            cell_format_natural_gas_issue_date.setBackground(QtGui.QColor("#6bb9f0"))
+            calendar.setDateTextFormat(natural_gas_issue_date, cell_format_natural_gas_issue_date)
+
+            natural_gas_due_date = QtCore.QDate.fromString(natural_gas_due_date_raw, "yyyy-MM-dd")
+            cell_format_natural_gas_due_date = QtGui.QTextCharFormat()
+            cell_format_natural_gas_due_date.setBackground(QtGui.QColor("#5333ed"))
+            calendar.setDateTextFormat(natural_gas_due_date, cell_format_natural_gas_due_date)
+
+        db_connection.execute("SELECT issue_date, due_date FROM digi_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        internet_tv_bill_data = db_connection.fetchall()
+        if (internet_tv_bill_data != []):
+            internet_tv_issue_date_raw = internet_tv_bill_data[0][0]
+            internet_tv_due_date_raw = internet_tv_bill_data[0][1]
+
+            internet_tv_issue_date = QtCore.QDate.fromString(internet_tv_issue_date_raw, "yyyy-MM-dd")
+            cell_format_internet_tv_issue_date = QtGui.QTextCharFormat()
+            cell_format_internet_tv_issue_date.setBackground(QtGui.QColor("#f1a9a0"))
+            calendar.setDateTextFormat(internet_tv_issue_date, cell_format_internet_tv_issue_date)
+
+            internet_tv_due_date = QtCore.QDate.fromString(internet_tv_due_date_raw, "yyyy-MM-dd")
+            cell_format_internet_tv_due_date = QtGui.QTextCharFormat()
+            cell_format_internet_tv_due_date.setBackground(QtGui.QColor("#ec644b"))
+            calendar.setDateTextFormat(internet_tv_due_date, cell_format_internet_tv_due_date)
+
+        connection.commit()
+        connection.close()
+
 
     # Click on the Electricity button
     def electricityButton(self):
@@ -1551,13 +1612,6 @@ class MainWindow(QMainWindow):
         for button in mainButtonsList:
             button.setChecked(False)
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageProfile)
-        # Animate profile page
-        self.ui.pageProfile.setGeometry(0, 0, 0, 861)
-        self.animation1 = QPropertyAnimation(self.ui.pageProfile, b"geometry")
-        self.animation1.setDuration(400)
-        self.animation1.setEndValue(QRect(0, 0, 1091, 861))
-        self.animation1.setEasingCurve(QtCore.QEasingCurve.InOutSine)
-        self.animation1.start()
 
     def setAccountInformation(self):
         if self.ui.txtEarnings.text() == '':
