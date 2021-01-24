@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiJAjcsH.ui'
+## Form generated from reading UI file 'billy_uifOYlGP.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -513,7 +513,7 @@ class Ui_BillyAppMain(object):
 "font-size: 20px;\n"
 "font-family: \"SF UI Display\";\n"
 "icon-size: 30px,30px;\n"
-"selection-background-color: #202528;\n"
+"selection-background-color: #C72C41;\n"
 "selection-color: #C72C41;\n"
 "}\n"
 "\n"
@@ -521,7 +521,7 @@ class Ui_BillyAppMain(object):
 "   alternate-background-color: #272b2f;\n"
 "   font-size:20px;\n"
 "   font-family: \"SF UI Display\";\n"
-"   selection-background-color: #202528;\n"
+"   selection-background-color: #C72C41;\n"
 "   selection-color: #f3f5f6;\n"
 "}\n"
 "\n"
@@ -530,7 +530,7 @@ class Ui_BillyAppMain(object):
 "   font-family: \"SF UI Display\";\n"
 "   color: #f3f5f6;\n"
 "   selection-color: #f3f5f6;\n"
-"   selection-background-color: #202528;\n"
+"   selection-background-color: #C72C41;\n"
 "}\n"
 "\n"
 " QCalendarWidget QSpinBox {\n"
@@ -724,7 +724,7 @@ class Ui_BillyAppMain(object):
         self.btnElectricitySupplierDisplay.setObjectName(u"btnElectricitySupplierDisplay")
         self.btnElectricitySupplierDisplay.setEnabled(False)
         self.btnElectricitySupplierDisplay.setGeometry(QRect(210, 10, 151, 50))
-        self.btnElectricitySupplierDisplay.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnElectricitySupplierDisplay.setCursor(QCursor(Qt.ArrowCursor))
         self.btnElectricitySupplierDisplay.setFocusPolicy(Qt.StrongFocus)
         self.btnElectricitySupplierDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.btnElectricitySupplierDisplay.setStyleSheet(u"background-color: #202528;\n"
@@ -1010,7 +1010,7 @@ class Ui_BillyAppMain(object):
         self.btnNaturalGasSupplierDisplay.setObjectName(u"btnNaturalGasSupplierDisplay")
         self.btnNaturalGasSupplierDisplay.setEnabled(False)
         self.btnNaturalGasSupplierDisplay.setGeometry(QRect(220, 10, 151, 50))
-        self.btnNaturalGasSupplierDisplay.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnNaturalGasSupplierDisplay.setCursor(QCursor(Qt.ArrowCursor))
         self.btnNaturalGasSupplierDisplay.setFocusPolicy(Qt.StrongFocus)
         self.btnNaturalGasSupplierDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.btnNaturalGasSupplierDisplay.setStyleSheet(u"background-color: #202528;\n"
@@ -1276,7 +1276,7 @@ class Ui_BillyAppMain(object):
         self.btnInternetProviderDisplay.setObjectName(u"btnInternetProviderDisplay")
         self.btnInternetProviderDisplay.setEnabled(False)
         self.btnInternetProviderDisplay.setGeometry(QRect(230, 10, 151, 50))
-        self.btnInternetProviderDisplay.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnInternetProviderDisplay.setCursor(QCursor(Qt.ArrowCursor))
         self.btnInternetProviderDisplay.setFocusPolicy(Qt.StrongFocus)
         self.btnInternetProviderDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.btnInternetProviderDisplay.setStyleSheet(u"background-color: #202528;\n"
@@ -1557,6 +1557,565 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsTitle.setFont(font5)
         self.lblSubscriptionsTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblSubscriptionsTitle.setTextFormat(Qt.MarkdownText)
+        self.netflixSelection = QFrame(self.pageSubscriptions)
+        self.netflixSelection.setObjectName(u"netflixSelection")
+        self.netflixSelection.setGeometry(QRect(20, 70, 571, 251))
+        self.netflixSelection.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.netflixSelection.setFrameShape(QFrame.StyledPanel)
+        self.netflixSelection.setFrameShadow(QFrame.Raised)
+        self.lblNetflixSelection = QLabel(self.netflixSelection)
+        self.lblNetflixSelection.setObjectName(u"lblNetflixSelection")
+        self.lblNetflixSelection.setGeometry(QRect(20, 10, 201, 21))
+        self.lblNetflixSelection.setFont(font6)
+        self.lblNetflixSelection.setStyleSheet(u"color: #f3f5f6;")
+        self.lblNetflixSelectionInfo = QLabel(self.netflixSelection)
+        self.lblNetflixSelectionInfo.setObjectName(u"lblNetflixSelectionInfo")
+        self.lblNetflixSelectionInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblNetflixSelectionInfo.setFont(font3)
+        self.lblNetflixSelectionInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnNetflixDisplay = QPushButton(self.netflixSelection)
+        self.btnNetflixDisplay.setObjectName(u"btnNetflixDisplay")
+        self.btnNetflixDisplay.setEnabled(True)
+        self.btnNetflixDisplay.setGeometry(QRect(180, 10, 371, 50))
+        self.btnNetflixDisplay.setCursor(QCursor(Qt.ArrowCursor))
+        self.btnNetflixDisplay.setFocusPolicy(Qt.StrongFocus)
+        self.btnNetflixDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnNetflixDisplay.setStyleSheet(u"background-color: #202528;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"background-image: url(:/images/Resources/netflix_sub_selection.png);")
+        self.btnNetflixDisplay.setCheckable(True)
+        self.btnNetflixDisplay.setChecked(False)
+        self.btnNetflixDisplay.setAutoDefault(True)
+        self.btnNetflixDisplay.setFlat(True)
+        self.txtNetflixPayment = QLineEdit(self.netflixSelection)
+        self.txtNetflixPayment.setObjectName(u"txtNetflixPayment")
+        self.txtNetflixPayment.setGeometry(QRect(170, 140, 121, 35))
+        self.txtNetflixPayment.setFont(font8)
+        self.txtNetflixPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.comboBoxNetflixDay = QComboBox(self.netflixSelection)
+        self.comboBoxNetflixDay.setObjectName(u"comboBoxNetflixDay")
+        self.comboBoxNetflixDay.setGeometry(QRect(250, 80, 70, 35))
+        self.comboBoxNetflixDay.setFont(font3)
+        self.comboBoxNetflixDay.setStyleSheet(u"QComboBox { \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxNetflixDay.setEditable(False)
+        self.comboBoxNetflixDay.setMinimumContentsLength(0)
+        self.comboBoxNetflixMonth = QComboBox(self.netflixSelection)
+        self.comboBoxNetflixMonth.setObjectName(u"comboBoxNetflixMonth")
+        self.comboBoxNetflixMonth.setGeometry(QRect(330, 80, 70, 35))
+        self.comboBoxNetflixMonth.setFont(font3)
+        self.comboBoxNetflixMonth.setStyleSheet(u"QComboBox {   \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxNetflixMonth.setEditable(False)
+        self.comboBoxNetflixYear = QComboBox(self.netflixSelection)
+        self.comboBoxNetflixYear.setObjectName(u"comboBoxNetflixYear")
+        self.comboBoxNetflixYear.setGeometry(QRect(410, 80, 70, 35))
+        self.comboBoxNetflixYear.setFont(font3)
+        self.comboBoxNetflixYear.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxNetflixYear.setEditable(False)
+        self.btnSetNetflixData = QPushButton(self.netflixSelection)
+        self.btnSetNetflixData.setObjectName(u"btnSetNetflixData")
+        self.btnSetNetflixData.setGeometry(QRect(470, 140, 75, 35))
+        self.btnSetNetflixData.setFont(font1)
+        self.btnSetNetflixData.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnSetNetflixData.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnSetNetflixData.setAutoDefault(True)
+        self.btnSetNetflixData.setFlat(True)
+        self.lblNetflixPaymentValue = QLabel(self.netflixSelection)
+        self.lblNetflixPaymentValue.setObjectName(u"lblNetflixPaymentValue")
+        self.lblNetflixPaymentValue.setGeometry(QRect(20, 145, 141, 21))
+        self.lblNetflixPaymentValue.setFont(font3)
+        self.lblNetflixPaymentValue.setStyleSheet(u"color: #b6b7b7;")
+        self.lblNetflixStartDate = QLabel(self.netflixSelection)
+        self.lblNetflixStartDate.setObjectName(u"lblNetflixStartDate")
+        self.lblNetflixStartDate.setGeometry(QRect(20, 90, 211, 21))
+        self.lblNetflixStartDate.setFont(font3)
+        self.lblNetflixStartDate.setStyleSheet(u"color: #b6b7b7;")
+        self.lblNetflixPerMonth = QLabel(self.netflixSelection)
+        self.lblNetflixPerMonth.setObjectName(u"lblNetflixPerMonth")
+        self.lblNetflixPerMonth.setGeometry(QRect(390, 145, 71, 21))
+        self.lblNetflixPerMonth.setFont(font3)
+        self.lblNetflixPerMonth.setStyleSheet(u"color: #6c6e71;")
+        self.comboBoxNetflixCurrency = QComboBox(self.netflixSelection)
+        self.comboBoxNetflixCurrency.setObjectName(u"comboBoxNetflixCurrency")
+        self.comboBoxNetflixCurrency.setGeometry(QRect(300, 140, 80, 35))
+        self.comboBoxNetflixCurrency.setFont(font3)
+        self.comboBoxNetflixCurrency.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxNetflixCurrency.setEditable(False)
+        self.lblNetflixTotalPaySinceStart = QLabel(self.netflixSelection)
+        self.lblNetflixTotalPaySinceStart.setObjectName(u"lblNetflixTotalPaySinceStart")
+        self.lblNetflixTotalPaySinceStart.setGeometry(QRect(20, 200, 321, 21))
+        self.lblNetflixTotalPaySinceStart.setFont(font3)
+        self.lblNetflixTotalPaySinceStart.setStyleSheet(u"color: #b6b7b7;")
+        self.txtNetflixTotalPayment = QLineEdit(self.netflixSelection)
+        self.txtNetflixTotalPayment.setObjectName(u"txtNetflixTotalPayment")
+        self.txtNetflixTotalPayment.setEnabled(False)
+        self.txtNetflixTotalPayment.setGeometry(QRect(340, 195, 211, 35))
+        self.txtNetflixTotalPayment.setFont(font8)
+        self.txtNetflixTotalPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.spotifySelection = QFrame(self.pageSubscriptions)
+        self.spotifySelection.setObjectName(u"spotifySelection")
+        self.spotifySelection.setGeometry(QRect(20, 340, 571, 251))
+        self.spotifySelection.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.spotifySelection.setFrameShape(QFrame.StyledPanel)
+        self.spotifySelection.setFrameShadow(QFrame.Raised)
+        self.lblSpotifySelection = QLabel(self.spotifySelection)
+        self.lblSpotifySelection.setObjectName(u"lblSpotifySelection")
+        self.lblSpotifySelection.setGeometry(QRect(20, 10, 201, 21))
+        self.lblSpotifySelection.setFont(font6)
+        self.lblSpotifySelection.setStyleSheet(u"color: #f3f5f6;")
+        self.lblSpotifySelectionInfo = QLabel(self.spotifySelection)
+        self.lblSpotifySelectionInfo.setObjectName(u"lblSpotifySelectionInfo")
+        self.lblSpotifySelectionInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblSpotifySelectionInfo.setFont(font3)
+        self.lblSpotifySelectionInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnSpotifyDisplay = QPushButton(self.spotifySelection)
+        self.btnSpotifyDisplay.setObjectName(u"btnSpotifyDisplay")
+        self.btnSpotifyDisplay.setEnabled(True)
+        self.btnSpotifyDisplay.setGeometry(QRect(170, 10, 371, 50))
+        self.btnSpotifyDisplay.setCursor(QCursor(Qt.ArrowCursor))
+        self.btnSpotifyDisplay.setFocusPolicy(Qt.StrongFocus)
+        self.btnSpotifyDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnSpotifyDisplay.setStyleSheet(u"background-color: #202528;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"background-image: url(:/images/Resources/spotify_sub_selection.png);")
+        self.btnSpotifyDisplay.setCheckable(True)
+        self.btnSpotifyDisplay.setChecked(False)
+        self.btnSpotifyDisplay.setAutoDefault(True)
+        self.btnSpotifyDisplay.setFlat(True)
+        self.lblSpotifyStartDate = QLabel(self.spotifySelection)
+        self.lblSpotifyStartDate.setObjectName(u"lblSpotifyStartDate")
+        self.lblSpotifyStartDate.setGeometry(QRect(20, 90, 211, 21))
+        self.lblSpotifyStartDate.setFont(font3)
+        self.lblSpotifyStartDate.setStyleSheet(u"color: #b6b7b7;")
+        self.comboBoxSpotifyDay = QComboBox(self.spotifySelection)
+        self.comboBoxSpotifyDay.setObjectName(u"comboBoxSpotifyDay")
+        self.comboBoxSpotifyDay.setGeometry(QRect(250, 80, 70, 35))
+        self.comboBoxSpotifyDay.setFont(font3)
+        self.comboBoxSpotifyDay.setStyleSheet(u"QComboBox { \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxSpotifyDay.setEditable(False)
+        self.comboBoxSpotifyMonth = QComboBox(self.spotifySelection)
+        self.comboBoxSpotifyMonth.setObjectName(u"comboBoxSpotifyMonth")
+        self.comboBoxSpotifyMonth.setGeometry(QRect(330, 80, 70, 35))
+        self.comboBoxSpotifyMonth.setFont(font3)
+        self.comboBoxSpotifyMonth.setStyleSheet(u"QComboBox {   \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxSpotifyMonth.setEditable(False)
+        self.comboBoxSpotifyYear = QComboBox(self.spotifySelection)
+        self.comboBoxSpotifyYear.setObjectName(u"comboBoxSpotifyYear")
+        self.comboBoxSpotifyYear.setGeometry(QRect(410, 80, 70, 35))
+        self.comboBoxSpotifyYear.setFont(font3)
+        self.comboBoxSpotifyYear.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxSpotifyYear.setEditable(False)
+        self.lblSpotifyPaymentValue = QLabel(self.spotifySelection)
+        self.lblSpotifyPaymentValue.setObjectName(u"lblSpotifyPaymentValue")
+        self.lblSpotifyPaymentValue.setGeometry(QRect(20, 145, 141, 21))
+        self.lblSpotifyPaymentValue.setFont(font3)
+        self.lblSpotifyPaymentValue.setStyleSheet(u"color: #b6b7b7;")
+        self.txtSpotifyPayment = QLineEdit(self.spotifySelection)
+        self.txtSpotifyPayment.setObjectName(u"txtSpotifyPayment")
+        self.txtSpotifyPayment.setGeometry(QRect(170, 140, 121, 35))
+        self.txtSpotifyPayment.setFont(font8)
+        self.txtSpotifyPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.comboBoxSpotifyCurrency = QComboBox(self.spotifySelection)
+        self.comboBoxSpotifyCurrency.setObjectName(u"comboBoxSpotifyCurrency")
+        self.comboBoxSpotifyCurrency.setGeometry(QRect(300, 140, 80, 35))
+        self.comboBoxSpotifyCurrency.setFont(font3)
+        self.comboBoxSpotifyCurrency.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxSpotifyCurrency.setEditable(False)
+        self.lblSpotifyPerMonth = QLabel(self.spotifySelection)
+        self.lblSpotifyPerMonth.setObjectName(u"lblSpotifyPerMonth")
+        self.lblSpotifyPerMonth.setGeometry(QRect(390, 145, 71, 21))
+        self.lblSpotifyPerMonth.setFont(font3)
+        self.lblSpotifyPerMonth.setStyleSheet(u"color: #6c6e71;")
+        self.btnSetSpotifyData = QPushButton(self.spotifySelection)
+        self.btnSetSpotifyData.setObjectName(u"btnSetSpotifyData")
+        self.btnSetSpotifyData.setGeometry(QRect(470, 140, 75, 35))
+        self.btnSetSpotifyData.setFont(font1)
+        self.btnSetSpotifyData.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnSetSpotifyData.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnSetSpotifyData.setAutoDefault(True)
+        self.btnSetSpotifyData.setFlat(True)
+        self.lblSpotifyTotalPaySinceStart = QLabel(self.spotifySelection)
+        self.lblSpotifyTotalPaySinceStart.setObjectName(u"lblSpotifyTotalPaySinceStart")
+        self.lblSpotifyTotalPaySinceStart.setGeometry(QRect(20, 200, 321, 21))
+        self.lblSpotifyTotalPaySinceStart.setFont(font3)
+        self.lblSpotifyTotalPaySinceStart.setStyleSheet(u"color: #b6b7b7;")
+        self.txtSpotifyTotalPayment = QLineEdit(self.spotifySelection)
+        self.txtSpotifyTotalPayment.setObjectName(u"txtSpotifyTotalPayment")
+        self.txtSpotifyTotalPayment.setEnabled(False)
+        self.txtSpotifyTotalPayment.setGeometry(QRect(340, 195, 211, 35))
+        self.txtSpotifyTotalPayment.setFont(font8)
+        self.txtSpotifyTotalPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.telecomSelection = QFrame(self.pageSubscriptions)
+        self.telecomSelection.setObjectName(u"telecomSelection")
+        self.telecomSelection.setGeometry(QRect(20, 610, 571, 251))
+        self.telecomSelection.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.telecomSelection.setFrameShape(QFrame.StyledPanel)
+        self.telecomSelection.setFrameShadow(QFrame.Raised)
+        self.lblTelecomSelection = QLabel(self.telecomSelection)
+        self.lblTelecomSelection.setObjectName(u"lblTelecomSelection")
+        self.lblTelecomSelection.setGeometry(QRect(20, 10, 201, 21))
+        self.lblTelecomSelection.setFont(font6)
+        self.lblTelecomSelection.setStyleSheet(u"color: #f3f5f6;")
+        self.lblTelecomSelectionInfo = QLabel(self.telecomSelection)
+        self.lblTelecomSelectionInfo.setObjectName(u"lblTelecomSelectionInfo")
+        self.lblTelecomSelectionInfo.setGeometry(QRect(20, 40, 231, 21))
+        self.lblTelecomSelectionInfo.setFont(font3)
+        self.lblTelecomSelectionInfo.setStyleSheet(u"color: #6c6e71;")
+        self.btnTelecomDisplay = QPushButton(self.telecomSelection)
+        self.btnTelecomDisplay.setObjectName(u"btnTelecomDisplay")
+        self.btnTelecomDisplay.setEnabled(True)
+        self.btnTelecomDisplay.setGeometry(QRect(170, 10, 371, 50))
+        self.btnTelecomDisplay.setCursor(QCursor(Qt.ArrowCursor))
+        self.btnTelecomDisplay.setFocusPolicy(Qt.StrongFocus)
+        self.btnTelecomDisplay.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnTelecomDisplay.setStyleSheet(u"background-color: #202528;\n"
+"border-radius: 5px;\n"
+"background-repeat: none;\n"
+"background-position: center;\n"
+"background-image: url(:/images/Resources/vodafone_sub_selection.png);")
+        self.btnTelecomDisplay.setCheckable(True)
+        self.btnTelecomDisplay.setChecked(False)
+        self.btnTelecomDisplay.setAutoDefault(True)
+        self.btnTelecomDisplay.setFlat(True)
+        self.lblTelecomStartDate = QLabel(self.telecomSelection)
+        self.lblTelecomStartDate.setObjectName(u"lblTelecomStartDate")
+        self.lblTelecomStartDate.setGeometry(QRect(20, 90, 211, 21))
+        self.lblTelecomStartDate.setFont(font3)
+        self.lblTelecomStartDate.setStyleSheet(u"color: #b6b7b7;")
+        self.comboBoxTelecomDay = QComboBox(self.telecomSelection)
+        self.comboBoxTelecomDay.setObjectName(u"comboBoxTelecomDay")
+        self.comboBoxTelecomDay.setGeometry(QRect(250, 80, 70, 35))
+        self.comboBoxTelecomDay.setFont(font3)
+        self.comboBoxTelecomDay.setStyleSheet(u"QComboBox { \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxTelecomDay.setEditable(False)
+        self.comboBoxTelecomMonth = QComboBox(self.telecomSelection)
+        self.comboBoxTelecomMonth.setObjectName(u"comboBoxTelecomMonth")
+        self.comboBoxTelecomMonth.setGeometry(QRect(330, 80, 70, 35))
+        self.comboBoxTelecomMonth.setFont(font3)
+        self.comboBoxTelecomMonth.setStyleSheet(u"QComboBox {   \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxTelecomMonth.setEditable(False)
+        self.comboBoxTelecomYear = QComboBox(self.telecomSelection)
+        self.comboBoxTelecomYear.setObjectName(u"comboBoxTelecomYear")
+        self.comboBoxTelecomYear.setGeometry(QRect(410, 80, 70, 35))
+        self.comboBoxTelecomYear.setFont(font3)
+        self.comboBoxTelecomYear.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxTelecomYear.setEditable(False)
+        self.lblTelecomPaymentValue = QLabel(self.telecomSelection)
+        self.lblTelecomPaymentValue.setObjectName(u"lblTelecomPaymentValue")
+        self.lblTelecomPaymentValue.setGeometry(QRect(20, 145, 141, 21))
+        self.lblTelecomPaymentValue.setFont(font3)
+        self.lblTelecomPaymentValue.setStyleSheet(u"color: #b6b7b7;")
+        self.txtTelecomPayment = QLineEdit(self.telecomSelection)
+        self.txtTelecomPayment.setObjectName(u"txtTelecomPayment")
+        self.txtTelecomPayment.setGeometry(QRect(170, 140, 121, 35))
+        self.txtTelecomPayment.setFont(font8)
+        self.txtTelecomPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.comboBoxTelecomCurrency = QComboBox(self.telecomSelection)
+        self.comboBoxTelecomCurrency.setObjectName(u"comboBoxTelecomCurrency")
+        self.comboBoxTelecomCurrency.setGeometry(QRect(300, 140, 80, 35))
+        self.comboBoxTelecomCurrency.setFont(font3)
+        self.comboBoxTelecomCurrency.setStyleSheet(u"QComboBox {    \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxTelecomCurrency.setEditable(False)
+        self.lblTelecomPerMonth = QLabel(self.telecomSelection)
+        self.lblTelecomPerMonth.setObjectName(u"lblTelecomPerMonth")
+        self.lblTelecomPerMonth.setGeometry(QRect(390, 145, 71, 21))
+        self.lblTelecomPerMonth.setFont(font3)
+        self.lblTelecomPerMonth.setStyleSheet(u"color: #6c6e71;")
+        self.btnSetTelecomData = QPushButton(self.telecomSelection)
+        self.btnSetTelecomData.setObjectName(u"btnSetTelecomData")
+        self.btnSetTelecomData.setGeometry(QRect(470, 140, 75, 35))
+        self.btnSetTelecomData.setFont(font1)
+        self.btnSetTelecomData.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnSetTelecomData.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnSetTelecomData.setAutoDefault(True)
+        self.btnSetTelecomData.setFlat(True)
+        self.lblTelecomTotalPaySinceStart = QLabel(self.telecomSelection)
+        self.lblTelecomTotalPaySinceStart.setObjectName(u"lblTelecomTotalPaySinceStart")
+        self.lblTelecomTotalPaySinceStart.setGeometry(QRect(20, 200, 321, 21))
+        self.lblTelecomTotalPaySinceStart.setFont(font3)
+        self.lblTelecomTotalPaySinceStart.setStyleSheet(u"color: #b6b7b7;")
+        self.txtTelecomTotalPayment = QLineEdit(self.telecomSelection)
+        self.txtTelecomTotalPayment.setObjectName(u"txtTelecomTotalPayment")
+        self.txtTelecomTotalPayment.setEnabled(False)
+        self.txtTelecomTotalPayment.setGeometry(QRect(340, 195, 211, 35))
+        self.txtTelecomTotalPayment.setFont(font8)
+        self.txtTelecomTotalPayment.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:hover{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
         self.stackedWidget.addWidget(self.pageSubscriptions)
         self.pageProfile = QWidget()
         self.pageProfile.setObjectName(u"pageProfile")
@@ -2069,6 +2628,12 @@ class Ui_BillyAppMain(object):
         self.btnInternetProviderDisplay.setDefault(False)
         self.btnAddInternetTVBill.setDefault(False)
         self.btnTestInternetSpeed.setDefault(False)
+        self.btnNetflixDisplay.setDefault(False)
+        self.btnSetNetflixData.setDefault(False)
+        self.btnSpotifyDisplay.setDefault(False)
+        self.btnSetSpotifyData.setDefault(False)
+        self.btnTelecomDisplay.setDefault(False)
+        self.btnSetTelecomData.setDefault(False)
         self.btnSetProfileName.setDefault(False)
         self.btnEnelSelection.setDefault(False)
         self.btnEngieSelection.setDefault(False)
@@ -2182,6 +2747,60 @@ class Ui_BillyAppMain(object):
         self.lblTestInternetUploadData.setText("")
         self.lblInternetSpeedAdditionalInfo.setText(QCoreApplication.translate("BillyAppMain", u"Running this test will take a couple of seconds", None))
         self.lblSubscriptionsTitle.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
+        self.lblNetflixSelection.setText(QCoreApplication.translate("BillyAppMain", u"Netflix", None))
+        self.lblNetflixSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Entertainment", None))
+        self.btnNetflixDisplay.setText("")
+        self.txtNetflixPayment.setPlaceholderText("")
+        self.comboBoxNetflixDay.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxNetflixDay.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxNetflixMonth.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxNetflixMonth.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxNetflixYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.comboBoxNetflixYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.btnSetNetflixData.setText(QCoreApplication.translate("BillyAppMain", u"Set", None))
+        self.lblNetflixPaymentValue.setText(QCoreApplication.translate("BillyAppMain", u"Set the payment value:", None))
+        self.lblNetflixStartDate.setText(QCoreApplication.translate("BillyAppMain", u"Set the subscription starting date:", None))
+        self.lblNetflixPerMonth.setText(QCoreApplication.translate("BillyAppMain", u"Per month", None))
+        self.comboBoxNetflixCurrency.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.comboBoxNetflixCurrency.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.lblNetflixTotalPaySinceStart.setText(QCoreApplication.translate("BillyAppMain", u"Total amount payed since the start of subscription:", None))
+        self.txtNetflixTotalPayment.setPlaceholderText("")
+        self.lblSpotifySelection.setText(QCoreApplication.translate("BillyAppMain", u"Spotify", None))
+        self.lblSpotifySelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Audio streaming", None))
+        self.btnSpotifyDisplay.setText("")
+        self.lblSpotifyStartDate.setText(QCoreApplication.translate("BillyAppMain", u"Set the subscription starting date:", None))
+        self.comboBoxSpotifyDay.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxSpotifyDay.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxSpotifyMonth.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxSpotifyMonth.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxSpotifyYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.comboBoxSpotifyYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.lblSpotifyPaymentValue.setText(QCoreApplication.translate("BillyAppMain", u"Set the payment value:", None))
+        self.txtSpotifyPayment.setPlaceholderText("")
+        self.comboBoxSpotifyCurrency.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.comboBoxSpotifyCurrency.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.lblSpotifyPerMonth.setText(QCoreApplication.translate("BillyAppMain", u"Per month", None))
+        self.btnSetSpotifyData.setText(QCoreApplication.translate("BillyAppMain", u"Set", None))
+        self.lblSpotifyTotalPaySinceStart.setText(QCoreApplication.translate("BillyAppMain", u"Total amount payed since the start of subscription:", None))
+        self.txtSpotifyTotalPayment.setPlaceholderText("")
+        self.lblTelecomSelection.setText(QCoreApplication.translate("BillyAppMain", u"Vodafone", None))
+        self.lblTelecomSelectionInfo.setText(QCoreApplication.translate("BillyAppMain", u"Telecommunications", None))
+        self.btnTelecomDisplay.setText("")
+        self.lblTelecomStartDate.setText(QCoreApplication.translate("BillyAppMain", u"Set the subscription starting date:", None))
+        self.comboBoxTelecomDay.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxTelecomDay.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Day", None))
+        self.comboBoxTelecomMonth.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxTelecomMonth.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Month", None))
+        self.comboBoxTelecomYear.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.comboBoxTelecomYear.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Year", None))
+        self.lblTelecomPaymentValue.setText(QCoreApplication.translate("BillyAppMain", u"Set the payment value:", None))
+        self.txtTelecomPayment.setPlaceholderText("")
+        self.comboBoxTelecomCurrency.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.comboBoxTelecomCurrency.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Currency", None))
+        self.lblTelecomPerMonth.setText(QCoreApplication.translate("BillyAppMain", u"Per month", None))
+        self.btnSetTelecomData.setText(QCoreApplication.translate("BillyAppMain", u"Set", None))
+        self.lblTelecomTotalPaySinceStart.setText(QCoreApplication.translate("BillyAppMain", u"Total amount payed since the start of subscription:", None))
+        self.txtTelecomTotalPayment.setPlaceholderText("")
         self.lblAccountPreferences.setText(QCoreApplication.translate("BillyAppMain", u"Account preferences", None))
         self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
         self.txtUsername.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))

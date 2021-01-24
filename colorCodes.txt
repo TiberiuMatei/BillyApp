@@ -41,24 +41,3 @@ Frame background:
 
 Highlight frame:
 #2d3136
-
-Electricity issue date:
-#4DAF7C
-
-Electricity due date:
-#36D7B7
-
-Natural gas issue date:
-#59ABE3
-
-Natural gas due date:
-#19B5FE
-
-InternetTV issue date:
-#F5D76E
-
-InternetTV due date:
-#FFB61E
-
-
-https://dribbble.com/shots/5832071-B-Paper-Sheet

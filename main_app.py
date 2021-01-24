@@ -20,6 +20,7 @@ from pdfminer3.converter import TextConverter
 import io
 import re
 import speedtest
+from currency_converter import CurrencyConverter
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -122,6 +123,16 @@ class MainWindow(QMainWindow):
             [total_pay] text,\
             [issue_date] date,\
             [due_date] date)")
+        # Creating the netflix table
+        connection.execute("CREATE TABLE IF NOT EXISTS netflix_data([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [start_day] integer,\
+            [start_month] integer,\
+            [start_year] integer,\
+            [currency] text,\
+            [pay] text,\
+            [total_pay] text)")
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
         earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
@@ -167,6 +178,28 @@ class MainWindow(QMainWindow):
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{now.year}').mkdir(parents=True, exist_ok=True)
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{now.year}').mkdir(parents=True, exist_ok=True)
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{now.year}').mkdir(parents=True, exist_ok=True)
+
+        # Append data in the subscriptions comboboxes
+        for day in range(1,32):
+            self.ui.comboBoxNetflixDay.addItem(str(day))
+            self.ui.comboBoxSpotifyDay.addItem(str(day))
+            self.ui.comboBoxTelecomDay.addItem(str(day))
+
+        for month in range (1,13):
+            self.ui.comboBoxNetflixMonth.addItem(str(month))
+            self.ui.comboBoxSpotifyMonth.addItem(str(month))
+            self.ui.comboBoxTelecomMonth.addItem(str(month))
+
+        for year in range(1990, now.year+1):
+            self.ui.comboBoxNetflixYear.addItem(str(year))
+            self.ui.comboBoxSpotifyYear.addItem(str(year))
+            self.ui.comboBoxTelecomYear.addItem(str(year))
+
+        currencies = ['RON', 'EUR']
+        for currency in currencies:
+            self.ui.comboBoxNetflixCurrency.addItem(currency)
+            self.ui.comboBoxSpotifyCurrency.addItem(currency)
+            self.ui.comboBoxTelecomCurrency.addItem(currency)
 
         # Move window
         def moveWindow(event):
@@ -239,6 +272,11 @@ class MainWindow(QMainWindow):
         # Internet TV buttons
         self.ui.btnAddInternetTVBill.clicked.connect(self.addInternetTVBill)
         self.ui.btnTestInternetSpeed.clicked.connect(self.testInternetSpeed)
+
+        # Subscriptions set buttons
+        self.ui.btnSetNetflixData.clicked.connect(self.setNetflixData)
+        # self.ui.btnSetSpotifyData.clicked.connect(self.setSpotifyData)
+        # self.ui.btnSetTelecomData.clicked.connect(self.setTelecomData)
 
         qtRectangle = self.frameGeometry()
         centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
@@ -1523,6 +1561,131 @@ class MainWindow(QMainWindow):
     def subscriptionsButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageSubscriptions, self.ui.btnSubscriptions, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV])
+        # Check for Netflix data from db
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        result = db_connection.execute("SELECT * FROM netflix_data WHERE username = ?",(self.username,))
+        netflix_result = result.fetchall()
+        if(len(netflix_result) > 0):            
+            self.ui.comboBoxNetflixDay.setCurrentText(str(netflix_result[0][3]))
+            self.ui.comboBoxNetflixMonth.setCurrentText(str(netflix_result[0][4]))
+            self.ui.comboBoxNetflixYear.setCurrentText(str(netflix_result[0][5]))
+            self.ui.comboBoxNetflixCurrency.setCurrentText(str(netflix_result[0][6]))
+            self.ui.txtNetflixPayment.setText(netflix_result[0][7])
+            self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(float(netflix_result[0][8]), str(netflix_result[0][6])))
+            payment = self.ui.txtNetflixPayment.text()
+            # Updating the value if the month changes
+            if ',' in payment:
+                payment_real = payment.replace(',','.')
+                start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment_real) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                 int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                 , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+            else:
+                start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                 int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                 , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+
+            self.ui.comboBoxNetflixDay.setCurrentText(str(netflix_result[0][3]))
+            self.ui.comboBoxNetflixMonth.setCurrentText(str(netflix_result[0][4]))
+            self.ui.comboBoxNetflixYear.setCurrentText(str(netflix_result[0][5]))
+            self.ui.comboBoxNetflixCurrency.setCurrentText(str(netflix_result[0][6]))
+            self.ui.txtNetflixPayment.setText(netflix_result[0][7])
+            self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(float(netflix_result[0][8]), str(netflix_result[0][6])))
+
+
+    def setNetflixData(self):
+        if (self.ui.comboBoxNetflixDay.currentText() != 'Day' and self.ui.comboBoxNetflixMonth.currentText() != 'Month' and \
+            self.ui.comboBoxNetflixYear.currentText() != 'Year' and self.ui.comboBoxNetflixCurrency.currentText() != 'Currency' and \
+            self.ui.txtNetflixPayment.text() != ''):
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM netflix_data WHERE username = ?",(self.username,))
+
+            if(len(result.fetchall()) > 0):
+                payment = self.ui.txtNetflixPayment.text()
+                # c = CurrencyConverter(fallback_on_missing_rate=True)
+                # c.convert(100, 'BGN', date=date(2010, 11, 21))
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                     int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                     , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                     int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                     , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+            else:
+                payment = self.ui.txtNetflixPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("INSERT INTO netflix_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxNetflixDay.currentText()),\
+                    int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixYear.currentText()), \
+                    self.ui.comboBoxNetflixCurrency.currentText(), self.ui.txtNetflixPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("INSERT INTO netflix_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxNetflixDay.currentText()),\
+                    int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixYear.currentText()), \
+                    self.ui.comboBoxNetflixCurrency.currentText(), self.ui.txtNetflixPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+        else:
+            self.generateMessageBox(window_title='Subscription information', msg_text='Please make sure you have added all the requested information!')
+
 
     def setElectricitySupplierEnel(self):
         self.ui.btnEnelSelection.setChecked(True)

@@ -1127,7 +1127,7 @@ color: #C72C41;
 font-size: 20px;
 font-family: &quot;SF UI Display&quot;;
 icon-size: 30px,30px;
-selection-background-color: #202528;
+selection-background-color: #C72C41;
 selection-color: #C72C41;
 }
 
@@ -1135,7 +1135,7 @@ QCalendarWidget QWidget {
 	alternate-background-color: #272b2f;
 	font-size:20px;
 	font-family: &quot;SF UI Display&quot;;
-	selection-background-color: #202528;
+	selection-background-color: #C72C41;
 	selection-color: #f3f5f6;
 }
 
@@ -1144,7 +1144,7 @@ QCalendarWidget QAbstractItemView:enabled{
 	font-family: &quot;SF UI Display&quot;;
 	color: #f3f5f6;
 	selection-color: #f3f5f6;
-	selection-background-color: #202528;
+	selection-background-color: #C72C41;
 }
 
  QCalendarWidget QSpinBox {
@@ -1623,7 +1623,7 @@ color: #202528;</string>
               </rect>
              </property>
              <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
+              <cursorShape>ArrowCursor</cursorShape>
              </property>
              <property name="focusPolicy">
               <enum>Qt::StrongFocus</enum>
@@ -2467,7 +2467,7 @@ color:#C72C41;
               </rect>
              </property>
              <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
+              <cursorShape>ArrowCursor</cursorShape>
              </property>
              <property name="focusPolicy">
               <enum>Qt::StrongFocus</enum>
@@ -3302,7 +3302,7 @@ color:#C72C41;
               </rect>
              </property>
              <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
+              <cursorShape>ArrowCursor</cursorShape>
              </property>
              <property name="focusPolicy">
               <enum>Qt::StrongFocus</enum>
@@ -4242,6 +4242,1461 @@ QPushButton:hover{
             <property name="textFormat">
              <enum>Qt::MarkdownText</enum>
             </property>
+           </widget>
+           <widget class="QFrame" name="netflixSelection">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>571</width>
+              <height>251</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblNetflixSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Netflix</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNetflixSelectionInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Entertainment</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnNetflixDisplay">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>180</x>
+               <y>10</y>
+               <width>371</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #202528;
+border-radius: 5px;
+background-repeat: none;
+background-position: center;
+background-image: url(:/images/Resources/netflix_sub_selection.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtNetflixPayment">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>140</y>
+               <width>121</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxNetflixDay">
+             <property name="geometry">
+              <rect>
+               <x>250</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Day</string>
+             </property>
+             <property name="minimumContentsLength">
+              <number>0</number>
+             </property>
+             <property name="placeholderText">
+              <string>Day</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxNetflixMonth">
+             <property name="geometry">
+              <rect>
+               <x>330</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Month</string>
+             </property>
+             <property name="placeholderText">
+              <string>Month</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxNetflixYear">
+             <property name="geometry">
+              <rect>
+               <x>410</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Year</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSetNetflixData">
+             <property name="geometry">
+              <rect>
+               <x>470</x>
+               <y>140</y>
+               <width>75</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string>Set</string>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNetflixPaymentValue">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>145</y>
+               <width>141</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the payment value:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNetflixStartDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>90</y>
+               <width>211</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the subscription starting date:</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNetflixPerMonth">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>145</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Per month</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxNetflixCurrency">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>140</y>
+               <width>80</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Currency</string>
+             </property>
+             <property name="placeholderText">
+              <string>Currency</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblNetflixTotalPaySinceStart">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>200</y>
+               <width>321</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Total amount payed since the start of subscription:</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtNetflixTotalPayment">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>340</x>
+               <y>195</y>
+               <width>211</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="spotifySelection">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>340</y>
+              <width>571</width>
+              <height>251</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblSpotifySelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Spotify</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSpotifySelectionInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Audio streaming</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSpotifyDisplay">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>10</y>
+               <width>371</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #202528;
+border-radius: 5px;
+background-repeat: none;
+background-position: center;
+background-image: url(:/images/Resources/spotify_sub_selection.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSpotifyStartDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>90</y>
+               <width>211</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the subscription starting date:</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxSpotifyDay">
+             <property name="geometry">
+              <rect>
+               <x>250</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Day</string>
+             </property>
+             <property name="placeholderText">
+              <string>Day</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxSpotifyMonth">
+             <property name="geometry">
+              <rect>
+               <x>330</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Month</string>
+             </property>
+             <property name="placeholderText">
+              <string>Month</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxSpotifyYear">
+             <property name="geometry">
+              <rect>
+               <x>410</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Year</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSpotifyPaymentValue">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>145</y>
+               <width>141</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the payment value:</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtSpotifyPayment">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>140</y>
+               <width>121</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxSpotifyCurrency">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>140</y>
+               <width>80</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Currency</string>
+             </property>
+             <property name="placeholderText">
+              <string>Currency</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSpotifyPerMonth">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>145</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Per month</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSetSpotifyData">
+             <property name="geometry">
+              <rect>
+               <x>470</x>
+               <y>140</y>
+               <width>75</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string>Set</string>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblSpotifyTotalPaySinceStart">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>200</y>
+               <width>321</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Total amount payed since the start of subscription:</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtSpotifyTotalPayment">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>340</x>
+               <y>195</y>
+               <width>211</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="telecomSelection">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>610</y>
+              <width>571</width>
+              <height>251</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblTelecomSelection">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>201</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Vodafone</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblTelecomSelectionInfo">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>40</y>
+               <width>231</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Telecommunications</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnTelecomDisplay">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>10</y>
+               <width>371</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>ArrowCursor</cursorShape>
+             </property>
+             <property name="focusPolicy">
+              <enum>Qt::StrongFocus</enum>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::DefaultContextMenu</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: #202528;
+border-radius: 5px;
+background-repeat: none;
+background-position: center;
+background-image: url(:/images/Resources/vodafone_sub_selection.png);</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblTelecomStartDate">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>90</y>
+               <width>211</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the subscription starting date:</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxTelecomDay">
+             <property name="geometry">
+              <rect>
+               <x>250</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Day</string>
+             </property>
+             <property name="placeholderText">
+              <string>Day</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxTelecomMonth">
+             <property name="geometry">
+              <rect>
+               <x>330</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Month</string>
+             </property>
+             <property name="placeholderText">
+              <string>Month</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxTelecomYear">
+             <property name="geometry">
+              <rect>
+               <x>410</x>
+               <y>80</y>
+               <width>70</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Year</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblTelecomPaymentValue">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>145</y>
+               <width>141</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Set the payment value:</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtTelecomPayment">
+             <property name="geometry">
+              <rect>
+               <x>170</x>
+               <y>140</y>
+               <width>121</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxTelecomCurrency">
+             <property name="geometry">
+              <rect>
+               <x>300</x>
+               <y>140</y>
+               <width>80</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Currency</string>
+             </property>
+             <property name="placeholderText">
+              <string>Currency</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblTelecomPerMonth">
+             <property name="geometry">
+              <rect>
+               <x>390</x>
+               <y>145</y>
+               <width>71</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Per month</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnSetTelecomData">
+             <property name="geometry">
+              <rect>
+               <x>470</x>
+               <y>140</y>
+               <width>75</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	background-color: #EE4540;
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+             </property>
+             <property name="text">
+              <string>Set</string>
+             </property>
+             <property name="autoDefault">
+              <bool>true</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="QLabel" name="lblTelecomTotalPaySinceStart">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>200</y>
+               <width>321</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #b6b7b7;</string>
+             </property>
+             <property name="text">
+              <string>Total amount payed since the start of subscription:</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtTelecomTotalPayment">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>340</x>
+               <y>195</y>
+               <width>211</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	background-color:#202528;
+	background-repeat: none;
+}
+QLineEdit:hover{
+	border: 2px solid #EE4540;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string/>
+             </property>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="pageProfile">
