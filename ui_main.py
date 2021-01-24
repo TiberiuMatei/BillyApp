@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiwThoRG.ui'
+## Form generated from reading UI file 'billy_uiJAjcsH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -1961,7 +1961,7 @@ class Ui_BillyAppMain(object):
         self.lblEarningsValue.setStyleSheet(u"color: #EE4540;")
         self.subscriptionsPage = QFrame(self.pageProfile)
         self.subscriptionsPage.setObjectName(u"subscriptionsPage")
-        self.subscriptionsPage.setGeometry(QRect(30, 710, 530, 140))
+        self.subscriptionsPage.setGeometry(QRect(30, 710, 791, 140))
         self.subscriptionsPage.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -2022,6 +2022,28 @@ class Ui_BillyAppMain(object):
         self.btnSpotifySelection.setChecked(False)
         self.btnSpotifySelection.setAutoDefault(True)
         self.btnSpotifySelection.setFlat(True)
+        self.btnVodafoneSelection = QPushButton(self.subscriptionsPage)
+        self.btnVodafoneSelection.setObjectName(u"btnVodafoneSelection")
+        self.btnVodafoneSelection.setGeometry(QRect(540, 70, 230, 50))
+        self.btnVodafoneSelection.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnVodafoneSelection.setFocusPolicy(Qt.StrongFocus)
+        self.btnVodafoneSelection.setContextMenuPolicy(Qt.DefaultContextMenu)
+        self.btnVodafoneSelection.setStyleSheet(u"QPushButton:checked{\n"
+"   border: 2px solid #EE4540;\n"
+"}\n"
+"QPushButton{\n"
+"   background-color: #202528;  \n"
+"   background-image: url(:/images/Resources/vodafone_sub_selection.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnVodafoneSelection.setCheckable(True)
+        self.btnVodafoneSelection.setChecked(False)
+        self.btnVodafoneSelection.setAutoDefault(True)
+        self.btnVodafoneSelection.setFlat(True)
         self.stackedWidget.addWidget(self.pageProfile)
 
         self.verticalLayout_2.addWidget(self.frameContentArea)
@@ -2053,6 +2075,7 @@ class Ui_BillyAppMain(object):
         self.btnRCSRDSSelection.setDefault(False)
         self.btnNetflixSelection.setDefault(False)
         self.btnSpotifySelection.setDefault(False)
+        self.btnVodafoneSelection.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(BillyAppMain)
@@ -2190,5 +2213,6 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsPageInfo.setText(QCoreApplication.translate("BillyAppMain", u"Please select the services for which you have an active subscription", None))
         self.btnNetflixSelection.setText("")
         self.btnSpotifySelection.setText("")
+        self.btnVodafoneSelection.setText("")
     # retranslateUi
 

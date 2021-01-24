@@ -149,6 +149,11 @@ class MainWindow(QMainWindow):
         netflix = netflix_result.fetchone()[0]
         if (netflix == 1):
             self.ui.btnNetflixSelection.setChecked(True)
+        # Setting the Vodafone subscription
+        vodafone_result = db_connection.execute("SELECT subscription_vodafone FROM accounts WHERE username = ?",(self.username,))
+        vodafone = vodafone_result.fetchone()[0]
+        if (vodafone == 1):
+            self.ui.btnVodafoneSelection.setChecked(True)
         # Setting the Spotify subscription
         spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(self.username,))
         spotify = spotify_result.fetchone()[0]
@@ -211,6 +216,7 @@ class MainWindow(QMainWindow):
         self.ui.btnRCSRDSSelection.clicked.connect(self.setInternetProviderRCSRDS)
         self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
         self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
+        self.ui.btnVodafoneSelection.clicked.connect(self.setSubscriptionVodafone)
 
         # Tree view context
         self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -1587,6 +1593,18 @@ class MainWindow(QMainWindow):
         db_connection = connection.cursor()
         # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_spotify = 1 WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def setSubscriptionVodafone(sefl):
+        self.ui.btnVodafoneSelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the subscription field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET subscription_vodafone = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
 
