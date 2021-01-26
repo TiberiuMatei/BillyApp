@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uifOYlGP.ui'
+## Form generated from reading UI file 'billy_uizRVObT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -2116,6 +2116,26 @@ class Ui_BillyAppMain(object):
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
+        self.subscriptionsEarningsImpact = QFrame(self.pageSubscriptions)
+        self.subscriptionsEarningsImpact.setObjectName(u"subscriptionsEarningsImpact")
+        self.subscriptionsEarningsImpact.setGeometry(QRect(610, 70, 471, 381))
+        self.subscriptionsEarningsImpact.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.subscriptionsEarningsImpact.setFrameShape(QFrame.StyledPanel)
+        self.subscriptionsEarningsImpact.setFrameShadow(QFrame.Raised)
+        self.lblSubscriptionsImpact = QLabel(self.subscriptionsEarningsImpact)
+        self.lblSubscriptionsImpact.setObjectName(u"lblSubscriptionsImpact")
+        self.lblSubscriptionsImpact.setGeometry(QRect(20, 10, 391, 23))
+        self.lblSubscriptionsImpact.setMaximumSize(QSize(500, 16777215))
+        self.lblSubscriptionsImpact.setFont(font6)
+        self.lblSubscriptionsImpact.setStyleSheet(u"color: #f3f5f6;")
+        self.donutSubscriptionsAll = QWidget(self.subscriptionsEarningsImpact)
+        self.donutSubscriptionsAll.setObjectName(u"donutSubscriptionsAll")
+        self.donutSubscriptionsAll.setGeometry(QRect(0, 40, 471, 341))
+        self.donutSubscriptionsAll.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
         self.stackedWidget.addWidget(self.pageSubscriptions)
         self.pageProfile = QWidget()
         self.pageProfile.setObjectName(u"pageProfile")
@@ -2801,6 +2821,7 @@ class Ui_BillyAppMain(object):
         self.btnSetTelecomData.setText(QCoreApplication.translate("BillyAppMain", u"Set", None))
         self.lblTelecomTotalPaySinceStart.setText(QCoreApplication.translate("BillyAppMain", u"Total amount payed since the start of subscription:", None))
         self.txtTelecomTotalPayment.setPlaceholderText("")
+        self.lblSubscriptionsImpact.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions impact on monthly earnings", None))
         self.lblAccountPreferences.setText(QCoreApplication.translate("BillyAppMain", u"Account preferences", None))
         self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
         self.txtUsername.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
