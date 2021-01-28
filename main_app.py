@@ -86,7 +86,13 @@ class MainWindow(QMainWindow):
         self.ui.donutSubscriptionsAll.setContentsMargins(0, 0, 0, 0)
         self.laydonutSubscriptionsAll.setContentsMargins(0, 0, 0, 0)
         self.chartviewSubscriptionsAll = QtCharts.QChartView()
-        self.laydonutSubscriptionsAll.addWidget(self.chartviewSubscriptionsAll)        
+        self.laydonutSubscriptionsAll.addWidget(self.chartviewSubscriptionsAll)
+
+        self.laydonutSubscriptionsComparison = QtWidgets.QVBoxLayout(self.ui.barChartSubscriptionsComparison)
+        self.ui.barChartSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
+        self.laydonutSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
+        self.chartviewSubscriptionsComparison = QtCharts.QChartView()
+        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)     
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -1887,6 +1893,58 @@ class MainWindow(QMainWindow):
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
 
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Spotify')
+            set2 = QtCharts.QBarSet('Telecom')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(spotify_ron_value)
+            set1.setBrush(QColor('#1DB954'))
+            set2.append(telecom_ron_value)
+            set2.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+            seriesSubscriptionsComparison.append(set2)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+
         elif (spotify_ron_value != None and netflix_ron_value == None and telecom_ron_value != None):
 
             spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
@@ -1934,6 +1992,53 @@ class MainWindow(QMainWindow):
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
 
+            set0 = QtCharts.QBarSet('Spotify')
+            set1 = QtCharts.QBarSet('Telecom')
+
+            set0.append(spotify_ron_value)
+            set0.setBrush(QColor('#1DB954'))
+            set1.append(telecom_ron_value)
+            set1.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
         elif (spotify_ron_value == None and netflix_ron_value == None and telecom_ron_value != None):
 
             telecom_percentage = round((telecom_ron_value/earnings_float)*100, 2)
@@ -1971,6 +2076,49 @@ class MainWindow(QMainWindow):
 
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Telecom')
+
+            set0.append(telecom_ron_value)
+            set0.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
 
         elif (spotify_ron_value != None and netflix_ron_value != None and telecom_ron_value == None):
 
@@ -2018,6 +2166,53 @@ class MainWindow(QMainWindow):
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
 
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Spotify')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(spotify_ron_value)
+            set1.setBrush(QColor('#1DB954'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
         elif (spotify_ron_value == None and netflix_ron_value != None and telecom_ron_value == None):
 
             netflix_percentage = round((netflix_ron_value/earnings_float)*100, 2)
@@ -2054,6 +2249,49 @@ class MainWindow(QMainWindow):
 
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Netflix')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
 
         elif (spotify_ron_value == None and netflix_ron_value != None and telecom_ron_value != None):
 
@@ -2101,6 +2339,53 @@ class MainWindow(QMainWindow):
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
 
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Telecom')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(telecom_ron_value)
+            set1.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
         elif (spotify_ron_value != None and netflix_ron_value == None and telecom_ron_value == None):
 
             spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
@@ -2135,6 +2420,49 @@ class MainWindow(QMainWindow):
 
             self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
             self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Spotify')
+
+            set0.append(spotify_ron_value)
+            set0.setBrush(QColor('#1DB954'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
 
         connection.commit()
         connection.close()
@@ -2428,7 +2756,7 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
-    def setSubscriptionVodafone(sefl):
+    def setSubscriptionVodafone(self):
         self.ui.btnVodafoneSelection.setChecked(True)
         username = self.ui.txtUsername.text()
         currpath = pathlib.Path().absolute()

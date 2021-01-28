@@ -5762,6 +5762,70 @@ background-color: #2a2e32;</string>
              </property>
             </widget>
            </widget>
+           <widget class="QFrame" name="subscriptionsComparison">
+            <property name="geometry">
+             <rect>
+              <x>610</x>
+              <y>470</y>
+              <width>471</width>
+              <height>391</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblSubscriptionsComparison">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>411</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Monthly amount to pay for each subscription</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="barChartSubscriptionsComparison" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>471</width>
+               <height>341</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+           </widget>
           </widget>
           <widget class="QWidget" name="pageProfile">
            <widget class="QLabel" name="lblAccountPreferences">

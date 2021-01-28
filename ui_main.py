@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uizRVObT.ui'
+## Form generated from reading UI file 'billy_uiqsERYH.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -2136,6 +2136,26 @@ class Ui_BillyAppMain(object):
         self.donutSubscriptionsAll.setGeometry(QRect(0, 40, 471, 341))
         self.donutSubscriptionsAll.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
+        self.subscriptionsComparison = QFrame(self.pageSubscriptions)
+        self.subscriptionsComparison.setObjectName(u"subscriptionsComparison")
+        self.subscriptionsComparison.setGeometry(QRect(610, 470, 471, 391))
+        self.subscriptionsComparison.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.subscriptionsComparison.setFrameShape(QFrame.StyledPanel)
+        self.subscriptionsComparison.setFrameShadow(QFrame.Raised)
+        self.lblSubscriptionsComparison = QLabel(self.subscriptionsComparison)
+        self.lblSubscriptionsComparison.setObjectName(u"lblSubscriptionsComparison")
+        self.lblSubscriptionsComparison.setGeometry(QRect(20, 10, 411, 23))
+        self.lblSubscriptionsComparison.setMaximumSize(QSize(500, 16777215))
+        self.lblSubscriptionsComparison.setFont(font6)
+        self.lblSubscriptionsComparison.setStyleSheet(u"color: #f3f5f6;")
+        self.barChartSubscriptionsComparison = QWidget(self.subscriptionsComparison)
+        self.barChartSubscriptionsComparison.setObjectName(u"barChartSubscriptionsComparison")
+        self.barChartSubscriptionsComparison.setGeometry(QRect(0, 40, 471, 341))
+        self.barChartSubscriptionsComparison.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
         self.stackedWidget.addWidget(self.pageSubscriptions)
         self.pageProfile = QWidget()
         self.pageProfile.setObjectName(u"pageProfile")
@@ -2822,6 +2842,7 @@ class Ui_BillyAppMain(object):
         self.lblTelecomTotalPaySinceStart.setText(QCoreApplication.translate("BillyAppMain", u"Total amount payed since the start of subscription:", None))
         self.txtTelecomTotalPayment.setPlaceholderText("")
         self.lblSubscriptionsImpact.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions impact on monthly earnings", None))
+        self.lblSubscriptionsComparison.setText(QCoreApplication.translate("BillyAppMain", u"Monthly amount to pay for each subscription", None))
         self.lblAccountPreferences.setText(QCoreApplication.translate("BillyAppMain", u"Account preferences", None))
         self.lblProfileName.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
         self.txtUsername.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
