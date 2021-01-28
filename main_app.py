@@ -9,6 +9,7 @@ from PySide2.QtCharts import *
 import sqlite3
 import pathlib
 import datetime
+from datetime import date
 import os
 import shutil
 from pdfminer3.layout import LAParams, LTTextBox
@@ -20,6 +21,7 @@ from pdfminer3.converter import TextConverter
 import io
 import re
 import speedtest
+from currency_converter import CurrencyConverter
 
 os.system('Pyrcc5 billy_app.qrc -o billy_app_qrc.py')
 
@@ -79,6 +81,18 @@ class MainWindow(QMainWindow):
         self.chartviewInternetTVLastBill = QtCharts.QChartView()
         self.laydonutInternetTVLastBill.addWidget(self.chartviewInternetTVLastBill)
         
+        # Subscriptions page chart widgets
+        self.laydonutSubscriptionsAll = QtWidgets.QVBoxLayout(self.ui.donutSubscriptionsAll)
+        self.ui.donutSubscriptionsAll.setContentsMargins(0, 0, 0, 0)
+        self.laydonutSubscriptionsAll.setContentsMargins(0, 0, 0, 0)
+        self.chartviewSubscriptionsAll = QtCharts.QChartView()
+        self.laydonutSubscriptionsAll.addWidget(self.chartviewSubscriptionsAll)
+
+        self.laydonutSubscriptionsComparison = QtWidgets.QVBoxLayout(self.ui.barChartSubscriptionsComparison)
+        self.ui.barChartSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
+        self.laydonutSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
+        self.chartviewSubscriptionsComparison = QtCharts.QChartView()
+        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)     
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -122,6 +136,36 @@ class MainWindow(QMainWindow):
             [total_pay] text,\
             [issue_date] date,\
             [due_date] date)")
+        # Creating the netflix table
+        connection.execute("CREATE TABLE IF NOT EXISTS netflix_data([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [start_day] integer,\
+            [start_month] integer,\
+            [start_year] integer,\
+            [currency] text,\
+            [pay] text,\
+            [total_pay] text)")
+        # Creating the spotify table
+        connection.execute("CREATE TABLE IF NOT EXISTS spotify_data([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [start_day] integer,\
+            [start_month] integer,\
+            [start_year] integer,\
+            [currency] text,\
+            [pay] text,\
+            [total_pay] text)")
+        # Creating the telecom table
+        connection.execute("CREATE TABLE IF NOT EXISTS telecom_data([id_counter] integer PRIMARY KEY,\
+            [username] text,\
+            [email] text,\
+            [start_day] integer,\
+            [start_month] integer,\
+            [start_year] integer,\
+            [currency] text,\
+            [pay] text,\
+            [total_pay] text)")
         db_connection = connection.cursor()
         # Setting the earnings data fields from db if it exists
         earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
@@ -149,6 +193,11 @@ class MainWindow(QMainWindow):
         netflix = netflix_result.fetchone()[0]
         if (netflix == 1):
             self.ui.btnNetflixSelection.setChecked(True)
+        # Setting the Vodafone subscription
+        vodafone_result = db_connection.execute("SELECT subscription_vodafone FROM accounts WHERE username = ?",(self.username,))
+        vodafone = vodafone_result.fetchone()[0]
+        if (vodafone == 1):
+            self.ui.btnVodafoneSelection.setChecked(True)
         # Setting the Spotify subscription
         spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(self.username,))
         spotify = spotify_result.fetchone()[0]
@@ -162,6 +211,28 @@ class MainWindow(QMainWindow):
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/Electricity/{now.year}').mkdir(parents=True, exist_ok=True)
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/NaturalGas/{now.year}').mkdir(parents=True, exist_ok=True)
         pathlib.Path(str(pathlib.Path().absolute())+f'/Bills/{self.username}/InternetTV/{now.year}').mkdir(parents=True, exist_ok=True)
+
+        # Append data in the subscriptions comboboxes
+        for day in range(1,32):
+            self.ui.comboBoxNetflixDay.addItem(str(day))
+            self.ui.comboBoxSpotifyDay.addItem(str(day))
+            self.ui.comboBoxTelecomDay.addItem(str(day))
+
+        for month in range (1,13):
+            self.ui.comboBoxNetflixMonth.addItem(str(month))
+            self.ui.comboBoxSpotifyMonth.addItem(str(month))
+            self.ui.comboBoxTelecomMonth.addItem(str(month))
+
+        for year in range(1990, now.year+1):
+            self.ui.comboBoxNetflixYear.addItem(str(year))
+            self.ui.comboBoxSpotifyYear.addItem(str(year))
+            self.ui.comboBoxTelecomYear.addItem(str(year))
+
+        currencies = ['RON', 'EUR']
+        for currency in currencies:
+            self.ui.comboBoxNetflixCurrency.addItem(currency)
+            self.ui.comboBoxSpotifyCurrency.addItem(currency)
+            self.ui.comboBoxTelecomCurrency.addItem(currency)
 
         # Move window
         def moveWindow(event):
@@ -211,6 +282,7 @@ class MainWindow(QMainWindow):
         self.ui.btnRCSRDSSelection.clicked.connect(self.setInternetProviderRCSRDS)
         self.ui.btnNetflixSelection.clicked.connect(self.setSubscriptionNetflix)
         self.ui.btnSpotifySelection.clicked.connect(self.setSubscriptionSpotify)
+        self.ui.btnVodafoneSelection.clicked.connect(self.setSubscriptionVodafone)
 
         # Tree view context
         self.ui.treeElectricityDirectory.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
@@ -234,6 +306,12 @@ class MainWindow(QMainWindow):
         self.ui.btnAddInternetTVBill.clicked.connect(self.addInternetTVBill)
         self.ui.btnTestInternetSpeed.clicked.connect(self.testInternetSpeed)
 
+        # Subscriptions set buttons
+        self.ui.btnSetNetflixData.clicked.connect(self.setNetflixData)
+        self.ui.btnSetSpotifyData.clicked.connect(self.setSpotifyData)
+        self.ui.btnSetTelecomData.clicked.connect(self.setTelecomData)
+
+        # Center the app in the middle of the display
         qtRectangle = self.frameGeometry()
         centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
         qtRectangle.moveCenter(centerPoint)
@@ -434,7 +512,7 @@ class MainWindow(QMainWindow):
                         slice2 = QtCharts.QPieSlice()
                         slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
                         slice2.setBrush(QColor('#6c6e71'))
-                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelColor(QColor('#6c6e71'))
                         slice2.setLabelFont(QFont("SF UI Display", 8))
                         slice2.setLabelVisible()
                                     
@@ -643,7 +721,7 @@ class MainWindow(QMainWindow):
             slice2 = QtCharts.QPieSlice()
             slice2 = seriesDonutElectricityLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
             slice2.setBrush(QColor('#6c6e71'))
-            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelColor(QColor('#6c6e71'))
             slice2.setLabelFont(QFont("SF UI Display", 8))
             slice2.setLabelVisible()
                         
@@ -870,7 +948,7 @@ class MainWindow(QMainWindow):
                         slice2 = QtCharts.QPieSlice()
                         slice2 = seriesDonutNaturalGasLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
                         slice2.setBrush(QColor('#6c6e71'))
-                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelColor(QColor('#6c6e71'))
                         slice2.setLabelFont(QFont("SF UI Display", 8))
                         slice2.setLabelVisible()
                                     
@@ -1078,7 +1156,7 @@ class MainWindow(QMainWindow):
             slice2 = QtCharts.QPieSlice()
             slice2 = seriesDonutNaturalGasLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
             slice2.setBrush(QColor('#6c6e71'))
-            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelColor(QColor('#6c6e71'))
             slice2.setLabelFont(QFont("SF UI Display", 8))
             slice2.setLabelVisible()
                         
@@ -1305,7 +1383,7 @@ class MainWindow(QMainWindow):
                         slice2 = QtCharts.QPieSlice()
                         slice2 = seriesDonutInternetTVLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
                         slice2.setBrush(QColor('#6c6e71'))
-                        slice2.setLabelColor(QColor('#EE4540'))
+                        slice2.setLabelColor(QColor('#6c6e71'))
                         slice2.setLabelFont(QFont("SF UI Display", 8))
                         slice2.setLabelVisible()
                                     
@@ -1431,7 +1509,7 @@ class MainWindow(QMainWindow):
             slice2 = QtCharts.QPieSlice()
             slice2 = seriesDonutInternetTVLastBill.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
             slice2.setBrush(QColor('#6c6e71'))
-            slice2.setLabelColor(QColor('#EE4540'))
+            slice2.setLabelColor(QColor('#6c6e71'))
             slice2.setLabelFont(QFont("SF UI Display", 8))
             slice2.setLabelVisible()
                         
@@ -1517,6 +1595,1094 @@ class MainWindow(QMainWindow):
     def subscriptionsButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageSubscriptions, self.ui.btnSubscriptions, [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV])
+        # Setting up db connection
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Checking the netflix data
+        result = db_connection.execute("SELECT * FROM netflix_data WHERE username = ?",(self.username,))
+        netflix_result = result.fetchall()
+        if(len(netflix_result) > 0):            
+            self.ui.comboBoxNetflixDay.setCurrentText(str(netflix_result[0][3]))
+            self.ui.comboBoxNetflixMonth.setCurrentText(str(netflix_result[0][4]))
+            self.ui.comboBoxNetflixYear.setCurrentText(str(netflix_result[0][5]))
+            self.ui.comboBoxNetflixCurrency.setCurrentText(str(netflix_result[0][6]))
+            self.ui.txtNetflixPayment.setText(netflix_result[0][7])
+            self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(float(netflix_result[0][8]), str(netflix_result[0][6])))
+            payment = self.ui.txtNetflixPayment.text()
+            # Updating the value if the month changes
+            if ',' in payment:
+                payment_real = payment.replace(',','.')
+                start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment_real) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                 int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                 , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+            else:
+                start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                 int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                 , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+
+            self.ui.comboBoxNetflixDay.setCurrentText(str(netflix_result[0][3]))
+            self.ui.comboBoxNetflixMonth.setCurrentText(str(netflix_result[0][4]))
+            self.ui.comboBoxNetflixYear.setCurrentText(str(netflix_result[0][5]))
+            self.ui.comboBoxNetflixCurrency.setCurrentText(str(netflix_result[0][6]))
+            self.ui.txtNetflixPayment.setText(netflix_result[0][7])
+            self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(float(netflix_result[0][8]), str(netflix_result[0][6])))
+
+        # Setting up db connection
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Checking the spotify data
+        result = db_connection.execute("SELECT * FROM spotify_data WHERE username = ?",(self.username,))
+        spotify_result = result.fetchall()
+        if(len(spotify_result) > 0):            
+            self.ui.comboBoxSpotifyDay.setCurrentText(str(spotify_result[0][3]))
+            self.ui.comboBoxSpotifyMonth.setCurrentText(str(spotify_result[0][4]))
+            self.ui.comboBoxSpotifyYear.setCurrentText(str(spotify_result[0][5]))
+            self.ui.comboBoxSpotifyCurrency.setCurrentText(str(spotify_result[0][6]))
+            self.ui.txtSpotifyPayment.setText(spotify_result[0][7])
+            self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(float(spotify_result[0][8]), str(spotify_result[0][6])))
+            payment = self.ui.txtSpotifyPayment.text()
+            # Updating the value if the month changes
+            if ',' in payment:
+                payment_real = payment.replace(',','.')
+                start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment_real) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                db_connection.execute("UPDATE spotify_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxSpotifyDay.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()),\
+                                 int(self.ui.comboBoxSpotifyYear.currentText()), self.ui.comboBoxSpotifyCurrency.currentText()\
+                                 , self.ui.txtSpotifyPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+            else:
+                start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                db_connection.execute("UPDATE spotify_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxSpotifyDay.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()),\
+                                 int(self.ui.comboBoxSpotifyYear.currentText()), self.ui.comboBoxSpotifyCurrency.currentText()\
+                                 , self.ui.txtSpotifyPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+
+            self.ui.comboBoxSpotifyDay.setCurrentText(str(spotify_result[0][3]))
+            self.ui.comboBoxSpotifyMonth.setCurrentText(str(spotify_result[0][4]))
+            self.ui.comboBoxSpotifyYear.setCurrentText(str(spotify_result[0][5]))
+            self.ui.comboBoxSpotifyCurrency.setCurrentText(str(spotify_result[0][6]))
+            self.ui.txtSpotifyPayment.setText(spotify_result[0][7])
+            self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(float(spotify_result[0][8]), str(spotify_result[0][6])))
+
+        # Setting up db connection
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Checking the telecom data
+        result = db_connection.execute("SELECT * FROM telecom_data WHERE username = ?",(self.username,))
+        telecom_result = result.fetchall()
+        if(len(telecom_result) > 0):            
+            self.ui.comboBoxTelecomDay.setCurrentText(str(telecom_result[0][3]))
+            self.ui.comboBoxTelecomMonth.setCurrentText(str(telecom_result[0][4]))
+            self.ui.comboBoxTelecomYear.setCurrentText(str(telecom_result[0][5]))
+            self.ui.comboBoxTelecomCurrency.setCurrentText(str(telecom_result[0][6]))
+            self.ui.txtTelecomPayment.setText(telecom_result[0][7])
+            self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(float(telecom_result[0][8]), str(telecom_result[0][6])))
+            payment = self.ui.txtTelecomPayment.text()
+            # Updating the value if the month changes
+            if ',' in payment:
+                payment_real = payment.replace(',','.')
+                start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment_real) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                db_connection.execute("UPDATE telecom_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxTelecomDay.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()),\
+                                 int(self.ui.comboBoxTelecomYear.currentText()), self.ui.comboBoxTelecomCurrency.currentText()\
+                                 , self.ui.txtTelecomPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+            else:
+                start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                end_date = datetime.datetime.now()
+                num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                total_pay = float(payment) * num_months
+                correct_total_pay = "{:.2f}".format(total_pay)
+                self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                db_connection.execute("UPDATE telecom_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                WHERE username = ?",(int(self.ui.comboBoxTelecomDay.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()),\
+                                 int(self.ui.comboBoxTelecomYear.currentText()), self.ui.comboBoxTelecomCurrency.currentText()\
+                                 , self.ui.txtTelecomPayment.text(), correct_total_pay, self.username))
+                connection.commit()
+                connection.close()
+
+            self.ui.comboBoxTelecomDay.setCurrentText(str(telecom_result[0][3]))
+            self.ui.comboBoxTelecomMonth.setCurrentText(str(telecom_result[0][4]))
+            self.ui.comboBoxTelecomYear.setCurrentText(str(telecom_result[0][5]))
+            self.ui.comboBoxTelecomCurrency.setCurrentText(str(telecom_result[0][6]))
+            self.ui.txtTelecomPayment.setText(telecom_result[0][7])
+            self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(float(telecom_result[0][8]), str(telecom_result[0][6])))
+
+        # Plot the donut chart for the subscriptions page
+        try:
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()   
+            earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(self.username,))
+            earnings = earnings_result.fetchone()[0]
+            earnings_strip = earnings.strip()
+            earnings_float = float(earnings_strip)
+            connection.commit()
+            connection.close()
+        except:
+            self.generateMessageBox(window_title='Subscription information', msg_text='Please add the earnings from the Account preferences!')
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()        
+        netflix_pay_db = db_connection.execute("SELECT pay FROM netflix_data WHERE username = ?",(self.username,))
+        netflix_pay_raw = netflix_pay_db.fetchone()
+        spotify_pay_db = db_connection.execute("SELECT pay FROM spotify_data WHERE username = ?",(self.username,))
+        spotify_pay_raw = spotify_pay_db.fetchone()
+        telecom_pay_db = db_connection.execute("SELECT pay FROM telecom_data WHERE username = ?",(self.username,))
+        telecom_pay_raw = telecom_pay_db.fetchone()
+
+        spotify_ron_value = None
+        netflix_ron_value = None
+        telecom_ron_value = None
+
+        if (spotify_pay_raw != None):
+            spotify_pay = spotify_pay_raw[0]
+            if ',' in spotify_pay:
+                spotify_pay_string = spotify_pay.replace(',','.')
+            else:
+                spotify_pay_string = spotify_pay
+            spotify_pay_float = float(spotify_pay_string)
+            # Check for currency and convert to RON if needed
+            spotify_currency = db_connection.execute("SELECT currency FROM spotify_data WHERE username = ?",(self.username,))
+            spotify_currency_value = spotify_currency.fetchone()[0]
+            if (spotify_currency_value == 'EUR'):
+                today = datetime.datetime.now()
+                c = CurrencyConverter(fallback_on_wrong_date=True)
+                spotify_ron_value_all = c.convert(spotify_pay_float, 'EUR', 'RON', date=date(today.year, today.month, today.day))
+                spotify_ron_value_string = "{:.2f}".format(spotify_ron_value_all)
+                spotify_ron_value = float(spotify_ron_value_string)
+            else:
+                spotify_ron_value = spotify_pay_float
+
+        if (netflix_pay_raw != None):
+            netflix_pay = netflix_pay_raw[0]
+            if ',' in netflix_pay:
+                netflix_pay_string = netflix_pay.replace(',','.')
+            else:
+                netflix_pay_string = netflix_pay
+            netflix_pay_float = float(netflix_pay_string)
+            # Check for currency and convert to RON if needed
+            netflix_currency = db_connection.execute("SELECT currency FROM netflix_data WHERE username = ?",(self.username,))
+            netflix_currency_value = netflix_currency.fetchone()[0]
+            if (netflix_currency_value == 'EUR'):
+                today = datetime.datetime.now()
+                c = CurrencyConverter(fallback_on_wrong_date=True)
+                netflix_ron_value_all = c.convert(netflix_pay_float, 'EUR', 'RON', date=date(today.year, today.month, today.day))
+                netflix_ron_value_string = "{:.2f}".format(netflix_ron_value_all)
+                netflix_ron_value = float(netflix_ron_value_string)
+            else:
+                netflix_ron_value = netflix_pay_float
+
+        if (telecom_pay_raw != None):
+            telecom_pay = telecom_pay_raw[0]
+            if ',' in telecom_pay:
+                telecom_pay_string = telecom_pay.replace(',','.')
+            else:
+                telecom_pay_string = telecom_pay
+            telecom_pay_float = float(telecom_pay_string)
+            # Check for currency and convert to RON if needed
+            telecom_currency = db_connection.execute("SELECT currency FROM telecom_data WHERE username = ?",(self.username,))
+            telecom_currency_value = telecom_currency.fetchone()[0]
+            if (telecom_currency_value == 'EUR'):
+                today = datetime.datetime.now()
+                c = CurrencyConverter(fallback_on_wrong_date=True)
+                telecom_ron_value_all = c.convert(telecom_pay_float, 'EUR', 'RON', date=date(today.year, today.month, today.day))
+                telecom_ron_value_string = "{:.2f}".format(telecom_ron_value_all)
+                telecom_ron_value = float(telecom_ron_value_string)
+            else:
+                telecom_ron_value = telecom_pay_float
+
+        # Generate donut chart considering all cases of active data for each subscription
+        if (spotify_ron_value != None and netflix_ron_value != None and telecom_ron_value != None):
+
+            spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
+            netflix_percentage = round((netflix_ron_value/earnings_float)*100, 2)
+            telecom_percentage = round((telecom_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - spotify_percentage - netflix_percentage - telecom_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Netflix {netflix_percentage}%", netflix_percentage + 20)
+            slice1.setBrush(QColor('#E50914'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#E50914'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Spotify {spotify_percentage}%", spotify_percentage + 20)
+            slice2.setBrush(QColor('#1DB954'))
+            slice2.setExploded()
+            slice2.setLabelColor(QColor('#1DB954'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+
+            slice3 = QtCharts.QPieSlice()
+            slice3 = seriesDonutSubscriptionsAll.append(f"Telecom {telecom_percentage}%", telecom_percentage + 20)
+            slice3.setBrush(QColor('#3c73a8'))
+            slice3.setExploded()
+            slice3.setLabelColor(QColor('#3c73a8'))
+            slice3.setLabelFont(QFont("SF UI Display", 8))
+            slice3.setLabelVisible()
+
+            slice4 = QtCharts.QPieSlice()
+            slice4 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice4.setBrush(QColor('#6c6e71'))
+            slice4.setLabelColor(QColor('#6c6e71'))
+            slice4.setLabelFont(QFont("SF UI Display", 8))
+            slice4.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Spotify')
+            set2 = QtCharts.QBarSet('Telecom')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(spotify_ron_value)
+            set1.setBrush(QColor('#1DB954'))
+            set2.append(telecom_ron_value)
+            set2.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+            seriesSubscriptionsComparison.append(set2)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+
+        elif (spotify_ron_value != None and netflix_ron_value == None and telecom_ron_value != None):
+
+            spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
+            telecom_percentage = round((telecom_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - spotify_percentage - telecom_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Spotify {spotify_percentage}%", spotify_percentage + 20)
+            slice1.setBrush(QColor('#1DB954'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#1DB954'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Telecom {telecom_percentage}%", telecom_percentage + 20)
+            slice2.setBrush(QColor('#3c73a8'))
+            slice2.setExploded()
+            slice2.setLabelColor(QColor('#3c73a8'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+
+            slice3 = QtCharts.QPieSlice()
+            slice3 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice3.setBrush(QColor('#6c6e71'))
+            slice3.setLabelColor(QColor('#6c6e71'))
+            slice3.setLabelFont(QFont("SF UI Display", 8))
+            slice3.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Spotify')
+            set1 = QtCharts.QBarSet('Telecom')
+
+            set0.append(spotify_ron_value)
+            set0.setBrush(QColor('#1DB954'))
+            set1.append(telecom_ron_value)
+            set1.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        elif (spotify_ron_value == None and netflix_ron_value == None and telecom_ron_value != None):
+
+            telecom_percentage = round((telecom_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - telecom_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Telecom {telecom_percentage}%", telecom_percentage + 20)
+            slice1.setBrush(QColor('#3c73a8'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#3c73a8'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#6c6e71'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Telecom')
+
+            set0.append(telecom_ron_value)
+            set0.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        elif (spotify_ron_value != None and netflix_ron_value != None and telecom_ron_value == None):
+
+            spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
+            netflix_percentage = round((netflix_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - spotify_percentage - netflix_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Netflix {netflix_percentage}%", netflix_percentage + 20)
+            slice1.setBrush(QColor('#E50914'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#E50914'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Spotify {spotify_percentage}%", spotify_percentage + 20)
+            slice2.setBrush(QColor('#1DB954'))
+            slice2.setExploded()
+            slice2.setLabelColor(QColor('#1DB954'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+
+            slice3 = QtCharts.QPieSlice()
+            slice3 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice3.setBrush(QColor('#6c6e71'))
+            slice3.setLabelColor(QColor('#6c6e71'))
+            slice3.setLabelFont(QFont("SF UI Display", 8))
+            slice3.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Spotify')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(spotify_ron_value)
+            set1.setBrush(QColor('#1DB954'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        elif (spotify_ron_value == None and netflix_ron_value != None and telecom_ron_value == None):
+
+            netflix_percentage = round((netflix_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - netflix_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Netflix {netflix_percentage}%", netflix_percentage + 20)
+            slice1.setBrush(QColor('#E50914'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#E50914'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#6c6e71'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Netflix')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        elif (spotify_ron_value == None and netflix_ron_value != None and telecom_ron_value != None):
+
+            netflix_percentage = round((netflix_ron_value/earnings_float)*100, 2)
+            telecom_percentage = round((telecom_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - netflix_percentage - telecom_percentage, 2)
+
+            # Donut Subscriptions chart
+            seriesDonutSubscriptionsAll = QtCharts.QPieSeries()
+            seriesDonutSubscriptionsAll.setHoleSize(0.35)
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Netflix {netflix_percentage}%", netflix_percentage + 20)
+            slice1.setBrush(QColor('#E50914'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#E50914'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Telecom {telecom_percentage}%", telecom_percentage + 20)
+            slice2.setBrush(QColor('#3c73a8'))
+            slice2.setExploded()
+            slice2.setLabelColor(QColor('#3c73a8'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+
+            slice3 = QtCharts.QPieSlice()
+            slice3 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice3.setBrush(QColor('#6c6e71'))
+            slice3.setLabelColor(QColor('#6c6e71'))
+            slice3.setLabelFont(QFont("SF UI Display", 8))
+            slice3.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Netflix')
+            set1 = QtCharts.QBarSet('Telecom')
+
+            set0.append(netflix_ron_value)
+            set0.setBrush(QColor('#E50914'))
+            set1.append(telecom_ron_value)
+            set1.setBrush(QColor('#3c73a8'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+            seriesSubscriptionsComparison.append(set1)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        elif (spotify_ron_value != None and netflix_ron_value == None and telecom_ron_value == None):
+
+            spotify_percentage = round((spotify_ron_value/earnings_float)*100, 2)
+
+            remaining_earnings_percentage = round(100 - spotify_percentage, 2)
+
+            # Donut Subscriptions chart
+            slice1 = QtCharts.QPieSlice()
+            slice1 = seriesDonutSubscriptionsAll.append(f"Spotify {spotify_percentage}%", spotify_percentage + 20)
+            slice1.setBrush(QColor('#1DB954'))
+            slice1.setExploded()
+            slice1.setLabelColor(QColor('#1DB954'))
+            slice1.setLabelFont(QFont("SF UI Display", 8))
+            slice1.setLabelVisible()
+
+            slice2 = QtCharts.QPieSlice()
+            slice2 = seriesDonutSubscriptionsAll.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+            slice2.setBrush(QColor('#6c6e71'))
+            slice2.setLabelColor(QColor('#6c6e71'))
+            slice2.setLabelFont(QFont("SF UI Display", 8))
+            slice2.setLabelVisible()
+                        
+            # Create Chart and set General Chart setting
+            chartDonutSubscriptionsAll = QtCharts.QChart()
+            chartDonutSubscriptionsAll.addSeries(seriesDonutSubscriptionsAll)
+            chartDonutSubscriptionsAll.legend().setAlignment(QtCore.Qt.AlignBottom)
+            chartDonutSubscriptionsAll.legend().setFont(QtGui.QFont("SF UI Display", 10))
+            chartDonutSubscriptionsAll.legend().setColor(QtGui.QColor('#EE4540'))
+     
+            chartDonutSubscriptionsAll.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+            chartDonutSubscriptionsAll.setBackgroundBrush(QBrush(QColor("transparent")))
+
+            self.chartviewSubscriptionsAll.setChart(chartDonutSubscriptionsAll)
+            self.chartviewSubscriptionsAll.setRenderHint(QPainter.Antialiasing)
+
+            set0 = QtCharts.QBarSet('Spotify')
+
+            set0.append(spotify_ron_value)
+            set0.setBrush(QColor('#1DB954'))
+
+            seriesSubscriptionsComparison = QtCharts.QBarSeries()
+            seriesSubscriptionsComparison.append(set0)
+
+            chartSubscriptionsComparison = QtCharts.QChart()
+            chartSubscriptionsComparison.addSeries(seriesSubscriptionsComparison)
+            chartSubscriptionsComparison.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+            axisX = QtCharts.QBarCategoryAxis()
+            axis_x_brush = QBrush(QColor("#EE4540"))
+            axisX.setLabelsBrush(axis_x_brush)
+            axisX.setTitleBrush(axis_x_brush)
+            axisX.setTitleText("Subscriptions")
+
+            axisY = QtCharts.QValueAxis()
+            axisY.setLabelFormat("%i")
+            axisY.setTitleText("Subscription cost [RON]")
+            axisY.setMax(100)
+            axisY.setMin(0)
+            axisY.setTickCount(5)
+            axis_y_brush = QBrush(QColor("#EE4540"))
+            axisY.setLabelsBrush(axis_y_brush)            
+            axisY.setTitleBrush(axis_y_brush)
+
+            chartSubscriptionsComparison.addAxis(axisX, Qt.AlignBottom)
+            chartSubscriptionsComparison.addAxis(axisY, Qt.AlignLeft)
+
+            seriesSubscriptionsComparison.attachAxis(axisY)            
+
+            chartSubscriptionsComparison.setBackgroundBrush(QBrush(QColor("transparent")))
+            chartSubscriptionsComparison.setTitleBrush(QBrush(Qt.white));
+
+            chartSubscriptionsComparison.legend().setVisible(True)
+            chartSubscriptionsComparison.legend().setBrush(QBrush(Qt.white))
+            chartSubscriptionsComparison.legend().setAlignment(Qt.AlignBottom)
+
+            self.chartviewSubscriptionsComparison.setChart(chartSubscriptionsComparison)
+            self.chartviewSubscriptionsComparison.setRenderHint(QPainter.Antialiasing)
+
+        connection.commit()
+        connection.close()
+
+
+    def setNetflixData(self):
+        if (self.ui.comboBoxNetflixDay.currentText() != 'Day' and self.ui.comboBoxNetflixMonth.currentText() != 'Month' and \
+            self.ui.comboBoxNetflixYear.currentText() != 'Year' and self.ui.comboBoxNetflixCurrency.currentText() != 'Currency' and \
+            self.ui.txtNetflixPayment.text() != ''):
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM netflix_data WHERE username = ?",(self.username,))
+
+            if(len(result.fetchall()) > 0):
+                payment = self.ui.txtNetflixPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                     int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                     , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("UPDATE netflix_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxNetflixDay.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()),\
+                                     int(self.ui.comboBoxNetflixYear.currentText()), self.ui.comboBoxNetflixCurrency.currentText()\
+                                     , self.ui.txtNetflixPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+            else:
+                payment = self.ui.txtNetflixPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("INSERT INTO netflix_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxNetflixDay.currentText()),\
+                    int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixYear.currentText()), \
+                    self.ui.comboBoxNetflixCurrency.currentText(), self.ui.txtNetflixPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxNetflixYear.currentText()), int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtNetflixTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxNetflixCurrency.currentText()))
+                    db_connection.execute("INSERT INTO netflix_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxNetflixDay.currentText()),\
+                    int(self.ui.comboBoxNetflixMonth.currentText()), int(self.ui.comboBoxNetflixYear.currentText()), \
+                    self.ui.comboBoxNetflixCurrency.currentText(), self.ui.txtNetflixPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+        else:
+            self.generateMessageBox(window_title='Subscription information', msg_text='Please make sure you have added all the requested information!')
+
+
+    def setSpotifyData(self):
+        if (self.ui.comboBoxSpotifyDay.currentText() != 'Day' and self.ui.comboBoxSpotifyMonth.currentText() != 'Month' and \
+            self.ui.comboBoxSpotifyYear.currentText() != 'Year' and self.ui.comboBoxSpotifyCurrency.currentText() != 'Currency' and \
+            self.ui.txtSpotifyPayment.text() != ''):
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM spotify_data WHERE username = ?",(self.username,))
+
+            if(len(result.fetchall()) > 0):
+                payment = self.ui.txtSpotifyPayment.text()                
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                    db_connection.execute("UPDATE spotify_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxSpotifyDay.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()),\
+                                     int(self.ui.comboBoxSpotifyYear.currentText()), self.ui.comboBoxSpotifyCurrency.currentText()\
+                                     , self.ui.txtSpotifyPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                    db_connection.execute("UPDATE spotify_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxSpotifyDay.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()),\
+                                     int(self.ui.comboBoxSpotifyYear.currentText()), self.ui.comboBoxSpotifyCurrency.currentText()\
+                                     , self.ui.txtSpotifyPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+            else:
+                payment = self.ui.txtSpotifyPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                    db_connection.execute("INSERT INTO spotify_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxSpotifyDay.currentText()),\
+                    int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyYear.currentText()), \
+                    self.ui.comboBoxSpotifyCurrency.currentText(), self.ui.txtSpotifyPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxSpotifyYear.currentText()), int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtSpotifyTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxSpotifyCurrency.currentText()))
+                    db_connection.execute("INSERT INTO spotify_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxSpotifyDay.currentText()),\
+                    int(self.ui.comboBoxSpotifyMonth.currentText()), int(self.ui.comboBoxSpotifyYear.currentText()), \
+                    self.ui.comboBoxSpotifyCurrency.currentText(), self.ui.txtSpotifyPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+        else:
+            self.generateMessageBox(window_title='Subscription information', msg_text='Please make sure you have added all the requested information!')
+
+
+    def setTelecomData(self):
+        if (self.ui.comboBoxTelecomDay.currentText() != 'Day' and self.ui.comboBoxTelecomMonth.currentText() != 'Month' and \
+            self.ui.comboBoxTelecomYear.currentText() != 'Year' and self.ui.comboBoxTelecomCurrency.currentText() != 'Currency' and \
+            self.ui.txtTelecomPayment.text() != ''):
+            currpath = pathlib.Path().absolute()
+            db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+            connection = sqlite3.connect(f'{db_path}')
+            db_connection = connection.cursor()
+            result = db_connection.execute("SELECT * FROM telecom_data WHERE username = ?",(self.username,))
+
+            if(len(result.fetchall()) > 0):
+                payment = self.ui.txtTelecomPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                    db_connection.execute("UPDATE telecom_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxTelecomDay.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()),\
+                                     int(self.ui.comboBoxTelecomYear.currentText()), self.ui.comboBoxTelecomCurrency.currentText()\
+                                     , self.ui.txtTelecomPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                    db_connection.execute("UPDATE telecom_data SET start_day = ?, start_month = ?, start_year = ?, currency = ?, pay = ?, total_pay = ?\
+                                    WHERE username = ?",(int(self.ui.comboBoxTelecomDay.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()),\
+                                     int(self.ui.comboBoxTelecomYear.currentText()), self.ui.comboBoxTelecomCurrency.currentText()\
+                                     , self.ui.txtTelecomPayment.text(), correct_total_pay, self.username))
+                    connection.commit()
+                    connection.close()
+            else:
+                payment = self.ui.txtTelecomPayment.text()
+                if ',' in payment:
+                    payment_real = payment.replace(',','.')
+                    start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment_real) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                    db_connection.execute("INSERT INTO telecom_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxTelecomDay.currentText()),\
+                    int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomYear.currentText()), \
+                    self.ui.comboBoxTelecomCurrency.currentText(), self.ui.txtTelecomPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+                else:
+                    start_date = datetime.datetime(int(self.ui.comboBoxTelecomYear.currentText()), int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomDay.currentText()))
+                    end_date = datetime.datetime.now()
+                    num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+                    total_pay = float(payment) * num_months
+                    correct_total_pay = "{:.2f}".format(total_pay)
+                    self.ui.txtTelecomTotalPayment.setText("{:.2f} {}".format(total_pay, self.ui.comboBoxTelecomCurrency.currentText()))
+                    db_connection.execute("INSERT INTO telecom_data(username, email, start_day, start_month, start_year, currency, pay, total_pay)\
+                    VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, int(self.ui.comboBoxTelecomDay.currentText()),\
+                    int(self.ui.comboBoxTelecomMonth.currentText()), int(self.ui.comboBoxTelecomYear.currentText()), \
+                    self.ui.comboBoxTelecomCurrency.currentText(), self.ui.txtTelecomPayment.text(), correct_total_pay))
+                    connection.commit()
+                    connection.close()
+        else:
+            self.generateMessageBox(window_title='Subscription information', msg_text='Please make sure you have added all the requested information!')
+
 
     def setElectricitySupplierEnel(self):
         self.ui.btnEnelSelection.setChecked(True)
@@ -1587,6 +2753,18 @@ class MainWindow(QMainWindow):
         db_connection = connection.cursor()
         # Updating the subscription field for the logged in user in the db
         db_connection.execute("UPDATE accounts SET subscription_spotify = 1 WHERE username = '{}'".format(username))
+        connection.commit()
+        connection.close()
+
+    def setSubscriptionVodafone(self):
+        self.ui.btnVodafoneSelection.setChecked(True)
+        username = self.ui.txtUsername.text()
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        # Updating the subscription field for the logged in user in the db
+        db_connection.execute("UPDATE accounts SET subscription_vodafone = 1 WHERE username = '{}'".format(username))
         connection.commit()
         connection.close()
 

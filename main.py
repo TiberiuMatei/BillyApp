@@ -58,7 +58,8 @@ class MainWindowAuth(QMainWindow):
         	[internet_telekom] integer,\
         	[internet_gts] integer,\
         	[subscription_spotify] integer,\
-        	[subscription_netflix] integer)")
+        	[subscription_netflix] integer,\
+        	[subscription_vodafone] integer)")
         connection.commit()
         connection.close()
 
