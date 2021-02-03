@@ -1067,6 +1067,580 @@ QPushButton:hover{
              <enum>Qt::MarkdownText</enum>
             </property>
            </widget>
+           <widget class="QLineEdit" name="txtDashEarnings">
+            <property name="geometry">
+             <rect>
+              <x>880</x>
+              <y>20</y>
+              <width>201</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 10px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color: #2a2e32;	
+	background-image: url(:/images/Resources/set_earnings.png);
+	background-repeat: none;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QFrame" name="dashDonutAllBills">
+            <property name="geometry">
+             <rect>
+              <x>660</x>
+              <y>90</y>
+              <width>421</width>
+              <height>481</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblDashDonutAllBills">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>341</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Impact on earnings</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="donutDashAllBills" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>421</width>
+               <height>431</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="dashLineAllBills">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>590</y>
+              <width>1061</width>
+              <height>281</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblDashLineAllBills">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>181</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>500</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Costs overview</string>
+             </property>
+            </widget>
+            <widget class="QWidget" name="lineDashAllBills" native="true">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>40</y>
+               <width>1061</width>
+               <height>231</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border-radius: 0px;
+background-color: #2a2e32;</string>
+             </property>
+            </widget>
+            <widget class="QComboBox" name="comboBoxDashLineAllBills">
+             <property name="geometry">
+              <rect>
+               <x>210</x>
+               <y>10</y>
+               <width>131</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QComboBox {	
+	color: #C72C41;
+	selection-background-color: #202528;
+	selection-color: #C72C41;
+}
+QListView {	
+	color: #C72C41;
+}
+QComboBox QAbstractItemView
+{
+background-color:#202528;
+selection-background-color: #202528;
+color:#C72C41;
+}</string>
+             </property>
+             <property name="editable">
+              <bool>false</bool>
+             </property>
+             <property name="currentText">
+              <string>Select year</string>
+             </property>
+             <property name="placeholderText">
+              <string>Select year</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QLineEdit" name="txtDashCurrentDate">
+            <property name="geometry">
+             <rect>
+              <x>660</x>
+              <y>20</y>
+              <width>201</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 10px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color: #2a2e32;
+	background-image: url(:/images/Resources/calendar_dash.png);
+	background-repeat: none;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+            </property>
+            <property name="placeholderText">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QFrame" name="profileName_2">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>70</y>
+              <width>621</width>
+              <height>121</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblProfileName_2">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>191</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Account information</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtUsername_2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/username.png);
+	background-repeat: none;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Username</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtEarnings_2">
+             <property name="geometry">
+              <rect>
+               <x>320</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/set_earnings.png);
+	background-repeat: none;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Earnings</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="profileName_3">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>210</y>
+              <width>621</width>
+              <height>121</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblProfileName_3">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>191</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Account information</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtUsername_3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/username.png);
+	background-repeat: none;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Username</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtEarnings_3">
+             <property name="geometry">
+              <rect>
+               <x>320</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/set_earnings.png);
+	background-repeat: none;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Earnings</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="profileName_4">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>350</y>
+              <width>621</width>
+              <height>121</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblProfileName_4">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>10</y>
+               <width>191</width>
+               <height>21</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #f3f5f6;</string>
+             </property>
+             <property name="text">
+              <string>Account information</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtUsername_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/username.png);
+	background-repeat: none;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Username</string>
+             </property>
+            </widget>
+            <widget class="QLineEdit" name="txtEarnings_4">
+             <property name="geometry">
+              <rect>
+               <x>320</x>
+               <y>60</y>
+               <width>280</width>
+               <height>50</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	border: 2px solid #272b2f;
+	border-radius: 5px;
+	color: #d0cfd0;
+	padding-left: 60px;	
+	background-color:#202528;	
+	background-image: url(:/images/Resources/set_earnings.png);
+	background-repeat: none;
+}
+QLineEdit:focus{
+	border: 2px solid #EE4540;
+}</string>
+             </property>
+             <property name="placeholderText">
+              <string>Earnings</string>
+             </property>
+            </widget>
+           </widget>
           </widget>
           <widget class="QWidget" name="pageCalendar">
            <widget class="QLabel" name="lblCalendarTitle">
@@ -2246,7 +2820,7 @@ QPushButton:hover{
                <x>0</x>
                <y>40</y>
                <width>391</width>
-               <height>271</height>
+               <height>261</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -3081,7 +3655,7 @@ QPushButton:hover{
                <x>0</x>
                <y>40</y>
                <width>391</width>
-               <height>271</height>
+               <height>261</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -3916,7 +4490,7 @@ QPushButton:hover{
                <x>0</x>
                <y>40</y>
                <width>391</width>
-               <height>271</height>
+               <height>261</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -5753,7 +6327,7 @@ QLineEdit:focus{
                <x>0</x>
                <y>40</y>
                <width>471</width>
-               <height>341</height>
+               <height>331</height>
               </rect>
              </property>
              <property name="styleSheet">

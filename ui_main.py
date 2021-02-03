@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiqsERYH.ui'
+## Form generated from reading UI file 'billy_uiBmKuoB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -490,6 +490,238 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle.setFont(font5)
         self.lblDashTitle.setStyleSheet(u"color: #6c6e71;")
         self.lblDashTitle.setTextFormat(Qt.MarkdownText)
+        self.txtDashEarnings = QLineEdit(self.pageDashboard)
+        self.txtDashEarnings.setObjectName(u"txtDashEarnings")
+        self.txtDashEarnings.setGeometry(QRect(880, 20, 201, 51))
+        font6 = QFont()
+        font6.setFamily(u"SF UI Display")
+        font6.setPointSize(12)
+        self.txtDashEarnings.setFont(font6)
+        self.txtDashEarnings.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 10px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color: #2a2e32;  \n"
+"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.dashDonutAllBills = QFrame(self.pageDashboard)
+        self.dashDonutAllBills.setObjectName(u"dashDonutAllBills")
+        self.dashDonutAllBills.setGeometry(QRect(660, 90, 421, 481))
+        self.dashDonutAllBills.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.dashDonutAllBills.setFrameShape(QFrame.StyledPanel)
+        self.dashDonutAllBills.setFrameShadow(QFrame.Raised)
+        self.lblDashDonutAllBills = QLabel(self.dashDonutAllBills)
+        self.lblDashDonutAllBills.setObjectName(u"lblDashDonutAllBills")
+        self.lblDashDonutAllBills.setGeometry(QRect(20, 10, 341, 23))
+        self.lblDashDonutAllBills.setMaximumSize(QSize(500, 16777215))
+        font7 = QFont()
+        font7.setFamily(u"SF UI Display")
+        font7.setPointSize(14)
+        self.lblDashDonutAllBills.setFont(font7)
+        self.lblDashDonutAllBills.setStyleSheet(u"color: #f3f5f6;")
+        self.donutDashAllBills = QWidget(self.dashDonutAllBills)
+        self.donutDashAllBills.setObjectName(u"donutDashAllBills")
+        self.donutDashAllBills.setGeometry(QRect(0, 40, 421, 431))
+        self.donutDashAllBills.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
+        self.dashLineAllBills = QFrame(self.pageDashboard)
+        self.dashLineAllBills.setObjectName(u"dashLineAllBills")
+        self.dashLineAllBills.setGeometry(QRect(20, 590, 1061, 281))
+        self.dashLineAllBills.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.dashLineAllBills.setFrameShape(QFrame.StyledPanel)
+        self.dashLineAllBills.setFrameShadow(QFrame.Raised)
+        self.lblDashLineAllBills = QLabel(self.dashLineAllBills)
+        self.lblDashLineAllBills.setObjectName(u"lblDashLineAllBills")
+        self.lblDashLineAllBills.setGeometry(QRect(20, 10, 181, 23))
+        self.lblDashLineAllBills.setMaximumSize(QSize(500, 16777215))
+        self.lblDashLineAllBills.setFont(font7)
+        self.lblDashLineAllBills.setStyleSheet(u"color: #f3f5f6;")
+        self.lineDashAllBills = QWidget(self.dashLineAllBills)
+        self.lineDashAllBills.setObjectName(u"lineDashAllBills")
+        self.lineDashAllBills.setGeometry(QRect(0, 40, 1061, 231))
+        self.lineDashAllBills.setStyleSheet(u"border-radius: 0px;\n"
+"background-color: #2a2e32;")
+        self.comboBoxDashLineAllBills = QComboBox(self.dashLineAllBills)
+        self.comboBoxDashLineAllBills.setObjectName(u"comboBoxDashLineAllBills")
+        self.comboBoxDashLineAllBills.setGeometry(QRect(210, 10, 131, 22))
+        self.comboBoxDashLineAllBills.setFont(font3)
+        self.comboBoxDashLineAllBills.setStyleSheet(u"QComboBox {   \n"
+"   color: #C72C41;\n"
+"   selection-background-color: #202528;\n"
+"   selection-color: #C72C41;\n"
+"}\n"
+"QListView {    \n"
+"   color: #C72C41;\n"
+"}\n"
+"QComboBox QAbstractItemView\n"
+"{\n"
+"background-color:#202528;\n"
+"selection-background-color: #202528;\n"
+"color:#C72C41;\n"
+"}")
+        self.comboBoxDashLineAllBills.setEditable(False)
+        self.txtDashCurrentDate = QLineEdit(self.pageDashboard)
+        self.txtDashCurrentDate.setObjectName(u"txtDashCurrentDate")
+        self.txtDashCurrentDate.setGeometry(QRect(660, 20, 201, 51))
+        self.txtDashCurrentDate.setFont(font6)
+        self.txtDashCurrentDate.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 10px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color: #2a2e32;\n"
+"   background-image: url(:/images/Resources/calendar_dash.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.profileName_2 = QFrame(self.pageDashboard)
+        self.profileName_2.setObjectName(u"profileName_2")
+        self.profileName_2.setGeometry(QRect(20, 70, 621, 121))
+        self.profileName_2.setCursor(QCursor(Qt.ArrowCursor))
+        self.profileName_2.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.profileName_2.setFrameShape(QFrame.NoFrame)
+        self.profileName_2.setFrameShadow(QFrame.Raised)
+        self.lblProfileName_2 = QLabel(self.profileName_2)
+        self.lblProfileName_2.setObjectName(u"lblProfileName_2")
+        self.lblProfileName_2.setGeometry(QRect(20, 10, 191, 21))
+        self.lblProfileName_2.setFont(font7)
+        self.lblProfileName_2.setStyleSheet(u"color: #f3f5f6;")
+        self.txtUsername_2 = QLineEdit(self.profileName_2)
+        self.txtUsername_2.setObjectName(u"txtUsername_2")
+        self.txtUsername_2.setEnabled(False)
+        self.txtUsername_2.setGeometry(QRect(20, 60, 280, 50))
+        self.txtUsername_2.setFont(font6)
+        self.txtUsername_2.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/username.png);\n"
+"   background-repeat: none;\n"
+"}")
+        self.txtEarnings_2 = QLineEdit(self.profileName_2)
+        self.txtEarnings_2.setObjectName(u"txtEarnings_2")
+        self.txtEarnings_2.setGeometry(QRect(320, 60, 280, 50))
+        self.txtEarnings_2.setFont(font6)
+        self.txtEarnings_2.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.profileName_3 = QFrame(self.pageDashboard)
+        self.profileName_3.setObjectName(u"profileName_3")
+        self.profileName_3.setGeometry(QRect(20, 210, 621, 121))
+        self.profileName_3.setCursor(QCursor(Qt.ArrowCursor))
+        self.profileName_3.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.profileName_3.setFrameShape(QFrame.NoFrame)
+        self.profileName_3.setFrameShadow(QFrame.Raised)
+        self.lblProfileName_3 = QLabel(self.profileName_3)
+        self.lblProfileName_3.setObjectName(u"lblProfileName_3")
+        self.lblProfileName_3.setGeometry(QRect(20, 10, 191, 21))
+        self.lblProfileName_3.setFont(font7)
+        self.lblProfileName_3.setStyleSheet(u"color: #f3f5f6;")
+        self.txtUsername_3 = QLineEdit(self.profileName_3)
+        self.txtUsername_3.setObjectName(u"txtUsername_3")
+        self.txtUsername_3.setEnabled(False)
+        self.txtUsername_3.setGeometry(QRect(20, 60, 280, 50))
+        self.txtUsername_3.setFont(font6)
+        self.txtUsername_3.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/username.png);\n"
+"   background-repeat: none;\n"
+"}")
+        self.txtEarnings_3 = QLineEdit(self.profileName_3)
+        self.txtEarnings_3.setObjectName(u"txtEarnings_3")
+        self.txtEarnings_3.setGeometry(QRect(320, 60, 280, 50))
+        self.txtEarnings_3.setFont(font6)
+        self.txtEarnings_3.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.profileName_4 = QFrame(self.pageDashboard)
+        self.profileName_4.setObjectName(u"profileName_4")
+        self.profileName_4.setGeometry(QRect(20, 350, 621, 121))
+        self.profileName_4.setCursor(QCursor(Qt.ArrowCursor))
+        self.profileName_4.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.profileName_4.setFrameShape(QFrame.NoFrame)
+        self.profileName_4.setFrameShadow(QFrame.Raised)
+        self.lblProfileName_4 = QLabel(self.profileName_4)
+        self.lblProfileName_4.setObjectName(u"lblProfileName_4")
+        self.lblProfileName_4.setGeometry(QRect(20, 10, 191, 21))
+        self.lblProfileName_4.setFont(font7)
+        self.lblProfileName_4.setStyleSheet(u"color: #f3f5f6;")
+        self.txtUsername_4 = QLineEdit(self.profileName_4)
+        self.txtUsername_4.setObjectName(u"txtUsername_4")
+        self.txtUsername_4.setEnabled(False)
+        self.txtUsername_4.setGeometry(QRect(20, 60, 280, 50))
+        self.txtUsername_4.setFont(font6)
+        self.txtUsername_4.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/username.png);\n"
+"   background-repeat: none;\n"
+"}")
+        self.txtEarnings_4 = QLineEdit(self.profileName_4)
+        self.txtEarnings_4.setObjectName(u"txtEarnings_4")
+        self.txtEarnings_4.setGeometry(QRect(320, 60, 280, 50))
+        self.txtEarnings_4.setFont(font6)
+        self.txtEarnings_4.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;   \n"
+"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
         self.stackedWidget.addWidget(self.pageDashboard)
         self.pageCalendar = QWidget()
         self.pageCalendar.setObjectName(u"pageCalendar")
@@ -710,10 +942,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricitySupplierSelection = QLabel(self.electricitySupplierSelection)
         self.lblElectricitySupplierSelection.setObjectName(u"lblElectricitySupplierSelection")
         self.lblElectricitySupplierSelection.setGeometry(QRect(20, 10, 181, 21))
-        font6 = QFont()
-        font6.setFamily(u"SF UI Display")
-        font6.setPointSize(14)
-        self.lblElectricitySupplierSelection.setFont(font6)
+        self.lblElectricitySupplierSelection.setFont(font7)
         self.lblElectricitySupplierSelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricitySupplierSelectionInfo = QLabel(self.electricitySupplierSelection)
         self.lblElectricitySupplierSelectionInfo.setObjectName(u"lblElectricitySupplierSelectionInfo")
@@ -817,7 +1046,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityDirectory.setObjectName(u"lblElectricityDirectory")
         self.lblElectricityDirectory.setGeometry(QRect(20, 10, 132, 23))
         self.lblElectricityDirectory.setMaximumSize(QSize(200, 16777215))
-        self.lblElectricityDirectory.setFont(font6)
+        self.lblElectricityDirectory.setFont(font7)
         self.lblElectricityDirectory.setStyleSheet(u"color: #f3f5f6;")
         self.electricityLastBillData = QFrame(self.pageElectricity)
         self.electricityLastBillData.setObjectName(u"electricityLastBillData")
@@ -837,23 +1066,20 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillI.setObjectName(u"lblElectricityLastBillI")
         self.lblElectricityLastBillI.setGeometry(QRect(20, 10, 291, 23))
         self.lblElectricityLastBillI.setMaximumSize(QSize(500, 16777215))
-        self.lblElectricityLastBillI.setFont(font6)
+        self.lblElectricityLastBillI.setFont(font7)
         self.lblElectricityLastBillI.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityLastBillID = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillID.setObjectName(u"lblElectricityLastBillID")
         self.lblElectricityLastBillID.setGeometry(QRect(20, 40, 391, 31))
-        font7 = QFont()
-        font7.setFamily(u"SF UI Display")
-        font7.setPointSize(20)
-        self.lblElectricityLastBillID.setFont(font7)
+        font8 = QFont()
+        font8.setFamily(u"SF UI Display")
+        font8.setPointSize(20)
+        self.lblElectricityLastBillID.setFont(font8)
         self.lblElectricityLastBillID.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBillAddress = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillAddress.setObjectName(u"lblElectricityLastBillAddress")
         self.lblElectricityLastBillAddress.setGeometry(QRect(20, 90, 401, 41))
-        font8 = QFont()
-        font8.setFamily(u"SF UI Display")
-        font8.setPointSize(12)
-        self.lblElectricityLastBillAddress.setFont(font8)
+        self.lblElectricityLastBillAddress.setFont(font6)
         self.lblElectricityLastBillAddress.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipAddress = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipAddress.setObjectName(u"lblElectricityLastBilltipAddress")
@@ -863,7 +1089,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillIssueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillIssueDate.setObjectName(u"lblElectricityLastBillIssueDate")
         self.lblElectricityLastBillIssueDate.setGeometry(QRect(20, 160, 301, 31))
-        self.lblElectricityLastBillIssueDate.setFont(font7)
+        self.lblElectricityLastBillIssueDate.setFont(font8)
         self.lblElectricityLastBillIssueDate.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipIssueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipIssueDate.setObjectName(u"lblElectricityLastBilltipIssueDate")
@@ -873,7 +1099,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillDueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBillDueDate.setObjectName(u"lblElectricityLastBillDueDate")
         self.lblElectricityLastBillDueDate.setGeometry(QRect(20, 220, 301, 31))
-        self.lblElectricityLastBillDueDate.setFont(font7)
+        self.lblElectricityLastBillDueDate.setFont(font8)
         self.lblElectricityLastBillDueDate.setStyleSheet(u"color: #EE4540;")
         self.lblElectricityLastBilltipDueDate = QLabel(self.electricityLastBillData)
         self.lblElectricityLastBilltipDueDate.setObjectName(u"lblElectricityLastBilltipDueDate")
@@ -902,12 +1128,12 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillTotalPayInfo.setObjectName(u"lblElectricityLastBillTotalPayInfo")
         self.lblElectricityLastBillTotalPayInfo.setGeometry(QRect(20, 10, 331, 23))
         self.lblElectricityLastBillTotalPayInfo.setMaximumSize(QSize(500, 16777215))
-        self.lblElectricityLastBillTotalPayInfo.setFont(font6)
+        self.lblElectricityLastBillTotalPayInfo.setFont(font7)
         self.lblElectricityLastBillTotalPayInfo.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityLastBillTotalPay = QLabel(self.electricityLastBillTotalPay)
         self.lblElectricityLastBillTotalPay.setObjectName(u"lblElectricityLastBillTotalPay")
         self.lblElectricityLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
-        self.lblElectricityLastBillTotalPay.setFont(font7)
+        self.lblElectricityLastBillTotalPay.setFont(font8)
         self.lblElectricityLastBillTotalPay.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricityBillCurrency = QLabel(self.electricityLastBillTotalPay)
         self.lblElectricityBillCurrency.setObjectName(u"lblElectricityBillCurrency")
@@ -932,11 +1158,11 @@ class Ui_BillyAppMain(object):
         self.lblElectricityLastBillPlotTitle.setObjectName(u"lblElectricityLastBillPlotTitle")
         self.lblElectricityLastBillPlotTitle.setGeometry(QRect(20, 10, 341, 23))
         self.lblElectricityLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
-        self.lblElectricityLastBillPlotTitle.setFont(font6)
+        self.lblElectricityLastBillPlotTitle.setFont(font7)
         self.lblElectricityLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
         self.donutElectricityLastBill = QWidget(self.electricityLastBill)
         self.donutElectricityLastBill.setObjectName(u"donutElectricityLastBill")
-        self.donutElectricityLastBill.setGeometry(QRect(0, 40, 391, 271))
+        self.donutElectricityLastBill.setGeometry(QRect(0, 40, 391, 261))
         self.donutElectricityLastBill.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.electricityBillsCosts = QFrame(self.pageElectricity)
@@ -952,7 +1178,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityAllBillsPlot.setObjectName(u"lblElectricityAllBillsPlot")
         self.lblElectricityAllBillsPlot.setGeometry(QRect(20, 10, 181, 23))
         self.lblElectricityAllBillsPlot.setMaximumSize(QSize(500, 16777215))
-        self.lblElectricityAllBillsPlot.setFont(font6)
+        self.lblElectricityAllBillsPlot.setFont(font7)
         self.lblElectricityAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
         self.lineElectricityAllBillsPlot = QWidget(self.electricityBillsCosts)
         self.lineElectricityAllBillsPlot.setObjectName(u"lineElectricityAllBillsPlot")
@@ -999,7 +1225,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasSupplierSelection = QLabel(self.naturalGasSupplierSelection)
         self.lblNaturalGasSupplierSelection.setObjectName(u"lblNaturalGasSupplierSelection")
         self.lblNaturalGasSupplierSelection.setGeometry(QRect(20, 10, 191, 21))
-        self.lblNaturalGasSupplierSelection.setFont(font6)
+        self.lblNaturalGasSupplierSelection.setFont(font7)
         self.lblNaturalGasSupplierSelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasSupplierSelectionInfo = QLabel(self.naturalGasSupplierSelection)
         self.lblNaturalGasSupplierSelectionInfo.setObjectName(u"lblNaturalGasSupplierSelectionInfo")
@@ -1103,7 +1329,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasDirectory.setObjectName(u"lblNaturalGasDirectory")
         self.lblNaturalGasDirectory.setGeometry(QRect(20, 10, 132, 23))
         self.lblNaturalGasDirectory.setMaximumSize(QSize(200, 16777215))
-        self.lblNaturalGasDirectory.setFont(font6)
+        self.lblNaturalGasDirectory.setFont(font7)
         self.lblNaturalGasDirectory.setStyleSheet(u"color: #f3f5f6;")
         self.naturalGasLastBillData = QFrame(self.pageNaturalGas)
         self.naturalGasLastBillData.setObjectName(u"naturalGasLastBillData")
@@ -1123,17 +1349,17 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasLastBillI.setObjectName(u"lblNaturalGasLastBillI")
         self.lblNaturalGasLastBillI.setGeometry(QRect(20, 10, 291, 23))
         self.lblNaturalGasLastBillI.setMaximumSize(QSize(500, 16777215))
-        self.lblNaturalGasLastBillI.setFont(font6)
+        self.lblNaturalGasLastBillI.setFont(font7)
         self.lblNaturalGasLastBillI.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasLastBillID = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBillID.setObjectName(u"lblNaturalGasLastBillID")
         self.lblNaturalGasLastBillID.setGeometry(QRect(20, 40, 391, 31))
-        self.lblNaturalGasLastBillID.setFont(font7)
+        self.lblNaturalGasLastBillID.setFont(font8)
         self.lblNaturalGasLastBillID.setStyleSheet(u"color: #EE4540;")
         self.lblNaturalGasLastBillAddress = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBillAddress.setObjectName(u"lblNaturalGasLastBillAddress")
         self.lblNaturalGasLastBillAddress.setGeometry(QRect(20, 100, 401, 51))
-        self.lblNaturalGasLastBillAddress.setFont(font8)
+        self.lblNaturalGasLastBillAddress.setFont(font6)
         self.lblNaturalGasLastBillAddress.setStyleSheet(u"color: #EE4540;")
         self.lblNaturalGasLastBilltipAddress = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBilltipAddress.setObjectName(u"lblNaturalGasLastBilltipAddress")
@@ -1143,7 +1369,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasLastBillIssueDate = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBillIssueDate.setObjectName(u"lblNaturalGasLastBillIssueDate")
         self.lblNaturalGasLastBillIssueDate.setGeometry(QRect(20, 170, 301, 31))
-        self.lblNaturalGasLastBillIssueDate.setFont(font7)
+        self.lblNaturalGasLastBillIssueDate.setFont(font8)
         self.lblNaturalGasLastBillIssueDate.setStyleSheet(u"color: #EE4540;")
         self.lblNaturalGasLastBilltipIssueDate = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBilltipIssueDate.setObjectName(u"lblNaturalGasLastBilltipIssueDate")
@@ -1153,7 +1379,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasLastBillDueDate = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBillDueDate.setObjectName(u"lblNaturalGasLastBillDueDate")
         self.lblNaturalGasLastBillDueDate.setGeometry(QRect(20, 230, 301, 31))
-        self.lblNaturalGasLastBillDueDate.setFont(font7)
+        self.lblNaturalGasLastBillDueDate.setFont(font8)
         self.lblNaturalGasLastBillDueDate.setStyleSheet(u"color: #EE4540;")
         self.lblNaturalGasLastBilltipDueDate = QLabel(self.naturalGasLastBillData)
         self.lblNaturalGasLastBilltipDueDate.setObjectName(u"lblNaturalGasLastBilltipDueDate")
@@ -1173,12 +1399,12 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasLastBillTotalPayInfo.setObjectName(u"lblNaturalGasLastBillTotalPayInfo")
         self.lblNaturalGasLastBillTotalPayInfo.setGeometry(QRect(20, 10, 331, 23))
         self.lblNaturalGasLastBillTotalPayInfo.setMaximumSize(QSize(500, 16777215))
-        self.lblNaturalGasLastBillTotalPayInfo.setFont(font6)
+        self.lblNaturalGasLastBillTotalPayInfo.setFont(font7)
         self.lblNaturalGasLastBillTotalPayInfo.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasLastBillTotalPay = QLabel(self.naturalGasLastBillTotalPay)
         self.lblNaturalGasLastBillTotalPay.setObjectName(u"lblNaturalGasLastBillTotalPay")
         self.lblNaturalGasLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
-        self.lblNaturalGasLastBillTotalPay.setFont(font7)
+        self.lblNaturalGasLastBillTotalPay.setFont(font8)
         self.lblNaturalGasLastBillTotalPay.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasBillCurrency = QLabel(self.naturalGasLastBillTotalPay)
         self.lblNaturalGasBillCurrency.setObjectName(u"lblNaturalGasBillCurrency")
@@ -1198,11 +1424,11 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasLastBillPlotTitle.setObjectName(u"lblNaturalGasLastBillPlotTitle")
         self.lblNaturalGasLastBillPlotTitle.setGeometry(QRect(20, 10, 341, 23))
         self.lblNaturalGasLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
-        self.lblNaturalGasLastBillPlotTitle.setFont(font6)
+        self.lblNaturalGasLastBillPlotTitle.setFont(font7)
         self.lblNaturalGasLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
         self.donutNaturalGasLastBill = QWidget(self.naturalGasLastBill)
         self.donutNaturalGasLastBill.setObjectName(u"donutNaturalGasLastBill")
-        self.donutNaturalGasLastBill.setGeometry(QRect(0, 40, 391, 271))
+        self.donutNaturalGasLastBill.setGeometry(QRect(0, 40, 391, 261))
         self.donutNaturalGasLastBill.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.naturalGasBillsCosts = QFrame(self.pageNaturalGas)
@@ -1218,7 +1444,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalAllBillsPlot.setObjectName(u"lblNaturalAllBillsPlot")
         self.lblNaturalAllBillsPlot.setGeometry(QRect(20, 10, 181, 23))
         self.lblNaturalAllBillsPlot.setMaximumSize(QSize(500, 16777215))
-        self.lblNaturalAllBillsPlot.setFont(font6)
+        self.lblNaturalAllBillsPlot.setFont(font7)
         self.lblNaturalAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
         self.lineNaturalGasAllBillsPlot = QWidget(self.naturalGasBillsCosts)
         self.lineNaturalGasAllBillsPlot.setObjectName(u"lineNaturalGasAllBillsPlot")
@@ -1265,7 +1491,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetProviderSelection = QLabel(self.internetProviderSelection)
         self.lblInternetProviderSelection.setObjectName(u"lblInternetProviderSelection")
         self.lblInternetProviderSelection.setGeometry(QRect(20, 10, 201, 21))
-        self.lblInternetProviderSelection.setFont(font6)
+        self.lblInternetProviderSelection.setFont(font7)
         self.lblInternetProviderSelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetProviderSelectionInfo = QLabel(self.internetProviderSelection)
         self.lblInternetProviderSelectionInfo.setObjectName(u"lblInternetProviderSelectionInfo")
@@ -1369,7 +1595,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVDirectory.setObjectName(u"lblInternetTVDirectory")
         self.lblInternetTVDirectory.setGeometry(QRect(20, 10, 161, 23))
         self.lblInternetTVDirectory.setMaximumSize(QSize(200, 16777215))
-        self.lblInternetTVDirectory.setFont(font6)
+        self.lblInternetTVDirectory.setFont(font7)
         self.lblInternetTVDirectory.setStyleSheet(u"color: #f3f5f6;")
         self.internetTVLastBillData = QFrame(self.pageInternetTV)
         self.internetTVLastBillData.setObjectName(u"internetTVLastBillData")
@@ -1389,17 +1615,17 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVLastBillI.setObjectName(u"lblInternetTVLastBillI")
         self.lblInternetTVLastBillI.setGeometry(QRect(20, 10, 291, 23))
         self.lblInternetTVLastBillI.setMaximumSize(QSize(500, 16777215))
-        self.lblInternetTVLastBillI.setFont(font6)
+        self.lblInternetTVLastBillI.setFont(font7)
         self.lblInternetTVLastBillI.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetTVLastBillID = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBillID.setObjectName(u"lblInternetTVLastBillID")
         self.lblInternetTVLastBillID.setGeometry(QRect(20, 40, 391, 31))
-        self.lblInternetTVLastBillID.setFont(font7)
+        self.lblInternetTVLastBillID.setFont(font8)
         self.lblInternetTVLastBillID.setStyleSheet(u"color: #EE4540;")
         self.lblInternetTVLastBillAddress = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBillAddress.setObjectName(u"lblInternetTVLastBillAddress")
         self.lblInternetTVLastBillAddress.setGeometry(QRect(20, 100, 401, 51))
-        self.lblInternetTVLastBillAddress.setFont(font8)
+        self.lblInternetTVLastBillAddress.setFont(font6)
         self.lblInternetTVLastBillAddress.setStyleSheet(u"color: #EE4540;")
         self.lblInternetTVLastBilltipAddress = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBilltipAddress.setObjectName(u"lblInternetTVLastBilltipAddress")
@@ -1409,7 +1635,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVLastBillIssueDate = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBillIssueDate.setObjectName(u"lblInternetTVLastBillIssueDate")
         self.lblInternetTVLastBillIssueDate.setGeometry(QRect(20, 170, 301, 31))
-        self.lblInternetTVLastBillIssueDate.setFont(font7)
+        self.lblInternetTVLastBillIssueDate.setFont(font8)
         self.lblInternetTVLastBillIssueDate.setStyleSheet(u"color: #EE4540;")
         self.lblInternetTVLastBilltipIssueDate = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBilltipIssueDate.setObjectName(u"lblInternetTVLastBilltipIssueDate")
@@ -1419,7 +1645,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVLastBillDueDate = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBillDueDate.setObjectName(u"lblInternetTVLastBillDueDate")
         self.lblInternetTVLastBillDueDate.setGeometry(QRect(20, 230, 301, 31))
-        self.lblInternetTVLastBillDueDate.setFont(font7)
+        self.lblInternetTVLastBillDueDate.setFont(font8)
         self.lblInternetTVLastBillDueDate.setStyleSheet(u"color: #EE4540;")
         self.lblInternetTVLastBilltipDueDate = QLabel(self.internetTVLastBillData)
         self.lblInternetTVLastBilltipDueDate.setObjectName(u"lblInternetTVLastBilltipDueDate")
@@ -1439,12 +1665,12 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVLastBillTotalPayInfo.setObjectName(u"lblInternetTVLastBillTotalPayInfo")
         self.lblInternetTVLastBillTotalPayInfo.setGeometry(QRect(20, 10, 331, 23))
         self.lblInternetTVLastBillTotalPayInfo.setMaximumSize(QSize(500, 16777215))
-        self.lblInternetTVLastBillTotalPayInfo.setFont(font6)
+        self.lblInternetTVLastBillTotalPayInfo.setFont(font7)
         self.lblInternetTVLastBillTotalPayInfo.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetTVLastBillTotalPay = QLabel(self.internetTVLastBillTotalPay)
         self.lblInternetTVLastBillTotalPay.setObjectName(u"lblInternetTVLastBillTotalPay")
         self.lblInternetTVLastBillTotalPay.setGeometry(QRect(90, 40, 191, 31))
-        self.lblInternetTVLastBillTotalPay.setFont(font7)
+        self.lblInternetTVLastBillTotalPay.setFont(font8)
         self.lblInternetTVLastBillTotalPay.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetTVBillCurrency = QLabel(self.internetTVLastBillTotalPay)
         self.lblInternetTVBillCurrency.setObjectName(u"lblInternetTVBillCurrency")
@@ -1464,11 +1690,11 @@ class Ui_BillyAppMain(object):
         self.lblInternetTVLastBillPlotTitle.setObjectName(u"lblInternetTVLastBillPlotTitle")
         self.lblInternetTVLastBillPlotTitle.setGeometry(QRect(20, 10, 341, 23))
         self.lblInternetTVLastBillPlotTitle.setMaximumSize(QSize(500, 16777215))
-        self.lblInternetTVLastBillPlotTitle.setFont(font6)
+        self.lblInternetTVLastBillPlotTitle.setFont(font7)
         self.lblInternetTVLastBillPlotTitle.setStyleSheet(u"color: #f3f5f6;")
         self.donutInternetTVLastBill = QWidget(self.internetTVLastBill)
         self.donutInternetTVLastBill.setObjectName(u"donutInternetTVLastBill")
-        self.donutInternetTVLastBill.setGeometry(QRect(0, 40, 391, 271))
+        self.donutInternetTVLastBill.setGeometry(QRect(0, 40, 391, 261))
         self.donutInternetTVLastBill.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.internetSpeedtest = QFrame(self.pageInternetTV)
@@ -1485,7 +1711,7 @@ class Ui_BillyAppMain(object):
         self.lblTestInternetSpeed.setObjectName(u"lblTestInternetSpeed")
         self.lblTestInternetSpeed.setGeometry(QRect(20, 10, 181, 23))
         self.lblTestInternetSpeed.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetSpeed.setFont(font6)
+        self.lblTestInternetSpeed.setFont(font7)
         self.lblTestInternetSpeed.setStyleSheet(u"color: #f3f5f6;")
         self.btnTestInternetSpeed = QPushButton(self.internetSpeedtest)
         self.btnTestInternetSpeed.setObjectName(u"btnTestInternetSpeed")
@@ -1511,37 +1737,37 @@ class Ui_BillyAppMain(object):
         self.lblTestInternetPing.setObjectName(u"lblTestInternetPing")
         self.lblTestInternetPing.setGeometry(QRect(70, 75, 51, 23))
         self.lblTestInternetPing.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetPing.setFont(font6)
+        self.lblTestInternetPing.setFont(font7)
         self.lblTestInternetPing.setStyleSheet(u"color: #C72C41;")
         self.lblTestInternetDownload = QLabel(self.internetSpeedtest)
         self.lblTestInternetDownload.setObjectName(u"lblTestInternetDownload")
         self.lblTestInternetDownload.setGeometry(QRect(70, 130, 101, 23))
         self.lblTestInternetDownload.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetDownload.setFont(font6)
+        self.lblTestInternetDownload.setFont(font7)
         self.lblTestInternetDownload.setStyleSheet(u"color: #C72C41;")
         self.lblTestInternetUpload = QLabel(self.internetSpeedtest)
         self.lblTestInternetUpload.setObjectName(u"lblTestInternetUpload")
         self.lblTestInternetUpload.setGeometry(QRect(70, 185, 71, 23))
         self.lblTestInternetUpload.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetUpload.setFont(font6)
+        self.lblTestInternetUpload.setFont(font7)
         self.lblTestInternetUpload.setStyleSheet(u"color: #C72C41;")
         self.lblTestInternetPingData = QLabel(self.internetSpeedtest)
         self.lblTestInternetPingData.setObjectName(u"lblTestInternetPingData")
         self.lblTestInternetPingData.setGeometry(QRect(125, 75, 181, 23))
         self.lblTestInternetPingData.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetPingData.setFont(font6)
+        self.lblTestInternetPingData.setFont(font7)
         self.lblTestInternetPingData.setStyleSheet(u"color: #f3f5f6;")
         self.lblTestInternetDownloadData = QLabel(self.internetSpeedtest)
         self.lblTestInternetDownloadData.setObjectName(u"lblTestInternetDownloadData")
         self.lblTestInternetDownloadData.setGeometry(QRect(175, 130, 151, 23))
         self.lblTestInternetDownloadData.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetDownloadData.setFont(font6)
+        self.lblTestInternetDownloadData.setFont(font7)
         self.lblTestInternetDownloadData.setStyleSheet(u"color: #f3f5f6;")
         self.lblTestInternetUploadData = QLabel(self.internetSpeedtest)
         self.lblTestInternetUploadData.setObjectName(u"lblTestInternetUploadData")
         self.lblTestInternetUploadData.setGeometry(QRect(150, 185, 181, 23))
         self.lblTestInternetUploadData.setMaximumSize(QSize(500, 16777215))
-        self.lblTestInternetUploadData.setFont(font6)
+        self.lblTestInternetUploadData.setFont(font7)
         self.lblTestInternetUploadData.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetSpeedAdditionalInfo = QLabel(self.internetSpeedtest)
         self.lblInternetSpeedAdditionalInfo.setObjectName(u"lblInternetSpeedAdditionalInfo")
@@ -1569,7 +1795,7 @@ class Ui_BillyAppMain(object):
         self.lblNetflixSelection = QLabel(self.netflixSelection)
         self.lblNetflixSelection.setObjectName(u"lblNetflixSelection")
         self.lblNetflixSelection.setGeometry(QRect(20, 10, 201, 21))
-        self.lblNetflixSelection.setFont(font6)
+        self.lblNetflixSelection.setFont(font7)
         self.lblNetflixSelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblNetflixSelectionInfo = QLabel(self.netflixSelection)
         self.lblNetflixSelectionInfo.setObjectName(u"lblNetflixSelectionInfo")
@@ -1595,7 +1821,7 @@ class Ui_BillyAppMain(object):
         self.txtNetflixPayment = QLineEdit(self.netflixSelection)
         self.txtNetflixPayment.setObjectName(u"txtNetflixPayment")
         self.txtNetflixPayment.setGeometry(QRect(170, 140, 121, 35))
-        self.txtNetflixPayment.setFont(font8)
+        self.txtNetflixPayment.setFont(font6)
         self.txtNetflixPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -1730,7 +1956,7 @@ class Ui_BillyAppMain(object):
         self.txtNetflixTotalPayment.setObjectName(u"txtNetflixTotalPayment")
         self.txtNetflixTotalPayment.setEnabled(False)
         self.txtNetflixTotalPayment.setGeometry(QRect(340, 195, 211, 35))
-        self.txtNetflixTotalPayment.setFont(font8)
+        self.txtNetflixTotalPayment.setFont(font6)
         self.txtNetflixTotalPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -1756,7 +1982,7 @@ class Ui_BillyAppMain(object):
         self.lblSpotifySelection = QLabel(self.spotifySelection)
         self.lblSpotifySelection.setObjectName(u"lblSpotifySelection")
         self.lblSpotifySelection.setGeometry(QRect(20, 10, 201, 21))
-        self.lblSpotifySelection.setFont(font6)
+        self.lblSpotifySelection.setFont(font7)
         self.lblSpotifySelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblSpotifySelectionInfo = QLabel(self.spotifySelection)
         self.lblSpotifySelectionInfo.setObjectName(u"lblSpotifySelectionInfo")
@@ -1849,7 +2075,7 @@ class Ui_BillyAppMain(object):
         self.txtSpotifyPayment = QLineEdit(self.spotifySelection)
         self.txtSpotifyPayment.setObjectName(u"txtSpotifyPayment")
         self.txtSpotifyPayment.setGeometry(QRect(170, 140, 121, 35))
-        self.txtSpotifyPayment.setFont(font8)
+        self.txtSpotifyPayment.setFont(font6)
         self.txtSpotifyPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -1916,7 +2142,7 @@ class Ui_BillyAppMain(object):
         self.txtSpotifyTotalPayment.setObjectName(u"txtSpotifyTotalPayment")
         self.txtSpotifyTotalPayment.setEnabled(False)
         self.txtSpotifyTotalPayment.setGeometry(QRect(340, 195, 211, 35))
-        self.txtSpotifyTotalPayment.setFont(font8)
+        self.txtSpotifyTotalPayment.setFont(font6)
         self.txtSpotifyTotalPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -1942,7 +2168,7 @@ class Ui_BillyAppMain(object):
         self.lblTelecomSelection = QLabel(self.telecomSelection)
         self.lblTelecomSelection.setObjectName(u"lblTelecomSelection")
         self.lblTelecomSelection.setGeometry(QRect(20, 10, 201, 21))
-        self.lblTelecomSelection.setFont(font6)
+        self.lblTelecomSelection.setFont(font7)
         self.lblTelecomSelection.setStyleSheet(u"color: #f3f5f6;")
         self.lblTelecomSelectionInfo = QLabel(self.telecomSelection)
         self.lblTelecomSelectionInfo.setObjectName(u"lblTelecomSelectionInfo")
@@ -2035,7 +2261,7 @@ class Ui_BillyAppMain(object):
         self.txtTelecomPayment = QLineEdit(self.telecomSelection)
         self.txtTelecomPayment.setObjectName(u"txtTelecomPayment")
         self.txtTelecomPayment.setGeometry(QRect(170, 140, 121, 35))
-        self.txtTelecomPayment.setFont(font8)
+        self.txtTelecomPayment.setFont(font6)
         self.txtTelecomPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -2102,7 +2328,7 @@ class Ui_BillyAppMain(object):
         self.txtTelecomTotalPayment.setObjectName(u"txtTelecomTotalPayment")
         self.txtTelecomTotalPayment.setEnabled(False)
         self.txtTelecomTotalPayment.setGeometry(QRect(340, 195, 211, 35))
-        self.txtTelecomTotalPayment.setFont(font8)
+        self.txtTelecomTotalPayment.setFont(font6)
         self.txtTelecomTotalPayment.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -2129,11 +2355,11 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsImpact.setObjectName(u"lblSubscriptionsImpact")
         self.lblSubscriptionsImpact.setGeometry(QRect(20, 10, 391, 23))
         self.lblSubscriptionsImpact.setMaximumSize(QSize(500, 16777215))
-        self.lblSubscriptionsImpact.setFont(font6)
+        self.lblSubscriptionsImpact.setFont(font7)
         self.lblSubscriptionsImpact.setStyleSheet(u"color: #f3f5f6;")
         self.donutSubscriptionsAll = QWidget(self.subscriptionsEarningsImpact)
         self.donutSubscriptionsAll.setObjectName(u"donutSubscriptionsAll")
-        self.donutSubscriptionsAll.setGeometry(QRect(0, 40, 471, 341))
+        self.donutSubscriptionsAll.setGeometry(QRect(0, 40, 471, 331))
         self.donutSubscriptionsAll.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.subscriptionsComparison = QFrame(self.pageSubscriptions)
@@ -2149,7 +2375,7 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsComparison.setObjectName(u"lblSubscriptionsComparison")
         self.lblSubscriptionsComparison.setGeometry(QRect(20, 10, 411, 23))
         self.lblSubscriptionsComparison.setMaximumSize(QSize(500, 16777215))
-        self.lblSubscriptionsComparison.setFont(font6)
+        self.lblSubscriptionsComparison.setFont(font7)
         self.lblSubscriptionsComparison.setStyleSheet(u"color: #f3f5f6;")
         self.barChartSubscriptionsComparison = QWidget(self.subscriptionsComparison)
         self.barChartSubscriptionsComparison.setObjectName(u"barChartSubscriptionsComparison")
@@ -2178,13 +2404,13 @@ class Ui_BillyAppMain(object):
         self.lblProfileName = QLabel(self.profileName)
         self.lblProfileName.setObjectName(u"lblProfileName")
         self.lblProfileName.setGeometry(QRect(20, 10, 191, 21))
-        self.lblProfileName.setFont(font6)
+        self.lblProfileName.setFont(font7)
         self.lblProfileName.setStyleSheet(u"color: #f3f5f6;")
         self.txtUsername = QLineEdit(self.profileName)
         self.txtUsername.setObjectName(u"txtUsername")
         self.txtUsername.setEnabled(False)
         self.txtUsername.setGeometry(QRect(20, 60, 280, 50))
-        self.txtUsername.setFont(font8)
+        self.txtUsername.setFont(font6)
         self.txtUsername.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -2197,7 +2423,7 @@ class Ui_BillyAppMain(object):
         self.txtEarnings = QLineEdit(self.profileName)
         self.txtEarnings.setObjectName(u"txtEarnings")
         self.txtEarnings.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings.setFont(font8)
+        self.txtEarnings.setFont(font6)
         self.txtEarnings.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
@@ -2245,7 +2471,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricitySupplier = QLabel(self.electricitySupplier)
         self.lblElectricitySupplier.setObjectName(u"lblElectricitySupplier")
         self.lblElectricitySupplier.setGeometry(QRect(20, 10, 181, 21))
-        self.lblElectricitySupplier.setFont(font6)
+        self.lblElectricitySupplier.setFont(font7)
         self.lblElectricitySupplier.setStyleSheet(u"color: #f3f5f6;")
         self.lblElectricitySupplierInfo = QLabel(self.electricitySupplier)
         self.lblElectricitySupplierInfo.setObjectName(u"lblElectricitySupplierInfo")
@@ -2343,7 +2569,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalGasSupplier = QLabel(self.naturalGasSupplier)
         self.lblNaturalGasSupplier.setObjectName(u"lblNaturalGasSupplier")
         self.lblNaturalGasSupplier.setGeometry(QRect(20, 10, 201, 21))
-        self.lblNaturalGasSupplier.setFont(font6)
+        self.lblNaturalGasSupplier.setFont(font7)
         self.lblNaturalGasSupplier.setStyleSheet(u"color: #f3f5f6;")
         self.lblNaturalGasSupplierInfo = QLabel(self.naturalGasSupplier)
         self.lblNaturalGasSupplierInfo.setObjectName(u"lblNaturalGasSupplierInfo")
@@ -2441,7 +2667,7 @@ class Ui_BillyAppMain(object):
         self.lblInternetProvider = QLabel(self.internetProvider)
         self.lblInternetProvider.setObjectName(u"lblInternetProvider")
         self.lblInternetProvider.setGeometry(QRect(20, 10, 201, 21))
-        self.lblInternetProvider.setFont(font6)
+        self.lblInternetProvider.setFont(font7)
         self.lblInternetProvider.setStyleSheet(u"color: #f3f5f6;")
         self.lblInternetProviderInfo = QLabel(self.internetProvider)
         self.lblInternetProviderInfo.setObjectName(u"lblInternetProviderInfo")
@@ -2541,7 +2767,7 @@ class Ui_BillyAppMain(object):
         self.lblEarnings = QLabel(self.earnings)
         self.lblEarnings.setObjectName(u"lblEarnings")
         self.lblEarnings.setGeometry(QRect(20, 10, 121, 21))
-        self.lblEarnings.setFont(font6)
+        self.lblEarnings.setFont(font7)
         self.lblEarnings.setStyleSheet(u"color: #f3f5f6;")
         self.lblEarningsPerMonth = QLabel(self.earnings)
         self.lblEarningsPerMonth.setObjectName(u"lblEarningsPerMonth")
@@ -2570,7 +2796,7 @@ class Ui_BillyAppMain(object):
         self.lblSubscriptionsPage = QLabel(self.subscriptionsPage)
         self.lblSubscriptionsPage.setObjectName(u"lblSubscriptionsPage")
         self.lblSubscriptionsPage.setGeometry(QRect(20, 10, 201, 21))
-        self.lblSubscriptionsPage.setFont(font6)
+        self.lblSubscriptionsPage.setFont(font7)
         self.lblSubscriptionsPage.setStyleSheet(u"color: #f3f5f6;")
         self.lblSubscriptionsPageInfo = QLabel(self.subscriptionsPage)
         self.lblSubscriptionsPageInfo.setObjectName(u"lblSubscriptionsPageInfo")
@@ -2704,6 +2930,21 @@ class Ui_BillyAppMain(object):
         self.btnMaximizeRestore.setText("")
         self.btnClose.setText("")
         self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
+        self.txtDashEarnings.setPlaceholderText("")
+        self.lblDashDonutAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Impact on earnings", None))
+        self.lblDashLineAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Costs overview", None))
+        self.comboBoxDashLineAllBills.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
+        self.comboBoxDashLineAllBills.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
+        self.txtDashCurrentDate.setPlaceholderText("")
+        self.lblProfileName_2.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
+        self.txtUsername_2.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
+        self.txtEarnings_2.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
+        self.lblProfileName_3.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
+        self.txtUsername_3.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
+        self.txtEarnings_3.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
+        self.lblProfileName_4.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
+        self.txtUsername_4.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
+        self.txtEarnings_4.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.electricityLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Issue Day", None))
         self.electricityLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Due Day", None))
