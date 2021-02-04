@@ -92,7 +92,14 @@ class MainWindow(QMainWindow):
         self.ui.barChartSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
         self.laydonutSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
         self.chartviewSubscriptionsComparison = QtCharts.QChartView()
-        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)     
+        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)
+
+        # Dashboard page chart widgets
+        self.laydonutDashboard = QtWidgets.QVBoxLayout(self.ui.donutDashAllBills)
+        self.ui.donutDashAllBills.setContentsMargins(0, 0, 0, 0)
+        self.laydonutDashboard.setContentsMargins(0, 0, 0, 0)
+        self.chartviewDonutDashboard = QtCharts.QChartView()
+        self.laydonutDashboard.addWidget(self.chartviewDonutDashboard)   
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -251,6 +258,8 @@ class MainWindow(QMainWindow):
         self.ui.frameTitleSmall.mouseMoveEvent = moveWindow
 
         # Set the default opened page
+        # Call click on Dashboard button in order to load data
+        self.dashboardButton()
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageDashboard)
 
         # Set title name
@@ -364,6 +373,67 @@ class MainWindow(QMainWindow):
     def dashboardButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
+        # Setting the current date
+        date = datetime.datetime.now()
+        self.ui.txtDashCurrentDate.setText(date.strftime("%d %b %Y"))
+
+        username = self.username
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+
+        # Set the earnings text form
+        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+        earnings = earnings_result.fetchone()[0]
+        if (earnings != None):
+            self.ui.txtDashEarnings.setText(earnings + "  RON")
+        db_connection.execute("SELECT due_date, total_pay FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        electricity_bill = db_connection.fetchall()
+        if (electricity_bill != []):
+            self.ui.txtElectricityDueDateDash.setText(datetime.datetime.strptime(f"{electricity_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtElectricityPayDash.setText(electricity_bill[0][1] + "  RON")
+        db_connection.execute("SELECT due_date, total_pay FROM engie_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        natural_gas_bill = db_connection.fetchall()
+        if (natural_gas_bill != []):
+            self.ui.txtNaturalGasDueDateDash.setText(datetime.datetime.strptime(f"{natural_gas_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtNaturalGasPayDash.setText(natural_gas_bill[0][1] + "  RON")
+        db_connection.execute("SELECT due_date, total_pay FROM digi_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        internetTV_bill = db_connection.fetchall()
+        if (internetTV_bill != []):
+            self.ui.txtInternetDueDateDash.setText(datetime.datetime.strptime(f"{internetTV_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtInternetPayDash.setText(internetTV_bill[0][1] + "  RON")
+
+        # Populate the subscription frames
+        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(username,))
+        netflix = netflix_result.fetchone()[0]
+        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(username,))
+        spotify = spotify_result.fetchone()[0]
+        vodafone_result = db_connection.execute("SELECT subscription_vodafone FROM accounts WHERE username = ?",(username,))
+        vodafone = vodafone_result.fetchone()[0]
+        if netflix == 1:
+                self.ui.txtNetflixDash.setStyleSheet("background-image: url(:/images/Resources/dash_netflix.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+        if spotify == 1:
+                self.ui.txtSpotifyDash.setStyleSheet("background-image: url(:/images/Resources/dash_spotify.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+        if vodafone == 1:
+                self.ui.txtVodafoneDash.setStyleSheet("background-image: url(:/images/Resources/dash_vodafone.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+
+
+
+
 
     # Click on the Calendar button
     def calendarButton(self):

@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/dash_netflix.png</file>
+    <file>Resources/dash_spotify.png</file>
+    <file>Resources/dash_vodafone.png</file>
+    <file>Resources/dash_electricity.png</file>
+    <file>Resources/dash_gas.png</file>
+    <file>Resources/dash_internet.png</file>
+    <file>Resources/dash_due_date.png</file>
     <file>Resources/vodafone_sub_selection.png</file>
     <file>Resources/calendar_dash.png</file>
     <file>Resources/prev_month.png</file>

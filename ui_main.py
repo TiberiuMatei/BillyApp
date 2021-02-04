@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiBmKuoB.ui'
+## Form generated from reading UI file 'billy_uiRBAYsr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -492,6 +492,7 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle.setTextFormat(Qt.MarkdownText)
         self.txtDashEarnings = QLineEdit(self.pageDashboard)
         self.txtDashEarnings.setObjectName(u"txtDashEarnings")
+        self.txtDashEarnings.setEnabled(False)
         self.txtDashEarnings.setGeometry(QRect(880, 20, 201, 51))
         font6 = QFont()
         font6.setFamily(u"SF UI Display")
@@ -573,6 +574,7 @@ class Ui_BillyAppMain(object):
         self.comboBoxDashLineAllBills.setEditable(False)
         self.txtDashCurrentDate = QLineEdit(self.pageDashboard)
         self.txtDashCurrentDate.setObjectName(u"txtDashCurrentDate")
+        self.txtDashCurrentDate.setEnabled(False)
         self.txtDashCurrentDate.setGeometry(QRect(660, 20, 201, 51))
         self.txtDashCurrentDate.setFont(font6)
         self.txtDashCurrentDate.setStyleSheet(u"QLineEdit{\n"
@@ -587,136 +589,202 @@ class Ui_BillyAppMain(object):
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
-        self.profileName_2 = QFrame(self.pageDashboard)
-        self.profileName_2.setObjectName(u"profileName_2")
-        self.profileName_2.setGeometry(QRect(20, 70, 621, 121))
-        self.profileName_2.setCursor(QCursor(Qt.ArrowCursor))
-        self.profileName_2.setStyleSheet(u"QFrame{\n"
+        self.electricityDashFrame = QFrame(self.pageDashboard)
+        self.electricityDashFrame.setObjectName(u"electricityDashFrame")
+        self.electricityDashFrame.setGeometry(QRect(20, 70, 621, 111))
+        self.electricityDashFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.electricityDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
 "}")
-        self.profileName_2.setFrameShape(QFrame.NoFrame)
-        self.profileName_2.setFrameShadow(QFrame.Raised)
-        self.lblProfileName_2 = QLabel(self.profileName_2)
-        self.lblProfileName_2.setObjectName(u"lblProfileName_2")
-        self.lblProfileName_2.setGeometry(QRect(20, 10, 191, 21))
-        self.lblProfileName_2.setFont(font7)
-        self.lblProfileName_2.setStyleSheet(u"color: #f3f5f6;")
-        self.txtUsername_2 = QLineEdit(self.profileName_2)
-        self.txtUsername_2.setObjectName(u"txtUsername_2")
-        self.txtUsername_2.setEnabled(False)
-        self.txtUsername_2.setGeometry(QRect(20, 60, 280, 50))
-        self.txtUsername_2.setFont(font6)
-        self.txtUsername_2.setStyleSheet(u"QLineEdit{\n"
+        self.electricityDashFrame.setFrameShape(QFrame.NoFrame)
+        self.electricityDashFrame.setFrameShadow(QFrame.Raised)
+        self.lblElectricityDash = QLabel(self.electricityDashFrame)
+        self.lblElectricityDash.setObjectName(u"lblElectricityDash")
+        self.lblElectricityDash.setGeometry(QRect(20, 10, 441, 21))
+        self.lblElectricityDash.setFont(font7)
+        self.lblElectricityDash.setStyleSheet(u"color: #f3f5f6;")
+        self.txtElectricityPayDash = QLineEdit(self.electricityDashFrame)
+        self.txtElectricityPayDash.setObjectName(u"txtElectricityPayDash")
+        self.txtElectricityPayDash.setEnabled(False)
+        self.txtElectricityPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtElectricityPayDash.setFont(font6)
+        self.txtElectricityPayDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/username.png);\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_electricity.png);\n"
 "   background-repeat: none;\n"
 "}")
-        self.txtEarnings_2 = QLineEdit(self.profileName_2)
-        self.txtEarnings_2.setObjectName(u"txtEarnings_2")
-        self.txtEarnings_2.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings_2.setFont(font6)
-        self.txtEarnings_2.setStyleSheet(u"QLineEdit{\n"
+        self.txtElectricityDueDateDash = QLineEdit(self.electricityDashFrame)
+        self.txtElectricityDueDateDash.setObjectName(u"txtElectricityDueDateDash")
+        self.txtElectricityDueDateDash.setEnabled(False)
+        self.txtElectricityDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtElectricityDueDateDash.setFont(font6)
+        self.txtElectricityDueDateDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_due_date.png);\n"
 "   background-repeat: none;\n"
 "}\n"
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
-        self.profileName_3 = QFrame(self.pageDashboard)
-        self.profileName_3.setObjectName(u"profileName_3")
-        self.profileName_3.setGeometry(QRect(20, 210, 621, 121))
-        self.profileName_3.setCursor(QCursor(Qt.ArrowCursor))
-        self.profileName_3.setStyleSheet(u"QFrame{\n"
+        self.naturalGasDashFrame = QFrame(self.pageDashboard)
+        self.naturalGasDashFrame.setObjectName(u"naturalGasDashFrame")
+        self.naturalGasDashFrame.setGeometry(QRect(20, 200, 621, 111))
+        self.naturalGasDashFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.naturalGasDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
 "}")
-        self.profileName_3.setFrameShape(QFrame.NoFrame)
-        self.profileName_3.setFrameShadow(QFrame.Raised)
-        self.lblProfileName_3 = QLabel(self.profileName_3)
-        self.lblProfileName_3.setObjectName(u"lblProfileName_3")
-        self.lblProfileName_3.setGeometry(QRect(20, 10, 191, 21))
-        self.lblProfileName_3.setFont(font7)
-        self.lblProfileName_3.setStyleSheet(u"color: #f3f5f6;")
-        self.txtUsername_3 = QLineEdit(self.profileName_3)
-        self.txtUsername_3.setObjectName(u"txtUsername_3")
-        self.txtUsername_3.setEnabled(False)
-        self.txtUsername_3.setGeometry(QRect(20, 60, 280, 50))
-        self.txtUsername_3.setFont(font6)
-        self.txtUsername_3.setStyleSheet(u"QLineEdit{\n"
+        self.naturalGasDashFrame.setFrameShape(QFrame.NoFrame)
+        self.naturalGasDashFrame.setFrameShadow(QFrame.Raised)
+        self.lblNaturalGasDash = QLabel(self.naturalGasDashFrame)
+        self.lblNaturalGasDash.setObjectName(u"lblNaturalGasDash")
+        self.lblNaturalGasDash.setGeometry(QRect(20, 10, 451, 21))
+        self.lblNaturalGasDash.setFont(font7)
+        self.lblNaturalGasDash.setStyleSheet(u"color: #f3f5f6;")
+        self.txtNaturalGasPayDash = QLineEdit(self.naturalGasDashFrame)
+        self.txtNaturalGasPayDash.setObjectName(u"txtNaturalGasPayDash")
+        self.txtNaturalGasPayDash.setEnabled(False)
+        self.txtNaturalGasPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtNaturalGasPayDash.setFont(font6)
+        self.txtNaturalGasPayDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/username.png);\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_gas.png);\n"
 "   background-repeat: none;\n"
 "}")
-        self.txtEarnings_3 = QLineEdit(self.profileName_3)
-        self.txtEarnings_3.setObjectName(u"txtEarnings_3")
-        self.txtEarnings_3.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings_3.setFont(font6)
-        self.txtEarnings_3.setStyleSheet(u"QLineEdit{\n"
+        self.txtNaturalGasDueDateDash = QLineEdit(self.naturalGasDashFrame)
+        self.txtNaturalGasDueDateDash.setObjectName(u"txtNaturalGasDueDateDash")
+        self.txtNaturalGasDueDateDash.setEnabled(False)
+        self.txtNaturalGasDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtNaturalGasDueDateDash.setFont(font6)
+        self.txtNaturalGasDueDateDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_due_date.png);\n"
 "   background-repeat: none;\n"
 "}\n"
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
-        self.profileName_4 = QFrame(self.pageDashboard)
-        self.profileName_4.setObjectName(u"profileName_4")
-        self.profileName_4.setGeometry(QRect(20, 350, 621, 121))
-        self.profileName_4.setCursor(QCursor(Qt.ArrowCursor))
-        self.profileName_4.setStyleSheet(u"QFrame{\n"
+        self.internetDashFrame = QFrame(self.pageDashboard)
+        self.internetDashFrame.setObjectName(u"internetDashFrame")
+        self.internetDashFrame.setGeometry(QRect(20, 330, 621, 111))
+        self.internetDashFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.internetDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
 "}")
-        self.profileName_4.setFrameShape(QFrame.NoFrame)
-        self.profileName_4.setFrameShadow(QFrame.Raised)
-        self.lblProfileName_4 = QLabel(self.profileName_4)
-        self.lblProfileName_4.setObjectName(u"lblProfileName_4")
-        self.lblProfileName_4.setGeometry(QRect(20, 10, 191, 21))
-        self.lblProfileName_4.setFont(font7)
-        self.lblProfileName_4.setStyleSheet(u"color: #f3f5f6;")
-        self.txtUsername_4 = QLineEdit(self.profileName_4)
-        self.txtUsername_4.setObjectName(u"txtUsername_4")
-        self.txtUsername_4.setEnabled(False)
-        self.txtUsername_4.setGeometry(QRect(20, 60, 280, 50))
-        self.txtUsername_4.setFont(font6)
-        self.txtUsername_4.setStyleSheet(u"QLineEdit{\n"
+        self.internetDashFrame.setFrameShape(QFrame.NoFrame)
+        self.internetDashFrame.setFrameShadow(QFrame.Raised)
+        self.lblInternetDash = QLabel(self.internetDashFrame)
+        self.lblInternetDash.setObjectName(u"lblInternetDash")
+        self.lblInternetDash.setGeometry(QRect(20, 10, 491, 21))
+        self.lblInternetDash.setFont(font7)
+        self.lblInternetDash.setStyleSheet(u"color: #f3f5f6;")
+        self.txtInternetPayDash = QLineEdit(self.internetDashFrame)
+        self.txtInternetPayDash.setObjectName(u"txtInternetPayDash")
+        self.txtInternetPayDash.setEnabled(False)
+        self.txtInternetPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtInternetPayDash.setFont(font6)
+        self.txtInternetPayDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/username.png);\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_internet.png);\n"
 "   background-repeat: none;\n"
 "}")
-        self.txtEarnings_4 = QLineEdit(self.profileName_4)
-        self.txtEarnings_4.setObjectName(u"txtEarnings_4")
-        self.txtEarnings_4.setGeometry(QRect(320, 60, 280, 50))
-        self.txtEarnings_4.setFont(font6)
-        self.txtEarnings_4.setStyleSheet(u"QLineEdit{\n"
+        self.txtInternetDueDateDash = QLineEdit(self.internetDashFrame)
+        self.txtInternetDueDateDash.setObjectName(u"txtInternetDueDateDash")
+        self.txtInternetDueDateDash.setEnabled(False)
+        self.txtInternetDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtInternetDueDateDash.setFont(font6)
+        self.txtInternetDueDateDash.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 80px; \n"
+"   background-color:#202528;\n"
+"   background-image: url(:/images/Resources/dash_due_date.png);\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.subscriptionsDashFrame = QFrame(self.pageDashboard)
+        self.subscriptionsDashFrame.setObjectName(u"subscriptionsDashFrame")
+        self.subscriptionsDashFrame.setGeometry(QRect(20, 460, 621, 111))
+        self.subscriptionsDashFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.subscriptionsDashFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.subscriptionsDashFrame.setFrameShape(QFrame.NoFrame)
+        self.subscriptionsDashFrame.setFrameShadow(QFrame.Raised)
+        self.lblSubscriptionsDash = QLabel(self.subscriptionsDashFrame)
+        self.lblSubscriptionsDash.setObjectName(u"lblSubscriptionsDash")
+        self.lblSubscriptionsDash.setGeometry(QRect(20, 10, 191, 21))
+        self.lblSubscriptionsDash.setFont(font7)
+        self.lblSubscriptionsDash.setStyleSheet(u"color: #f3f5f6;")
+        self.txtNetflixDash = QLineEdit(self.subscriptionsDashFrame)
+        self.txtNetflixDash.setObjectName(u"txtNetflixDash")
+        self.txtNetflixDash.setEnabled(False)
+        self.txtNetflixDash.setGeometry(QRect(10, 50, 185, 50))
+        self.txtNetflixDash.setFont(font6)
+        self.txtNetflixDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
 "   padding-left: 60px; \n"
-"   background-color:#202528;   \n"
-"   background-image: url(:/images/Resources/set_earnings.png);\n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.txtSpotifyDash = QLineEdit(self.subscriptionsDashFrame)
+        self.txtSpotifyDash.setObjectName(u"txtSpotifyDash")
+        self.txtSpotifyDash.setEnabled(False)
+        self.txtSpotifyDash.setGeometry(QRect(218, 50, 185, 50))
+        self.txtSpotifyDash.setFont(font6)
+        self.txtSpotifyDash.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;\n"
+"   background-repeat: none;\n"
+"}\n"
+"QLineEdit:focus{\n"
+"   border: 2px solid #EE4540;\n"
+"}")
+        self.txtVodafoneDash = QLineEdit(self.subscriptionsDashFrame)
+        self.txtVodafoneDash.setObjectName(u"txtVodafoneDash")
+        self.txtVodafoneDash.setEnabled(False)
+        self.txtVodafoneDash.setGeometry(QRect(425, 50, 185, 50))
+        self.txtVodafoneDash.setFont(font6)
+        self.txtVodafoneDash.setStyleSheet(u"QLineEdit{\n"
+"   border: 2px solid #272b2f;\n"
+"   border-radius: 5px;\n"
+"   color: #d0cfd0;\n"
+"   padding-left: 60px; \n"
+"   background-color:#202528;\n"
 "   background-repeat: none;\n"
 "}\n"
 "QLineEdit:focus{\n"
@@ -1182,7 +1250,7 @@ class Ui_BillyAppMain(object):
         self.lblElectricityAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
         self.lineElectricityAllBillsPlot = QWidget(self.electricityBillsCosts)
         self.lineElectricityAllBillsPlot.setObjectName(u"lineElectricityAllBillsPlot")
-        self.lineElectricityAllBillsPlot.setGeometry(QRect(0, 40, 651, 271))
+        self.lineElectricityAllBillsPlot.setGeometry(QRect(0, 40, 651, 261))
         self.lineElectricityAllBillsPlot.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.comboBoxElectricityBillYear = QComboBox(self.electricityBillsCosts)
@@ -1448,7 +1516,7 @@ class Ui_BillyAppMain(object):
         self.lblNaturalAllBillsPlot.setStyleSheet(u"color: #f3f5f6;")
         self.lineNaturalGasAllBillsPlot = QWidget(self.naturalGasBillsCosts)
         self.lineNaturalGasAllBillsPlot.setObjectName(u"lineNaturalGasAllBillsPlot")
-        self.lineNaturalGasAllBillsPlot.setGeometry(QRect(0, 40, 651, 271))
+        self.lineNaturalGasAllBillsPlot.setGeometry(QRect(0, 40, 651, 261))
         self.lineNaturalGasAllBillsPlot.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
         self.comboBoxNaturalGasBillYear = QComboBox(self.naturalGasBillsCosts)
@@ -2930,21 +2998,25 @@ class Ui_BillyAppMain(object):
         self.btnMaximizeRestore.setText("")
         self.btnClose.setText("")
         self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
-        self.txtDashEarnings.setPlaceholderText("")
+        self.txtDashEarnings.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
         self.lblDashDonutAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Impact on earnings", None))
         self.lblDashLineAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Costs overview", None))
         self.comboBoxDashLineAllBills.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.comboBoxDashLineAllBills.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
         self.txtDashCurrentDate.setPlaceholderText("")
-        self.lblProfileName_2.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
-        self.txtUsername_2.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
-        self.txtEarnings_2.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
-        self.lblProfileName_3.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
-        self.txtUsername_3.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
-        self.txtEarnings_3.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
-        self.lblProfileName_4.setText(QCoreApplication.translate("BillyAppMain", u"Account information", None))
-        self.txtUsername_4.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Username", None))
-        self.txtEarnings_4.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
+        self.lblElectricityDash.setText(QCoreApplication.translate("BillyAppMain", u"Electricity latest bill amount to pay and due date", None))
+        self.txtElectricityPayDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Amount to pay", None))
+        self.txtElectricityDueDateDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Due date", None))
+        self.lblNaturalGasDash.setText(QCoreApplication.translate("BillyAppMain", u"Natural Gas latest bill amount to pay and due date", None))
+        self.txtNaturalGasPayDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Amount to pay", None))
+        self.txtNaturalGasDueDateDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Due date", None))
+        self.lblInternetDash.setText(QCoreApplication.translate("BillyAppMain", u"Internet & TV latest bill amount to pay and due date", None))
+        self.txtInternetPayDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Amount to pay", None))
+        self.txtInternetDueDateDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Due date", None))
+        self.lblSubscriptionsDash.setText(QCoreApplication.translate("BillyAppMain", u"Subscriptions", None))
+        self.txtNetflixDash.setPlaceholderText("")
+        self.txtSpotifyDash.setPlaceholderText("")
+        self.txtVodafoneDash.setPlaceholderText("")
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.electricityLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Issue Day", None))
         self.electricityLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Due Day", None))
