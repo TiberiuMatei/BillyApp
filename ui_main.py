@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiRBAYsr.ui'
+## Form generated from reading UI file 'billy_uiTfuPcg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -18,7 +18,7 @@ class Ui_BillyAppMain(object):
     def setupUiMain(self, BillyAppMain):
         if not BillyAppMain.objectName():
             BillyAppMain.setObjectName(u"BillyAppMain")
-        BillyAppMain.resize(1304, 926)
+        BillyAppMain.resize(1304, 959)
         BillyAppMain.setMinimumSize(QSize(1200, 800))
         self.mainCentralWidget = QWidget(BillyAppMain)
         self.mainCentralWidget.setObjectName(u"mainCentralWidget")
@@ -473,7 +473,7 @@ class Ui_BillyAppMain(object):
         self.frameContentArea.setLineWidth(0)
         self.stackedWidget = QStackedWidget(self.frameContentArea)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 881))
+        self.stackedWidget.setGeometry(QRect(0, 0, 1091, 911))
         self.stackedWidget.setStyleSheet(u"QWidget{\n"
 "   background-color: rgb(32, 37, 40);\n"
 "}")
@@ -512,7 +512,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.dashDonutAllBills = QFrame(self.pageDashboard)
         self.dashDonutAllBills.setObjectName(u"dashDonutAllBills")
-        self.dashDonutAllBills.setGeometry(QRect(660, 90, 421, 481))
+        self.dashDonutAllBills.setGeometry(QRect(540, 90, 541, 481))
         self.dashDonutAllBills.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -530,48 +530,29 @@ class Ui_BillyAppMain(object):
         self.lblDashDonutAllBills.setStyleSheet(u"color: #f3f5f6;")
         self.donutDashAllBills = QWidget(self.dashDonutAllBills)
         self.donutDashAllBills.setObjectName(u"donutDashAllBills")
-        self.donutDashAllBills.setGeometry(QRect(0, 40, 421, 431))
+        self.donutDashAllBills.setGeometry(QRect(-40, 50, 621, 431))
         self.donutDashAllBills.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
-        self.dashLineAllBills = QFrame(self.pageDashboard)
-        self.dashLineAllBills.setObjectName(u"dashLineAllBills")
-        self.dashLineAllBills.setGeometry(QRect(20, 590, 1061, 281))
-        self.dashLineAllBills.setStyleSheet(u"QFrame{\n"
+        self.dashBarAllBills = QFrame(self.pageDashboard)
+        self.dashBarAllBills.setObjectName(u"dashBarAllBills")
+        self.dashBarAllBills.setGeometry(QRect(540, 590, 541, 281))
+        self.dashBarAllBills.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
 "}")
-        self.dashLineAllBills.setFrameShape(QFrame.StyledPanel)
-        self.dashLineAllBills.setFrameShadow(QFrame.Raised)
-        self.lblDashLineAllBills = QLabel(self.dashLineAllBills)
-        self.lblDashLineAllBills.setObjectName(u"lblDashLineAllBills")
-        self.lblDashLineAllBills.setGeometry(QRect(20, 10, 181, 23))
-        self.lblDashLineAllBills.setMaximumSize(QSize(500, 16777215))
-        self.lblDashLineAllBills.setFont(font7)
-        self.lblDashLineAllBills.setStyleSheet(u"color: #f3f5f6;")
-        self.lineDashAllBills = QWidget(self.dashLineAllBills)
-        self.lineDashAllBills.setObjectName(u"lineDashAllBills")
-        self.lineDashAllBills.setGeometry(QRect(0, 40, 1061, 231))
-        self.lineDashAllBills.setStyleSheet(u"border-radius: 0px;\n"
+        self.dashBarAllBills.setFrameShape(QFrame.StyledPanel)
+        self.dashBarAllBills.setFrameShadow(QFrame.Raised)
+        self.lblDashBarAllBills = QLabel(self.dashBarAllBills)
+        self.lblDashBarAllBills.setObjectName(u"lblDashBarAllBills")
+        self.lblDashBarAllBills.setGeometry(QRect(20, 10, 371, 23))
+        self.lblDashBarAllBills.setMaximumSize(QSize(500, 16777215))
+        self.lblDashBarAllBills.setFont(font7)
+        self.lblDashBarAllBills.setStyleSheet(u"color: #f3f5f6;")
+        self.barDashAllBills = QWidget(self.dashBarAllBills)
+        self.barDashAllBills.setObjectName(u"barDashAllBills")
+        self.barDashAllBills.setGeometry(QRect(0, 40, 541, 231))
+        self.barDashAllBills.setStyleSheet(u"border-radius: 0px;\n"
 "background-color: #2a2e32;")
-        self.comboBoxDashLineAllBills = QComboBox(self.dashLineAllBills)
-        self.comboBoxDashLineAllBills.setObjectName(u"comboBoxDashLineAllBills")
-        self.comboBoxDashLineAllBills.setGeometry(QRect(210, 10, 131, 22))
-        self.comboBoxDashLineAllBills.setFont(font3)
-        self.comboBoxDashLineAllBills.setStyleSheet(u"QComboBox {   \n"
-"   color: #C72C41;\n"
-"   selection-background-color: #202528;\n"
-"   selection-color: #C72C41;\n"
-"}\n"
-"QListView {    \n"
-"   color: #C72C41;\n"
-"}\n"
-"QComboBox QAbstractItemView\n"
-"{\n"
-"background-color:#202528;\n"
-"selection-background-color: #202528;\n"
-"color:#C72C41;\n"
-"}")
-        self.comboBoxDashLineAllBills.setEditable(False)
         self.txtDashCurrentDate = QLineEdit(self.pageDashboard)
         self.txtDashCurrentDate.setObjectName(u"txtDashCurrentDate")
         self.txtDashCurrentDate.setEnabled(False)
@@ -591,7 +572,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.electricityDashFrame = QFrame(self.pageDashboard)
         self.electricityDashFrame.setObjectName(u"electricityDashFrame")
-        self.electricityDashFrame.setGeometry(QRect(20, 70, 621, 111))
+        self.electricityDashFrame.setGeometry(QRect(20, 370, 501, 111))
         self.electricityDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.electricityDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -607,13 +588,13 @@ class Ui_BillyAppMain(object):
         self.txtElectricityPayDash = QLineEdit(self.electricityDashFrame)
         self.txtElectricityPayDash.setObjectName(u"txtElectricityPayDash")
         self.txtElectricityPayDash.setEnabled(False)
-        self.txtElectricityPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtElectricityPayDash.setGeometry(QRect(20, 50, 220, 50))
         self.txtElectricityPayDash.setFont(font6)
         self.txtElectricityPayDash.setStyleSheet(u"QLineEdit{\n"
-"   border: 2px solid #272b2f;\n"
+"   border: 2px solid #F7CA18;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 80px; \n"
+"   padding-left: 60px; \n"
 "   background-color:#202528;\n"
 "   background-image: url(:/images/Resources/dash_electricity.png);\n"
 "   background-repeat: none;\n"
@@ -621,7 +602,7 @@ class Ui_BillyAppMain(object):
         self.txtElectricityDueDateDash = QLineEdit(self.electricityDashFrame)
         self.txtElectricityDueDateDash.setObjectName(u"txtElectricityDueDateDash")
         self.txtElectricityDueDateDash.setEnabled(False)
-        self.txtElectricityDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtElectricityDueDateDash.setGeometry(QRect(260, 50, 220, 50))
         self.txtElectricityDueDateDash.setFont(font6)
         self.txtElectricityDueDateDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -637,7 +618,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.naturalGasDashFrame = QFrame(self.pageDashboard)
         self.naturalGasDashFrame.setObjectName(u"naturalGasDashFrame")
-        self.naturalGasDashFrame.setGeometry(QRect(20, 200, 621, 111))
+        self.naturalGasDashFrame.setGeometry(QRect(20, 500, 501, 111))
         self.naturalGasDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.naturalGasDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -653,13 +634,13 @@ class Ui_BillyAppMain(object):
         self.txtNaturalGasPayDash = QLineEdit(self.naturalGasDashFrame)
         self.txtNaturalGasPayDash.setObjectName(u"txtNaturalGasPayDash")
         self.txtNaturalGasPayDash.setEnabled(False)
-        self.txtNaturalGasPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtNaturalGasPayDash.setGeometry(QRect(20, 50, 220, 50))
         self.txtNaturalGasPayDash.setFont(font6)
         self.txtNaturalGasPayDash.setStyleSheet(u"QLineEdit{\n"
-"   border: 2px solid #272b2f;\n"
+"   border: 2px solid #DC3023;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 80px; \n"
+"   padding-left: 60px; \n"
 "   background-color:#202528;\n"
 "   background-image: url(:/images/Resources/dash_gas.png);\n"
 "   background-repeat: none;\n"
@@ -667,7 +648,7 @@ class Ui_BillyAppMain(object):
         self.txtNaturalGasDueDateDash = QLineEdit(self.naturalGasDashFrame)
         self.txtNaturalGasDueDateDash.setObjectName(u"txtNaturalGasDueDateDash")
         self.txtNaturalGasDueDateDash.setEnabled(False)
-        self.txtNaturalGasDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtNaturalGasDueDateDash.setGeometry(QRect(260, 50, 220, 50))
         self.txtNaturalGasDueDateDash.setFont(font6)
         self.txtNaturalGasDueDateDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -683,7 +664,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.internetDashFrame = QFrame(self.pageDashboard)
         self.internetDashFrame.setObjectName(u"internetDashFrame")
-        self.internetDashFrame.setGeometry(QRect(20, 330, 621, 111))
+        self.internetDashFrame.setGeometry(QRect(20, 630, 501, 111))
         self.internetDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.internetDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -699,13 +680,13 @@ class Ui_BillyAppMain(object):
         self.txtInternetPayDash = QLineEdit(self.internetDashFrame)
         self.txtInternetPayDash.setObjectName(u"txtInternetPayDash")
         self.txtInternetPayDash.setEnabled(False)
-        self.txtInternetPayDash.setGeometry(QRect(20, 50, 280, 50))
+        self.txtInternetPayDash.setGeometry(QRect(20, 50, 220, 50))
         self.txtInternetPayDash.setFont(font6)
         self.txtInternetPayDash.setStyleSheet(u"QLineEdit{\n"
-"   border: 2px solid #272b2f;\n"
+"   border: 2px solid #22A7F0;\n"
 "   border-radius: 5px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 80px; \n"
+"   padding-left: 60px; \n"
 "   background-color:#202528;\n"
 "   background-image: url(:/images/Resources/dash_internet.png);\n"
 "   background-repeat: none;\n"
@@ -713,7 +694,7 @@ class Ui_BillyAppMain(object):
         self.txtInternetDueDateDash = QLineEdit(self.internetDashFrame)
         self.txtInternetDueDateDash.setObjectName(u"txtInternetDueDateDash")
         self.txtInternetDueDateDash.setEnabled(False)
-        self.txtInternetDueDateDash.setGeometry(QRect(320, 50, 280, 50))
+        self.txtInternetDueDateDash.setGeometry(QRect(260, 50, 220, 50))
         self.txtInternetDueDateDash.setFont(font6)
         self.txtInternetDueDateDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -729,7 +710,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.subscriptionsDashFrame = QFrame(self.pageDashboard)
         self.subscriptionsDashFrame.setObjectName(u"subscriptionsDashFrame")
-        self.subscriptionsDashFrame.setGeometry(QRect(20, 460, 621, 111))
+        self.subscriptionsDashFrame.setGeometry(QRect(20, 760, 501, 111))
         self.subscriptionsDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.subscriptionsDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -745,7 +726,7 @@ class Ui_BillyAppMain(object):
         self.txtNetflixDash = QLineEdit(self.subscriptionsDashFrame)
         self.txtNetflixDash.setObjectName(u"txtNetflixDash")
         self.txtNetflixDash.setEnabled(False)
-        self.txtNetflixDash.setGeometry(QRect(10, 50, 185, 50))
+        self.txtNetflixDash.setGeometry(QRect(10, 50, 150, 50))
         self.txtNetflixDash.setFont(font6)
         self.txtNetflixDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -761,7 +742,7 @@ class Ui_BillyAppMain(object):
         self.txtSpotifyDash = QLineEdit(self.subscriptionsDashFrame)
         self.txtSpotifyDash.setObjectName(u"txtSpotifyDash")
         self.txtSpotifyDash.setEnabled(False)
-        self.txtSpotifyDash.setGeometry(QRect(218, 50, 185, 50))
+        self.txtSpotifyDash.setGeometry(QRect(175, 50, 150, 50))
         self.txtSpotifyDash.setFont(font6)
         self.txtSpotifyDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -777,7 +758,7 @@ class Ui_BillyAppMain(object):
         self.txtVodafoneDash = QLineEdit(self.subscriptionsDashFrame)
         self.txtVodafoneDash.setObjectName(u"txtVodafoneDash")
         self.txtVodafoneDash.setEnabled(False)
-        self.txtVodafoneDash.setGeometry(QRect(425, 50, 185, 50))
+        self.txtVodafoneDash.setGeometry(QRect(340, 50, 150, 50))
         self.txtVodafoneDash.setFont(font6)
         self.txtVodafoneDash.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
@@ -790,6 +771,37 @@ class Ui_BillyAppMain(object):
 "QLineEdit:focus{\n"
 "   border: 2px solid #EE4540;\n"
 "}")
+        self.btnInformation = QPushButton(self.pageDashboard)
+        self.btnInformation.setObjectName(u"btnInformation")
+        self.btnInformation.setGeometry(QRect(180, 10, 40, 40))
+        self.btnInformation.setFont(font1)
+        self.btnInformation.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnInformation.setStyleSheet(u"QPushButton{\n"
+"   background-color: #EE4540;\n"
+"   background-image: url(:/images/Resources/info_button.png);\n"
+"   color: #f3f5f6;\n"
+"   border-radius: 5px;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{  \n"
+"   border-style:solid;\n"
+"   border-width:2px;\n"
+"}\n"
+"QPushButton:hover{\n"
+"   background-color: #C72C41;\n"
+"}")
+        self.btnInformation.setAutoDefault(True)
+        self.btnInformation.setFlat(True)
+        self.informationBillyDashFrame = QFrame(self.pageDashboard)
+        self.informationBillyDashFrame.setObjectName(u"informationBillyDashFrame")
+        self.informationBillyDashFrame.setGeometry(QRect(20, 90, 501, 261))
+        self.informationBillyDashFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.informationBillyDashFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 10px;    \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.informationBillyDashFrame.setFrameShape(QFrame.NoFrame)
+        self.informationBillyDashFrame.setFrameShadow(QFrame.Raised)
         self.stackedWidget.addWidget(self.pageDashboard)
         self.pageCalendar = QWidget()
         self.pageCalendar.setObjectName(u"pageCalendar")
@@ -2949,6 +2961,7 @@ class Ui_BillyAppMain(object):
         self.retranslateUi(BillyAppMain)
 
         self.btnDashboard.setDefault(False)
+        self.btnInformation.setDefault(False)
         self.electricityLegendIssueColor.setDefault(False)
         self.electricityLegendDueColor.setDefault(False)
         self.naturalGasLegendIssueColor.setDefault(False)
@@ -3000,9 +3013,7 @@ class Ui_BillyAppMain(object):
         self.lblDashTitle.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard", None))
         self.txtDashEarnings.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Earnings", None))
         self.lblDashDonutAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Impact on earnings", None))
-        self.lblDashLineAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Costs overview", None))
-        self.comboBoxDashLineAllBills.setCurrentText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
-        self.comboBoxDashLineAllBills.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Select year", None))
+        self.lblDashBarAllBills.setText(QCoreApplication.translate("BillyAppMain", u"Latest month amount to pay for each bill", None))
         self.txtDashCurrentDate.setPlaceholderText("")
         self.lblElectricityDash.setText(QCoreApplication.translate("BillyAppMain", u"Electricity latest bill amount to pay and due date", None))
         self.txtElectricityPayDash.setPlaceholderText(QCoreApplication.translate("BillyAppMain", u"Amount to pay", None))
@@ -3017,6 +3028,7 @@ class Ui_BillyAppMain(object):
         self.txtNetflixDash.setPlaceholderText("")
         self.txtSpotifyDash.setPlaceholderText("")
         self.txtVodafoneDash.setPlaceholderText("")
+        self.btnInformation.setText("")
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.electricityLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Issue Day", None))
         self.electricityLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Due Day", None))

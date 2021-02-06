@@ -41,3 +41,12 @@ Frame background:
 
 Highlight frame:
 #2d3136
+
+Dash electricity:
+#F7CA18
+
+Dash gas:
+#DC3023
+
+Dash internet:
+#22A7F0

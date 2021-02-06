@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1304</width>
-    <height>926</height>
+    <height>959</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -1031,7 +1031,7 @@ QPushButton:hover{
             <x>0</x>
             <y>0</y>
             <width>1091</width>
-            <height>881</height>
+            <height>911</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1106,9 +1106,9 @@ QLineEdit:focus{
            <widget class="QFrame" name="dashDonutAllBills">
             <property name="geometry">
              <rect>
-              <x>660</x>
+              <x>540</x>
               <y>90</y>
-              <width>421</width>
+              <width>541</width>
               <height>481</height>
              </rect>
             </property>
@@ -1155,9 +1155,9 @@ QLineEdit:focus{
             <widget class="QWidget" name="donutDashAllBills" native="true">
              <property name="geometry">
               <rect>
-               <x>0</x>
-               <y>40</y>
-               <width>421</width>
+               <x>-40</x>
+               <y>50</y>
+               <width>621</width>
                <height>431</height>
               </rect>
              </property>
@@ -1167,12 +1167,12 @@ background-color: #2a2e32;</string>
              </property>
             </widget>
            </widget>
-           <widget class="QFrame" name="dashLineAllBills">
+           <widget class="QFrame" name="dashBarAllBills">
             <property name="geometry">
              <rect>
-              <x>20</x>
+              <x>540</x>
               <y>590</y>
-              <width>1061</width>
+              <width>541</width>
               <height>281</height>
              </rect>
             </property>
@@ -1188,12 +1188,12 @@ background-color: #2a2e32;</string>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <widget class="QLabel" name="lblDashLineAllBills">
+            <widget class="QLabel" name="lblDashBarAllBills">
              <property name="geometry">
               <rect>
                <x>20</x>
                <y>10</y>
-               <width>181</width>
+               <width>371</width>
                <height>23</height>
               </rect>
              </property>
@@ -1213,62 +1213,21 @@ background-color: #2a2e32;</string>
               <string notr="true">color: #f3f5f6;</string>
              </property>
              <property name="text">
-              <string>Costs overview</string>
+              <string>Latest month amount to pay for each bill</string>
              </property>
             </widget>
-            <widget class="QWidget" name="lineDashAllBills" native="true">
+            <widget class="QWidget" name="barDashAllBills" native="true">
              <property name="geometry">
               <rect>
                <x>0</x>
                <y>40</y>
-               <width>1061</width>
+               <width>541</width>
                <height>231</height>
               </rect>
              </property>
              <property name="styleSheet">
               <string notr="true">border-radius: 0px;
 background-color: #2a2e32;</string>
-             </property>
-            </widget>
-            <widget class="QComboBox" name="comboBoxDashLineAllBills">
-             <property name="geometry">
-              <rect>
-               <x>210</x>
-               <y>10</y>
-               <width>131</width>
-               <height>22</height>
-              </rect>
-             </property>
-             <property name="font">
-              <font>
-               <family>SF UI Display</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QComboBox {	
-	color: #C72C41;
-	selection-background-color: #202528;
-	selection-color: #C72C41;
-}
-QListView {	
-	color: #C72C41;
-}
-QComboBox QAbstractItemView
-{
-background-color:#202528;
-selection-background-color: #202528;
-color:#C72C41;
-}</string>
-             </property>
-             <property name="editable">
-              <bool>false</bool>
-             </property>
-             <property name="currentText">
-              <string>Select year</string>
-             </property>
-             <property name="placeholderText">
-              <string>Select year</string>
              </property>
             </widget>
            </widget>
@@ -1312,8 +1271,8 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>70</y>
-              <width>621</width>
+              <y>370</y>
+              <width>501</width>
               <height>111</height>
              </rect>
             </property>
@@ -1362,7 +1321,7 @@ QLineEdit:focus{
               <rect>
                <x>20</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1374,10 +1333,10 @@ QLineEdit:focus{
              </property>
              <property name="styleSheet">
               <string notr="true">QLineEdit{
-	border: 2px solid #272b2f;
+	border: 2px solid #F7CA18;
 	border-radius: 5px;
 	color: #d0cfd0;
-	padding-left: 80px;	
+	padding-left: 60px;	
 	background-color:#202528;
 	background-image: url(:/images/Resources/dash_electricity.png);
 	background-repeat: none;
@@ -1393,9 +1352,9 @@ QLineEdit:focus{
              </property>
              <property name="geometry">
               <rect>
-               <x>320</x>
+               <x>260</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1428,8 +1387,8 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>200</y>
-              <width>621</width>
+              <y>500</y>
+              <width>501</width>
               <height>111</height>
              </rect>
             </property>
@@ -1478,7 +1437,7 @@ QLineEdit:focus{
               <rect>
                <x>20</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1490,10 +1449,10 @@ QLineEdit:focus{
              </property>
              <property name="styleSheet">
               <string notr="true">QLineEdit{
-	border: 2px solid #272b2f;
+	border: 2px solid #DC3023;
 	border-radius: 5px;
 	color: #d0cfd0;
-	padding-left: 80px;	
+	padding-left: 60px;	
 	background-color:#202528;
 	background-image: url(:/images/Resources/dash_gas.png);
 	background-repeat: none;
@@ -1509,9 +1468,9 @@ QLineEdit:focus{
              </property>
              <property name="geometry">
               <rect>
-               <x>320</x>
+               <x>260</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1544,8 +1503,8 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>330</y>
-              <width>621</width>
+              <y>630</y>
+              <width>501</width>
               <height>111</height>
              </rect>
             </property>
@@ -1594,7 +1553,7 @@ QLineEdit:focus{
               <rect>
                <x>20</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1606,10 +1565,10 @@ QLineEdit:focus{
              </property>
              <property name="styleSheet">
               <string notr="true">QLineEdit{
-	border: 2px solid #272b2f;
+	border: 2px solid #22A7F0;
 	border-radius: 5px;
 	color: #d0cfd0;
-	padding-left: 80px;	
+	padding-left: 60px;	
 	background-color:#202528;
 	background-image: url(:/images/Resources/dash_internet.png);
 	background-repeat: none;
@@ -1625,9 +1584,9 @@ QLineEdit:focus{
              </property>
              <property name="geometry">
               <rect>
-               <x>320</x>
+               <x>260</x>
                <y>50</y>
-               <width>280</width>
+               <width>220</width>
                <height>50</height>
               </rect>
              </property>
@@ -1660,8 +1619,8 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>460</y>
-              <width>621</width>
+              <y>760</y>
+              <width>501</width>
               <height>111</height>
              </rect>
             </property>
@@ -1710,7 +1669,7 @@ QLineEdit:focus{
               <rect>
                <x>10</x>
                <y>50</y>
-               <width>185</width>
+               <width>150</width>
                <height>50</height>
               </rect>
              </property>
@@ -1743,9 +1702,9 @@ QLineEdit:focus{
              </property>
              <property name="geometry">
               <rect>
-               <x>218</x>
+               <x>175</x>
                <y>50</y>
-               <width>185</width>
+               <width>150</width>
                <height>50</height>
               </rect>
              </property>
@@ -1778,9 +1737,9 @@ QLineEdit:focus{
              </property>
              <property name="geometry">
               <rect>
-               <x>425</x>
+               <x>340</x>
                <y>50</y>
-               <width>185</width>
+               <width>150</width>
                <height>50</height>
               </rect>
              </property>
@@ -1807,6 +1766,80 @@ QLineEdit:focus{
               <string/>
              </property>
             </widget>
+           </widget>
+           <widget class="QPushButton" name="btnInformation">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>10</y>
+              <width>40</width>
+              <height>40</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>SF UI Display</family>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton{
+	background-color: #EE4540;
+	background-image: url(:/images/Resources/info_button.png);
+	color: #f3f5f6;
+	border-radius: 5px;
+}
+QPushButton:pressed
+{	
+	border-style:solid;
+	border-width:2px;
+}
+QPushButton:hover{
+	background-color: #C72C41;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
+            </property>
+            <property name="default">
+             <bool>false</bool>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QFrame" name="informationBillyDashFrame">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>90</y>
+              <width>501</width>
+              <height>261</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 10px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
            </widget>
           </widget>
           <widget class="QWidget" name="pageCalendar">
