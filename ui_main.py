@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'billy_uiTfuPcg.ui'
+## Form generated from reading UI file 'billy_uinukeoX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -493,7 +493,7 @@ class Ui_BillyAppMain(object):
         self.txtDashEarnings = QLineEdit(self.pageDashboard)
         self.txtDashEarnings.setObjectName(u"txtDashEarnings")
         self.txtDashEarnings.setEnabled(False)
-        self.txtDashEarnings.setGeometry(QRect(880, 20, 201, 51))
+        self.txtDashEarnings.setGeometry(QRect(280, 80, 241, 51))
         font6 = QFont()
         font6.setFamily(u"SF UI Display")
         font6.setPointSize(12)
@@ -502,7 +502,7 @@ class Ui_BillyAppMain(object):
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 10px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
+"   padding-left: 70px; \n"
 "   background-color: #2a2e32;  \n"
 "   background-image: url(:/images/Resources/set_earnings.png);\n"
 "   background-repeat: none;\n"
@@ -512,7 +512,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.dashDonutAllBills = QFrame(self.pageDashboard)
         self.dashDonutAllBills.setObjectName(u"dashDonutAllBills")
-        self.dashDonutAllBills.setGeometry(QRect(540, 90, 541, 481))
+        self.dashDonutAllBills.setGeometry(QRect(540, 80, 541, 481))
         self.dashDonutAllBills.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -535,7 +535,7 @@ class Ui_BillyAppMain(object):
 "background-color: #2a2e32;")
         self.dashBarAllBills = QFrame(self.pageDashboard)
         self.dashBarAllBills.setObjectName(u"dashBarAllBills")
-        self.dashBarAllBills.setGeometry(QRect(540, 590, 541, 281))
+        self.dashBarAllBills.setGeometry(QRect(540, 580, 541, 281))
         self.dashBarAllBills.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
 "   background-color: #2a2e32;\n"
@@ -556,13 +556,13 @@ class Ui_BillyAppMain(object):
         self.txtDashCurrentDate = QLineEdit(self.pageDashboard)
         self.txtDashCurrentDate.setObjectName(u"txtDashCurrentDate")
         self.txtDashCurrentDate.setEnabled(False)
-        self.txtDashCurrentDate.setGeometry(QRect(660, 20, 201, 51))
+        self.txtDashCurrentDate.setGeometry(QRect(20, 80, 241, 51))
         self.txtDashCurrentDate.setFont(font6)
         self.txtDashCurrentDate.setStyleSheet(u"QLineEdit{\n"
 "   border: 2px solid #272b2f;\n"
 "   border-radius: 10px;\n"
 "   color: #d0cfd0;\n"
-"   padding-left: 60px; \n"
+"   padding-left: 70px; \n"
 "   background-color: #2a2e32;\n"
 "   background-image: url(:/images/Resources/calendar_dash.png);\n"
 "   background-repeat: none;\n"
@@ -572,7 +572,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.electricityDashFrame = QFrame(self.pageDashboard)
         self.electricityDashFrame.setObjectName(u"electricityDashFrame")
-        self.electricityDashFrame.setGeometry(QRect(20, 370, 501, 111))
+        self.electricityDashFrame.setGeometry(QRect(20, 360, 501, 111))
         self.electricityDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.electricityDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -618,7 +618,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.naturalGasDashFrame = QFrame(self.pageDashboard)
         self.naturalGasDashFrame.setObjectName(u"naturalGasDashFrame")
-        self.naturalGasDashFrame.setGeometry(QRect(20, 500, 501, 111))
+        self.naturalGasDashFrame.setGeometry(QRect(20, 490, 501, 111))
         self.naturalGasDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.naturalGasDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -664,7 +664,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.internetDashFrame = QFrame(self.pageDashboard)
         self.internetDashFrame.setObjectName(u"internetDashFrame")
-        self.internetDashFrame.setGeometry(QRect(20, 630, 501, 111))
+        self.internetDashFrame.setGeometry(QRect(20, 620, 501, 111))
         self.internetDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.internetDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -710,7 +710,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.subscriptionsDashFrame = QFrame(self.pageDashboard)
         self.subscriptionsDashFrame.setObjectName(u"subscriptionsDashFrame")
-        self.subscriptionsDashFrame.setGeometry(QRect(20, 760, 501, 111))
+        self.subscriptionsDashFrame.setGeometry(QRect(20, 750, 501, 111))
         self.subscriptionsDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.subscriptionsDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -773,7 +773,7 @@ class Ui_BillyAppMain(object):
 "}")
         self.btnInformation = QPushButton(self.pageDashboard)
         self.btnInformation.setObjectName(u"btnInformation")
-        self.btnInformation.setGeometry(QRect(180, 10, 40, 40))
+        self.btnInformation.setGeometry(QRect(170, 18, 25, 25))
         self.btnInformation.setFont(font1)
         self.btnInformation.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnInformation.setStyleSheet(u"QPushButton{\n"
@@ -794,7 +794,7 @@ class Ui_BillyAppMain(object):
         self.btnInformation.setFlat(True)
         self.informationBillyDashFrame = QFrame(self.pageDashboard)
         self.informationBillyDashFrame.setObjectName(u"informationBillyDashFrame")
-        self.informationBillyDashFrame.setGeometry(QRect(20, 90, 501, 261))
+        self.informationBillyDashFrame.setGeometry(QRect(20, 150, 501, 191))
         self.informationBillyDashFrame.setCursor(QCursor(Qt.ArrowCursor))
         self.informationBillyDashFrame.setStyleSheet(u"QFrame{\n"
 "   border-radius: 10px;    \n"
@@ -802,6 +802,43 @@ class Ui_BillyAppMain(object):
 "}")
         self.informationBillyDashFrame.setFrameShape(QFrame.NoFrame)
         self.informationBillyDashFrame.setFrameShadow(QFrame.Raised)
+        self.lblDashboardWelcome = QLabel(self.informationBillyDashFrame)
+        self.lblDashboardWelcome.setObjectName(u"lblDashboardWelcome")
+        self.lblDashboardWelcome.setGeometry(QRect(10, 10, 481, 171))
+        self.lblDashboardWelcome.setFont(font3)
+        self.lblDashboardWelcome.setStyleSheet(u"color: #6c6e71;")
+        self.lblDashboardWelcome.setTextFormat(Qt.RichText)
+        self.lblDashboardWelcome.setScaledContents(False)
+        self.lblDashboardWelcome.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.lblDashboardWelcome.setWordWrap(False)
+        self.btnDashboardToAccountPreferences = QPushButton(self.informationBillyDashFrame)
+        self.btnDashboardToAccountPreferences.setObjectName(u"btnDashboardToAccountPreferences")
+        self.btnDashboardToAccountPreferences.setGeometry(QRect(459, 67, 35, 35))
+        self.btnDashboardToAccountPreferences.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btnDashboardToAccountPreferences.setStyleSheet(u"QPushButton{\n"
+"   border: none;\n"
+"   background-color: rgb(42, 46, 50);\n"
+"}")
+        self.btnDashboardToAccountPreferences.setIcon(icon)
+        self.btnDashboardToAccountPreferences.setIconSize(QSize(40, 40))
+        self.btnDashboardToAccountPreferences.setCheckable(True)
+        self.btnDashboardToAccountPreferences.setFlat(True)
+        self.generalDashboardInformationFrame = QFrame(self.pageDashboard)
+        self.generalDashboardInformationFrame.setObjectName(u"generalDashboardInformationFrame")
+        self.generalDashboardInformationFrame.setGeometry(QRect(20, 880, 1061, 21))
+        self.generalDashboardInformationFrame.setCursor(QCursor(Qt.ArrowCursor))
+        self.generalDashboardInformationFrame.setStyleSheet(u"QFrame{\n"
+"   border-radius: 5px; \n"
+"   background-color: #2a2e32;\n"
+"}")
+        self.generalDashboardInformationFrame.setFrameShape(QFrame.NoFrame)
+        self.generalDashboardInformationFrame.setFrameShadow(QFrame.Raised)
+        self.lblGeneralDashboardInformation = QLabel(self.generalDashboardInformationFrame)
+        self.lblGeneralDashboardInformation.setObjectName(u"lblGeneralDashboardInformation")
+        self.lblGeneralDashboardInformation.setGeometry(QRect(10, 3, 1041, 16))
+        self.lblGeneralDashboardInformation.setFont(font3)
+        self.lblGeneralDashboardInformation.setStyleSheet(u"color: #6c6e71;")
+        self.lblGeneralDashboardInformation.setAlignment(Qt.AlignCenter)
         self.stackedWidget.addWidget(self.pageDashboard)
         self.pageCalendar = QWidget()
         self.pageCalendar.setObjectName(u"pageCalendar")
@@ -3029,6 +3066,9 @@ class Ui_BillyAppMain(object):
         self.txtSpotifyDash.setPlaceholderText("")
         self.txtVodafoneDash.setPlaceholderText("")
         self.btnInformation.setText("")
+        self.lblDashboardWelcome.setText(QCoreApplication.translate("BillyAppMain", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600; color:#c72c41;\">Welcome to Billy v1.0 !</span><br/></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">1. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the monthly earnings from the Account preferences</span></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">2. </span><span style=\" font-size:12pt; color:#6c6e71;\">Select the suppliers/providers for each cattegory</span></p><p><span style=\" font-size:18pt; color:#6c6e71;\">3</span><span style=\" font-size:16pt; color:#6c6e71;\">. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the bills for each supplier/provider (.pdf file)</span></p></body></html>", None))
+        self.btnDashboardToAccountPreferences.setText("")
+        self.lblGeneralDashboardInformation.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard page : track the latest added bill amount to pay and due date for each supplier/provider, track the selected subscriptions and track the impact on earnings", None))
         self.lblCalendarTitle.setText(QCoreApplication.translate("BillyAppMain", u"Calendar", None))
         self.electricityLegendIssueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Issue Day", None))
         self.electricityLegendDueColor.setText(QCoreApplication.translate("BillyAppMain", u"Electricity Due Day", None))

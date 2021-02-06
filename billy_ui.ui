@@ -1073,9 +1073,9 @@ QPushButton:hover{
             </property>
             <property name="geometry">
              <rect>
-              <x>880</x>
-              <y>20</y>
-              <width>201</width>
+              <x>280</x>
+              <y>80</y>
+              <width>241</width>
               <height>51</height>
              </rect>
             </property>
@@ -1090,7 +1090,7 @@ QPushButton:hover{
 	border: 2px solid #272b2f;
 	border-radius: 10px;
 	color: #d0cfd0;
-	padding-left: 60px;	
+	padding-left: 70px;	
 	background-color: #2a2e32;	
 	background-image: url(:/images/Resources/set_earnings.png);
 	background-repeat: none;
@@ -1107,7 +1107,7 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>540</x>
-              <y>90</y>
+              <y>80</y>
               <width>541</width>
               <height>481</height>
              </rect>
@@ -1171,7 +1171,7 @@ background-color: #2a2e32;</string>
             <property name="geometry">
              <rect>
               <x>540</x>
-              <y>590</y>
+              <y>580</y>
               <width>541</width>
               <height>281</height>
              </rect>
@@ -1237,9 +1237,9 @@ background-color: #2a2e32;</string>
             </property>
             <property name="geometry">
              <rect>
-              <x>660</x>
-              <y>20</y>
-              <width>201</width>
+              <x>20</x>
+              <y>80</y>
+              <width>241</width>
               <height>51</height>
              </rect>
             </property>
@@ -1254,7 +1254,7 @@ background-color: #2a2e32;</string>
 	border: 2px solid #272b2f;
 	border-radius: 10px;
 	color: #d0cfd0;
-	padding-left: 60px;	
+	padding-left: 70px;	
 	background-color: #2a2e32;
 	background-image: url(:/images/Resources/calendar_dash.png);
 	background-repeat: none;
@@ -1271,7 +1271,7 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>370</y>
+              <y>360</y>
               <width>501</width>
               <height>111</height>
              </rect>
@@ -1387,7 +1387,7 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>500</y>
+              <y>490</y>
               <width>501</width>
               <height>111</height>
              </rect>
@@ -1503,7 +1503,7 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>630</y>
+              <y>620</y>
               <width>501</width>
               <height>111</height>
              </rect>
@@ -1619,7 +1619,7 @@ QLineEdit:focus{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>760</y>
+              <y>750</y>
               <width>501</width>
               <height>111</height>
              </rect>
@@ -1770,10 +1770,10 @@ QLineEdit:focus{
            <widget class="QPushButton" name="btnInformation">
             <property name="geometry">
              <rect>
-              <x>180</x>
-              <y>10</y>
-              <width>40</width>
-              <height>40</height>
+              <x>170</x>
+              <y>18</y>
+              <width>25</width>
+              <height>25</height>
              </rect>
             </property>
             <property name="font">
@@ -1820,9 +1820,9 @@ QPushButton:hover{
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>90</y>
+              <y>150</y>
               <width>501</width>
-              <height>261</height>
+              <height>191</height>
              </rect>
             </property>
             <property name="cursor">
@@ -1840,6 +1840,128 @@ QPushButton:hover{
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
+            <widget class="QLabel" name="lblDashboardWelcome">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>10</y>
+               <width>481</width>
+               <height>171</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#c72c41;&quot;&gt;Welcome to Billy v1.0 !&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#6c6e71;&quot;&gt;1. &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#6c6e71;&quot;&gt;Add the monthly earnings from the Account preferences&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600; color:#6c6e71;&quot;&gt;2. &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#6c6e71;&quot;&gt;Select the suppliers/providers for each cattegory&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#6c6e71;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-size:16pt; color:#6c6e71;&quot;&gt;. &lt;/span&gt;&lt;span style=&quot; font-size:12pt; color:#6c6e71;&quot;&gt;Add the bills for each supplier/provider (.pdf file)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::RichText</enum>
+             </property>
+             <property name="scaledContents">
+              <bool>false</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap">
+              <bool>false</bool>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="btnDashboardToAccountPreferences">
+             <property name="geometry">
+              <rect>
+               <x>459</x>
+               <y>67</y>
+               <width>35</width>
+               <height>35</height>
+              </rect>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+	border: none;
+	background-color: rgb(42, 46, 50);
+}</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="billy_app.qrc">
+               <normaloff>:/images/Resources/profile.png</normaloff>:/images/Resources/profile.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QFrame" name="generalDashboardInformationFrame">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>880</y>
+              <width>1061</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QFrame{
+	border-radius: 5px;	
+	background-color: #2a2e32;
+}</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <widget class="QLabel" name="lblGeneralDashboardInformation">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>3</y>
+               <width>1041</width>
+               <height>16</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>SF UI Display</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: #6c6e71;</string>
+             </property>
+             <property name="text">
+              <string>Dashboard page : track the latest added bill amount to pay and due date for each supplier/provider, track the selected subscriptions and track the impact on earnings</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </widget>
           </widget>
           <widget class="QWidget" name="pageCalendar">

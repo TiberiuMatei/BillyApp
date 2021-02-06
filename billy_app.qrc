@@ -1,7 +1,7 @@
 <RCC>
   <qresource prefix="images">
-    <file>Resources/info_button.png</file>
     <file>Resources/dash_due_date.png</file>
+    <file>Resources/info_button.png</file>
     <file>Resources/dash_netflix.png</file>
     <file>Resources/dash_spotify.png</file>
     <file>Resources/dash_vodafone.png</file>

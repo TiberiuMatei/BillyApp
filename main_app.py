@@ -277,9 +277,6 @@ class MainWindow(QMainWindow):
         self.dashboardButton()
         self.ui.stackedWidget.setCurrentWidget(self.ui.pageDashboard)
 
-        # Dashboard info button
-        self.ui.btnInformation.clicked.connect(self.dashboardInformation)
-
         # Set the stacked widget switch and button check logic        
         self.ui.btnDashboard.clicked.connect(self.dashboardButton)
         self.ui.btnCalendar.clicked.connect(self.calendarButton)
@@ -328,6 +325,10 @@ class MainWindow(QMainWindow):
         self.ui.btnSetNetflixData.clicked.connect(self.setNetflixData)
         self.ui.btnSetSpotifyData.clicked.connect(self.setSpotifyData)
         self.ui.btnSetTelecomData.clicked.connect(self.setTelecomData)
+
+        # Dashboard info button
+        self.ui.btnInformation.clicked.connect(self.dashboardInformation)
+        self.ui.btnDashboardToAccountPreferences.clicked.connect(self.profilePage)
 
         # Center the app in the middle of the display
         qtRectangle = self.frameGeometry()
