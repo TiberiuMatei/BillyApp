@@ -92,7 +92,20 @@ class MainWindow(QMainWindow):
         self.ui.barChartSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
         self.laydonutSubscriptionsComparison.setContentsMargins(0, 0, 0, 0)
         self.chartviewSubscriptionsComparison = QtCharts.QChartView()
-        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)     
+        self.laydonutSubscriptionsComparison.addWidget(self.chartviewSubscriptionsComparison)
+
+        # Dashboard page chart widgets
+        self.laydonutDashboard = QtWidgets.QVBoxLayout(self.ui.donutDashAllBills)
+        self.ui.donutDashAllBills.setContentsMargins(0, 0, 0, 0)
+        self.laydonutDashboard.setContentsMargins(0, 0, 0, 0)
+        self.chartviewDonutDashboard = QtCharts.QChartView()
+        self.laydonutDashboard.addWidget(self.chartviewDonutDashboard)
+
+        self.layBarDashAllBills = QtWidgets.QVBoxLayout(self.ui.barDashAllBills)
+        self.ui.barDashAllBills.setContentsMargins(0, 0, 0, 0)
+        self.layBarDashAllBills.setContentsMargins(0, 0, 0, 0)
+        self.chartviewBarDashboard = QtCharts.QChartView()
+        self.layBarDashAllBills.addWidget(self.chartviewBarDashboard)
 
         # Initializing existing profile page data from db
         # Getting the app path
@@ -250,9 +263,6 @@ class MainWindow(QMainWindow):
         self.ui.frameTitle.mouseMoveEvent = moveWindow
         self.ui.frameTitleSmall.mouseMoveEvent = moveWindow
 
-        # Set the default opened page
-        self.ui.stackedWidget.setCurrentWidget(self.ui.pageDashboard)
-
         # Set title name
         self.setWindowTitle("Billy")
 
@@ -261,6 +271,11 @@ class MainWindow(QMainWindow):
 
         # Set UI Definitions
         UIFunctions.uiDefinitions(self)
+
+        # Set the default opened page
+        # Call click on Dashboard button in order to load data
+        self.dashboardButton()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.pageDashboard)
 
         # Set the stacked widget switch and button check logic        
         self.ui.btnDashboard.clicked.connect(self.dashboardButton)
@@ -311,6 +326,18 @@ class MainWindow(QMainWindow):
         self.ui.btnSetSpotifyData.clicked.connect(self.setSpotifyData)
         self.ui.btnSetTelecomData.clicked.connect(self.setTelecomData)
 
+        # Dashboard info button
+        self.ui.btnInformation.clicked.connect(self.dashboardInformation)
+        self.ui.btnDashboardToAccountPreferences.clicked.connect(self.profilePage)
+
+        # Information buttons
+        self.ui.btnInformationElectricity.clicked.connect(self.electricityInformation)
+        self.ui.btnInformationNaturalGas.clicked.connect(self.naturalGasInformation)
+        self.ui.btnInformationInternetTV.clicked.connect(self.internetTVInformation)
+
+        # App information button
+        self.ui.btnAppInfo.clicked.connect(self.applicationInformation)
+
         # Center the app in the middle of the display
         qtRectangle = self.frameGeometry()
         centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
@@ -360,10 +387,765 @@ class MainWindow(QMainWindow):
         fake_file_handle.close()
         return text
 
+    # Display the Dashboard message box
+    def dashboardInformation(self):
+        username = self.username
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+        earnings = earnings_result.fetchone()[0]
+        if earnings is None:
+            self.generateMessageBox(window_title='Dashboard page', msg_text='Please start by adding the earnings from the Account preferences!\
+    Adding the earnings per month is necessary in order to display data throughout the application!')
+        else:
+            self.generateMessageBox(window_title='Dashboard page', msg_text='Continue by adding bills for the selected providers/suppliers!')
+        connection.commit()
+        connection.close()
+
     # Click on the Dashboard button
     def dashboardButton(self):
         # Select the page in focus
         MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+
+        # Setting the current date
+        date = datetime.datetime.now()
+        self.ui.txtDashCurrentDate.setText(date.strftime("%d %b %Y"))
+
+        username = self.username
+        currpath = pathlib.Path().absolute()
+        db_path = pathlib.Path(f'{currpath}'+r'\db\billy.db')
+        connection = sqlite3.connect(f'{db_path}')
+        db_connection = connection.cursor()
+
+        db_connection.execute("SELECT due_date, total_pay FROM enel_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        electricity_bill = db_connection.fetchall()
+        if (electricity_bill != []):
+            self.ui.txtElectricityDueDateDash.setText(datetime.datetime.strptime(f"{electricity_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtElectricityPayDash.setText(electricity_bill[0][1] + "  RON")
+        db_connection.execute("SELECT due_date, total_pay FROM engie_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        natural_gas_bill = db_connection.fetchall()
+        if (natural_gas_bill != []):
+            self.ui.txtNaturalGasDueDateDash.setText(datetime.datetime.strptime(f"{natural_gas_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtNaturalGasPayDash.setText(natural_gas_bill[0][1] + "  RON")
+        db_connection.execute("SELECT due_date, total_pay FROM digi_bills WHERE username = ? ORDER BY due_date desc LIMIT 1",(username,))
+        internetTV_bill = db_connection.fetchall()
+        if (internetTV_bill != []):
+            self.ui.txtInternetDueDateDash.setText(datetime.datetime.strptime(f"{internetTV_bill[0][0]}", "%Y-%m-%d").strftime("%d.%m.%Y"))
+            self.ui.txtInternetPayDash.setText(internetTV_bill[0][1] + "  RON")
+
+        # Populate the subscription frames
+        netflix_result = db_connection.execute("SELECT subscription_netflix FROM accounts WHERE username = ?",(username,))
+        netflix = netflix_result.fetchone()[0]
+        spotify_result = db_connection.execute("SELECT subscription_spotify FROM accounts WHERE username = ?",(username,))
+        spotify = spotify_result.fetchone()[0]
+        vodafone_result = db_connection.execute("SELECT subscription_vodafone FROM accounts WHERE username = ?",(username,))
+        vodafone = vodafone_result.fetchone()[0]
+        if netflix == 1:
+                self.ui.txtNetflixDash.setStyleSheet("background-image: url(:/images/Resources/dash_netflix.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+        if spotify == 1:
+                self.ui.txtSpotifyDash.setStyleSheet("background-image: url(:/images/Resources/dash_spotify.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+        if vodafone == 1:
+                self.ui.txtVodafoneDash.setStyleSheet("background-image: url(:/images/Resources/dash_vodafone.png);\
+                                                                        background-color: #202528;\
+                                                                        border-radius: 5px;\
+                                                                        background-repeat: none;\
+                                                                        background-position: center;")
+
+        # Set the earnings text form and plotting charts
+        earnings_result = db_connection.execute("SELECT earnings FROM accounts WHERE username = ?",(username,))
+        earnings = earnings_result.fetchone()[0]
+        if earnings is not None:
+            self.ui.txtDashEarnings.setText(earnings + "  RON")
+
+            if (electricity_bill != [] and natural_gas_bill == [] and internetTV_bill == []):
+                # Plot the donut chart
+                electricity_bill_value_strip = electricity_bill[0][1].strip()
+                electricity_bill_value_string = electricity_bill_value_strip.replace(',','.')
+                electricity_total_pay_float = float(electricity_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                electricity_bill_percentage = round((electricity_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - electricity_bill_percentage, 2)
+
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Electricity {electricity_bill_percentage}%", electricity_bill_percentage+25)
+                slice1.setBrush(QColor('#F7CA18'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#F7CA18'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice2.setBrush(QColor('#6c6e71'))
+                slice2.setLabelColor(QColor('#6c6e71'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Electricity')
+
+                set0.append(electricity_total_pay_float)
+                set0.setBrush(QColor('#F7CA18'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill != [] and natural_gas_bill != [] and internetTV_bill == []):
+                # Plot the donut chart
+                electricity_bill_value_strip = electricity_bill[0][1].strip()
+                electricity_bill_value_string = electricity_bill_value_strip.replace(',','.')
+                electricity_total_pay_float = float(electricity_bill_value_string)
+
+                natural_gas_bill_value_strip = natural_gas_bill[0][1].strip()
+                natural_gas_bill_value_string = natural_gas_bill_value_strip.replace(',','.')
+                natural_gas_total_pay_float = float(natural_gas_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                electricity_bill_percentage = round((electricity_total_pay_float/earnings_float)*100, 2)
+                natural_gas_bill_percentage = round((natural_gas_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - electricity_bill_percentage - natural_gas_bill_percentage, 2)
+
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Electricity {electricity_bill_percentage}%", electricity_bill_percentage+25)
+                slice1.setBrush(QColor('#F7CA18'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#F7CA18'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
+                slice2.setBrush(QColor('#DC3023'))
+                slice2.setExploded()
+                slice2.setLabelColor(QColor('#DC3023'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+
+                slice3 = QtCharts.QPieSlice()
+                slice3 = seriesDonutDashboard.append(f"Earnings {remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice3.setBrush(QColor('#6c6e71'))
+                slice3.setLabelColor(QColor('#6c6e71'))
+                slice3.setLabelFont(QFont("SF UI Display", 7))
+                slice3.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Electricity')
+                set1 = QtCharts.QBarSet('Natural Gas')
+
+                set0.append(electricity_total_pay_float)
+                set0.setBrush(QColor('#F7CA18'))
+                set1.append(natural_gas_total_pay_float)
+                set1.setBrush(QColor('#DC3023'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+                seriesBarDashboard.append(set1)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill != [] and natural_gas_bill != [] and internetTV_bill != []):
+                # Plot the donut chart
+                electricity_bill_value_strip = electricity_bill[0][1].strip()
+                electricity_bill_value_string = electricity_bill_value_strip.replace(',','.')
+                electricity_total_pay_float = float(electricity_bill_value_string)
+
+                natural_gas_bill_value_strip = natural_gas_bill[0][1].strip()
+                natural_gas_bill_value_string = natural_gas_bill_value_strip.replace(',','.')
+                natural_gas_total_pay_float = float(natural_gas_bill_value_string)
+
+                internetTV_bill_value_strip = internetTV_bill[0][1].strip()
+                internetTV_bill_value_string = internetTV_bill_value_strip.replace(',','.')
+                internetTV_total_pay_float = float(internetTV_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                electricity_bill_percentage = round((electricity_total_pay_float/earnings_float)*100, 2)
+                natural_gas_bill_percentage = round((natural_gas_total_pay_float/earnings_float)*100, 2)
+                internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - electricity_bill_percentage - natural_gas_bill_percentage - internetTV_bill_percentage, 2)
+
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Electricity {electricity_bill_percentage}%", electricity_bill_percentage+25)
+                slice1.setBrush(QColor('#F7CA18'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#F7CA18'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
+                slice2.setBrush(QColor('#DC3023'))
+                slice2.setExploded()
+                slice2.setLabelColor(QColor('#DC3023'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+
+                slice3 = QtCharts.QPieSlice()
+                slice3 = seriesDonutDashboard.append(f"InternetTV {internetTV_bill_percentage}%", internetTV_bill_percentage+25)
+                slice3.setBrush(QColor('#22A7F0'))
+                slice3.setExploded()
+                slice3.setLabelColor(QColor('#22A7F0'))
+                slice3.setLabelFont(QFont("SF UI Display", 7))
+                slice3.setLabelVisible()
+
+                slice4 = QtCharts.QPieSlice()
+                slice4 = seriesDonutDashboard.append(f"Earnings{remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice4.setBrush(QColor('#6c6e71'))
+                slice4.setLabelColor(QColor('#6c6e71'))
+                slice4.setLabelFont(QFont("SF UI Display", 7))
+                slice4.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Electricity')
+                set1 = QtCharts.QBarSet('Natural Gas')
+                set2 = QtCharts.QBarSet('Internet & TV')
+
+                set0.append(electricity_total_pay_float)
+                set0.setBrush(QColor('#F7CA18'))
+                set1.append(natural_gas_total_pay_float)
+                set1.setBrush(QColor('#DC3023'))
+                set2.append(internetTV_total_pay_float)
+                set2.setBrush(QColor('#22A7F0'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+                seriesBarDashboard.append(set1)
+                seriesBarDashboard.append(set2)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill == [] and natural_gas_bill != [] and internetTV_bill != []):
+                # Plot the donut chart
+                natural_gas_bill_value_strip = natural_gas_bill[0][1].strip()
+                natural_gas_bill_value_string = natural_gas_bill_value_strip.replace(',','.')
+                natural_gas_total_pay_float = float(natural_gas_bill_value_string)
+
+                internetTV_bill_value_strip = internetTV_bill[0][1].strip()
+                internetTV_bill_value_string = internetTV_bill_value_strip.replace(',','.')
+                internetTV_total_pay_float = float(internetTV_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                natural_gas_bill_percentage = round((natural_gas_total_pay_float/earnings_float)*100, 2)
+                internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - natural_gas_bill_percentage - internetTV_bill_percentage, 2)
+
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
+                slice1.setBrush(QColor('#DC3023'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#DC3023'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"InternetTV {internetTV_bill_percentage}%", internetTV_bill_percentage+25)
+                slice2.setBrush(QColor('#22A7F0'))
+                slice2.setExploded()
+                slice2.setLabelColor(QColor('#22A7F0'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+
+                slice3 = QtCharts.QPieSlice()
+                slice3 = seriesDonutDashboard.append(f"Earnings{remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice3.setBrush(QColor('#6c6e71'))
+                slice3.setLabelColor(QColor('#6c6e71'))
+                slice3.setLabelFont(QFont("SF UI Display", 7))
+                slice3.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Natural Gas')
+                set1 = QtCharts.QBarSet('Internet & TV')
+
+                set0.append(natural_gas_total_pay_float)
+                set0.setBrush(QColor('#DC3023'))
+                set1.append(internetTV_total_pay_float)
+                set1.setBrush(QColor('#22A7F0'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+                seriesBarDashboard.append(set1)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill == [] and natural_gas_bill == [] and internetTV_bill != []):
+                # Plot the donut chart
+                internetTV_bill_value_strip = internetTV_bill[0][1].strip()
+                internetTV_bill_value_string = internetTV_bill_value_strip.replace(',','.')
+                internetTV_total_pay_float = float(internetTV_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - internetTV_bill_percentage, 2)
+
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"InternetTV {internetTV_bill_percentage}%", internetTV_bill_percentage+25)
+                slice1.setBrush(QColor('#22A7F0'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#22A7F0'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"Earnings{remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice2.setBrush(QColor('#6c6e71'))
+                slice2.setLabelColor(QColor('#6c6e71'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Internet & TV')
+
+                set0.append(internetTV_total_pay_float)
+                set0.setBrush(QColor('#22A7F0'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill == [] and natural_gas_bill != [] and internetTV_bill == []):
+                # Plot the donut chart
+                natural_gas_bill_value_strip = natural_gas_bill[0][1].strip()
+                natural_gas_bill_value_string = natural_gas_bill_value_strip.replace(',','.')
+                natural_gas_total_pay_float = float(natural_gas_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                natural_gas_bill_percentage = round((natural_gas_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - natural_gas_bill_percentage, 2)
+
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
+                slice1.setBrush(QColor('#DC3023'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#DC3023'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"Earnings{remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice2.setBrush(QColor('#6c6e71'))
+                slice2.setLabelColor(QColor('#6c6e71'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Natural Gas')
+
+                set0.append(natural_gas_total_pay_float)
+                set0.setBrush(QColor('#DC3023'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+            elif (electricity_bill != [] and natural_gas_bill == [] and internetTV_bill != []):
+                # Plot the donut chart
+                electricity_bill_value_strip = electricity_bill[0][1].strip()
+                electricity_bill_value_string = electricity_bill_value_strip.replace(',','.')
+                electricity_total_pay_float = float(electricity_bill_value_string)
+
+                internetTV_bill_value_strip = internetTV_bill[0][1].strip()
+                internetTV_bill_value_string = internetTV_bill_value_strip.replace(',','.')
+                internetTV_total_pay_float = float(internetTV_bill_value_string)
+
+                earnings_strip = earnings.strip()
+                earnings_float = float(earnings_strip)
+                electricity_bill_percentage = round((electricity_total_pay_float/earnings_float)*100, 2)
+                internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
+                remaining_earnings_percentage = round(100 - electricity_bill_percentage - internetTV_bill_percentage, 2)
+
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
+                slice1 = QtCharts.QPieSlice()
+                slice1 = seriesDonutDashboard.append(f"Electricity {electricity_bill_percentage}%", electricity_bill_percentage+25)
+                slice1.setBrush(QColor('#F7CA18'))
+                slice1.setExploded()
+                slice1.setLabelColor(QColor('#F7CA18'))
+                slice1.setLabelFont(QFont("SF UI Display", 7))
+                slice1.setLabelVisible()
+
+                slice2 = QtCharts.QPieSlice()
+                slice2 = seriesDonutDashboard.append(f"InternetTV {internetTV_bill_percentage}%", internetTV_bill_percentage+25)
+                slice2.setBrush(QColor('#22A7F0'))
+                slice2.setExploded()
+                slice2.setLabelColor(QColor('#22A7F0'))
+                slice2.setLabelFont(QFont("SF UI Display", 7))
+                slice2.setLabelVisible()
+
+                slice3 = QtCharts.QPieSlice()
+                slice3 = seriesDonutDashboard.append(f"Earnings{remaining_earnings_percentage}%", remaining_earnings_percentage)
+                slice3.setBrush(QColor('#6c6e71'))
+                slice3.setLabelColor(QColor('#6c6e71'))
+                slice3.setLabelFont(QFont("SF UI Display", 7))
+                slice3.setLabelVisible()
+                            
+                # Create Chart and set General Chart setting
+                chartDonutDashboard = QtCharts.QChart()
+                chartDonutDashboard.addSeries(seriesDonutDashboard)
+                chartDonutDashboard.legend().setAlignment(QtCore.Qt.AlignBottom)
+                chartDonutDashboard.legend().setFont(QtGui.QFont("SF UI Display", 10))
+                chartDonutDashboard.legend().setColor(QtGui.QColor('#EE4540'))
+         
+                chartDonutDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+                chartDonutDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+
+                self.chartviewDonutDashboard.setChart(chartDonutDashboard)
+                self.chartviewDonutDashboard.setRenderHint(QPainter.Antialiasing)
+
+                # Plot the bar char for the bills
+                set0 = QtCharts.QBarSet('Electricity')
+                set1 = QtCharts.QBarSet('Internet & TV')
+
+                set0.append(electricity_total_pay_float)
+                set0.setBrush(QColor('#F7CA18'))
+                set1.append(internetTV_total_pay_float)
+                set1.setBrush(QColor('#22A7F0'))
+
+                seriesBarDashboard = QtCharts.QBarSeries()
+                seriesBarDashboard.append(set0)
+                seriesBarDashboard.append(set1)
+
+                chartBarDashboard = QtCharts.QChart()
+                chartBarDashboard.addSeries(seriesBarDashboard)
+                chartBarDashboard.setAnimationOptions(QtCharts.QChart.SeriesAnimations)
+
+                axisX = QtCharts.QBarCategoryAxis()
+                axis_x_brush = QBrush(QColor("#EE4540"))
+                axisX.setLabelsBrush(axis_x_brush)
+                axisX.setTitleBrush(axis_x_brush)
+                axisX.setTitleText("Suppliers")
+
+                axisY = QtCharts.QValueAxis()
+                axisY.setLabelFormat("%i")
+                axisY.setTitleText("Bill cost")
+                axisY.setMax(500)
+                axisY.setMin(0)
+                axisY.setTickCount(4)
+                axis_y_brush = QBrush(QColor("#EE4540"))
+                axisY.setLabelsBrush(axis_y_brush)            
+                axisY.setTitleBrush(axis_y_brush)
+
+                chartBarDashboard.addAxis(axisX, Qt.AlignBottom)
+                chartBarDashboard.addAxis(axisY, Qt.AlignLeft)
+
+                seriesBarDashboard.attachAxis(axisY)            
+
+                chartBarDashboard.setBackgroundBrush(QBrush(QColor("transparent")))
+                chartBarDashboard.setTitleBrush(QBrush(Qt.white));
+
+                chartBarDashboard.legend().setVisible(True)
+                chartBarDashboard.legend().setBrush(QBrush(Qt.white))
+                chartBarDashboard.legend().setAlignment(Qt.AlignBottom)
+
+                self.chartviewBarDashboard.setChart(chartBarDashboard)
+                self.chartviewBarDashboard.setRenderHint(QPainter.Antialiasing)
+
+        connection.commit()
+        connection.close()
+
+    def applicationInformation(self):
+        self.generateMessageBox(window_title='Application info', msg_text='BILLY version 1.0\n\nDeveloped by Tiberiu Matei')
 
     # Click on the Calendar button
     def calendarButton(self):
@@ -534,7 +1316,6 @@ class MainWindow(QMainWindow):
                         bill_years = db_connection.fetchall()
                         for year in bill_years:
                             self.ui.comboBoxElectricityBillYear.addItems(year)
-                        
 
                         # add here the charts
                         selected_year = latest_bill_year
@@ -865,6 +1646,9 @@ class MainWindow(QMainWindow):
         self.chartviewElectricityAllBillsPlot.setRenderHint(QPainter.Antialiasing)
         connection.commit()
         connection.close()
+
+    def electricityInformation(self):
+        self.generateMessageBox(window_title='Electricity page', msg_text='Add electricity bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
 
     # Click on the NaturalGas button
     def naturalGasButton(self):
@@ -1300,6 +2084,9 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
+    def naturalGasInformation(self):
+        self.generateMessageBox(window_title='Natural Gas page', msg_text='Add natural gas bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
+
     # Click on the InternetTV button
     def internetTVButton(self):
         # Select the page in focus
@@ -1590,6 +2377,9 @@ class MainWindow(QMainWindow):
         self.ui.lblTestInternetPingData.setText('{} ms'.format(res["ping"]))
         self.ui.lblTestInternetDownloadData.setText('{:.2f} Mb/s'.format(res["download"] / 1024/1024))
         self.ui.lblTestInternetUploadData.setText('{:.2f} Mb/s'.format(res["upload"] / 1024/1024))
+
+    def internetTVInformation(self):
+        self.generateMessageBox(window_title='InternetTV page', msg_text='Add internetTV bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
 
     # Click on the Subscriptions button
     def subscriptionsButton(self):
@@ -2467,7 +3257,6 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
-
     def setNetflixData(self):
         if (self.ui.comboBoxNetflixDay.currentText() != 'Day' and self.ui.comboBoxNetflixMonth.currentText() != 'Month' and \
             self.ui.comboBoxNetflixYear.currentText() != 'Year' and self.ui.comboBoxNetflixCurrency.currentText() != 'Currency' and \
@@ -2776,7 +3565,7 @@ class MainWindow(QMainWindow):
         self.animation2.setEndValue(QRect(0, 250, 200, 670))
         self.animation2.setEasingCurve(QtCore.QEasingCurve.InOutSine)
         self.animation2.start()
-        MainWindow.clickLeftMenuButton(self, self.ui.pageDashboard, self.ui.btnDashboard, [self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions])
+        self.dashboardButton()
 
     def usernameProfilePage(self):
         mainButtonsList = [self.ui.btnDashboard, self.ui.btnCalendar, self.ui.btnElectricity, self.ui.btnNaturalGas, self.ui.btnInternetTV, self.ui.btnSubscriptions]
