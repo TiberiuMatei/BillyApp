@@ -330,6 +330,14 @@ class MainWindow(QMainWindow):
         self.ui.btnInformation.clicked.connect(self.dashboardInformation)
         self.ui.btnDashboardToAccountPreferences.clicked.connect(self.profilePage)
 
+        # Information buttons
+        self.ui.btnInformationElectricity.clicked.connect(self.electricityInformation)
+        self.ui.btnInformationNaturalGas.clicked.connect(self.naturalGasInformation)
+        self.ui.btnInformationInternetTV.clicked.connect(self.internetTVInformation)
+
+        # App information button
+        self.ui.btnAppInfo.clicked.connect(self.applicationInformation)
+
         # Center the app in the middle of the display
         qtRectangle = self.frameGeometry()
         centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
@@ -1136,6 +1144,8 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
+    def applicationInformation(self):
+        self.generateMessageBox(window_title='Application info', msg_text='BILLY version 1.0\n\nDeveloped by Tiberiu Matei')
 
     # Click on the Calendar button
     def calendarButton(self):
@@ -1637,6 +1647,9 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
+    def electricityInformation(self):
+        self.generateMessageBox(window_title='Electricity page', msg_text='Add electricity bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
+
     # Click on the NaturalGas button
     def naturalGasButton(self):
         # Select the page in focus
@@ -2071,6 +2084,9 @@ class MainWindow(QMainWindow):
         connection.commit()
         connection.close()
 
+    def naturalGasInformation(self):
+        self.generateMessageBox(window_title='Natural Gas page', msg_text='Add natural gas bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
+
     # Click on the InternetTV button
     def internetTVButton(self):
         # Select the page in focus
@@ -2361,6 +2377,9 @@ class MainWindow(QMainWindow):
         self.ui.lblTestInternetPingData.setText('{} ms'.format(res["ping"]))
         self.ui.lblTestInternetDownloadData.setText('{:.2f} Mb/s'.format(res["download"] / 1024/1024))
         self.ui.lblTestInternetUploadData.setText('{:.2f} Mb/s'.format(res["upload"] / 1024/1024))
+
+    def internetTVInformation(self):
+        self.generateMessageBox(window_title='InternetTV page', msg_text='Add internetTV bill in order to be able to open, delete or get information from the bill!\nOpen, delete or get information by right-clicking on an added bill!')
 
     # Click on the Subscriptions button
     def subscriptionsButton(self):
@@ -3237,7 +3256,6 @@ class MainWindow(QMainWindow):
 
         connection.commit()
         connection.close()
-
 
     def setNetflixData(self):
         if (self.ui.comboBoxNetflixDay.currentText() != 'Day' and self.ui.comboBoxNetflixMonth.currentText() != 'Month' and \
