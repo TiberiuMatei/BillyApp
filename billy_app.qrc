@@ -1,10 +1,19 @@
 <RCC>
   <qresource prefix="images">
+    <file>Resources/app_info_button.png</file>
+    <file>Resources/dash_due_date.png</file>
+    <file>Resources/info_button.png</file>
+    <file>Resources/dash_netflix.png</file>
+    <file>Resources/dash_spotify.png</file>
+    <file>Resources/dash_vodafone.png</file>
+    <file>Resources/dash_electricity.png</file>
+    <file>Resources/dash_gas.png</file>
+    <file>Resources/dash_internet.png</file>
     <file>Resources/vodafone_sub_selection.png</file>
+    <file>Resources/calendar_dash.png</file>
     <file>Resources/prev_month.png</file>
     <file>Resources/next_month.png</file>
     <file>Resources/branch-closed.png</file>
-    <file>Resources/bill_total_pay.png</file>
     <file>Resources/internet-speed.png</file>
     <file>Resources/branch-open.png</file>
     <file>Resources/netflix_sub_selection.png</file>
