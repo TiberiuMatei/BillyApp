@@ -789,6 +789,8 @@ class MainWindow(QMainWindow):
                 internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
                 remaining_earnings_percentage = round(100 - natural_gas_bill_percentage - internetTV_bill_percentage, 2)
 
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
                 slice1 = QtCharts.QPieSlice()
                 slice1 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
                 slice1.setBrush(QColor('#DC3023'))
@@ -884,6 +886,8 @@ class MainWindow(QMainWindow):
                 internetTV_bill_percentage = round((internetTV_total_pay_float/earnings_float)*100, 2)
                 remaining_earnings_percentage = round(100 - internetTV_bill_percentage, 2)
 
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
                 slice1 = QtCharts.QPieSlice()
                 slice1 = seriesDonutDashboard.append(f"InternetTV {internetTV_bill_percentage}%", internetTV_bill_percentage+25)
                 slice1.setBrush(QColor('#22A7F0'))
@@ -967,6 +971,8 @@ class MainWindow(QMainWindow):
                 natural_gas_bill_percentage = round((natural_gas_total_pay_float/earnings_float)*100, 2)
                 remaining_earnings_percentage = round(100 - natural_gas_bill_percentage, 2)
 
+                seriesDonutDashboard = QtCharts.QPieSeries()
+                seriesDonutDashboard.setHoleSize(0.35)
                 slice1 = QtCharts.QPieSlice()
                 slice1 = seriesDonutDashboard.append(f"Natural Gas {natural_gas_bill_percentage}%", natural_gas_bill_percentage+25)
                 slice1.setBrush(QColor('#DC3023'))
@@ -1970,12 +1976,13 @@ class MainWindow(QMainWindow):
         # Get the year from the selected bill for ENGIE and create a directory if it doesn't exist
         try:
             # Bill year for directory creation
-            self.engie_bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFactura transmisa", self.engie_bill_content)[0].split()[0]
+            self.engie_bill_year = re.search(r"(\d+)(?!.*\d)+\n\nFactura transmisa", self.engie_bill_content)[0].split()[0]            
             # Bill engie natural gas bill data
             self.engie_id_bill = re.findall(r"(\d+)(?!.*\d)+\nData facturii", self.engie_bill_content)[0]
             self.engie_address = re.findall(r"Adresa: ([^\n\r]*\n[^\n\r]*\n[^\n\r]*)", self.engie_bill_content)[0]
             self.engie_client = re.findall(r"Nume client:\s([^\n\r]*)", self.engie_bill_content)[0]
-            self.engie_client_code = re.findall(r"2018\n\n(\d+)(?!.*\d)", self.engie_bill_content)[0]
+            client_code = re.findall(r"(\d+)(?!.*\d)\n\nFAC", self.engie_bill_content)[0]
+            self.engie_client_code = client_code[0:13]
             self.engie_total_pay = re.findall(r"([^\n\r]*) LEI\n\nDATA", self.engie_bill_content)[0]
             engie_issue_date_raw = re.findall(r"([0-9]{2}.[0-9]{2}.[0-9]{4})\n\nFactura", self.engie_bill_content)[0]
             engie_due_date_raw = re.findall(r"DATA SCADENTĂ\n\s([^\n\r]*)", self.engie_bill_content)[0]

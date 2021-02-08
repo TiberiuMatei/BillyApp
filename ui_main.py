@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 
-##################
-## Main app design
-##################
+################################################################################
+## Form generated from reading UI file 'billy_uixqHhwD.ui'
+##
+## Created by: Qt User Interface Compiler version 5.15.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -3251,7 +3255,7 @@ class Ui_BillyAppMain(object):
         self.txtSpotifyDash.setPlaceholderText("")
         self.txtVodafoneDash.setPlaceholderText("")
         self.btnInformation.setText("")
-        self.lblDashboardWelcome.setText(QCoreApplication.translate("BillyAppMain", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600; color:#c72c41;\">Welcome to Billy v1.0 !</span><br/></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">1. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the monthly earnings from the Account preferences</span></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">2. </span><span style=\" font-size:12pt; color:#6c6e71;\">Select the suppliers/providers for each cattegory</span></p><p><span style=\" font-size:18pt; color:#6c6e71;\">3</span><span style=\" font-size:16pt; color:#6c6e71;\">. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the bills for each supplier/provider (.pdf file)</span></p></body></html>", None))
+        self.lblDashboardWelcome.setText(QCoreApplication.translate("BillyAppMain", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:600; color:#c72c41;\">Welcome to Billy v1.0 !</span><br/></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">1. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the monthly earnings from the Account preferences</span></p><p><span style=\" font-size:18pt; font-weight:600; color:#6c6e71;\">2. </span><span style=\" font-size:12pt; color:#6c6e71;\">Select the suppliers/providers for each category</span></p><p><span style=\" font-size:18pt; color:#6c6e71;\">3</span><span style=\" font-size:16pt; color:#6c6e71;\">. </span><span style=\" font-size:12pt; color:#6c6e71;\">Add the bills for each supplier/provider (.pdf file)</span></p></body></html>", None))
         self.btnDashboardToAccountPreferences.setText("")
         self.lblGeneralDashboardInformation.setText(QCoreApplication.translate("BillyAppMain", u"Dashboard page : track the latest added bill amount to pay and due date for each supplier/provider, track the selected subscriptions and track the impact on earnings", None))
         self.btnAppInfo.setText("")
