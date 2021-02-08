@@ -23,7 +23,7 @@ python -m venv venvBillyApp
 ```
 2. After the venv is created, access the venv and activate it:
 ```
-cd \venvBillyApp\Scripts
+cd venvBillyApp\Scripts
 activate
 ```
 3. After the venv is active, return to the root of the cloned project
