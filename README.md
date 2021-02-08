@@ -8,9 +8,9 @@ The main purpose was to create applicability - that being a desktop app for trac
 
 The learning project path included working with Python as the main programming language, GIT for project versioning, PySide2 for the UI (layout, animations, widgets, charts, forms and so on), creating a basic, not-so-secure auth service (that includes user creation and authentication), playing around with a simple sqlite db for storing data, reading and extracting data from pdf files with regex, generating charts for data visualization and creating some graphic resources.
 
-### Billy logo can be found here: (Dribble page)[https://dribbble.com/shots/5832071-B-Paper-Sheet]
+### Billy logo can be found here: [Dribble artist page](https://dribbble.com/shots/5832071-B-Paper-Sheet)
 
-### Other graphic resources can be found here: (Freepik)[https://www.freepik.com/]
+### Other graphic resources can be found here: [Freepik](https://www.freepik.com/)
 
 ## Installation
 
