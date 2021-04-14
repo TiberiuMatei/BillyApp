@@ -82,7 +82,7 @@ From the account preferences, the user can add the monthly earnings in order to 
 
 
 ### Here are some screenshots of the app pages:
-![image](https://user-images.githubusercontent.com/24440993/107280996-c25a4580-6a61-11eb-97de-d409ba167b96.png)
+![image](https://user-images.githubusercontent.com/24440993/114746356-5396b280-9d58-11eb-9676-c529333e3a39.png)
 ![image](https://user-images.githubusercontent.com/24440993/107280867-9048e380-6a61-11eb-8f6e-904566821904.png)
 ![image](https://user-images.githubusercontent.com/24440993/107280968-b8384700-6a61-11eb-8b54-23514f0ed958.png)
 
