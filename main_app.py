@@ -2375,11 +2375,13 @@ class MainWindow(QMainWindow):
             self.generateMessageBox(window_title='InternetTV bill', msg_text='Added internet tv bill is not a(n) DIGI bill!')
 
     def testInternetSpeed(self):
+        print("aa")
         s = speedtest.Speedtest()
         s.get_servers()
         s.get_best_server()
         s.download()
         s.upload()
+        print(s)
         res = s.results.dict()
         self.ui.lblTestInternetPingData.setText('{} ms'.format(res["ping"]))
         self.ui.lblTestInternetDownloadData.setText('{:.2f} Mb/s'.format(res["download"] / 1024/1024))
